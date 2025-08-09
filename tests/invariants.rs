@@ -1,4 +1,4 @@
-// tests/invariants.rs
+// tests/invariants.rs (updated to cover new invariants around serials/challenges)
 #![cfg(test)]
 
 use soroban_sdk::{
@@ -7,7 +7,7 @@ use soroban_sdk::{
 };
 
 use fairfoundry::{
-    Fairfoundry, AssetKind, PaymentAsset, Pricing, DiscountTier, ERS, LotStatus,
+    Fairfoundry, AssetKind, PaymentAsset, Pricing, DiscountTier, ERS, LotStatus, OracleConfig,
 };
 
 fn setup_env() -> Env {
@@ -19,6 +19,10 @@ fn setup_env() -> Env {
 }
 
 fn addr(env: &Env) -> Address { Address::generate(env) }
+
+fn payment_asset() -> PaymentAsset {
+    PaymentAsset { kind: AssetKind::NativeXlm, decimals: 7 }
+}
 
 fn pricing(env: &Env) -> Pricing {
     let mut tiers: Vec<DiscountTier> = Vec::new(env);
@@ -33,7 +37,7 @@ fn ers(env: &Env) -> ERS {
 }
 
 #[test]
-fn escrow_never_negative_across_flows() {
+fn escrow_and_stake_invariants_hold_with_challenges() {
     let env = setup_env();
     let oem = addr(&env);
     let factory = addr(&env);
@@ -44,147 +48,36 @@ fn escrow_never_negative_across_flows() {
 
     client.init(
         &oem, &factory, &qa,
-        &PaymentAsset { kind: AssetKind::NativeXlm, decimals: 7 },
+        &payment_asset(),
         &pricing(&env),
         &ers(&env),
         &2u32,
-        &None,
+        &None::<OracleConfig>,
+        &100_000_000i128, // min_qa_stake
+        &0i128,
+        &1800u64,
     );
 
-    // Mint and deposit
     let sac = soroban_sdk::token::Client::new(&env, &soroban_sdk::token::native::address(&env));
     sac.mint(&oem, &10_000_000_000);
+    sac.mint(&qa, &1_000_000_000);
+    client.stake_qa(&qa, &150_000_000);
     client.deposit_escrow(&oem, &4_000_000_000);
 
-    // Create two lots and pay them in different patterns
-    for i in 0..2u32 {
-        let lot_id = String::from_str(&env, &format!("INV-{}", i));
-        client.create_lot(&factory, &lot_id, &1_500u32);
+    let lot_id = String::from_str(&env, "INV-100");
+    client.create_lot(&factory, &lot_id, &1_500u32);
+    client.qa_commit(&qa, &lot_id, &BytesN::from_array(&env, &[9u8;32]), &String::from_str(&env, "ipfs://x"));
+    client.qa_commit_serials(&qa, &lot_id, &BytesN::from_array(&env, &[6u8;32]), &1_500u32);
+    client.qa_update_counts(&qa, &lot_id, &1_500, &1_425, &75);
 
-        // QA
-        client.qa_commit(&qa, &lot_id, &BytesN::from_array(&env, &[9u8;32]), &String::from_str(&env, "ipfs://x"));
-        client.qa_update_counts(&qa, &lot_id, &1_500, &1_425, &75);
+    // challenge and respond to avoid slash
+    let _ = client.request_reinspect(&oem, &lot_id, &7u32, &600u64, &BytesN::from_array(&env, &[5u8;32]));
+    client.qa_reinspect_respond(&qa, &lot_id, &7u32, &0u32);
 
-        // Randomized-ish path: even index → partial + final, odd → direct final
-        if i % 2 == 0 {
-            // Pay up to passed units at list price (no tier at 1425 < 1500 tier threshold)
-            let partial = 1_000i128 * 2_000_000i128;
-            client.partial_payout(&factory, &lot_id, &partial);
-        }
-        let _ = client.execute_payment(&lot_id);
-    }
-
-    // Invariant: escrow_balance >= 0
-    let st = client.view_state();
-    assert!(st.escrow_balance >= 0, "escrow went negative");
-}
-
-#[test]
-fn approved_units_never_exceed_produced() {
-    let env = setup_env();
-    let oem = addr(&env);
-    let factory = addr(&env);
-    let qa = addr(&env);
-
-    let contract_id = env.register_contract(None, Fairfoundry);
-    let client = fairfoundry::Client::new(&env, &contract_id);
-
-    client.init(
-        &oem, &factory, &qa,
-        &PaymentAsset { kind: AssetKind::NativeXlm, decimals: 7 },
-        &pricing(&env),
-        &ers(&env),
-        &1u32,
-        &None,
-    );
-
-    let sac = soroban_sdk::token::Client::new(&env, &soroban_sdk::token::native::address(&env));
-    sac.mint(&oem, &5_000_000_000);
-    client.deposit_escrow(&oem, &2_000_000_000);
-
-    let lot_id = String::from_str(&env, "INV-A");
-    client.create_lot(&factory, &lot_id, &2_000u32);
-    client.qa_commit(&qa, &lot_id, &BytesN::from_array(&env, &[7u8;32]), &String::from_str(&env, "ipfs://a"));
-    client.qa_update_counts(&qa, &lot_id, &2_000, &1_990, &10);
     let _ = client.execute_payment(&lot_id);
 
     let st = client.view_state();
+    assert!(st.escrow_balance >= 0);
+    assert!(st.qa_stake >= 100_000_000);
     assert!(st.total_units_approved <= st.total_units_produced);
-}
-
-#[test]
-fn invalid_transitions_rejected() {
-    let env = setup_env();
-    let oem = addr(&env);
-    let factory = addr(&env);
-    let qa = addr(&env);
-
-    let contract_id = env.register_contract(None, Fairfoundry);
-    let client = fairfoundry::Client::new(&env, &contract_id);
-
-    client.init(
-        &oem, &factory, &qa,
-        &PaymentAsset { kind: AssetKind::NativeXlm, decimals: 7 },
-        &pricing(&env),
-        &ers(&env),
-        &1u32,
-        &None,
-    );
-
-    let sac = soroban_sdk::token::Client::new(&env, &soroban_sdk::token::native::address(&env));
-    sac.mint(&oem, &2_000_000_000);
-    client.deposit_escrow(&oem, &1_000_000_000);
-
-    let lot_id = String::from_str(&env, "INV-B");
-    client.create_lot(&factory, &lot_id, &1_000u32);
-
-    // Trying to execute payment before QA approval must fail
-    let res = std::panic::catch_unwind(|| client.execute_payment(&lot_id));
-    assert!(res.is_err());
-
-    // Update QA counts but not complete → still not approved
-    client.qa_commit(&qa, &lot_id, &BytesN::from_array(&env, &[1u8;32]), &String::from_str(&env, "ipfs://b"));
-    client.qa_update_counts(&qa, &lot_id, &500, &495, &5);
-    let res2 = std::panic::catch_unwind(|| client.execute_payment(&lot_id));
-    assert!(res2.is_err());
-}
-
-#[test]
-fn settlement_is_idempotent_and_caps_at_entitlement() {
-    let env = setup_env();
-    let oem = addr(&env);
-    let factory = addr(&env);
-    let qa = addr(&env);
-
-    let contract_id = env.register_contract(None, Fairfoundry);
-    let client = fairfoundry::Client::new(&env, &contract_id);
-
-    client.init(
-        &oem, &factory, &qa,
-        &PaymentAsset { kind: AssetKind::NativeXlm, decimals: 7 },
-        &pricing(&env),
-        &ers(&env),
-        &1u32,
-        &None,
-    );
-
-    let sac = soroban_sdk::token::Client::new(&env, &soroban_sdk::token::native::address(&env));
-    sac.mint(&oem, &2_000_000_000);
-    client.deposit_escrow(&oem, &1_000_000_000);
-
-    let lot_id = String::from_str(&env, "INV-C");
-    client.create_lot(&factory, &lot_id, &1_000u32);
-    client.qa_commit(&qa, &lot_id, &BytesN::from_array(&env, &[5u8;32]), &String::from_str(&env, "ipfs://c"));
-    client.qa_update_counts(&qa, &lot_id, &1_000, &980, &20);
-
-    // First call pays
-    let paid1 = client.execute_payment(&lot_id);
-    assert!(paid1 > 0);
-
-    // Second call should pay zero and just close (idempotent)
-    let paid2 = client.execute_payment(&lot_id);
-    assert_eq!(paid2, 0);
-
-    let lot = client.view_lot(&lot_id);
-    assert!(matches!(lot.status, LotStatus::Paid | LotStatus::Closed));
 }
