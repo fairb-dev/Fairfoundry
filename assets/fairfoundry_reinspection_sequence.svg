@@ -1,49 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="640">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="640" viewBox="0 0 1100 640">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#333" />
     </marker>
-    <style>
-      .box { fill: #f9fbfd; stroke: #333; rx: 10; ry: 10; }
-      .sub { fill: #eef7ff; }
-      .title { font-family: Arial; font-size: 20px; font-weight: bold; }
-      .lbl { font-family: Arial; font-size: 13px; }
-      .small { font-family: Arial; font-size: 11px; }
-      .mono { font-family: 'Courier New', monospace; font-size: 12px; }
-    </style>
   </defs>
-
-  <text x="550" y="40" class="title" text-anchor="middle">Reinspection Challenge — Sequence</text>
-  <!-- Swimlanes titles -->
-  <text x="150" y="70" class="lbl" text-anchor="middle">OEM / Factory</text>
-  <text x="550" y="70" class="lbl" text-anchor="middle">Fairfoundry</text>
-  <text x="950" y="70" class="lbl" text-anchor="middle">QA Provider</text>
-
-  <!-- Vertical lanes -->
-  <line x1="150" y1="90" x2="150" y2="620" stroke="#aaa"/>
-  <line x1="550" y1="90" x2="550" y2="620" stroke="#aaa"/>
-  <line x1="950" y1="90" x2="950" y2="620" stroke="#aaa"/>
-
-  <!-- Steps -->
-  <text x="350" y="120" class="mono">request_reinspect(sample_size, deadline, seed)</text>
-  <line x1="150" y1="130" x2="550" y2="130" stroke="#333" marker-end="url(#arrow)"/>
-
-  <text x="750" y="180" class="mono">deterministic_sample(seed)</text>
-  <line x1="550" y1="190" x2="950" y2="190" stroke="#333" marker-end="url(#arrow)"/>
-
-  <text x="350" y="240" class="mono">indices[]</text>
-  <line x1="550" y1="250" x2="150" y2="250" stroke="#333" marker-end="url(#arrow)"/>
-
-  <text x="750" y="300" class="mono">qa_reinspect_respond(pass, fail)</text>
-  <line x1="950" y1="310" x2="550" y2="310" stroke="#333" marker-end="url(#arrow)"/>
-
-  <text x="350" y="360" class="mono">ok → normal flow</text>
-  <line x1="550" y1="370" x2="150" y2="370" stroke="#333" marker-end="url(#arrow)"/>
-
-  <text x="350" y="460" class="mono">no response by due_by → challenge_default_slash(bps)</text>
-  <line x1="150" y1="470" x2="550" y2="470" stroke="#333" marker-end="url(#arrow)"/>
-
-  <text x="750" y="520" class="mono">slash QA stake; emit event</text>
-  <line x1="550" y1="530" x2="950" y2="530" stroke="#333" marker-end="url(#arrow)"/>
-
+  <rect x="0" y="0" width="1100" height="640" fill="#ffffff"/>
+<text x="550" y="36" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#000">Reinspection Challenge — Sequence</text>
+<text x="150" y="70" font-family="Arial" font-size="14" font-weight="normal" text-anchor="middle" fill="#000">OEM / Factory</text>
+<text x="550" y="70" font-family="Arial" font-size="14" font-weight="normal" text-anchor="middle" fill="#000">Fairfoundry</text>
+<text x="950" y="70" font-family="Arial" font-size="14" font-weight="normal" text-anchor="middle" fill="#000">QA Provider</text>
+<line x1="150" y1="90" x2="150" y2="620" stroke="#aaa"/>
+<line x1="550" y1="90" x2="550" y2="620" stroke="#aaa"/>
+<line x1="950" y1="90" x2="950" y2="620" stroke="#aaa"/>
+<text x="350" y="120" font-family="Arial" font-size="12" font-weight="normal" text-anchor="start" fill="#000">request_reinspect(sample_size, deadline, seed)</text>
+<line x1="150" y1="130" x2="550" y2="130" stroke="#333" marker-end="url(#arrow)"/>
+<text x="750" y="180" font-family="Arial" font-size="12" font-weight="normal" text-anchor="start" fill="#000">deterministic_sample(seed)</text>
+<line x1="550" y1="190" x2="950" y2="190" stroke="#333" marker-end="url(#arrow)"/>
+<text x="350" y="240" font-family="Arial" font-size="12" font-weight="normal" text-anchor="start" fill="#000">indices[]</text>
+<line x1="550" y1="250" x2="150" y2="250" stroke="#333" marker-end="url(#arrow)"/>
+<text x="750" y="300" font-family="Arial" font-size="12" font-weight="normal" text-anchor="start" fill="#000">qa_reinspect_respond(pass, fail)</text>
+<line x1="950" y1="310" x2="550" y2="310" stroke="#333" marker-end="url(#arrow)"/>
+<text x="350" y="360" font-family="Arial" font-size="12" font-weight="normal" text-anchor="start" fill="#000">ok → normal flow</text>
+<line x1="550" y1="370" x2="150" y2="370" stroke="#333" marker-end="url(#arrow)"/>
+<text x="350" y="460" font-family="Arial" font-size="12" font-weight="normal" text-anchor="start" fill="#000">no response by due_by → challenge_default_slash(bps)</text>
+<line x1="150" y1="470" x2="550" y2="470" stroke="#333" marker-end="url(#arrow)"/>
+<text x="750" y="520" font-family="Arial" font-size="12" font-weight="normal" text-anchor="start" fill="#000">slash QA stake; emit event</text>
+<line x1="550" y1="530" x2="950" y2="530" stroke="#333" marker-end="url(#arrow)"/>
 </svg>

@@ -1,42 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#333" />
     </marker>
-    <style>
-      .box { fill: #f9fbfd; stroke: #333; rx: 10; ry: 10; }
-      .sub { fill: #eef7ff; }
-      .title { font-family: Arial; font-size: 20px; font-weight: bold; }
-      .lbl { font-family: Arial; font-size: 13px; }
-      .small { font-family: Arial; font-size: 11px; }
-      .mono { font-family: 'Courier New', monospace; font-size: 12px; }
-    </style>
   </defs>
-
-  <text x="550" y="40" class="title" text-anchor="middle">Data Model (Simplified)</text>
-
-  <rect x="120" y="100" width="240" height="180" class="box"/>
-  <text x="240" y="125" class="lbl" text-anchor="middle">State</text>
-  <text x="240" y="150" class="small" text-anchor="middle">roles, pay_asset, pricing, ers</text>
-  <text x="240" y="170" class="small" text-anchor="middle">escrow_balance, qa_stake, oem_bond</text>
-  <text x="240" y="190" class="small" text-anchor="middle">timelock queues, paused</text>
-
-  <rect x="430" y="100" width="240" height="220" class="box"/>
-  <text x="550" y="125" class="lbl" text-anchor="middle">Lot</text>
-  <text x="550" y="150" class="small" text-anchor="middle">lot_id, quantity, tested/passed/failed</text>
-  <text x="550" y="170" class="small" text-anchor="middle">status, pay_nonce, partial_paid</text>
-  <text x="550" y="190" class="small" text-anchor="middle">qa_commit: results_root, report_uri</text>
-  <text x="550" y="210" class="small" text-anchor="middle">serials_root, serials_count, attestation</text>
-
-  <rect x="740" y="100" width="240" height="160" class="box"/>
-  <text x="860" y="125" class="lbl" text-anchor="middle">Challenge</text>
-  <text x="860" y="150" class="small" text-anchor="middle">seed, sample_size, indices[]</text>
-  <text x="860" y="170" class="small" text-anchor="middle">requested_by, due_by, status</text>
-
-  <line x1="360" y1="190" x2="430" y2="190" stroke="#333" marker-end="url(#arrow)"/>
-  <text x="395" y="180" class="small" text-anchor="middle">tracks many Lots</text>
-
-  <line x1="670" y1="180" x2="740" y2="180" stroke="#333" marker-end="url(#arrow)"/>
-  <text x="705" y="170" class="small" text-anchor="middle">optional per Lot</text>
-
+  <rect x="0" y="0" width="1100" height="420" fill="#ffffff"/>
+<text x="550" y="36" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#000">Data Model (Simplified)</text>
+<rect x="120" y="100" width="240" height="180" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
+<text x="240" y="125" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">State</text>
+<text x="240" y="150" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">roles, pay_asset, pricing, ers</text>
+<text x="240" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">escrow_balance, qa_stake, oem_bond</text>
+<text x="240" y="190" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">timelock queues, paused</text>
+<rect x="430" y="100" width="240" height="220" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
+<text x="550" y="125" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Lot</text>
+<text x="550" y="150" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">lot_id, quantity, tested/passed/failed</text>
+<text x="550" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">status, pay_nonce, partial_paid</text>
+<text x="550" y="190" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">qa_commit: results_root, report_uri</text>
+<text x="550" y="210" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">serials_root, serials_count, attestation</text>
+<rect x="740" y="100" width="240" height="160" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
+<text x="860" y="125" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Challenge</text>
+<text x="860" y="150" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">seed, sample_size, indices[]</text>
+<text x="860" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">requested_by, due_by, status</text>
+<line x1="360" y1="190" x2="430" y2="190" stroke="#333" marker-end="url(#arrow)"/>
+<text x="395" y="180" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">tracks many Lots</text>
+<line x1="670" y1="180" x2="740" y2="180" stroke="#333" marker-end="url(#arrow)"/>
+<text x="705" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">optional per Lot</text>
 </svg>
