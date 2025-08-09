@@ -20,25 +20,25 @@ Below are diagrams that summarize the system and flows. All SVGs have been valid
 - fairfoundry_governance_timelock.svg: OK (width=1100, height=260, viewBox=0 0 1100 260)
 
 ### Architecture
-<img alt="Fairfoundry Architecture" src="assets/fairfoundry_architecture.svg" width="960"/>
+![fairfoundry_architecture.svg](assets/fairfoundry_architecture.svg)
 
 ### Lot Lifecycle
-<img alt="Fairfoundry Lot State Machine" src="assets/fairfoundry_state_machine.svg" width="960"/>
+![fairfoundry_state_machine.svg](assets/fairfoundry_state_machine.svg)
 
 ### Settlement Timing (Micro‑Transactions)
-<img alt="Fairfoundry Settlement Timing" src="assets/fairfoundry_settlement_timing.svg" width="960"/>
+![fairfoundry_settlement_timing.svg](assets/fairfoundry_settlement_timing.svg)
 
 ### Re‑inspection Challenge (Sequence)
-<img alt="Fairfoundry Reinspection Sequence" src="assets/fairfoundry_reinspection_sequence.svg" width="960"/>
+![fairfoundry_reinspection_sequence.svg](assets/fairfoundry_reinspection_sequence.svg)
 
 ### Data Model
-<img alt="Fairfoundry Data Model" src="assets/fairfoundry_data_model.svg" width="960"/>
+![fairfoundry_data_model.svg](assets/fairfoundry_data_model.svg)
 
 ### Payment Pipeline
-<img alt="Fairfoundry Payment Pipeline" src="assets/fairfoundry_payment_pipeline.svg" width="960"/>
+![fairfoundry_payment_pipeline.svg](assets/fairfoundry_payment_pipeline.svg)
 
 ### Governance (2‑of‑3 + Timelock)
-<img alt="Fairfoundry Governance Timelock" src="assets/fairfoundry_governance_timelock.svg" width="960"/>
+![fairfoundry_governance_timelock.svg](assets/fairfoundry_governance_timelock.svg)
 
 ---
 
