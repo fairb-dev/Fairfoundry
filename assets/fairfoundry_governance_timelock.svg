@@ -1,38 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="260">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="260" viewBox="0 0 1100 260">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#333" />
     </marker>
-    <style>
-      .box { fill: #f9fbfd; stroke: #333; rx: 10; ry: 10; }
-      .sub { fill: #eef7ff; }
-      .title { font-family: Arial; font-size: 20px; font-weight: bold; }
-      .lbl { font-family: Arial; font-size: 13px; }
-      .small { font-family: Arial; font-size: 11px; }
-      .mono { font-family: 'Courier New', monospace; font-size: 12px; }
-    </style>
   </defs>
-
-  <text x="550" y="40" class="title" text-anchor="middle">Governance: 2-of-3 + Timelock</text>
-
-  <rect x="60" y="90" width="200" height="70" class="box"/>
-  <text x="160" y="120" class="lbl" text-anchor="middle">Propose</text>
-  <text x="160" y="140" class="small" text-anchor="middle">ERS / Pricing / Roles</text>
-
-  <rect x="320" y="90" width="220" height="70" class="box"/>
-  <text x="430" y="120" class="lbl" text-anchor="middle">Approvals ≥ 2</text>
-  <text x="430" y="140" class="small" text-anchor="middle">OEM / Factory / QA</text>
-
-  <rect x="620" y="90" width="220" height="70" class="box"/>
-  <text x="730" y="120" class="lbl" text-anchor="middle">Timelock</text>
-  <text x="730" y="140" class="small" text-anchor="middle">wait until ETA</text>
-
-  <rect x="880" y="90" width="200" height="70" class="box"/>
-  <text x="980" y="120" class="lbl" text-anchor="middle">Execute</text>
-  <text x="980" y="140" class="small" text-anchor="middle">apply update, emit event</text>
-
-  <line x1="260" y1="125" x2="320" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-  <line x1="540" y1="125" x2="620" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-  <line x1="840" y1="125" x2="880" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-
+  <rect x="0" y="0" width="1100" height="260" fill="#ffffff"/>
+<text x="550" y="36" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#000">Governance: 2-of-3 + Timelock</text>
+<rect x="60" y="90" width="200" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
+<text x="160" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Propose</text>
+<text x="160" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">ERS / Pricing / Roles</text>
+<rect x="320" y="90" width="220" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
+<text x="430" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Approvals ≥ 2</text>
+<text x="430" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">OEM / Factory / QA</text>
+<rect x="620" y="90" width="220" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
+<text x="730" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Timelock</text>
+<text x="730" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">wait until ETA</text>
+<rect x="880" y="90" width="200" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
+<text x="980" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Execute</text>
+<text x="980" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">apply update, emit event</text>
+<line x1="260" y1="125" x2="320" y2="125" stroke="#333" marker-end="url(#arrow)"/>
+<line x1="540" y1="125" x2="620" y2="125" stroke="#333" marker-end="url(#arrow)"/>
+<line x1="840" y1="125" x2="880" y2="125" stroke="#333" marker-end="url(#arrow)"/>
 </svg>
