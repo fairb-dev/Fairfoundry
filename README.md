@@ -15,6 +15,8 @@ Fairfoundry is intended as a **reference implementation** for:
 - QA-verified payment triggers
 - Governance with quorum and timelocks
 - Data exhaust for analytics and machine learning
+- On-chain traceability of QA testing, including **unit-level serial tracking** and **testbench attestations**
+- Randomized re-inspection challenges to enforce QA integrity
 
 It is **not** intended for deployment in production systems.
 
@@ -30,41 +32,48 @@ It is **not** intended for deployment in production systems.
 **Core Data Structures**
 - **State** – Roles, payment asset, pricing tiers, ERS quality thresholds, escrow/stake balances, governance queues
 - **Lot** – Per-lot lifecycle from creation to settlement
+- **QA Data** – Testbench ID & firmware attestation, unit serial Merkle root, total units tested
 - **Governance** – 2-of-3 approvals with timelocks for ERS, pricing, and pause/unpause
-
-**Risk Controls**
-- Escrow coverage requirements
-- QA staking with slashing on disputes
-- Partial payouts with caps
-- Defect penalties and volume discounts
 
 ---
 
-## Key Features (Demonstration Only)
+## QA Integrity Features
 
-- **Escrow & Payouts**
-  - Asset-agnostic: Native XLM or any Stellar Asset Contract (SAC) token
-  - Lot-based micro-transactions with final and partial settlements
+Fairfoundry includes **additional safeguards** to ensure QA assessments are objective and verifiable:
 
-- **QA Integration**
-  - Commit-reveal scheme with Merkle root and off-chain report URI
-  - Real-time tested/passed/failed counts
+1. **Testbench Attestation**  
+   - QA commits the **testbench ID** and **firmware hash** used for testing each lot.
+   - Provides an audit trail for consistent, calibrated measurement equipment.
 
-- **Governance**
-  - 2-of-3 role approval with timelock before execution
-  - Pause/unpause capability
+2. **Unit Serial Commitments**  
+   - QA commits a **Merkle root** of all unit serial numbers tested, plus a total count.
+   - Prevents double-counting or omission of tested units.
+   - Supports future **proof-of-inclusion** verification for random samples.
 
-- **Dispute Resolution**
-  - OEM can open disputes on approved lots
-  - 2-of-3 resolution: pay factory with penalty or refund OEM, with optional QA slashing
+3. **Randomized Re-inspection Challenges**  
+   - Any other party (OEM or Factory) can request a re-inspection of a **random sample** from a lot.
+   - Sample indices are selected **deterministically from a seed** to prevent gaming.
+   - QA must respond with proof of test results for those samples before the deadline.
+   - Failure to respond lets the challenger **slash QA’s stake**, penalizing non-compliance.
+
+---
+
+## Risk Controls
+
+- **Escrow coverage requirements** to ensure funds for pending lots.
+- **QA staking with slashing** if disputes or failed challenges occur.
+- **OEM performance bond** to deter frivolous disputes.
+- **Partial payouts** with caps.
+- **Defect penalties** and **volume discounts** applied automatically.
 
 ---
 
 ## Events for Analytics
 
-Fairfoundry emits clean, structured events suitable for warehousing and ML experimentation:
+Fairfoundry emits structured events for easy tracking:
 - `EscrowDeposited`, `EscrowWithdrawn`
 - `QAStaked`, `LotCreated`, `QACommitted`, `QAUpdated`
+- `QACommittedAttestation`, `QACommittedSerials`, `ChallengeRequested`, `ChallengeResponded`, `ChallengeSlashed`
 - `LotDisputed`, `DisputeResolved`
 - `LotPartialPaid`, `LotPaid`
 - `ERSProposed`, `ERSUpdated`
@@ -100,4 +109,8 @@ soroban contract invoke \
      --pricing.tiers '[{"min_qty":1000,"discount_bps":50}]' \
      --ers.version 1 --ers.max_defect_bps 300 \
      --ers.specs '{"MTF":400,"SNR":35}' \
-     --min_escrow_lots 2
+     --min_escrow_lots 2 \
+     --min_qa_stake 5000000 \
+     --oem_bond 3000000 \
+     --dispute_window_secs 86400
+
