@@ -6,6 +6,89 @@
 
 Fairfoundry is a settlement layer for OEM ↔ Factory production where a third‑party QA signs off on lots. It holds OEM funds in escrow, tracks lot testing, lets any registered party request a re‑inspection on a deterministic sample, and then settles payment to the factory (with discounts and defect penalties) only after QA and challenge windows clear. It also supports QA staking/slashing and an optional price oracle freshness check.
 
+## Quick start (local testing with `soroban-cli`)
+
+> These instructions assume a recent Soroban toolchain. Command names can change across versions; when in doubt, run `soroban --help`.
+
+### 1) Prereqs
+
+- Rust + Cargo
+- Wasm target and CLI
+
+```bash
+# Install the correct Wasm target for your Rust version
+# Rust >= 1.85.0 → wasm32v1-none
+rustup target add wasm32v1-none
+# Older Rust versions → wasm32-unknown-unknown
+rustup target add wasm32-unknown-unknown
+
+cargo install --locked soroban-cli
+```
+
+### 2) Build the contract
+
+```bash
+# From repo root (where Cargo.toml lives)
+soroban contract build
+# Artifact: target/wasm32v1-none/release/*.wasm  (or target/wasm32-unknown-unknown/release/*.wasm on older Rust) 
+```
+
+### 3) Start a local network & configure
+
+```bash
+# Start a local network (one of these will work depending on your CLI version):
+soroban local network start   # or:  soroban lab run
+
+# Tell the CLI about the local network (RPC URL may vary by version)
+soroban config network add local \
+  --rpc-url http://localhost:8000 \
+  --network-passphrase "Standalone Network ; February 2017"
+
+# Create identities (keypairs) for each role
+soroban config identity generate OEM
+soroban config identity generate FACTORY
+soroban config identity generate QA
+
+# Fund accounts on the local network (airdrop)
+soroban account airdrop --identity OEM --network local
+soroban account airdrop --identity FACTORY --network local
+soroban account airdrop --identity QA --network local
+```
+
+### 4) Deploy
+
+```bash
+# Deploy the compiled .wasm
+CONTRACT_ID=$(soroban contract deploy \
+  --wasm $(ls target/*/release/fairfoundry.wasm | head -n1) \
+  --network local \
+  --source OEM)
+
+echo "Deployed: $CONTRACT_ID"
+```
+
+### 5) Initialize
+
+```bash
+# Example init (adjust to your types and defaults)
+soroban contract invoke --id $CONTRACT_ID --network local --source OEM -- \
+  init \
+  --oem $(soroban config identity address OEM) \
+  --factory $(soroban config identity address FACTORY) \
+  --qa $(soroban config identity address QA) \
+  --pay_asset "NativeXlm" \
+  --pricing '{"price_per_unit":1000000,"defect_penalty_bps":500,"tiers":[{"min_qty":1000,"discount_bps":250}]}' \
+  --ers '{"version":1,"max_defect_bps":500,"specs":{}}' \
+  --min_escrow_lots 1 \
+  --min_qa_stake 100000000 \
+  --oem_bond 0 \
+  --dispute_window_secs 86400
+```
+
+### 6) Try the core flow
+
+Follow the commands in **Example: calling flows with **`` below to deposit escrow, create a lot, commit QA, (optionally) challenge, and settle payment.
+
 ## Actors & roles
 
 - **OEM** — deposits escrow, pays factory upon lot acceptance, co‑beneficiary of slashing.
@@ -99,7 +182,7 @@ quorum_ok(approvals) => len ≥ 2
 MIN_TIMELOCK_DELAY = 3600 seconds
 ```
 
-- Implemented proposal path: `` enqueues an ERS update with a delay (`≥ MIN_TIMELOCK_DELAY`).
+- Implemented proposal path: `` enqueues an ERS update with a delay (≥ MIN\_TIMELOCK\_DELAY).
 - The code contains generic pending queues for **pricing, roles, and upgrades**, but their apply/approve functions are not included in this file.
 
 ## State & storage layout
@@ -207,6 +290,10 @@ soroban contract invoke --id $CONTRACT --source $QA -- \
 soroban contract invoke --id $CONTRACT --source $OEM -- \
   execute_payment --lot_id L23-042
 ```
+
+## Visual state diagram
+
+
 
 ## ASCII state sketch
 
