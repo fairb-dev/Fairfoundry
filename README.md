@@ -1,124 +1,245 @@
-# Fairfoundry
+# Fairfoundry — escrowed manufacturing settlements with QA & challenges (Soroban)
 
-Fairfoundry is a **Soroban smart contract on Stellar (XLM)** for high-value, high-volume manufacturing where **fairness, QA integrity, and continuous settlement** are critical. It supports **micro-transactional payouts per production lot**, **independent QA (Fairbuild)**, and **timelocked 2-of-3 governance** for pricing and ERS changes.
+> License: CC BY‑NC 4.0 • Target chain: Stellar Soroban • Language: Rust (`soroban_sdk`)
 
-> **Status:** Research & demonstration only. Licensed **CC BY-NC 4.0** — not for commercial use without prior written permission.
+## What this contract does (purpose)
 
----
+Fairfoundry is a settlement layer for OEM ↔ Factory production where a third‑party QA signs off on lots. It holds OEM funds in escrow, tracks lot testing, lets any registered party request a re‑inspection on a deterministic sample, and then settles payment to the factory (with discounts and defect penalties) only after QA and challenge windows clear. It also supports QA staking/slashing and an optional price oracle freshness check.
 
-## Visual Overview
+## Actors & roles
 
-Below are diagrams that summarize the system and flows. All SVGs have been validated as well‑formed XML.
+- **OEM** — deposits escrow, pays factory upon lot acceptance, co‑beneficiary of slashing.
+- **Factory** — creates production lots, receives payment.
+- **QA** — commits testing metadata, updates pass/fail counts, stakes collateral and may be slashed for missed deadlines.
 
+Roles are fixed at `init` via `Roles { oem, factory, qa }` and are validated with `require_auth` on every mutating call.
 
-### Architecture
-![fairfoundry_architecture.svg](assets/fairfoundry_architecture.svg)
+## High‑level lifecycle
 
-### Lot Lifecycle
-![fairfoundry_state_machine.svg](assets/fairfoundry_state_machine.svg)
+1. **Initialize** (`init`) with roles, payment asset, pricing, ERS, timelock/oracle config, QA stake & OEM bond requirements.
+2. **Fund escrow** (`deposit_escrow`) from OEM in the chosen payment asset (native XLM or a Stellar token).
+3. **Create lot** (`create_lot`) by Factory with `{lot_id, quantity}` (bounded by `MAX_LOT_QUANTITY`).
+4. **QA commit** (`qa_commit_full`) with:
+   - `commit_root` (e.g., Merkle root over test artifacts),
+   - `report_uri`,
+   - optional serials Merkle root/count,
+   - **testbench attestation** `{bench_id, firmware_hash, signer, timestamp}`.
+5. **QA progress updates** (`qa_update_counts`) to set `{tested, passed, failed}`. Lot auto‑transitions `Open → InQA → Approved`.
+6. **Challenge / re‑inspection (optional)**:
+   - Any role may `request_reinspect(lot_id, sample_size, deadline_secs, seed)`.
+   - Contract **charges a challenge fee** (default `CHALLENGE_COST_BPS = 10` → 0.1% of lot value) and **rate‑limits** to max 5/hour per address.
+   - Deterministic sampler returns unique indices from `[0, quantity)` capped by `MAX_CHALLENGE_SAMPLE`.
+   - QA must `qa_reinspect_respond(pass_count, fail_count, proof_hash)` **before** `due_by` or risk default.
+   - If QA misses the deadline, anyone may call `challenge_default_slash(slash_bps)` → slashes QA stake (capped by `MAX_SLASH_BPS`, 20%). Slash is split **50% challenger / 50% OEM** and the QA’s locked stake is unlocked.
+7. **Settle payment** (`execute_payment`):
+   - Enforces oracle freshness if enabled.
+   - Computes payment = `passed * price_per_unit` minus tier discounts and a **defect penalty** if defect rate exceeds ERS’s `max_defect_bps`.
+   - Debits contract escrow and transfers to Factory. Emits `LotPaid`.
 
-### Settlement Timing (Micro‑Transactions)
-![fairfoundry_settlement_timing.svg](assets/fairfoundry_settlement_timing.svg)
+## Commercial logic & parameters
 
-### Re‑inspection Challenge (Sequence)
-![fairfoundry_reinspection_sequence.svg](assets/fairfoundry_reinspection_sequence.svg)
+### Payment asset
 
-### Data Model
-![fairfoundry_data_model.svg](assets/fairfoundry_data_model.svg)
+```rust
+AssetKind::{ NativeXlm, StellarAsset(BytesN<32>) }
+PaymentAsset { kind, decimals }
+```
 
-### Payment Pipeline
-![fairfoundry_payment_pipeline.svg](assets/fairfoundry_payment_pipeline.svg)
+Used through the Soroban token interface; funds live in the contract account until settlement.
 
-### Governance (2‑of‑3 + Timelock)
-![fairfoundry_governance_timelock.svg](assets/fairfoundry_governance_timelock.svg)
+### Pricing & discounts
 
----
+```rust
+Pricing {
+  price_per_unit: i128,
+  defect_penalty_bps: u32,
+  tiers: Vec<DiscountTier{min_qty:u32, discount_bps:u32}>
+}
+```
 
-## Why this contract reduces risk
+- `compute_price_for_lot` applies the **highest** `discount_bps` tier where `passed ≥ min_qty`.
+- If actual defect rate (`failed/tested`) **> ERS.max\_defect\_bps**, a penalty is applied: `payment -= payment * defect_penalty_bps / 10_000`.
 
-- **Frequent micro‑settlements** → smaller exposure, faster feedback.
-- **Objective QA** with stake + slashing → economic incentive for fair testing.
-- **Deterministic re‑inspection** on **committed unit serials** → verify quality with low overhead.
-- **Bilateral change control** via **2‑of‑3 timelocked governance** → no unilateral rule changes.
-- **Transparent events** → a clean audit trail suitable for analytics and ML.
+### ERS (Engineering/Quality spec)
 
----
+```rust
+ERS {
+  version: u32,
+  max_defect_bps: u32,
+  specs: Map<String, u32>
+}
+```
 
-## Fairness & QA Integrity
+`specs` holds arbitrary key/value thresholds (e.g., test counts). `propose_ers` queues an update behind a governance timelock (see below).
 
-- **Testbench attestation** (`bench_id`, `firmware_hash`, `signer`) per lot.
-- **Serial‑number commitments** (Merkle root + count) to prevent omission/double‑counting.
-- **Re‑inspection flow**: `request_reinspect(seed, sample_size, deadline)` → indices published on‑chain.  
-  `qa_reinspect_respond(...)` must arrive before `due_by`, otherwise `challenge_default_slash(...)` allows stake slashing.
-- **QA‑only updates for counts/commitments**; payment is gated on `Approved` state or dispute outcome.
+### Challenges & sampling
 
----
+- **Cost**: `challenge_cost = lot_value * CHALLENGE_COST_BPS / 10_000`.
+  - If OEM is requester, fee is taken from **escrow**; others pay upfront transfer.
+- **Locking**: request locks 20% of `min_qa_stake` until resolved.
+- **Respond**: timely response refunds the challenge fee to requester.
+- **Default / Slash**: on missed deadline, `challenge_default_slash(slash_bps)` splits slash 50/50 to challenger and OEM; capped by `MAX_SLASH_BPS`.
+- **Rate limiting**: per‑address `≤5` challenges/hour.
+- **Sampler**: `deterministic_sample(quantity, sample_size, seed)` returns up to `MAX_CHALLENGE_SAMPLE` distinct indices.
 
-## Security & Risk Mitigation
+### Oracle (optional)
 
-- **Auth boundaries**: QA posts results; OEM funds escrow; governance requires quorum.
-- **Economic safety**: **QA stake** (must meet minimum before lots/payouts) and **OEM bond** (slashable for bad‑faith disputes).
-- **Payment safety**: idempotent final settlement, capped partial payouts, volume discounts, and defect penalties when ERS is exceeded.
-- **Operational safety**: reentrancy guard, bounds checks, and 2‑party **pause/unpause** for incident response.
-- **Asset‑agnostic payouts** via Stellar Asset Contract (SAC); examples use native XLM.
+```rust
+OracleConfig { oracle, quote: Symbol, max_age_secs, enabled, last_price, last_update }
+```
 
-> **Note:** Merkle inclusion proof verification is intentionally left for future optimization; commitments + deadlines + staking economics provide current guarantees with low compute cost.
+- `execute_payment` checks `last_update` against `max_age_secs` when `enabled`.
+- `update_oracle_price` requires the `oracle` to `require_auth()`.
 
----
+## Governance & timelock
 
-## Events (as emitted by the contract)
+```rust
+Timelock { eta, approvals: Vec<Address>, executed }
+quorum_ok(approvals) => len ≥ 2
+MIN_TIMELOCK_DELAY = 3600 seconds
+```
 
-- `EscrowDeposited`, `EscrowWithdrawn`  
-- `QAStaked`  
-- `LotCreated`, `QACommitted`, `QAUpdated`  
-- `SerialsCommitted`, `AttestationCommitted`  
-- `ReinspectRequested`, `ReinspectResponded`, `ReinspectDefaultSlashed`  
-- `LotDisputed`, `DisputeResolved`  
-- `LotPartialPaid`, `LotPaid`  
-- `ERSProposed`, `ERSUpdated`, `PricingProposed`, `PricingUpdated`  
-- `Paused`, `Unpaused`
+- Implemented proposal path: `` enqueues an ERS update with a delay (`≥ MIN_TIMELOCK_DELAY`).
+- The code contains generic pending queues for **pricing, roles, and upgrades**, but their apply/approve functions are not included in this file.
 
----
+## State & storage layout
 
-## Quickstart (Testnet only)
+**Top‑level **`` (stored under key `S`):
+
+- `roles: Roles`
+- `pay_asset: PaymentAsset`
+- `pricing: Pricing`
+- `ers: ERS`
+- `oracle: Option<OracleConfig>`
+- `min_escrow_lots: u32`
+- `escrow_balance: i128`
+- **QA staking**: `min_qa_stake, qa_stake, qa_locked_stake, qa_unstake_requests`
+- **Stats**: `paused: bool`, totals for produced/approved/challenges
+- **Pending updates**: `ers_pending, pricing_pending, roles_pending, upgrade_pending`
+- Reentrancy guard: `entered: bool`
+
+**Maps**
+
+- `LOTS: Map<String, Lot>` — `{lot_id, quantity, tested, passed, failed, status, qa_commit, created_at, last_update, pay_nonce, partial_paid_amount, creator}`
+- `CHAL: Map<String, Challenge>` — `{requested_by, seed, sample_size, sample_indices, requested_at, due_by, status, cost_paid, response_data}`
+- `CHAL_LIMIT: Map<Address, (u64, u32)>` — challenge rate limiting `(last_time, count)`
+
+**Events** `EscrowDeposited`, `EscrowWithdrawn`, `QAStaked`, `QAUnstakeRequested`, `QAUnstaked`, `LotCreated`, `QACommittedFull`, `QAUpdated`, `ReinspectRequested`, `ReinspectResponded`, `ReinspectDefaultSlashed`, `LotPaid`, `ERSProposed`, `OracleUpdated`.
+
+## Security model (what protects funds)
+
+- **Role‑gated mutators** with `Address::require_auth()`; `require_party` restricts to OEM/Factory/QA.
+- **Reentrancy guard** (`entered` with `enter/exit`) wraps state‑mutating flows.
+- **Safe math** wrappers (`safe_add/sub/mul`) trap on overflow.
+- **Bounds & caps**: `MAX_LOT_QUANTITY`, `MAX_CHALLENGE_SAMPLE`, `MAX_SLASH_BPS`.
+- **Challenge rate‑limit**: ≤5/hour per address.
+- **Oracle freshness**: `OracleStale` error if outdated.
+- **Unstake delay**: `QA_UNSTAKE_DELAY = 7 days`; cannot unstake below `min_qa_stake`.
+
+## Public API (summary)
+
+| Function                                                                                                                 | Who can call                               | Effect                                                                              | Emits                     |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------- |
+| `init(oem, factory, qa, pay_asset, pricing, ers, min_escrow_lots, oracle?, min_qa_stake, oem_bond, dispute_window_secs)` | OEM & Factory (and QA) must `require_auth` | Bootstraps state                                                                    | `Fairfoundry:init` (log)  |
+| `deposit_escrow(from, amount)`                                                                                           | **OEM**                                    | Transfer token → contract; increase `escrow_balance`                                | `EscrowDeposited`         |
+| `withdraw_escrow(oem, amount)`                                                                                           | **OEM**                                    | Transfer token ← contract; decrease `escrow_balance`                                | `EscrowWithdrawn`         |
+| `stake_qa(qa, amount)`                                                                                                   | **QA**                                     | Transfer token → contract; increase `qa_stake`                                      | `QAStaked`                |
+| `request_unstake_qa(qa, amount)`                                                                                         | **QA**                                     | Queue delayed unstake; enforces min stake                                           | `QAUnstakeRequested`      |
+| `execute_unstake_qa(qa)`                                                                                                 | **QA**                                     | After delay, transfers available queued amount to QA                                | `QAUnstaked`              |
+| `create_lot(factory, lot_id, quantity)`                                                                                  | **Factory**                                | Create `Lot` (requires QA stake ≥ min)                                              | `LotCreated`              |
+| `qa_commit_full(qa, lot_id, commit_root, report_uri, serials_root, serials_count, bench_id, firmware_hash, signer)`      | **QA**                                     | Attach QA metadata; set status `InQA`                                               | `QACommittedFull`         |
+| `qa_update_counts(qa, lot_id, tested, passed, failed)`                                                                   | **QA**                                     | Update counts; auto `Approved` when `tested == quantity`                            | `QAUpdated`               |
+| `request_reinspect(requester, lot_id, sample_size, deadline_secs, seed)`                                                 | OEM/Factory/QA                             | Charge fee, lock QA stake, store challenge & sample indices                         | `ReinspectRequested`      |
+| `qa_reinspect_respond(qa, lot_id, pass_count, fail_count, proof_hash)`                                                   | **QA**                                     | Record response; refund fee if timely; unlock QA lock                               | `ReinspectResponded`      |
+| `challenge_default_slash(caller, lot_id, slash_bps)`                                                                     | Any role                                   | If overdue, slash QA stake (≤20%); split to challenger & OEM                        | `ReinspectDefaultSlashed` |
+| `execute_payment(lot_id)`                                                                                                | Any role                                   | Transfer escrow → Factory; apply discounts & defect penalty; fail if open challenge | `LotPaid`                 |
+| `propose_ers(caller, ers, delay_secs)`                                                                                   | Any role                                   | Queue ERS update with timelock (≥1h)                                                | `ERSProposed`             |
+| `update_oracle_price(oracle, price)`                                                                                     | **Oracle signer**                          | Update oracle price and timestamp                                                   | `OracleUpdated`           |
+| `view_state()` / `view_lot(lot_id)` / `view_challenge(lot_id)` / `view_analytics()`                                      | Anyone                                     | Read‑only views                                                                     | —                         |
+
+> **Note:** The file defines pending queues for pricing/roles/upgrades but only `propose_ers` is wired. Additional approve/execute methods would be needed to complete governance for those queues.
+
+## Invariants & failure modes
+
+- `tested == passed + failed` must hold; otherwise `InvalidCounts`.
+- Payment path rejects if: (a) QA stake < min, (b) oracle stale (when enabled), (c) there’s an **open** challenge for the lot.
+- Challenge request fails if not rate‑limited, fee can’t be collected, or sample size > `MAX_CHALLENGE_SAMPLE`.
+- Withdrawals/unstakes that would underflow balances revert with `Overflow`/`Insufficient*` errors.
+
+## Example: calling flows with `soroban-cli`
 
 ```bash
-# Build
-soroban contract build
+# Addresses (example placeholders)
+OEM=G...OEM   FACTORY=G...FACT   QA=G...QA   ORACLE=G...ORAC
+CONTRACT=CA...CTID
 
-# Deploy (example)
-CONTRACT_ID=$(soroban contract deploy   --wasm target/wasm32-unknown-unknown/release/fairfoundry.wasm   --network testnet   --source <DEPLOYER>)
+# Deposit escrow (OEM)
+soroban contract invoke \
+  --id $CONTRACT \
+  --source $OEM \
+  -- \
+  deposit_escrow \
+  --from $OEM \
+  --amount 1000000000     # 1,000 units in token’s minor units
 
-# Initialize (example)
-soroban contract invoke   --id $CONTRACT_ID   --fn init   -- --oem <OEM_ADDR> --factory <FACTORY_ADDR> --qa <QA_ADDR>      --pay_asset.kind NativeXlm --pay_asset.decimals 7      --pricing.price_per_unit 1000000      --pricing.defect_penalty_bps 100      --pricing.tiers '[{"min_qty":1000,"discount_bps":50}]'      --ers.version 1 --ers.max_defect_bps 300      --ers.specs '{"MTF":400,"SNR":35}'      --min_escrow_lots 2      --min_qa_stake 500000000      --oem_bond 300000000      --dispute_window_secs 86400
+# Factory creates a lot
+soroban contract invoke --id $CONTRACT --source $FACTORY -- \
+  create_lot --factory $FACTORY --lot_id L23-042 --quantity 5000
+
+# QA commits metadata
+soroban contract invoke --id $CONTRACT --source $QA -- \
+  qa_commit_full --qa $QA --lot_id L23-042 \
+  --commit_root 0x... --report_uri ipfs://... \
+  --serials_root 0x... --serials_count 5000 \
+  --bench_id TB-01 --firmware_hash 0x... --signer $QA
+
+# Request re‑inspection (OEM)
+soroban contract invoke --id $CONTRACT --source $OEM -- \
+  request_reinspect --requester $OEM --lot_id L23-042 \
+  --sample_size 100 --response_deadline_secs 86400 --seed 0x...
+
+# QA responds
+soroban contract invoke --id $CONTRACT --source $QA -- \
+  qa_reinspect_respond --qa $QA --lot_id L23-042 \
+  --pass_count 98 --fail_count 2 --proof_hash 0x...
+
+# Execute payment
+soroban contract invoke --id $CONTRACT --source $OEM -- \
+  execute_payment --lot_id L23-042
 ```
+
+## ASCII state sketch
+
+```
+Open ──(qa_commit_full)──▶ InQA ──(qa_update_counts until tested==quantity)──▶ Approved
+  │                                  │                    │
+  └────────(request_reinspect)───────┴─▶ Challenge(Open)──┴─▶ Responded/Expired
+                                                          │
+                                              (no Open challenge) ──▶ Paid/Closed
+```
+
+## Known limitations & TODOs
+
+- Governance queues exist for **pricing/roles/upgrades** but only ERS has a proposer. Add approve/execute paths.
+- `paused` flag is present but not exposed here; add pause/unpause admin gated by timelock.
+- `batch_create_lots` is a stub (pushes IDs only) — wire it to `create_lot` with proper checks.
+- Consider allowing **partial payments** per milestone (the field `partial_paid_amount` exists but isn’t exercised).
+- Add events for more governance operations once implemented.
+
+## Error codes (selected)
+
+`NotAuthorized`, `InvalidState`, `InsufficientEscrow`, `InvalidCounts`, `NotFound`, `AlreadyExists`, `TimelockActive`, `AlreadyExecuted`, `OracleStale`, `Param`, `TooEarlyOrLate`, `Reentrancy`, `NoChallenge`, `Overflow`, `InvalidProof`, `ChallengeLimitExceeded`, `InsufficientStake`, `UnstakePending`.
+
+## Testing checklist
+
+- Role auth gates on every mutator (`require_auth`).
+- Escrow invariants: sum(outgoing payments + withdrawal) ≤ deposits.
+- QA staking: cannot unstake below `min_qa_stake`; lock/unlock around challenges; delay respected.
+- Challenge flow: fee assessed/refunded; rate limiting; sampler uniqueness; default → slash split and caps.
+- Payment math: tiers apply correctly; defect penalty triggers only when threshold exceeded; oracle freshness enforced.
+- Reentrancy: `entered` toggles correctly on all paths (including early returns).
 
 ---
 
-## Repository Layout
+**Security note**: This contract has not been audited. Review, fuzz, and formally verify critical paths (escrow transfers, challenge/slash, settlement math) before mainnet deployment.
 
-```
-.
-├── contracts/
-│   └── fairfoundry.rs
-├── assets/
-│   ├── fairfoundry_architecture.svg
-│   ├── fairfoundry_state_machine.svg
-│   ├── fairfoundry_settlement_timing.svg
-│   ├── fairfoundry_reinspection_sequence.svg
-│   ├── fairfoundry_data_model.svg
-│   ├── fairfoundry_payment_pipeline.svg
-│   └── fairfoundry_governance_timelock.svg
-├── tests/
-│   ├── flows.rs
-│   └── invariants.rs
-├── README.md
-└── LICENSE
-```
-
----
-
-## License
-
-**Creative Commons Attribution‑NonCommercial 4.0 International (CC BY‑NC 4.0).**  
-See [LICENSE](./LICENSE) for details.
