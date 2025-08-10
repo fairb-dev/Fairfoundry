@@ -299,7 +299,7 @@ soroban contract invoke --id $CONTRACT --source $OEM -- \
 
 
 
-## ASCII state sketch
+## State
 
 ```
 Open ──(qa_commit_full)──▶ InQA ──(qa_update_counts until tested==quantity)──▶ Approved
