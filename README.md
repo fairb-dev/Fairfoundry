@@ -10,14 +10,6 @@ Fairfoundry is a **Soroban smart contract on Stellar (XLM)** for high-value, hig
 
 Below are diagrams that summarize the system and flows. All SVGs have been validated as well‑formed XML.
 
-**Validation summary**
-- fairfoundry_architecture.svg: OK (width=1100, height=560, viewBox=0 0 1100 560)
-- fairfoundry_state_machine.svg: OK (width=1100, height=420, viewBox=0 0 1100 420)
-- fairfoundry_settlement_timing.svg: OK (width=1100, height=260, viewBox=0 0 1100 260)
-- fairfoundry_reinspection_sequence.svg: OK (width=1100, height=640, viewBox=0 0 1100 640)
-- fairfoundry_data_model.svg: OK (width=1100, height=420, viewBox=0 0 1100 420)
-- fairfoundry_payment_pipeline.svg: OK (width=1100, height=320, viewBox=0 0 1100 320)
-- fairfoundry_governance_timelock.svg: OK (width=1100, height=260, viewBox=0 0 1100 260)
 
 ### Architecture
 ![fairfoundry_architecture.svg](assets/fairfoundry_architecture.svg)
