@@ -6,6 +6,10 @@
 
 Fairfoundry is a settlement layer for OEM ↔ Factory production where a third‑party QA signs off on lots. It holds OEM funds in escrow, tracks lot testing, lets any registered party request a re‑inspection on a deterministic sample, and then settles payment to the factory (with discounts and defect penalties) only after QA and challenge windows clear. It also supports QA staking/slashing and an optional price oracle freshness check.
 
+### Why Fairbuild
+
+Fairbuild (fairb.com) helps OEMs and manufacturers of precision, high‑volume products make production agreements **transparent, standardized, and enforceable**. By encoding a normalized contract on‑chain—covering escrow, milestones, ERS/QA metrics, and challenge/penalty rules—Fairbuild reduces ambiguity and shortens dispute cycles. On‑ledger events create a shared, tamper‑evident record of lots, test results, and payments, improving supplier transparency and auditability. Production and contractual risk is managed through pre‑funded escrow, staking/slashing for service levels, time‑boxed challenge windows, and deterministic re‑inspection. The same primitives carry across the full product lifecycle—from NPI to volume to sustaining—so quality targets and ERS versions remain traceable as products evolve.
+
 ## Quick start (local testing with `soroban-cli`)
 
 > These instructions assume a recent Soroban toolchain. Command names can change across versions; when in doubt, run `soroban --help`.
