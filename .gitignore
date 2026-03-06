@@ -1,0 +1,15 @@
+target/
+Cargo.lock
+*.wasm
+.soroban/
+.env
+
+# Editor temps
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
