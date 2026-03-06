@@ -1,29 +1,229 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="820" viewBox="0 0 1100 820">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#333" />
     </marker>
+    <marker id="diamond" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto">
+      <path d="M0,6 L6,0 L12,6 L6,12 z" fill="#333" />
+    </marker>
+    <style>
+      .box       { fill:#f9fbfd; stroke:#334155; stroke-width:1.5; rx:8; ry:8; }
+      .box-sub   { fill:#f0f9ff; stroke:#93c5fd; stroke-width:1; rx:6; ry:6; }
+      .title     { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill:#0f172a; }
+      .subtitle  { font-family: Arial, sans-serif; font-size: 12px; fill:#64748b; }
+      .ent       { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill:#0f172a; }
+      .field     { font-family: 'Courier New', monospace; font-size: 11px; fill:#334155; }
+      .type      { font-family: 'Courier New', monospace; font-size: 10px; fill:#64748b; }
+      .key       { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; fill:#2563eb; }
+      .rel       { font-family: Arial, sans-serif; font-size: 11px; fill:#475569; }
+      .section   { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; fill:#94a3b8; }
+    </style>
   </defs>
-  <rect x="0" y="0" width="1100" height="420" fill="#ffffff"/>
-<text x="550" y="36" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#000">Data Model (Simplified)</text>
-<rect x="120" y="100" width="240" height="180" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="240" y="125" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">State</text>
-<text x="240" y="150" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">roles, pay_asset, pricing, ers</text>
-<text x="240" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">escrow_balance, qa_stake, oem_bond</text>
-<text x="240" y="190" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">timelock queues, paused</text>
-<rect x="430" y="100" width="240" height="220" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="550" y="125" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Lot</text>
-<text x="550" y="150" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">lot_id, quantity, tested/passed/failed</text>
-<text x="550" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">status, pay_nonce, partial_paid</text>
-<text x="550" y="190" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">qa_commit: results_root, report_uri</text>
-<text x="550" y="210" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">serials_root, serials_count, attestation</text>
-<rect x="740" y="100" width="240" height="160" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="860" y="125" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Challenge</text>
-<text x="860" y="150" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">seed, sample_size, indices[]</text>
-<text x="860" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">requested_by, due_by, status</text>
-<line x1="360" y1="190" x2="430" y2="190" stroke="#333" marker-end="url(#arrow)"/>
-<text x="395" y="180" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">tracks many Lots</text>
-<line x1="670" y1="180" x2="740" y2="180" stroke="#333" marker-end="url(#arrow)"/>
-<text x="705" y="170" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">optional per Lot</text>
+
+  <rect x="0" y="0" width="1100" height="820" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="30" class="title" text-anchor="middle">Data Model</text>
+  <text x="550" y="48" class="subtitle" text-anchor="middle">Storage keys: S (State), LOTS (Map&lt;String,Lot&gt;), CHAL (Map&lt;String,Challenge&gt;), CHALLIM (rate limits)</text>
+
+  <!-- ═══ STATE ═══ -->
+  <rect x="30" y="70" width="300" height="450" class="box"/>
+  <text x="40" y="88" class="key">key: S</text>
+  <text x="180" y="88" class="ent" text-anchor="middle">State</text>
+  <line x1="40" y1="95" x2="320" y2="95" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="40" y="112" class="section">ROLES &amp; CONFIG</text>
+  <text x="40" y="126" class="field">roles: Roles</text>
+  <text x="40" y="140" class="field">pay_asset: PaymentAsset</text>
+  <text x="40" y="154" class="field">pricing: Pricing</text>
+  <text x="40" y="168" class="field">ers: ERS</text>
+  <text x="40" y="182" class="field">oracle: Vec&lt;OracleConfig&gt;</text>
+
+  <text x="40" y="200" class="section">ESCROW</text>
+  <text x="40" y="214" class="field">min_escrow_lots: u32</text>
+  <text x="40" y="228" class="field">escrow_balance: i128</text>
+  <text x="40" y="242" class="field">oem_bond: i128</text>
+
+  <text x="40" y="260" class="section">QA STAKING</text>
+  <text x="40" y="274" class="field">min_qa_stake: i128</text>
+  <text x="40" y="288" class="field">qa_stake: i128</text>
+  <text x="40" y="302" class="field">qa_locked_stake: i128</text>
+  <text x="40" y="316" class="field">qa_unstake_requests: Vec&lt;..&gt;</text>
+
+  <text x="40" y="334" class="section">GOVERNANCE QUEUES</text>
+  <text x="40" y="348" class="field">ers_pending: Vec&lt;PendingERSUpdate&gt;</text>
+  <text x="40" y="362" class="field">pricing_pending: Vec&lt;..&gt;</text>
+  <text x="40" y="376" class="field">roles_pending: Vec&lt;..&gt;</text>
+  <text x="40" y="390" class="field">upgrade_pending: Vec&lt;..&gt;</text>
+
+  <text x="40" y="408" class="section">TIMING &amp; FLAGS</text>
+  <text x="40" y="422" class="field">dispute_window_secs: u64</text>
+  <text x="40" y="436" class="field">paused: bool, entered: bool</text>
+
+  <text x="40" y="454" class="section">ANALYTICS</text>
+  <text x="40" y="468" class="field">total_units_produced: u64</text>
+  <text x="40" y="482" class="field">total_units_approved: u64</text>
+  <text x="40" y="496" class="field">total_challenges: u64</text>
+  <text x="40" y="510" class="field">total_successful_challenges: u64</text>
+
+  <!-- ═══ LOT ═══ -->
+  <rect x="400" y="70" width="280" height="310" class="box"/>
+  <text x="410" y="88" class="key">key: LOTS</text>
+  <text x="540" y="88" class="ent" text-anchor="middle">Lot</text>
+  <line x1="410" y1="95" x2="670" y2="95" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="410" y="112" class="section">IDENTITY</text>
+  <text x="410" y="126" class="field">lot_id: String</text>
+  <text x="410" y="140" class="field">creator: Address</text>
+  <text x="410" y="154" class="field">created_at: u64</text>
+  <text x="410" y="168" class="field">last_update: u64</text>
+
+  <text x="410" y="186" class="section">QA COUNTS</text>
+  <text x="410" y="200" class="field">quantity: u32</text>
+  <text x="410" y="214" class="field">tested: u32</text>
+  <text x="410" y="228" class="field">passed: u32, failed: u32</text>
+
+  <text x="410" y="246" class="section">STATUS &amp; PAYMENT</text>
+  <text x="410" y="260" class="field">status: LotStatus</text>
+  <text x="410" y="274" class="field">pay_nonce: u32</text>
+  <text x="410" y="288" class="field">partial_paid_amount: i128</text>
+
+  <text x="410" y="306" class="section">QA COMMIT</text>
+  <text x="410" y="320" class="field">qa_commit: Vec&lt;QAMetadata&gt;</text>
+
+  <!-- LotStatus values -->
+  <rect x="410" y="335" width="260" height="36" class="box-sub"/>
+  <text x="540" y="350" class="type" text-anchor="middle">LotStatus: Open | InQA | Approved |</text>
+  <text x="540" y="363" class="type" text-anchor="middle">Disputed* | Paid | Refunded* | Closed</text>
+
+  <!-- ═══ CHALLENGE ═══ -->
+  <rect x="760" y="70" width="300" height="290" class="box"/>
+  <text x="770" y="88" class="key">key: CHAL</text>
+  <text x="910" y="88" class="ent" text-anchor="middle">Challenge</text>
+  <line x1="770" y1="95" x2="1050" y2="95" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="770" y="112" class="section">REQUEST</text>
+  <text x="770" y="126" class="field">requested_by: Address</text>
+  <text x="770" y="140" class="field">seed: BytesN&lt;32&gt;</text>
+  <text x="770" y="154" class="field">sample_size: u32</text>
+  <text x="770" y="168" class="field">sample_indices: Vec&lt;u32&gt;</text>
+  <text x="770" y="182" class="field">requested_at: u64</text>
+  <text x="770" y="196" class="field">due_by: u64</text>
+  <text x="770" y="210" class="field">cost_paid: i128</text>
+
+  <text x="770" y="228" class="section">STATUS &amp; RESPONSE</text>
+  <text x="770" y="242" class="field">status: ChallengeStatus</text>
+  <text x="770" y="256" class="field">response_data: Vec&lt;ChallengeResponse&gt;</text>
+
+  <!-- ChallengeStatus values -->
+  <rect x="770" y="268" width="280" height="36" class="box-sub"/>
+  <text x="910" y="283" class="type" text-anchor="middle">ChallengeStatus: Open | Responded |</text>
+  <text x="910" y="296" class="type" text-anchor="middle">Expired | Validated* | Failed*</text>
+
+  <!-- ═══ SUB-ENTITIES ROW ═══ -->
+
+  <!-- Roles -->
+  <rect x="30" y="550" width="155" height="75" class="box-sub"/>
+  <text x="108" y="568" class="ent" text-anchor="middle">Roles</text>
+  <line x1="40" y1="573" x2="175" y2="573" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="40" y="587" class="field">oem: Address</text>
+  <text x="40" y="601" class="field">factory: Address</text>
+  <text x="40" y="615" class="field">qa: Address</text>
+
+  <!-- Pricing -->
+  <rect x="200" y="550" width="180" height="90" class="box-sub"/>
+  <text x="290" y="568" class="ent" text-anchor="middle">Pricing</text>
+  <line x1="210" y1="573" x2="370" y2="573" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="210" y="587" class="field">price_per_unit: i128</text>
+  <text x="210" y="601" class="field">defect_penalty_bps: u32</text>
+  <text x="210" y="615" class="field">tiers: Vec&lt;DiscountTier&gt;</text>
+  <text x="210" y="630" class="type">DiscountTier{min_qty, discount_bps}</text>
+
+  <!-- ERS -->
+  <rect x="395" y="550" width="175" height="75" class="box-sub"/>
+  <text x="483" y="568" class="ent" text-anchor="middle">ERS</text>
+  <line x1="405" y1="573" x2="560" y2="573" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="405" y="587" class="field">version: u32</text>
+  <text x="405" y="601" class="field">max_defect_bps: u32</text>
+  <text x="405" y="615" class="field">specs: Map&lt;String,u32&gt;</text>
+
+  <!-- QAMetadata -->
+  <rect x="400" y="405" width="280" height="80" class="box-sub"/>
+  <text x="540" y="423" class="ent" text-anchor="middle">QAMetadata</text>
+  <line x1="410" y1="428" x2="670" y2="428" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="410" y="442" class="field">commit_root: BytesN&lt;32&gt;</text>
+  <text x="410" y="456" class="field">report_uri, serials_root, serials_count</text>
+  <text x="410" y="470" class="field">bench: Vec&lt;TestbenchAttestation&gt;</text>
+
+  <!-- ChallengeResponse -->
+  <rect x="760" y="385" width="300" height="75" class="box-sub"/>
+  <text x="910" y="403" class="ent" text-anchor="middle">ChallengeResponse</text>
+  <line x1="770" y1="408" x2="1050" y2="408" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="770" y="422" class="field">pass_count: u32, fail_count: u32</text>
+  <text x="770" y="436" class="field">proof_hash: BytesN&lt;32&gt;</text>
+  <text x="770" y="450" class="field">responded_at: u64</text>
+
+  <!-- OracleConfig -->
+  <rect x="585" y="550" width="195" height="90" class="box-sub"/>
+  <text x="683" y="568" class="ent" text-anchor="middle">OracleConfig</text>
+  <line x1="595" y1="573" x2="770" y2="573" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="595" y="587" class="field">oracle: Address</text>
+  <text x="595" y="601" class="field">quote: Symbol</text>
+  <text x="595" y="615" class="field">max_age_secs: u64</text>
+  <text x="595" y="629" class="field">last_price, last_update</text>
+
+  <!-- UnstakeRequest -->
+  <rect x="795" y="550" width="195" height="75" class="box-sub"/>
+  <text x="893" y="568" class="ent" text-anchor="middle">UnstakeRequest</text>
+  <line x1="805" y1="573" x2="980" y2="573" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="805" y="587" class="field">amount: i128</text>
+  <text x="805" y="601" class="field">requested_at: u64</text>
+  <text x="805" y="615" class="field">available_at: u64</text>
+
+  <!-- Timelock -->
+  <rect x="30" y="660" width="200" height="75" class="box-sub"/>
+  <text x="130" y="678" class="ent" text-anchor="middle">Timelock</text>
+  <line x1="40" y1="683" x2="220" y2="683" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="40" y="697" class="field">eta: u64</text>
+  <text x="40" y="711" class="field">approvals: Vec&lt;Address&gt;</text>
+  <text x="40" y="725" class="field">executed: bool</text>
+
+  <!-- TestbenchAttestation -->
+  <rect x="250" y="660" width="230" height="75" class="box-sub"/>
+  <text x="365" y="678" class="ent" text-anchor="middle">TestbenchAttestation</text>
+  <line x1="260" y1="683" x2="470" y2="683" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="260" y="697" class="field">bench_id: String</text>
+  <text x="260" y="711" class="field">firmware_hash: BytesN&lt;32&gt;</text>
+  <text x="260" y="725" class="field">signer: Address, timestamp: u64</text>
+
+  <!-- PaymentAsset -->
+  <rect x="500" y="660" width="210" height="75" class="box-sub"/>
+  <text x="605" y="678" class="ent" text-anchor="middle">PaymentAsset</text>
+  <line x1="510" y1="683" x2="700" y2="683" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="510" y="697" class="field">kind: AssetKind</text>
+  <text x="510" y="711" class="field">address: Address</text>
+  <text x="510" y="725" class="field">decimals: u32</text>
+
+  <!-- ═══ RELATIONSHIPS ═══ -->
+  <!-- State → Lots -->
+  <path d="M 330 190 L 400 190" fill="none" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="365" y="183" class="rel" text-anchor="middle">1:N</text>
+
+  <!-- Lot → Challenge -->
+  <path d="M 680 190 L 760 190" fill="none" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="720" y="183" class="rel" text-anchor="middle">0..1</text>
+
+  <!-- Challenge → ChallengeResponse -->
+  <path d="M 910 360 L 910 385" fill="none" stroke="#93c5fd" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Lot → QAMetadata -->
+  <path d="M 540 380 L 540 405" fill="none" stroke="#93c5fd" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <text x="50" y="780" class="subtitle">* = Reserved for future use (not yet wired into transitions)</text>
+  <rect x="50" y="790" width="14" height="10" class="box" style="stroke-width:1"/>
+  <text x="70" y="800" class="type">Top-level entity</text>
+  <rect x="200" y="790" width="14" height="10" class="box-sub" style="stroke-width:1"/>
+  <text x="220" y="800" class="type">Sub-entity / value type</text>
 </svg>

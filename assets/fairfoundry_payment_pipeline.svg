@@ -1,33 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="320" viewBox="0 0 1100 320">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="580" viewBox="0 0 1100 580">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#333" />
     </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#dc2626" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#16a34a" />
+    </marker>
+    <style>
+      .box       { fill:#f9fbfd; stroke:#334155; stroke-width:1.5; rx:10; ry:10; }
+      .box-guard { fill:#fef2f2; stroke:#dc2626; stroke-width:1.5; rx:10; ry:10; }
+      .box-calc  { fill:#f0fdf4; stroke:#16a34a; stroke-width:1.5; rx:10; ry:10; }
+      .box-out   { fill:#eff6ff; stroke:#2563eb; stroke-width:1.5; rx:10; ry:10; }
+      .title     { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill:#0f172a; }
+      .subtitle  { font-family: Arial, sans-serif; font-size: 12px; fill:#64748b; }
+      .lbl       { font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; fill:#0f172a; }
+      .desc      { font-family: Arial, sans-serif; font-size: 11px; fill:#475569; }
+      .formula   { font-family: 'Courier New', monospace; font-size: 11px; fill:#334155; }
+      .section   { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill:#64748b; }
+      .edge      { font-family: Arial, sans-serif; font-size: 11px; fill:#334155; }
+    </style>
   </defs>
-  <rect x="0" y="0" width="1100" height="320" fill="#ffffff"/>
-<text x="550" y="36" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#000">Payment Pipeline</text>
-<rect x="80" y="90" width="190" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="175" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Passed Units</text>
-<text x="175" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">from QA counts</text>
-<rect x="320" y="90" width="220" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="430" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Base Payment</text>
-<text x="430" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">passed × price_per_unit</text>
-<rect x="600" y="90" width="220" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="710" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Volume Discount</text>
-<text x="710" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">tiers → discount_bps</text>
-<rect x="880" y="90" width="190" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="975" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Defect Penalty</text>
-<text x="975" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">if defect_bps &amp;gt; ERS</text>
-<line x1="270" y1="125" x2="320" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-<line x1="540" y1="125" x2="600" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-<line x1="820" y1="125" x2="880" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-<rect x="200" y="210" width="240" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="320" y="240" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Partial Payouts</text>
-<text x="320" y="260" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">cap: entitlement - partials</text>
-<rect x="560" y="210" width="240" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="680" y="240" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Final Settlement</text>
-<text x="680" y="260" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">idempotent</text>
-<line x1="430" y1="160" x2="320" y2="210" stroke="#333" marker-end="url(#arrow)"/>
-<line x1="790" y1="160" x2="560" y2="210" stroke="#333" marker-end="url(#arrow)"/>
+
+  <rect x="0" y="0" width="1100" height="580" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="30" class="title" text-anchor="middle">Payment Pipeline — execute_payment()</text>
+  <text x="550" y="48" class="subtitle" text-anchor="middle">Sequential steps from lot approval to factory settlement</text>
+
+  <!-- ═══ PHASE 1: Pre-flight Guards ═══ -->
+  <text x="60" y="78" class="section">PRE-FLIGHT GUARDS</text>
+  <line x1="60" y1="83" x2="1040" y2="83" stroke="#e2e8f0" stroke-width="1"/>
+
+  <rect x="60" y="95" width="175" height="55" class="box-guard"/>
+  <text x="148" y="115" class="lbl" text-anchor="middle">Not Paused</text>
+  <text x="148" y="130" class="desc" text-anchor="middle">require_not_paused()</text>
+
+  <path d="M 235 122 L 265 122" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="270" y="95" width="175" height="55" class="box-guard"/>
+  <text x="358" y="115" class="lbl" text-anchor="middle">QA Stake OK</text>
+  <text x="358" y="130" class="desc" text-anchor="middle">qa_stake >= min_qa_stake</text>
+
+  <path d="M 445 122 L 475 122" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="480" y="95" width="175" height="55" class="box-guard"/>
+  <text x="568" y="115" class="lbl" text-anchor="middle">Oracle Fresh</text>
+  <text x="568" y="130" class="desc" text-anchor="middle">if enabled: age &lt; max_age</text>
+
+  <path d="M 655 122 L 685 122" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="690" y="95" width="175" height="55" class="box-guard"/>
+  <text x="778" y="115" class="lbl" text-anchor="middle">Lot Approved</text>
+  <text x="778" y="130" class="desc" text-anchor="middle">status == Approved</text>
+
+  <path d="M 865 122 L 895 122" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="900" y="95" width="175" height="55" class="box-guard"/>
+  <text x="988" y="115" class="lbl" text-anchor="middle">No Open Challenge</text>
+  <text x="988" y="130" class="desc" text-anchor="middle">challenge != Open</text>
+
+  <!-- ═══ PHASE 2: Price Calculation ═══ -->
+  <text x="60" y="185" class="section">PRICE CALCULATION</text>
+  <line x1="60" y1="190" x2="1040" y2="190" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Step 1: Base Payment -->
+  <rect x="60" y="205" width="220" height="75" class="box-calc"/>
+  <text x="170" y="226" class="lbl" text-anchor="middle">1. Base Payment</text>
+  <text x="170" y="244" class="formula" text-anchor="middle">base = passed * price_per_unit</text>
+  <text x="170" y="260" class="desc" text-anchor="middle">lot.passed from qa_update_counts()</text>
+
+  <path d="M 280 242 L 320 242" fill="none" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 2: Volume Discount -->
+  <rect x="325" y="205" width="220" height="75" class="box-calc"/>
+  <text x="435" y="226" class="lbl" text-anchor="middle">2. Volume Discount</text>
+  <text x="435" y="244" class="formula" text-anchor="middle">base - base*discount_bps/10000</text>
+  <text x="435" y="260" class="desc" text-anchor="middle">highest tier where passed >= min_qty</text>
+
+  <path d="M 545 242 L 585 242" fill="none" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 3: Defect Penalty -->
+  <rect x="590" y="205" width="240" height="95" class="box-calc"/>
+  <text x="710" y="226" class="lbl" text-anchor="middle">3. Defect Penalty</text>
+  <text x="710" y="244" class="formula" text-anchor="middle">defect_bps = failed*10000/tested</text>
+  <text x="710" y="260" class="desc" text-anchor="middle">if defect_bps > ers.max_defect_bps:</text>
+  <text x="710" y="276" class="formula" text-anchor="middle">payment -= payment*penalty_bps/10000</text>
+  <text x="710" y="290" class="desc" text-anchor="middle">penalty_bps from pricing config</text>
+
+  <path d="M 830 252 L 870 252" fill="none" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 4: Partial Deduction -->
+  <rect x="875" y="205" width="200" height="75" class="box-calc"/>
+  <text x="975" y="226" class="lbl" text-anchor="middle">4. Partial Deduction</text>
+  <text x="975" y="244" class="formula" text-anchor="middle">payment -= partial_paid</text>
+  <text x="975" y="260" class="desc" text-anchor="middle">prior partial settlements</text>
+
+  <!-- ═══ PHASE 3: Settlement ═══ -->
+  <text x="60" y="345" class="section">SETTLEMENT</text>
+  <line x1="60" y1="350" x2="1040" y2="350" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Decision: payment > 0? -->
+  <!-- Diamond shape -->
+  <polygon points="200,380 300,410 200,440 100,410" fill="#fefce8" stroke="#a16207" stroke-width="1.5"/>
+  <text x="200" y="413" class="lbl" text-anchor="middle">payment > 0?</text>
+
+  <!-- YES path -->
+  <path d="M 300 410 L 400 410" fill="none" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="345" y="403" class="edge" text-anchor="middle" fill="#16a34a">YES</text>
+
+  <rect x="405" y="375" width="260" height="70" class="box-out"/>
+  <text x="535" y="397" class="lbl" text-anchor="middle">Transfer to Factory</text>
+  <text x="535" y="413" class="formula" text-anchor="middle">pay_asset.transfer(contract, factory, payment)</text>
+  <text x="535" y="429" class="desc" text-anchor="middle">escrow_balance -= payment</text>
+
+  <path d="M 665 410 L 725 410" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="730" y="375" width="150" height="70" class="box-out"/>
+  <text x="805" y="397" class="lbl" text-anchor="middle">Update State</text>
+  <text x="805" y="413" class="desc" text-anchor="middle">status → Paid</text>
+  <text x="805" y="429" class="desc" text-anchor="middle">update analytics</text>
+
+  <path d="M 880 410 L 920 410" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="925" y="380" width="130" height="60" class="box-out"/>
+  <text x="990" y="405" class="lbl" text-anchor="middle">Emit Events</text>
+  <text x="990" y="420" class="desc" text-anchor="middle">LotPaid</text>
+  <text x="990" y="432" class="desc" text-anchor="middle">LotStatusChanged</text>
+
+  <!-- NO path -->
+  <path d="M 200 440 L 200 480 L 405 480" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <text x="215" y="463" class="edge" fill="#dc2626">NO</text>
+
+  <rect x="410" y="460" width="250" height="60" class="box-out"/>
+  <text x="535" y="483" class="lbl" text-anchor="middle">Close Lot (Zero Payout)</text>
+  <text x="535" y="500" class="desc" text-anchor="middle">status → Closed, no transfer</text>
+
+  <!-- Return value -->
+  <text x="60" y="555" class="section">RETURNS</text>
+  <line x1="60" y1="560" x2="1040" y2="560" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="60" y="575" class="desc">Returns i128: the net payment amount transferred (0 if Closed). Lot status prevents re-execution.</text>
 </svg>
