@@ -1,25 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="260" viewBox="0 0 1100 260">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="320" viewBox="0 0 1100 320">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#333" />
     </marker>
+    <style>
+      .box       { fill:#f9fbfd; stroke:#334155; stroke-width:1.5; rx:10; ry:10; }
+      .title     { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill:#0f172a; }
+      .subtitle  { font-family: Arial, sans-serif; font-size: 12px; fill:#64748b; }
+      .lbl       { font-family: Arial, sans-serif; font-size: 15px; font-weight: bold; fill:#0f172a; }
+      .desc      { font-family: Arial, sans-serif; font-size: 12px; fill:#475569; }
+      .note      { font-family: Arial, sans-serif; font-size: 11px; fill:#64748b; }
+      .formula   { font-family: 'Courier New', monospace; font-size: 11px; fill:#334155; }
+    </style>
   </defs>
-  <rect x="0" y="0" width="1100" height="260" fill="#ffffff"/>
-<text x="550" y="36" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#000">Governance: 2-of-3 + Timelock</text>
-<rect x="60" y="90" width="200" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="160" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Propose</text>
-<text x="160" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">ERS / Pricing / Roles</text>
-<rect x="320" y="90" width="220" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="430" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Approvals ≥ 2</text>
-<text x="430" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">OEM / Factory / QA</text>
-<rect x="620" y="90" width="220" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="730" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Timelock</text>
-<text x="730" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">wait until ETA</text>
-<rect x="880" y="90" width="200" height="70" rx="10" ry="10" fill="#f9fbfd" stroke="#333"/>
-<text x="980" y="120" font-family="Arial" font-size="16" font-weight="normal" text-anchor="middle" fill="#000">Execute</text>
-<text x="980" y="140" font-family="Arial" font-size="12" font-weight="normal" text-anchor="middle" fill="#000">apply update, emit event</text>
-<line x1="260" y1="125" x2="320" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-<line x1="540" y1="125" x2="620" y2="125" stroke="#333" marker-end="url(#arrow)"/>
-<line x1="840" y1="125" x2="880" y2="125" stroke="#333" marker-end="url(#arrow)"/>
+
+  <rect x="0" y="0" width="1100" height="320" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="32" class="title" text-anchor="middle">Governance: 2-of-3 Multisig + Timelock</text>
+  <text x="550" y="50" class="subtitle" text-anchor="middle">All parameter updates require multi-party approval and a minimum 1-hour delay</text>
+
+  <!-- Step 1: Propose -->
+  <rect x="50" y="80" width="210" height="95" class="box"/>
+  <text x="155" y="105" class="lbl" text-anchor="middle">1. Propose</text>
+  <text x="155" y="123" class="desc" text-anchor="middle">Any party submits update</text>
+  <line x1="70" y1="140" x2="240" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="155" y="155" class="note" text-anchor="middle">ERS / Pricing / Roles / Upgrade</text>
+  <text x="155" y="170" class="note" text-anchor="middle">Proposer auto-approved</text>
+
+  <path d="M 260 127 L 300 127" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Approvals -->
+  <rect x="305" y="80" width="220" height="95" class="box"/>
+  <text x="415" y="105" class="lbl" text-anchor="middle">2. Collect Approvals</text>
+  <text x="415" y="123" class="desc" text-anchor="middle">Requires >= 2 of 3 parties</text>
+  <line x1="325" y1="140" x2="505" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="415" y="155" class="note" text-anchor="middle">OEM + Factory + QA</text>
+  <text x="415" y="170" class="note" text-anchor="middle">quorum_ok(approvals)</text>
+
+  <path d="M 525 127 L 565 127" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: Timelock -->
+  <rect x="570" y="80" width="220" height="95" class="box"/>
+  <text x="680" y="105" class="lbl" text-anchor="middle">3. Timelock Wait</text>
+  <text x="680" y="123" class="desc" text-anchor="middle">Wait until ETA passes</text>
+  <line x1="590" y1="140" x2="770" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="680" y="155" class="formula" text-anchor="middle">eta = now + max(delay, 3600s)</text>
+  <text x="680" y="170" class="note" text-anchor="middle">MIN_TIMELOCK_DELAY = 1 hour</text>
+
+  <path d="M 790 127 L 830 127" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: Execute -->
+  <rect x="835" y="80" width="210" height="95" class="box"/>
+  <text x="940" y="105" class="lbl" text-anchor="middle">4. Execute</text>
+  <text x="940" y="123" class="desc" text-anchor="middle">Apply update, emit event</text>
+  <line x1="855" y1="140" x2="1025" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="940" y="155" class="note" text-anchor="middle">Guard: !executed (AlreadyExecuted)</text>
+  <text x="940" y="170" class="note" text-anchor="middle">Guard: now >= eta (TimelockActive)</text>
+
+  <!-- Proposable items detail -->
+  <rect x="50" y="210" width="995" height="90" rx="8" ry="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="80" y="235" class="lbl">Proposable Updates:</text>
+
+  <text x="80" y="258" class="desc">ERS</text>
+  <text x="80" y="273" class="note">max_defect_bps, specs, version</text>
+
+  <text x="320" y="258" class="desc">Pricing</text>
+  <text x="320" y="273" class="note">price_per_unit, tiers, defect_penalty_bps</text>
+
+  <text x="600" y="258" class="desc">Roles</text>
+  <text x="600" y="273" class="note">oem, factory, qa addresses</text>
+
+  <text x="820" y="258" class="desc">Upgrade</text>
+  <text x="820" y="273" class="note">new WASM hash (BytesN&lt;32&gt;)</text>
 </svg>

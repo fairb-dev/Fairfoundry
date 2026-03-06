@@ -1,49 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#333" />
     </marker>
+    <marker id="arrow-up" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto-start-reverse">
+      <path d="M0,0 L0,6 L6,3 z" fill="#333" />
+    </marker>
     <style>
-      .box { fill:#f9fbfd; stroke:#333; rx:10; ry:10; }
-      .sub { fill:#eef7ff; }
-      .title { font-family: Arial; font-size: 20px; font-weight: bold; }
-      .lbl { font-family: Arial; font-size: 14px; }
-      .small { font-family: Arial; font-size: 12px; }
+      .box       { fill:#f9fbfd; stroke:#334155; stroke-width:1.5; rx:10; ry:10; }
+      .box-int   { fill:#f0f9ff; stroke:#93c5fd; stroke-width:1.2; rx:8; ry:8; }
+      .box-ext   { fill:#fef9c3; stroke:#a16207; stroke-width:1.2; rx:8; ry:8; }
+      .box-main  { fill:#eef7ff; stroke:#334155; stroke-width:2; rx:12; ry:12; }
+      .title     { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill:#0f172a; }
+      .subtitle  { font-family: Arial, sans-serif; font-size: 12px; fill:#64748b; }
+      .lbl       { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill:#0f172a; }
+      .desc      { font-family: Arial, sans-serif; font-size: 11px; fill:#475569; }
+      .edge      { font-family: Arial, sans-serif; font-size: 10px; fill:#64748b; }
     </style>
   </defs>
-  <rect x="0" y="0" width="1100" height="560" fill="#ffffff"/>
-<text x="550.0" y="36" class="title" text-anchor="middle">Fairfoundry — System Architecture</text>
-<rect x="60" y="80" width="240" height="90" class="box"/>
-<text x="180" y="110" class="lbl" text-anchor="middle">OEM</text>
-<text x="180" y="132" class="small" text-anchor="middle">Funds escrow • Reinspect/Dispute</text>
-<rect x="430" y="80" width="240" height="90" class="box"/>
-<text x="550" y="110" class="lbl" text-anchor="middle">FACTORY</text>
-<text x="550" y="132" class="small" text-anchor="middle">Creates lots • Receives payouts</text>
-<rect x="800" y="80" width="240" height="90" class="box"/>
-<text x="920" y="110" class="lbl" text-anchor="middle">QA Provider (Fairbuild)</text>
-<text x="920" y="132" class="small" text-anchor="middle">QA results • Serials • Attestation • Staked</text>
-<rect x="120" y="220" width="860" height="250" class="box sub"/>
-<text x="550" y="248" class="lbl" text-anchor="middle">Fairfoundry (Soroban on Stellar)</text>
-<text x="550" y="270" class="small" text-anchor="middle">Escrow &amp; payouts • ERS/pricing timelocks • Disputes (2-of-3)</text>
-<text x="550" y="290" class="small" text-anchor="middle">QA stake/slash • Serials Merkle root • Testbench attestation • Reinspection</text>
-<rect x="160" y="330" width="220" height="120" class="box"/>
-<text x="270" y="355" class="lbl" text-anchor="middle">Escrow &amp; Payouts</text>
-<text x="270" y="377" class="small" text-anchor="middle">Price/tiers • penalties • partials</text>
-<rect x="410" y="330" width="220" height="120" class="box"/>
-<text x="520" y="355" class="lbl" text-anchor="middle">QA Commitments</text>
-<text x="520" y="377" class="small" text-anchor="middle">Results root • Serials root • Attestation</text>
-<rect x="660" y="330" width="220" height="120" class="box"/>
-<text x="770" y="355" class="lbl" text-anchor="middle">Reinspection</text>
-<text x="770" y="377" class="small" text-anchor="middle">Seed → sample indices → deadline</text>
-<rect x="900" y="330" width="60" height="120" class="box"/>
-<text x="930" y="355" class="lbl" text-anchor="middle">Gov</text>
-<text x="930" y="377" class="small" text-anchor="middle">2-of-3</text>
-<path d="M 180 170 L 180 220 L 300 220" fill="none" stroke="#333" marker-end="url(#arrow)"/>
-<path d="M 550 170 L 550 220 L 550 220" fill="none" stroke="#333" marker-end="url(#arrow)"/>
-<path d="M 920 170 L 920 220 L 800 220" fill="none" stroke="#333" marker-end="url(#arrow)"/>
-<rect x="80" y="500" width="300" height="40" class="box"/>
-<text x="230" y="525" class="lbl" text-anchor="middle">Asset Client (SAC): XLM / USDC</text>
-<rect x="720" y="500" width="300" height="40" class="box"/>
-<text x="870" y="525" class="lbl" text-anchor="middle">Optional Oracle (FX/price feeds)</text>
+
+  <rect x="0" y="0" width="1100" height="620" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="30" class="title" text-anchor="middle">Fairfoundry — System Architecture</text>
+  <text x="550" y="48" class="subtitle" text-anchor="middle">Soroban smart contract on Stellar for escrowed manufacturing settlements</text>
+
+  <!-- ═══ ACTORS ═══ -->
+  <rect x="50" y="75" width="220" height="80" class="box"/>
+  <text x="160" y="100" class="lbl" text-anchor="middle">OEM (Buyer)</text>
+  <text x="160" y="118" class="desc" text-anchor="middle">Funds escrow</text>
+  <text x="160" y="132" class="desc" text-anchor="middle">Requests reinspection</text>
+  <text x="160" y="146" class="desc" text-anchor="middle">Co-receives QA slashing</text>
+
+  <rect x="440" y="75" width="220" height="80" class="box"/>
+  <text x="550" y="100" class="lbl" text-anchor="middle">Factory</text>
+  <text x="550" y="118" class="desc" text-anchor="middle">Creates production lots</text>
+  <text x="550" y="132" class="desc" text-anchor="middle">Receives settlement payouts</text>
+
+  <rect x="830" y="75" width="220" height="80" class="box"/>
+  <text x="940" y="100" class="lbl" text-anchor="middle">QA Provider</text>
+  <text x="940" y="118" class="desc" text-anchor="middle">Stakes collateral</text>
+  <text x="940" y="132" class="desc" text-anchor="middle">Commits test results + attestation</text>
+  <text x="940" y="146" class="desc" text-anchor="middle">Responds to reinspection</text>
+
+  <!-- Actor arrows to contract -->
+  <path d="M 160 155 L 160 195" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="172" y="180" class="edge">deposit/withdraw</text>
+
+  <path d="M 550 155 L 550 195" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="562" y="180" class="edge">create_lot</text>
+
+  <path d="M 940 155 L 940 195" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="952" y="180" class="edge">stake/commit/respond</text>
+
+  <!-- ═══ MAIN CONTRACT ═══ -->
+  <rect x="80" y="200" width="940" height="290" class="box-main"/>
+  <text x="550" y="226" class="lbl" text-anchor="middle">Fairfoundry Contract (Soroban on Stellar)</text>
+
+  <!-- Internal modules -->
+  <rect x="110" y="250" width="200" height="100" class="box-int"/>
+  <text x="210" y="273" class="lbl" text-anchor="middle">Escrow &amp; Payouts</text>
+  <text x="210" y="291" class="desc" text-anchor="middle">deposit / withdraw escrow</text>
+  <text x="210" y="305" class="desc" text-anchor="middle">execute_payment()</text>
+  <text x="210" y="319" class="desc" text-anchor="middle">price tiers, defect penalty</text>
+  <text x="210" y="333" class="desc" text-anchor="middle">partial payouts</text>
+
+  <rect x="335" y="250" width="200" height="100" class="box-int"/>
+  <text x="435" y="273" class="lbl" text-anchor="middle">QA Commitments</text>
+  <text x="435" y="291" class="desc" text-anchor="middle">qa_commit / qa_commit_full</text>
+  <text x="435" y="305" class="desc" text-anchor="middle">qa_update_counts</text>
+  <text x="435" y="319" class="desc" text-anchor="middle">Merkle root + serials</text>
+  <text x="435" y="333" class="desc" text-anchor="middle">testbench attestation</text>
+
+  <rect x="560" y="250" width="200" height="100" class="box-int"/>
+  <text x="660" y="273" class="lbl" text-anchor="middle">Reinspection</text>
+  <text x="660" y="291" class="desc" text-anchor="middle">request_reinspect()</text>
+  <text x="660" y="305" class="desc" text-anchor="middle">qa_reinspect_respond()</text>
+  <text x="660" y="319" class="desc" text-anchor="middle">challenge_default_slash()</text>
+  <text x="660" y="333" class="desc" text-anchor="middle">rate limit (5/hr/addr)</text>
+
+  <rect x="785" y="250" width="200" height="100" class="box-int"/>
+  <text x="885" y="273" class="lbl" text-anchor="middle">Governance</text>
+  <text x="885" y="291" class="desc" text-anchor="middle">2-of-3 multisig approval</text>
+  <text x="885" y="305" class="desc" text-anchor="middle">timelock (min 1hr delay)</text>
+  <text x="885" y="319" class="desc" text-anchor="middle">ERS / Pricing / Roles</text>
+  <text x="885" y="333" class="desc" text-anchor="middle">Contract upgrade (WASM)</text>
+
+  <!-- Cross-cutting -->
+  <rect x="110" y="370" width="875" height="40" rx="6" ry="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="550" y="393" class="desc" text-anchor="middle">Cross-cutting: Reentrancy guard (enter/exit) | Pause control | Safe math (checked add/sub/mul) | View functions (analytics, lots, stake)</text>
+
+  <!-- QA Staking sub-module -->
+  <rect x="110" y="425" width="200" height="50" class="box-int"/>
+  <text x="210" y="448" class="lbl" text-anchor="middle">QA Staking</text>
+  <text x="210" y="463" class="desc" text-anchor="middle">stake / unstake (7-day delay)</text>
+
+  <!-- ═══ EXTERNAL SERVICES ═══ -->
+  <rect x="80" y="520" width="280" height="50" class="box-ext"/>
+  <text x="220" y="543" class="lbl" text-anchor="middle">Stellar Asset Contract (SAC)</text>
+  <text x="220" y="558" class="desc" text-anchor="middle">XLM / USDC token transfers</text>
+
+  <rect x="740" y="520" width="280" height="50" class="box-ext"/>
+  <text x="880" y="543" class="lbl" text-anchor="middle">Price Oracle (Optional)</text>
+  <text x="880" y="558" class="desc" text-anchor="middle">FX/price feed with staleness check</text>
+
+  <!-- Arrows to external -->
+  <path d="M 210 470 L 210 520" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="222" y="500" class="edge">token::transfer()</text>
+
+  <path d="M 885 410 L 885 520" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="897" y="470" class="edge">ensure_oracle_fresh()</text>
+
+  <!-- Legend -->
+  <text x="80" y="600" class="subtitle">Legend:</text>
+  <rect x="140" y="591" width="14" height="10" class="box-int" style="stroke-width:1"/>
+  <text x="160" y="600" class="edge">Internal module</text>
+  <rect x="270" y="591" width="14" height="10" class="box-ext" style="stroke-width:1"/>
+  <text x="290" y="600" class="edge">External dependency</text>
+  <rect x="400" y="591" width="14" height="10" class="box" style="stroke-width:1"/>
+  <text x="420" y="600" class="edge">Actor</text>
 </svg>
