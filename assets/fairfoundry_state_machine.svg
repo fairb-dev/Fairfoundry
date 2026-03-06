@@ -54,9 +54,9 @@
   <text x="480" y="190" class="desc" text-anchor="middle">Testing in progress</text>
 
   <!-- Self-loop on InQA for partial updates -->
-  <path d="M 475 148 C 475 105, 545 105, 545 148" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
-  <text x="520" y="115" class="desc" text-anchor="middle">qa_update_counts()</text>
-  <text x="520" y="128" class="desc" text-anchor="middle">tested &lt; quantity</text>
+  <path d="M 475 148 C 475 80, 545 80, 545 148" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
+  <text x="520" y="100" class="desc" text-anchor="middle">qa_update_counts()</text>
+  <text x="520" y="113" class="desc" text-anchor="middle">tested &lt; quantity</text>
 
   <!-- InQA → Approved -->
   <path d="M 560 175 L 660 175" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
