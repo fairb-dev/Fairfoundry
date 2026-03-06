@@ -170,7 +170,7 @@
   <line x1="595" y1="573" x2="770" y2="573" stroke="#bfdbfe" stroke-width="1"/>
   <text x="595" y="587" class="field">oracle: Address</text>
   <text x="595" y="601" class="field">quote: Symbol</text>
-  <text x="595" y="615" class="field">max_age_secs: u64</text>
+  <text x="595" y="615" class="field">max_age_secs: u64, enabled: bool</text>
   <text x="595" y="629" class="field">last_price, last_update</text>
 
   <!-- UnstakeRequest -->
