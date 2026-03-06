@@ -126,7 +126,7 @@ Roles are fixed at `init` via `Roles { oem, factory, qa }` and are validated wit
 6. **Challenge / re-inspection (optional)**:
    - Any role may `request_reinspect(lot_id, sample_size, deadline_secs, seed)`.
    - Contract **charges a challenge fee** (default `CHALLENGE_COST_BPS = 10` -> 0.1% of lot value) and **rate-limits** to max 5/hour per address.
-   - Deterministic sampler returns unique indices from `[0, quantity)` capped by `MAX_CHALLENGE_SAMPLE`.
+   - Deterministic sampler returns unique indices from `[0, serials_count)` capped by `MAX_CHALLENGE_SAMPLE`.
    - QA must `qa_reinspect_respond(pass_count, fail_count, proof_hash)` **before** `due_by` or risk default.
    - If QA misses the deadline, anyone may call `challenge_default_slash(slash_bps)` -> slashes QA stake (capped by `MAX_SLASH_BPS`, 20%). Slash is split **50% challenger / 50% OEM** and the QA's locked stake is unlocked.
 7. **Settle payment** (`execute_payment`):
@@ -226,7 +226,7 @@ MIN_TIMELOCK_DELAY = 3600 seconds
 - `CHAL: Map<String, Challenge>` -- `{requested_by, seed, sample_size, sample_indices, requested_at, due_by, status, cost_paid, response_data}`
 - `CHAL_LIMIT: Map<Address, (u64, u32)>` -- challenge rate limiting `(last_time, count)`
 
-**Events** `EscrowDeposited`, `EscrowWithdrawn`, `QAStaked`, `QAUnstakeRequested`, `QAUnstaked`, `LotCreated`, `QACommittedFull`, `QAUpdated`, `LotStatusChanged`, `ReinspectRequested`, `ReinspectResponded`, `ReinspectDefaultSlashed`, `LotPaid`, `ERSProposed`, `OracleUpdated`.
+**Events** `EscrowDeposited`, `EscrowWithdrawn`, `QAStaked`, `QAUnstakeRequested`, `QAUnstaked`, `LotCreated`, `QACommitted`, `QACommittedSerials`, `QACommittedAttestation`, `QACommittedFull`, `QAUpdated`, `LotStatusChanged`, `ReinspectRequested`, `ReinspectResponded`, `ReinspectDefaultSlashed`, `LotPaid`, `ERSProposed`, `OracleUpdated`.
 
 ## Security model (what protects funds)
 
@@ -251,9 +251,9 @@ MIN_TIMELOCK_DELAY = 3600 seconds
 | `request_unstake_qa(qa, amount)` | **QA** | Queue delayed unstake; enforces min stake | `QAUnstakeRequested` |
 | `execute_unstake_qa(qa)` | **QA** | After delay, transfers available queued amount to QA | `QAUnstaked` |
 | `create_lot(factory, lot_id, quantity)` | **Factory** | Create `Lot` (requires QA stake >= min) | `LotCreated` |
-| `qa_commit(qa, lot_id, commit_root, report_uri)` | **QA** | Attach QA metadata (root + report); set status `InQA` | `QACommittedFull` |
-| `qa_commit_serials(qa, lot_id, serials_root, serials_count)` | **QA** | Add serials Merkle root to existing QA metadata | `QACommittedFull` |
-| `qa_commit_attestation(qa, lot_id, bench_id, firmware_hash, signer)` | **QA** | Add testbench attestation to existing QA metadata | `QACommittedFull` |
+| `qa_commit(qa, lot_id, commit_root, report_uri)` | **QA** | Attach QA metadata (root + report); set status `InQA` | `QACommitted` |
+| `qa_commit_serials(qa, lot_id, serials_root, serials_count)` | **QA** | Add serials Merkle root to existing QA metadata | `QACommittedSerials` |
+| `qa_commit_attestation(qa, lot_id, bench_id, firmware_hash, signer)` | **QA** | Add testbench attestation to existing QA metadata | `QACommittedAttestation` |
 | `qa_commit_full(qa, lot_id, commit_root, report_uri, serials_root, serials_count, bench_id, firmware_hash, signer)` | **QA** | Full QA metadata in one call; set status `InQA` | `QACommittedFull` |
 | `qa_update_counts(qa, lot_id, tested, passed, failed)` | **QA** | Update counts; auto `Approved` when `tested == quantity` | `QAUpdated` |
 | `request_reinspect(requester, lot_id, sample_size, deadline_secs, seed)` | OEM/Factory/QA | Charge fee, lock QA stake, store challenge & sample indices | `ReinspectRequested` |
