@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["contracts/fairfoundry"]
+members = ["contracts/fairfoundry", "contracts/fairfoundry-svt"]
 
 [profile.release]
 opt-level = "z"

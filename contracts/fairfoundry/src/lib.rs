@@ -454,6 +454,140 @@ pub struct ChallengeResponse {
     pub responded_at: u64,
 }
 
+// ======================== Service Fabric ========================
+
+/// Development stage for a manufacturing service order.
+#[derive(Clone, PartialEq, Debug)]
+#[contracttype]
+pub enum ServiceStage {
+    /// Engineering Validation Test — first functional prototypes.
+    EVT,
+    /// Design Validation Test — refined prototypes for design sign-off.
+    DVT,
+    /// Production Validation Test — pre-production trial run.
+    PVT,
+    /// Mass Production — full-scale manufacturing.
+    MP,
+    /// Sustaining — ongoing production support and maintenance.
+    Sustaining,
+}
+
+/// Status of a service order in the fabric pipeline.
+///
+/// ## State Machine
+///
+/// ```text
+/// Requested -> Accepted   (accept_service_order by factory)
+/// Accepted  -> Delivered   (submit_artifacts by factory)
+/// Delivered -> Validated   (attest_completion by oracle — mints SVT)
+/// Validated -> Settled     (settle_service — pays factory or issues credits)
+/// ```
+#[derive(Clone, PartialEq, Debug)]
+#[contracttype]
+pub enum OrderStatus {
+    /// OEM has created the order; awaiting factory acceptance.
+    Requested,
+    /// Factory has accepted; work in progress.
+    Accepted,
+    /// Factory has submitted deliverables (artifacts/images uploaded).
+    Delivered,
+    /// FairBuild oracle has validated completion and minted an SVT.
+    Validated,
+    /// Payment or credits have been issued to the factory.
+    Settled,
+    /// Order cancelled before settlement.
+    Cancelled,
+}
+
+/// A service request describing what the OEM needs from the manufacturing partner.
+#[derive(Clone)]
+#[contracttype]
+pub struct ServiceRequest {
+    /// Human-readable description (e.g., "Thermal cycle 50 EVT samples").
+    pub description: String,
+    /// Development stage this service targets.
+    pub stage: ServiceStage,
+    /// Number of DUTs / units involved.
+    pub quantity: u32,
+    /// ERS version that governs acceptance criteria.
+    pub ers_version: u32,
+    /// Acceptance criteria as key/value thresholds (extends ERS.specs concept).
+    pub acceptance_criteria: Map<String, u32>,
+    /// Expected artifact types (e.g., "thermal_image", "xray_scan").
+    pub required_artifacts: Vec<String>,
+}
+
+/// Oracle attestation that a service has been completed.
+/// Submitted by FairBuild integrated services after detecting that production
+/// images / artifacts uploaded by the manufacturing partner meet the
+/// acceptance criteria.
+#[derive(Clone)]
+#[contracttype]
+pub struct CompletionAttestation {
+    /// Address of the FairBuild oracle that signed this attestation.
+    pub oracle: Address,
+    /// Merkle root over the uploaded artifacts / production images.
+    pub artifacts_root: BytesN<32>,
+    /// Number of artifacts covered.
+    pub artifacts_count: u32,
+    /// Which acceptance criteria were satisfied (key → measured value).
+    pub criteria_met: Map<String, u32>,
+    /// URI pointing to the full validation report (e.g., IPFS).
+    pub report_uri: String,
+    /// Timestamp when the attestation was created.
+    pub attested_at: u64,
+}
+
+/// A service order tracked through the fabric pipeline.
+#[derive(Clone)]
+#[contracttype]
+pub struct ServiceOrder {
+    /// Unique identifier for this order.
+    pub order_id: String,
+    /// The service request details.
+    pub request: ServiceRequest,
+    /// Current status in the fabric pipeline.
+    pub status: OrderStatus,
+    /// Amount of escrow locked for this order.
+    pub escrow_locked: i128,
+    /// Price agreed for the service (in payment asset minor units).
+    pub agreed_price: i128,
+    /// Factory's submitted artifact root (set on delivery).
+    pub artifacts_root: Vec<BytesN<32>>,
+    /// Completion attestation from FairBuild oracle (empty Vec = None).
+    pub attestation: Vec<CompletionAttestation>,
+    /// ID of the minted SVT (0 = not yet minted).
+    pub svt_id: u64,
+    /// Whether settlement was via credits (true) or direct payment (false).
+    pub settled_as_credit: bool,
+    /// Address of the OEM who created this order.
+    pub oem: Address,
+    /// Address of the factory that accepted this order.
+    pub factory: Address,
+    /// Timestamp when the order was created.
+    pub created_at: u64,
+    /// Timestamp of the most recent update.
+    pub last_update: u64,
+}
+
+/// Analytics for the service fabric.
+#[derive(Clone)]
+#[contracttype]
+pub struct ServiceAnalytics {
+    /// Total service orders created.
+    pub total_orders: u64,
+    /// Total orders that reached Validated status.
+    pub total_validated: u64,
+    /// Total orders settled.
+    pub total_settled: u64,
+    /// Total SVTs minted.
+    pub total_svts_minted: u64,
+    /// Total credits issued (cumulative).
+    pub total_credits_issued: i128,
+    /// Total credits redeemed (cumulative).
+    pub total_credits_redeemed: i128,
+}
+
 // ============================= State ============================
 
 /// Configuration parameters for contract initialization.
@@ -524,6 +658,20 @@ pub struct State {
 
     /// Reentrancy guard flag. `true` while a state-mutating operation is in progress.
     pub entered: bool,
+
+    // ---- Service Fabric fields ----
+
+    /// Address of the FairBuild oracle authorized to attest service completions.
+    pub fairbuild_oracle: Vec<Address>,
+    /// Running counter for SVT token IDs.
+    pub next_svt_id: u64,
+    /// Service fabric analytics counters.
+    pub svc_total_orders: u64,
+    pub svc_total_validated: u64,
+    pub svc_total_settled: u64,
+    pub svc_total_svts_minted: u64,
+    pub svc_total_credits_issued: i128,
+    pub svc_total_credits_redeemed: i128,
 }
 
 // ========================== Analytics ============================
@@ -557,6 +705,9 @@ const S: Symbol = symbol_short!("S");
 const LOTS: Symbol = symbol_short!("LOTS");
 const CHAL: Symbol = symbol_short!("CHAL");
 const CHAL_LIMIT: Symbol = symbol_short!("CHALLIM");
+const ORDERS: Symbol = symbol_short!("ORDERS");
+const CREDITS: Symbol = symbol_short!("CREDITS");
+const SVTS: Symbol = symbol_short!("SVTS");
 
 // ============================ Helpers ===========================
 
@@ -807,6 +958,14 @@ impl Fairfoundry {
             roles_pending: Vec::new(&env),
             upgrade_pending: Vec::new(&env),
             entered: false,
+            fairbuild_oracle: Vec::new(&env),
+            next_svt_id: 1,
+            svc_total_orders: 0,
+            svc_total_validated: 0,
+            svc_total_settled: 0,
+            svc_total_svts_minted: 0,
+            svc_total_credits_issued: 0,
+            svc_total_credits_redeemed: 0,
         };
 
         env.storage().persistent().set(&S, &st);
@@ -819,6 +978,15 @@ impl Fairfoundry {
         env.storage()
             .persistent()
             .set(&CHAL_LIMIT, &Map::<Address, (u64, u32)>::new(&env));
+        env.storage()
+            .persistent()
+            .set(&ORDERS, &Map::<String, ServiceOrder>::new(&env));
+        env.storage()
+            .persistent()
+            .set(&CREDITS, &Map::<Address, i128>::new(&env));
+        env.storage()
+            .persistent()
+            .set(&SVTS, &Map::<u64, String>::new(&env));
 
         log!(&env, "Fairfoundry:init");
     }
@@ -1763,6 +1931,520 @@ impl Fairfoundry {
             .publish((Symbol::new(&env, "LotStatusChanged"), lot_id), now(&env));
 
         payment
+    }
+
+    // =================== Service Fabric ====================
+
+    /// Registers the FairBuild oracle address that is authorized to attest
+    /// service completions. Only the OEM may call this.
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not the OEM
+    ///
+    /// # Events
+    /// * `OracleRegistered(oem, oracle, timestamp)`
+    pub fn register_fairbuild_oracle(env: Env, oem: Address, oracle: Address) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_party(&env, &oem, &st.roles);
+        if oem != st.roles.oem {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+
+        st.fairbuild_oracle = soroban_sdk::vec![&env, oracle.clone()];
+        env.storage().persistent().set(&S, &st);
+
+        env.events().publish(
+            (Symbol::new(&env, "OracleRegistered"), oem),
+            (oracle, now(&env)),
+        );
+    }
+
+    /// Creates a new service order. Only the OEM may call this.
+    /// Locks `agreed_price` from the OEM's escrow balance.
+    ///
+    /// # Arguments
+    /// * `oem` - Must be the registered OEM
+    /// * `order_id` - Unique identifier for this service order
+    /// * `request` - Service request details (stage, quantity, criteria)
+    /// * `agreed_price` - Price locked from escrow for this service
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not the OEM
+    /// * `AlreadyExists` — order ID already in use
+    /// * `Param` — `agreed_price <= 0` or `quantity == 0`
+    /// * `InsufficientEscrow` — escrow balance insufficient
+    ///
+    /// # Events
+    /// * `ServiceOrderCreated(oem, order_id, stage, agreed_price, timestamp)`
+    pub fn create_service_order(
+        env: Env,
+        oem: Address,
+        order_id: String,
+        request: ServiceRequest,
+        agreed_price: i128,
+    ) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_not_paused(&env, &st);
+        require_party(&env, &oem, &st.roles);
+
+        if oem != st.roles.oem {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+        if agreed_price <= 0 || request.quantity == 0 {
+            panic_with_error!(&env, Err::Param);
+        }
+        if request.quantity > MAX_LOT_QUANTITY {
+            panic_with_error!(&env, Err::Param);
+        }
+
+        let mut orders: Map<String, ServiceOrder> =
+            env.storage().persistent().get(&ORDERS).unwrap();
+        if orders.contains_key(order_id.clone()) {
+            panic_with_error!(&env, Err::AlreadyExists);
+        }
+
+        if st.escrow_balance < agreed_price {
+            panic_with_error!(&env, Err::InsufficientEscrow);
+        }
+
+        enter(&env, &mut st);
+
+        // Lock funds from escrow
+        st.escrow_balance = safe_sub(&env, st.escrow_balance, agreed_price);
+
+        let order = ServiceOrder {
+            order_id: order_id.clone(),
+            request: request.clone(),
+            status: OrderStatus::Requested,
+            escrow_locked: agreed_price,
+            agreed_price,
+            artifacts_root: Vec::new(&env),
+            attestation: Vec::new(&env),
+            svt_id: 0,
+            settled_as_credit: false,
+            oem: oem.clone(),
+            factory: st.roles.factory.clone(),
+            created_at: now(&env),
+            last_update: now(&env),
+        };
+
+        orders.set(order_id.clone(), order);
+        env.storage().persistent().set(&ORDERS, &orders);
+        st.svc_total_orders += 1;
+
+        exit(&env, &mut st);
+
+        env.events().publish(
+            (Symbol::new(&env, "ServiceOrderCreated"), oem),
+            (order_id, request.stage, agreed_price, now(&env)),
+        );
+    }
+
+    /// Factory accepts a service order, committing to perform the service.
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not the Factory
+    /// * `NotFound` — order does not exist
+    /// * `InvalidState` — order is not in `Requested` status
+    ///
+    /// # Events
+    /// * `ServiceOrderAccepted(factory, order_id, timestamp)`
+    pub fn accept_service_order(env: Env, factory: Address, order_id: String) {
+        let st: State = env.storage().persistent().get(&S).unwrap();
+        require_not_paused(&env, &st);
+        require_party(&env, &factory, &st.roles);
+
+        if factory != st.roles.factory {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+
+        let mut orders: Map<String, ServiceOrder> =
+            env.storage().persistent().get(&ORDERS).unwrap();
+        let mut order = orders
+            .get(order_id.clone())
+            .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound));
+
+        if order.status != OrderStatus::Requested {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        order.status = OrderStatus::Accepted;
+        order.last_update = now(&env);
+
+        orders.set(order_id.clone(), order);
+        env.storage().persistent().set(&ORDERS, &orders);
+
+        env.events().publish(
+            (Symbol::new(&env, "ServiceOrderAccepted"), factory),
+            (order_id, now(&env)),
+        );
+    }
+
+    /// Factory submits artifacts (e.g., production images uploaded to OEM database).
+    /// Transitions the order to `Delivered`.
+    ///
+    /// # Arguments
+    /// * `factory` - Must be the registered Factory
+    /// * `order_id` - The service order ID
+    /// * `artifacts_root` - Merkle root over the uploaded production images / artifacts
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not the Factory
+    /// * `NotFound` — order does not exist
+    /// * `InvalidState` — order is not in `Accepted` status
+    ///
+    /// # Events
+    /// * `ArtifactsSubmitted(factory, order_id, artifacts_root, timestamp)`
+    pub fn submit_artifacts(
+        env: Env,
+        factory: Address,
+        order_id: String,
+        artifacts_root: BytesN<32>,
+    ) {
+        let st: State = env.storage().persistent().get(&S).unwrap();
+        require_not_paused(&env, &st);
+        require_party(&env, &factory, &st.roles);
+
+        if factory != st.roles.factory {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+
+        let mut orders: Map<String, ServiceOrder> =
+            env.storage().persistent().get(&ORDERS).unwrap();
+        let mut order = orders
+            .get(order_id.clone())
+            .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound));
+
+        if order.status != OrderStatus::Accepted {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        order.artifacts_root = soroban_sdk::vec![&env, artifacts_root.clone()];
+        order.status = OrderStatus::Delivered;
+        order.last_update = now(&env);
+
+        orders.set(order_id.clone(), order);
+        env.storage().persistent().set(&ORDERS, &orders);
+
+        env.events().publish(
+            (Symbol::new(&env, "ArtifactsSubmitted"), factory),
+            (order_id, artifacts_root, now(&env)),
+        );
+    }
+
+    /// FairBuild oracle attests that a service order has been completed.
+    /// This validates the uploaded artifacts against acceptance criteria,
+    /// mints a Service Validation Token (SVT), and transitions the order
+    /// to `Validated`.
+    ///
+    /// The oracle is an off-chain FairBuild integrated service that monitors
+    /// the OEM database for production images uploaded by the manufacturing
+    /// partner and verifies they meet the service conditions.
+    ///
+    /// # Arguments
+    /// * `oracle` - Must be the registered FairBuild oracle
+    /// * `order_id` - The service order ID
+    /// * `artifacts_root` - Merkle root the oracle computed over the artifacts
+    /// * `artifacts_count` - Number of artifacts validated
+    /// * `criteria_met` - Which acceptance criteria were satisfied
+    /// * `report_uri` - URI to the full validation report
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not the registered FairBuild oracle
+    /// * `NotFound` — order does not exist
+    /// * `InvalidState` — order is not in `Delivered` status
+    ///
+    /// # Events
+    /// * `ServiceValidated(oracle, order_id, svt_id, timestamp)`
+    /// * `SVTMinted(order_id, svt_id, factory, stage, timestamp)`
+    pub fn attest_completion(
+        env: Env,
+        oracle: Address,
+        order_id: String,
+        artifacts_root: BytesN<32>,
+        artifacts_count: u32,
+        criteria_met: Map<String, u32>,
+        report_uri: String,
+    ) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+
+        // Verify caller is the registered FairBuild oracle
+        oracle.require_auth();
+        if st.fairbuild_oracle.is_empty() || oracle != st.fairbuild_oracle.get(0).unwrap() {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+
+        let mut orders: Map<String, ServiceOrder> =
+            env.storage().persistent().get(&ORDERS).unwrap();
+        let mut order = orders
+            .get(order_id.clone())
+            .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound));
+
+        if order.status != OrderStatus::Delivered {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        enter(&env, &mut st);
+
+        // Create completion attestation
+        let attestation = CompletionAttestation {
+            oracle: oracle.clone(),
+            artifacts_root,
+            artifacts_count,
+            criteria_met,
+            report_uri,
+            attested_at: now(&env),
+        };
+
+        // Mint SVT (on-ledger record)
+        let svt_id = st.next_svt_id;
+        st.next_svt_id += 1;
+        st.svc_total_svts_minted += 1;
+        st.svc_total_validated += 1;
+
+        // Record SVT -> order mapping
+        let mut svts: Map<u64, String> = env.storage().persistent().get(&SVTS).unwrap();
+        svts.set(svt_id, order_id.clone());
+        env.storage().persistent().set(&SVTS, &svts);
+
+        order.attestation = soroban_sdk::vec![&env, attestation];
+        order.svt_id = svt_id;
+        order.status = OrderStatus::Validated;
+        order.last_update = now(&env);
+
+        orders.set(order_id.clone(), order.clone());
+        env.storage().persistent().set(&ORDERS, &orders);
+
+        exit(&env, &mut st);
+
+        env.events().publish(
+            (Symbol::new(&env, "ServiceValidated"), oracle),
+            (order_id.clone(), svt_id, now(&env)),
+        );
+        env.events().publish(
+            (Symbol::new(&env, "SVTMinted"), order_id),
+            (svt_id, order.factory, order.request.stage, now(&env)),
+        );
+    }
+
+    /// Settles a validated service order. The SVT (Service Validation Token)
+    /// triggers the smart contract to release escrowed funds to the
+    /// manufacturing partner — either as direct payment or on-ledger credits.
+    ///
+    /// # Arguments
+    /// * `order_id` - The service order ID (must have an SVT / be Validated)
+    /// * `as_credit` - If true, issue credits instead of direct payment
+    ///
+    /// # Errors
+    /// * `InvalidState` — order is not in `Validated` status
+    /// * `NotFound` — order does not exist
+    ///
+    /// # Events
+    /// * `ServiceSettled(order_id, factory, amount, as_credit, timestamp)`
+    pub fn settle_service(env: Env, order_id: String, as_credit: bool) -> i128 {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_not_paused(&env, &st);
+
+        let mut orders: Map<String, ServiceOrder> =
+            env.storage().persistent().get(&ORDERS).unwrap();
+        let mut order = orders
+            .get(order_id.clone())
+            .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound));
+
+        if order.status != OrderStatus::Validated {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        // SVT must exist (svt_id > 0)
+        if order.svt_id == 0 {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        enter(&env, &mut st);
+
+        let payment = order.escrow_locked;
+
+        if as_credit {
+            // Issue credits to the factory's on-ledger account
+            let mut credits: Map<Address, i128> =
+                env.storage().persistent().get(&CREDITS).unwrap();
+            let existing = credits.get(order.factory.clone()).unwrap_or(0);
+            credits.set(order.factory.clone(), safe_add(&env, existing, payment));
+            env.storage().persistent().set(&CREDITS, &credits);
+            st.svc_total_credits_issued = safe_add(&env, st.svc_total_credits_issued, payment);
+        } else {
+            // Direct payment: transfer locked escrow to factory
+            let c = st.pay_asset.client(&env);
+            c.transfer(&env.current_contract_address(), &order.factory, &payment);
+        }
+
+        order.status = OrderStatus::Settled;
+        order.settled_as_credit = as_credit;
+        order.last_update = now(&env);
+        st.svc_total_settled += 1;
+
+        orders.set(order_id.clone(), order.clone());
+        env.storage().persistent().set(&ORDERS, &orders);
+
+        exit(&env, &mut st);
+
+        env.events().publish(
+            (Symbol::new(&env, "ServiceSettled"), order_id),
+            (order.factory, payment, as_credit, now(&env)),
+        );
+
+        payment
+    }
+
+    /// Redeems accumulated credits for direct payment. Only the Factory
+    /// (manufacturing partner) may call this.
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not the Factory
+    /// * `Param` — `amount <= 0`
+    /// * `InsufficientEscrow` — credit balance insufficient
+    ///
+    /// # Events
+    /// * `CreditsRedeemed(factory, amount, timestamp)`
+    pub fn redeem_credits(env: Env, factory: Address, amount: i128) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_party(&env, &factory, &st.roles);
+
+        if factory != st.roles.factory {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+        if amount <= 0 {
+            panic_with_error!(&env, Err::Param);
+        }
+
+        enter(&env, &mut st);
+
+        let mut credits: Map<Address, i128> = env.storage().persistent().get(&CREDITS).unwrap();
+        let balance = credits.get(factory.clone()).unwrap_or(0);
+
+        if amount > balance {
+            panic_with_error!(&env, Err::InsufficientEscrow);
+        }
+
+        // Deduct credits and transfer payment
+        credits.set(factory.clone(), safe_sub(&env, balance, amount));
+        env.storage().persistent().set(&CREDITS, &credits);
+
+        let c = st.pay_asset.client(&env);
+        c.transfer(&env.current_contract_address(), &factory, &amount);
+
+        st.svc_total_credits_redeemed = safe_add(&env, st.svc_total_credits_redeemed, amount);
+
+        exit(&env, &mut st);
+
+        env.events().publish(
+            (Symbol::new(&env, "CreditsRedeemed"), factory),
+            (amount, now(&env)),
+        );
+    }
+
+    /// Cancels a service order that has not yet been delivered.
+    /// Returns locked escrow to the OEM. Only OEM may call this.
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not the OEM
+    /// * `NotFound` — order does not exist
+    /// * `InvalidState` — order already delivered/validated/settled
+    ///
+    /// # Events
+    /// * `ServiceOrderCancelled(oem, order_id, refund, timestamp)`
+    pub fn cancel_service_order(env: Env, oem: Address, order_id: String) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_party(&env, &oem, &st.roles);
+
+        if oem != st.roles.oem {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+
+        let mut orders: Map<String, ServiceOrder> =
+            env.storage().persistent().get(&ORDERS).unwrap();
+        let mut order = orders
+            .get(order_id.clone())
+            .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound));
+
+        // Can only cancel before delivery
+        if order.status != OrderStatus::Requested && order.status != OrderStatus::Accepted {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        enter(&env, &mut st);
+
+        let refund = order.escrow_locked;
+        st.escrow_balance = safe_add(&env, st.escrow_balance, refund);
+
+        order.status = OrderStatus::Cancelled;
+        order.escrow_locked = 0;
+        order.last_update = now(&env);
+
+        orders.set(order_id.clone(), order);
+        env.storage().persistent().set(&ORDERS, &orders);
+
+        exit(&env, &mut st);
+
+        env.events().publish(
+            (Symbol::new(&env, "ServiceOrderCancelled"), oem),
+            (order_id, refund, now(&env)),
+        );
+    }
+
+    // --------------- Service Fabric Views ---------------
+
+    /// Returns a single service order by ID.
+    pub fn view_service_order(env: Env, order_id: String) -> ServiceOrder {
+        let orders: Map<String, ServiceOrder> = env.storage().persistent().get(&ORDERS).unwrap();
+        orders
+            .get(order_id)
+            .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound))
+    }
+
+    /// Lists service order IDs, optionally filtered by status.
+    pub fn view_service_orders(env: Env, status_filter: Option<OrderStatus>) -> Vec<String> {
+        let orders: Map<String, ServiceOrder> = env.storage().persistent().get(&ORDERS).unwrap();
+        let mut result: Vec<String> = Vec::new(&env);
+        for (order_id, order) in orders.iter() {
+            match &status_filter {
+                Some(filter) => {
+                    if order.status == *filter {
+                        result.push_back(order_id);
+                    }
+                }
+                None => {
+                    result.push_back(order_id);
+                }
+            }
+        }
+        result
+    }
+
+    /// Returns the credit balance for an address (typically the Factory).
+    pub fn view_credits(env: Env, addr: Address) -> i128 {
+        let credits: Map<Address, i128> = env.storage().persistent().get(&CREDITS).unwrap();
+        credits.get(addr).unwrap_or(0)
+    }
+
+    /// Returns service fabric analytics.
+    pub fn view_service_analytics(env: Env) -> ServiceAnalytics {
+        let st: State = env.storage().persistent().get(&S).unwrap();
+        ServiceAnalytics {
+            total_orders: st.svc_total_orders,
+            total_validated: st.svc_total_validated,
+            total_settled: st.svc_total_settled,
+            total_svts_minted: st.svc_total_svts_minted,
+            total_credits_issued: st.svc_total_credits_issued,
+            total_credits_redeemed: st.svc_total_credits_redeemed,
+        }
+    }
+
+    /// Returns the SVT details: which order a given SVT ID maps to.
+    pub fn view_svt(env: Env, svt_id: u64) -> String {
+        let svts: Map<u64, String> = env.storage().persistent().get(&SVTS).unwrap();
+        svts.get(svt_id)
+            .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound))
     }
 
     // ---------------------- Governance ----------------------
