@@ -660,7 +660,6 @@ pub struct State {
     pub entered: bool,
 
     // ---- Service Fabric fields ----
-
     /// Address of the FairBuild oracle authorized to attest service completions.
     pub fairbuild_oracle: Vec<Address>,
     /// Running counter for SVT token IDs.
@@ -2266,8 +2265,7 @@ impl Fairfoundry {
 
         if as_credit {
             // Issue credits to the factory's on-ledger account
-            let mut credits: Map<Address, i128> =
-                env.storage().persistent().get(&CREDITS).unwrap();
+            let mut credits: Map<Address, i128> = env.storage().persistent().get(&CREDITS).unwrap();
             let existing = credits.get(order.factory.clone()).unwrap_or(0);
             credits.set(order.factory.clone(), safe_add(&env, existing, payment));
             env.storage().persistent().set(&CREDITS, &credits);

@@ -4,8 +4,8 @@ use soroban_sdk::{
 };
 
 use crate::{
-    AssetKind, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig, OracleConfig,
-    OrderStatus, PaymentAsset, Pricing, ServiceRequest, ServiceStage, ERS,
+    AssetKind, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig, OracleConfig, OrderStatus,
+    PaymentAsset, Pricing, ServiceRequest, ServiceStage, ERS,
 };
 
 fn setup_env() -> Env {
@@ -131,7 +131,12 @@ fn service_fabric_happy_path_direct_payment() {
     let agreed_price = 500_000_000i128;
 
     // 1. OEM creates a service order
-    client.create_service_order(&oem, &order_id, &sample_service_request(&env), &agreed_price);
+    client.create_service_order(
+        &oem,
+        &order_id,
+        &sample_service_request(&env),
+        &agreed_price,
+    );
 
     let order = client.view_service_order(&order_id);
     assert_eq!(order.status, OrderStatus::Requested);
@@ -198,7 +203,12 @@ fn service_fabric_happy_path_credit_settlement() {
     let order_id = String::from_str(&env, "SVC-002");
     let agreed_price = 300_000_000i128;
 
-    client.create_service_order(&oem, &order_id, &sample_service_request(&env), &agreed_price);
+    client.create_service_order(
+        &oem,
+        &order_id,
+        &sample_service_request(&env),
+        &agreed_price,
+    );
     client.accept_service_order(&factory, &order_id);
     client.submit_artifacts(&factory, &order_id, &BytesN::from_array(&env, &[1u8; 32]));
 
@@ -240,12 +250,7 @@ fn credit_accumulation_and_redemption() {
         let order_id = String::from_str(&env, if i == 0 { "SVC-A" } else { "SVC-B" });
         let price = 200_000_000i128;
 
-        client.create_service_order(
-            &oem,
-            &order_id,
-            &sample_service_request(&env),
-            &price,
-        );
+        client.create_service_order(&oem, &order_id, &sample_service_request(&env), &price);
         client.accept_service_order(&factory, &order_id);
         client.submit_artifacts(
             &factory,
@@ -439,11 +444,7 @@ fn unauthorized_oracle_cannot_attest() {
     let order_id = String::from_str(&env, "SVC-UNAUTH");
     client.create_service_order(&oem, &order_id, &sample_service_request(&env), &100_000_000);
     client.accept_service_order(&factory, &order_id);
-    client.submit_artifacts(
-        &factory,
-        &order_id,
-        &BytesN::from_array(&env, &[1u8; 32]),
-    );
+    client.submit_artifacts(&factory, &order_id, &BytesN::from_array(&env, &[1u8; 32]));
 
     // Random address tries to attest
     let fake_oracle = addr(&env);
@@ -489,11 +490,7 @@ fn cannot_settle_before_validation() {
     let order_id = String::from_str(&env, "SVC-NOSVT");
     client.create_service_order(&oem, &order_id, &sample_service_request(&env), &100_000_000);
     client.accept_service_order(&factory, &order_id);
-    client.submit_artifacts(
-        &factory,
-        &order_id,
-        &BytesN::from_array(&env, &[1u8; 32]),
-    );
+    client.submit_artifacts(&factory, &order_id, &BytesN::from_array(&env, &[1u8; 32]));
 
     // Try to settle while still Delivered (not Validated)
     client.settle_service(&order_id, &false);
@@ -508,11 +505,7 @@ fn cannot_cancel_after_delivery() {
     let order_id = String::from_str(&env, "SVC-LATE-CANCEL");
     client.create_service_order(&oem, &order_id, &sample_service_request(&env), &100_000_000);
     client.accept_service_order(&factory, &order_id);
-    client.submit_artifacts(
-        &factory,
-        &order_id,
-        &BytesN::from_array(&env, &[1u8; 32]),
-    );
+    client.submit_artifacts(&factory, &order_id, &BytesN::from_array(&env, &[1u8; 32]));
 
     // Try to cancel after delivery
     client.cancel_service_order(&oem, &order_id);
@@ -571,11 +564,7 @@ fn escrow_conservation_across_service_orders() {
 
     // Complete and settle directly
     client.accept_service_order(&factory, &order_id);
-    client.submit_artifacts(
-        &factory,
-        &order_id,
-        &BytesN::from_array(&env, &[1u8; 32]),
-    );
+    client.submit_artifacts(&factory, &order_id, &BytesN::from_array(&env, &[1u8; 32]));
     let criteria: Map<String, u32> = Map::new(&env);
     client.attest_completion(
         &oracle,
@@ -604,12 +593,7 @@ fn svt_ids_are_monotonically_increasing() {
             _ => "M-3",
         };
         let order_id = String::from_str(&env, id);
-        client.create_service_order(
-            &oem,
-            &order_id,
-            &sample_service_request(&env),
-            &100_000_000,
-        );
+        client.create_service_order(&oem, &order_id, &sample_service_request(&env), &100_000_000);
         client.accept_service_order(&factory, &order_id);
         client.submit_artifacts(
             &factory,
