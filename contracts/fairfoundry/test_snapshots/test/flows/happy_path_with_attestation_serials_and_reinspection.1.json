@@ -1,6 +1,6 @@
 {
   "generators": {
-    "address": 6,
+    "address": 7,
     "nonce": 0
   },
   "auth": [
@@ -195,10 +195,30 @@
                   "map": [
                     {
                       "key": {
+                        "symbol": "deployment_model"
+                      },
+                      "val": {
+                        "vec": [
+                          {
+                            "symbol": "CloudHosted"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": {
                         "symbol": "dispute_window_secs"
                       },
                       "val": {
                         "u64": 3600
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "fairbuild_treasury"
+                      },
+                      "val": {
+                        "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLZM"
                       }
                     },
                     {
@@ -412,10 +432,30 @@
                   "map": [
                     {
                       "key": {
+                        "symbol": "deployment_model"
+                      },
+                      "val": {
+                        "vec": [
+                          {
+                            "symbol": "CloudHosted"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": {
                         "symbol": "dispute_window_secs"
                       },
                       "val": {
                         "u64": 3600
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "fairbuild_treasury"
+                      },
+                      "val": {
+                        "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLZM"
                       }
                     },
                     {
@@ -629,10 +669,30 @@
                   "map": [
                     {
                       "key": {
+                        "symbol": "deployment_model"
+                      },
+                      "val": {
+                        "vec": [
+                          {
+                            "symbol": "CloudHosted"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": {
                         "symbol": "dispute_window_secs"
                       },
                       "val": {
                         "u64": 3600
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "fairbuild_treasury"
+                      },
+                      "val": {
+                        "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLZM"
                       }
                     },
                     {
@@ -2114,6 +2174,18 @@
                   "map": [
                     {
                       "key": {
+                        "symbol": "deployment_model"
+                      },
+                      "val": {
+                        "vec": [
+                          {
+                            "symbol": "CloudHosted"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": {
                         "symbol": "dispute_window_secs"
                       },
                       "val": {
@@ -2203,6 +2275,30 @@
                       },
                       "val": {
                         "vec": []
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "fairbuild_treasury"
+                      },
+                      "val": {
+                        "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLZM"
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "fee_pending"
+                      },
+                      "val": {
+                        "vec": []
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "fee_rate_bps"
+                      },
+                      "val": {
+                        "u32": 75
                       }
                     },
                     {
@@ -2512,6 +2608,17 @@
                       },
                       "val": {
                         "u64": 1
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "total_fees_collected"
+                      },
+                      "val": {
+                        "i128": {
+                          "hi": 0,
+                          "lo": 0
+                        }
                       }
                     },
                     {

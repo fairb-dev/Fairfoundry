@@ -4,8 +4,8 @@ use soroban_sdk::{
 };
 
 use crate::{
-    AssetKind, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig, LotStatus, OracleConfig,
-    PaymentAsset, Pricing, ERS,
+    AssetKind, DeploymentModel, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig,
+    LotStatus, OracleConfig, PaymentAsset, Pricing, ERS,
 };
 
 fn setup_env() -> Env {
@@ -83,6 +83,8 @@ fn multi_lot_pipeline() {
             min_escrow_lots: 1u32,
             min_qa_stake: 100_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -167,6 +169,8 @@ fn ers_governance_proposal() {
             min_escrow_lots: 1u32,
             min_qa_stake: 0i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -215,6 +219,8 @@ fn qa_unstake_lifecycle() {
             min_escrow_lots: 1u32,
             min_qa_stake,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -281,6 +287,8 @@ fn oracle_freshness_blocks_payment() {
             min_escrow_lots: 1u32,
             min_qa_stake: 50_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &soroban_sdk::vec![&env, oracle_config],
@@ -342,6 +350,8 @@ fn challenge_fee_refund_on_timely_response() {
             min_escrow_lots: 1u32,
             min_qa_stake: 100_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),

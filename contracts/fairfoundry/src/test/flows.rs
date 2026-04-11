@@ -4,8 +4,8 @@ use soroban_sdk::{
 };
 
 use crate::{
-    AssetKind, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig, LotStatus, OracleConfig,
-    PaymentAsset, Pricing, ERS,
+    AssetKind, DeploymentModel, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig,
+    LotStatus, OracleConfig, PaymentAsset, Pricing, ERS,
 };
 
 fn setup_env() -> Env {
@@ -90,6 +90,8 @@ fn happy_path_with_attestation_serials_and_reinspection() {
             min_escrow_lots: 2u32,
             min_qa_stake: 500_000_000i128,
             oem_bond: 100_000_000i128,
+            fairbuild_treasury: addr(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 3600u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -176,6 +178,8 @@ fn default_on_reinspection_slashes_qa() {
             min_escrow_lots: 1u32,
             min_qa_stake: 200_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: addr(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),

@@ -4,8 +4,8 @@ use soroban_sdk::{
 };
 
 use crate::{
-    AssetKind, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig, OracleConfig,
-    PaymentAsset, Pricing, ERS,
+    AssetKind, DeploymentModel, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig,
+    OracleConfig, PaymentAsset, Pricing, ERS,
 };
 
 fn setup_env() -> Env {
@@ -79,6 +79,8 @@ fn escrow_balance_non_negative_after_operations() {
             min_escrow_lots: 1u32,
             min_qa_stake: 50_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -137,6 +139,8 @@ fn qa_locked_stake_lte_total_stake() {
             min_escrow_lots: 1u32,
             min_qa_stake: 50_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -196,6 +200,8 @@ fn approved_units_lte_produced_units() {
             min_escrow_lots: 1u32,
             min_qa_stake: 50_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -259,6 +265,8 @@ fn lot_count_invariant_holds() {
             min_escrow_lots: 1u32,
             min_qa_stake: 50_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -311,6 +319,8 @@ fn sample_indices_unique_and_bounded() {
             min_escrow_lots: 1u32,
             min_qa_stake: 50_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -387,6 +397,8 @@ fn unstake_preserves_minimum() {
             min_escrow_lots: 1u32,
             min_qa_stake,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),
@@ -427,6 +439,8 @@ fn challenge_cost_matches_formula() {
             min_escrow_lots: 1u32,
             min_qa_stake: 50_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(&env),

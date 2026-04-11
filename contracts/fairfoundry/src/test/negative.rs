@@ -4,8 +4,8 @@ use soroban_sdk::{
 };
 
 use crate::{
-    AssetKind, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig, OracleConfig,
-    PaymentAsset, Pricing, ERS,
+    AssetKind, DeploymentModel, DiscountTier, Fairfoundry, FairfoundryClient, InitConfig,
+    OracleConfig, PaymentAsset, Pricing, ERS,
 };
 
 fn setup_env() -> Env {
@@ -79,6 +79,8 @@ fn setup_full(env: &Env) -> (FairfoundryClient<'_>, Address, Address, Address) {
             min_escrow_lots: 1u32,
             min_qa_stake: 100_000_000i128,
             oem_bond: 0i128,
+            fairbuild_treasury: Address::generate(&env),
+            deployment_model: DeploymentModel::CloudHosted,
             dispute_window_secs: 1800u64,
         },
         &Vec::<OracleConfig>::new(env),

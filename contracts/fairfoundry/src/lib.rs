@@ -51,6 +51,15 @@ const MAX_SLASH_BPS: u32 = 2000;
 /// Delay (in seconds) before a QA unstake request can be executed (7 days).
 const QA_UNSTAKE_DELAY: u64 = 86400 * 7;
 
+/// Default fee rate for cloud-hosted verification in basis points (0.75%).
+const DEFAULT_CLOUD_FEE_BPS: u32 = 75;
+
+/// Default fee rate for customer-hosted verification in basis points (0.5%).
+const DEFAULT_CUSTOMER_FEE_BPS: u32 = 50;
+
+/// Minimum delay (in seconds) for fee rate governance updates (30 days).
+const FEE_RATE_TIMELOCK_DELAY: u64 = 86400 * 30;
+
 // ============================ Errors ============================
 
 /// Contract error codes. Each variant maps to a numeric Soroban error code.
@@ -119,6 +128,9 @@ pub enum Err {
 
     /// Reserved for future use: unstake request conflicts.
     UnstakePending = 18, // TODO: enforce single-request-per-QA if needed
+
+    /// Fee rate exceeds maximum allowed (200 bps = 2%).
+    FeeRateInvalid = 19,
 }
 
 // ======================== Roles & Assets ========================
@@ -143,6 +155,16 @@ pub enum AssetKind {
     NativeXlm,
     /// A Stellar-issued asset identified by its contract ID.
     StellarAsset(BytesN<32>),
+}
+
+/// Deployment model for verification infrastructure, determining the platform fee rate.
+#[derive(Clone, PartialEq, Debug)]
+#[contracttype]
+pub enum DeploymentModel {
+    /// Cloud-hosted verification via FairBuild infrastructure (0.75% fee).
+    CloudHosted,
+    /// Customer-hosted verification on OEM premises (0.5% fee).
+    CustomerHosted,
 }
 
 /// Payment asset configuration including the token contract address and decimal precision.
@@ -228,6 +250,18 @@ pub struct PendingRolesUpdate {
 pub struct PendingUpgradeUpdate {
     /// The proposed new value.
     pub payload: BytesN<32>,
+    /// When the proposal was created.
+    pub requested_at: u64,
+    /// The associated timelock controlling execution.
+    pub timelock: Timelock,
+}
+
+/// A pending fee rate governance update with a 30-day timelock.
+#[derive(Clone)]
+#[contracttype]
+pub struct PendingFeeRateUpdate {
+    /// The proposed new fee rate in basis points.
+    pub payload: u32,
     /// When the proposal was created.
     pub requested_at: u64,
     /// The associated timelock controlling execution.
@@ -597,6 +631,8 @@ pub struct InitConfig {
     pub min_escrow_lots: u32,
     pub min_qa_stake: i128,
     pub oem_bond: i128,
+    pub fairbuild_treasury: Address,
+    pub deployment_model: DeploymentModel,
     pub dispute_window_secs: u64,
 }
 
@@ -656,6 +692,9 @@ pub struct State {
     /// Pending contract upgrade behind a governance timelock (empty Vec = None, single element = Some).
     pub upgrade_pending: Vec<PendingUpgradeUpdate>,
 
+    /// Pending fee rate update behind a 30-day governance timelock (empty Vec = None).
+    pub fee_pending: Vec<PendingFeeRateUpdate>,
+
     /// Reentrancy guard flag. `true` while a state-mutating operation is in progress.
     pub entered: bool,
 
@@ -671,6 +710,17 @@ pub struct State {
     pub svc_total_svts_minted: u64,
     pub svc_total_credits_issued: i128,
     pub svc_total_credits_redeemed: i128,
+
+    // ---- Platform Fee fields ----
+    /// Deployment model determining the applicable fee rate.
+    pub deployment_model: DeploymentModel,
+    /// Platform fee rate in basis points (75 = 0.75% for cloud, 50 = 0.5% for customer).
+    /// Split equally between OEM (on escrow deposit) and factory (on settlement).
+    pub fee_rate_bps: u32,
+    /// FairBuild treasury address that receives platform fees automatically.
+    pub fairbuild_treasury: Address,
+    /// Total platform fees collected (cumulative).
+    pub total_fees_collected: i128,
 }
 
 // ========================== Analytics ============================
@@ -933,6 +983,11 @@ impl Fairfoundry {
             panic_with_error!(&env, Err::Param);
         }
 
+        let fee_rate_bps = match config.deployment_model {
+            DeploymentModel::CloudHosted => DEFAULT_CLOUD_FEE_BPS,
+            DeploymentModel::CustomerHosted => DEFAULT_CUSTOMER_FEE_BPS,
+        };
+
         let st = State {
             roles: Roles { oem, factory, qa },
             pay_asset,
@@ -956,6 +1011,7 @@ impl Fairfoundry {
             pricing_pending: Vec::new(&env),
             roles_pending: Vec::new(&env),
             upgrade_pending: Vec::new(&env),
+            fee_pending: Vec::new(&env),
             entered: false,
             fairbuild_oracle: Vec::new(&env),
             next_svt_id: 1,
@@ -965,6 +1021,10 @@ impl Fairfoundry {
             svc_total_svts_minted: 0,
             svc_total_credits_issued: 0,
             svc_total_credits_redeemed: 0,
+            deployment_model: config.deployment_model,
+            fee_rate_bps,
+            fairbuild_treasury: config.fairbuild_treasury,
+            total_fees_collected: 0,
         };
 
         env.storage().persistent().set(&S, &st);
@@ -2002,14 +2062,38 @@ impl Fairfoundry {
             panic_with_error!(&env, Err::AlreadyExists);
         }
 
-        if st.escrow_balance < agreed_price {
-            panic_with_error!(&env, Err::InsufficientEscrow);
+        // Pre-check: escrow must cover agreed_price + OEM fee
+        {
+            let pre_oem_fee = safe_mul(&env, agreed_price, (st.fee_rate_bps / 2) as i128) / 10_000;
+            let pre_total = safe_add(&env, agreed_price, pre_oem_fee);
+            if st.escrow_balance < pre_total {
+                panic_with_error!(&env, Err::InsufficientEscrow);
+            }
         }
 
         enter(&env, &mut st);
 
-        // Lock funds from escrow
-        st.escrow_balance = safe_sub(&env, st.escrow_balance, agreed_price);
+        // Calculate OEM-side platform fee (half of fee_rate_bps)
+        let oem_fee_bps = st.fee_rate_bps / 2;
+        let oem_fee = safe_mul(&env, agreed_price, oem_fee_bps as i128) / 10_000;
+
+        // Lock funds from escrow (agreed price + OEM fee)
+        let total_deduction = safe_add(&env, agreed_price, oem_fee);
+        if st.escrow_balance < total_deduction {
+            panic_with_error!(&env, Err::InsufficientEscrow);
+        }
+        st.escrow_balance = safe_sub(&env, st.escrow_balance, total_deduction);
+
+        // Transfer OEM-side fee to FairBuild treasury
+        if oem_fee > 0 {
+            let c = st.pay_asset.client(&env);
+            c.transfer(
+                &env.current_contract_address(),
+                &st.fairbuild_treasury,
+                &oem_fee,
+            );
+            st.total_fees_collected = safe_add(&env, st.total_fees_collected, oem_fee);
+        }
 
         let order = ServiceOrder {
             order_id: order_id.clone(),
@@ -2034,9 +2118,15 @@ impl Fairfoundry {
         exit(&env, &mut st);
 
         env.events().publish(
-            (Symbol::new(&env, "ServiceOrderCreated"), oem),
-            (order_id, request.stage, agreed_price, now(&env)),
+            (Symbol::new(&env, "ServiceOrderCreated"), oem.clone()),
+            (order_id.clone(), request.stage, agreed_price, now(&env)),
         );
+        if oem_fee > 0 {
+            env.events().publish(
+                (Symbol::new(&env, "PlatformFeeCollected"), oem),
+                (order_id, oem_fee, now(&env)),
+            );
+        }
     }
 
     /// Factory accepts a service order, committing to perform the service.
@@ -2261,19 +2351,39 @@ impl Fairfoundry {
 
         enter(&env, &mut st);
 
-        let payment = order.escrow_locked;
+        let gross_payment = order.escrow_locked;
+
+        // Calculate factory-side platform fee (half of fee_rate_bps)
+        let factory_fee_bps = st.fee_rate_bps / 2;
+        let factory_fee = safe_mul(&env, gross_payment, factory_fee_bps as i128) / 10_000;
+        let net_payment = safe_sub(&env, gross_payment, factory_fee);
+
+        // Transfer factory-side fee to FairBuild treasury
+        if factory_fee > 0 {
+            let c = st.pay_asset.client(&env);
+            c.transfer(
+                &env.current_contract_address(),
+                &st.fairbuild_treasury,
+                &factory_fee,
+            );
+            st.total_fees_collected = safe_add(&env, st.total_fees_collected, factory_fee);
+        }
 
         if as_credit {
-            // Issue credits to the factory's on-ledger account
+            // Issue credits to the factory's on-ledger account (net of fee)
             let mut credits: Map<Address, i128> = env.storage().persistent().get(&CREDITS).unwrap();
             let existing = credits.get(order.factory.clone()).unwrap_or(0);
-            credits.set(order.factory.clone(), safe_add(&env, existing, payment));
+            credits.set(order.factory.clone(), safe_add(&env, existing, net_payment));
             env.storage().persistent().set(&CREDITS, &credits);
-            st.svc_total_credits_issued = safe_add(&env, st.svc_total_credits_issued, payment);
+            st.svc_total_credits_issued = safe_add(&env, st.svc_total_credits_issued, net_payment);
         } else {
-            // Direct payment: transfer locked escrow to factory
+            // Direct payment: transfer locked escrow to factory (net of fee)
             let c = st.pay_asset.client(&env);
-            c.transfer(&env.current_contract_address(), &order.factory, &payment);
+            c.transfer(
+                &env.current_contract_address(),
+                &order.factory,
+                &net_payment,
+            );
         }
 
         order.status = OrderStatus::Settled;
@@ -2287,11 +2397,17 @@ impl Fairfoundry {
         exit(&env, &mut st);
 
         env.events().publish(
-            (Symbol::new(&env, "ServiceSettled"), order_id),
-            (order.factory, payment, as_credit, now(&env)),
+            (Symbol::new(&env, "ServiceSettled"), order_id.clone()),
+            (order.factory.clone(), net_payment, as_credit, now(&env)),
         );
+        if factory_fee > 0 {
+            env.events().publish(
+                (Symbol::new(&env, "PlatformFeeCollected"), order.factory),
+                (order_id, factory_fee, now(&env)),
+            );
+        }
 
-        payment
+        net_payment
     }
 
     /// Redeems accumulated credits for direct payment. Only the Factory
@@ -2445,7 +2561,174 @@ impl Fairfoundry {
             .unwrap_or_else(|| panic_with_error!(&env, Err::NotFound))
     }
 
+    // ------------------- Platform Fees -------------------
+
+    /// Returns the dispute resolution fee for a given order value.
+    /// Fee bands:
+    /// - Under $50K (50_000_0000000 stroops): $500 (500_0000000)
+    /// - $50K - $250K: $1,500 (1_500_0000000)
+    /// - $250K - $1M: $3,000 (3_000_0000000)
+    /// - Over $1M: $5,000 (5_000_0000000)
+    ///
+    /// Values are in 7-decimal minor units (stroops) to match XLM precision.
+    pub fn dispute_resolution_fee(_env: Env, order_value: i128) -> i128 {
+        // Thresholds in 7-decimal minor units
+        let threshold_50k: i128 = 50_000_0000000;
+        let threshold_250k: i128 = 250_000_0000000;
+        let threshold_1m: i128 = 1_000_000_0000000;
+
+        if order_value < threshold_50k {
+            500_0000000 // $500
+        } else if order_value < threshold_250k {
+            1_500_0000000 // $1,500
+        } else if order_value < threshold_1m {
+            3_000_0000000 // $3,000
+        } else {
+            5_000_0000000 // $5,000
+        }
+    }
+
+    /// Returns the current fee configuration: `(fee_rate_bps, deployment_model, total_fees_collected)`.
+    pub fn view_fee_config(env: Env) -> (u32, DeploymentModel, i128) {
+        let st: State = env.storage().persistent().get(&S).unwrap();
+        (
+            st.fee_rate_bps,
+            st.deployment_model,
+            st.total_fees_collected,
+        )
+    }
+
+    /// Returns the pending fee rate governance proposal, if any.
+    pub fn view_pending_fee_rate(env: Env) -> Vec<PendingFeeRateUpdate> {
+        let st: State = env.storage().persistent().get(&S).unwrap();
+        st.fee_pending
+    }
+
     // ---------------------- Governance ----------------------
+
+    /// Proposes a fee rate update with a mandatory 30-day governance timelock.
+    /// The new fee rate must be <= 200 bps (2%). Any registered party may propose.
+    ///
+    /// # Arguments
+    /// * `caller` - Must be OEM, Factory, or QA
+    /// * `new_fee_rate_bps` - Proposed fee rate in basis points (max 200)
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not a registered party
+    /// * `FeeRateInvalid` — proposed rate exceeds 200 bps
+    ///
+    /// # Events
+    /// * `FeeRateProposed(caller, new_fee_rate_bps, eta, timestamp)`
+    pub fn propose_fee_rate(env: Env, caller: Address, new_fee_rate_bps: u32) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_party(&env, &caller, &st.roles);
+
+        if new_fee_rate_bps > 200 {
+            panic_with_error!(&env, Err::FeeRateInvalid);
+        }
+
+        let eta = now(&env) + FEE_RATE_TIMELOCK_DELAY;
+
+        let tl = Timelock {
+            eta,
+            approvals: soroban_sdk::vec![&env, caller.clone()],
+            executed: false,
+        };
+
+        st.fee_pending = soroban_sdk::vec![
+            &env,
+            PendingFeeRateUpdate {
+                payload: new_fee_rate_bps,
+                requested_at: now(&env),
+                timelock: tl,
+            }
+        ];
+
+        env.storage().persistent().set(&S, &st);
+        env.events().publish(
+            (Symbol::new(&env, "FeeRateProposed"), caller),
+            (new_fee_rate_bps, eta, now(&env)),
+        );
+    }
+
+    /// Approves a pending fee rate proposal. Any registered party may approve.
+    /// Does not re-add a party that has already approved.
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not a registered party
+    /// * `InvalidState` — no pending proposal
+    /// * `AlreadyExecuted` — proposal already executed
+    ///
+    /// # Events
+    /// * `FeeRateApproved(caller, timestamp)`
+    pub fn approve_fee_rate(env: Env, caller: Address) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_party(&env, &caller, &st.roles);
+
+        if st.fee_pending.is_empty() {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        let mut pending = st.fee_pending.get(0).unwrap();
+        if pending.timelock.executed {
+            panic_with_error!(&env, Err::AlreadyExecuted);
+        }
+
+        // Add approval if not already present
+        if !pending.timelock.approvals.contains(caller.clone()) {
+            pending.timelock.approvals.push_back(caller.clone());
+        }
+
+        st.fee_pending = soroban_sdk::vec![&env, pending];
+        env.storage().persistent().set(&S, &st);
+
+        env.events()
+            .publish((Symbol::new(&env, "FeeRateApproved"), caller), now(&env));
+    }
+
+    /// Executes a pending fee rate proposal after the 30-day timelock has elapsed
+    /// and quorum (>= 2 approvals) is met.
+    ///
+    /// # Errors
+    /// * `NotAuthorized` — caller is not a registered party
+    /// * `InvalidState` — no pending proposal
+    /// * `AlreadyExecuted` — proposal already executed
+    /// * `TimelockActive` — timelock has not elapsed
+    /// * `NotAuthorized` — quorum not met (< 2 approvals)
+    ///
+    /// # Events
+    /// * `FeeRateUpdated(caller, old_rate, new_rate, timestamp)`
+    pub fn execute_fee_rate(env: Env, caller: Address) {
+        let mut st: State = env.storage().persistent().get(&S).unwrap();
+        require_party(&env, &caller, &st.roles);
+
+        if st.fee_pending.is_empty() {
+            panic_with_error!(&env, Err::InvalidState);
+        }
+
+        let mut pending = st.fee_pending.get(0).unwrap();
+        if pending.timelock.executed {
+            panic_with_error!(&env, Err::AlreadyExecuted);
+        }
+        if now(&env) < pending.timelock.eta {
+            panic_with_error!(&env, Err::TimelockActive);
+        }
+        if !quorum_ok(&pending.timelock.approvals) {
+            panic_with_error!(&env, Err::NotAuthorized);
+        }
+
+        let old_rate = st.fee_rate_bps;
+        st.fee_rate_bps = pending.payload;
+        pending.timelock.executed = true;
+
+        st.fee_pending = soroban_sdk::vec![&env, pending];
+        env.storage().persistent().set(&S, &st);
+
+        env.events().publish(
+            (Symbol::new(&env, "FeeRateUpdated"), caller),
+            (old_rate, st.fee_rate_bps, now(&env)),
+        );
+    }
 
     /// Proposes an ERS (Engineering Requirement Specification) update with a
     /// governance timelock. The delay is enforced to be at least `MIN_TIMELOCK_DELAY`
