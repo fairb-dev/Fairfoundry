@@ -1,10 +1,14 @@
-# Fairfoundry — escrowed manufacturing settlements with QA & challenges (Soroban)
+# Fairfoundry — automated settlement infrastructure for contract manufacturing (Soroban)
 
 > License: CC BY-NC 4.0 | Target chain: Stellar Soroban | Language: Rust (`soroban_sdk`)
 
-## What this contract does (purpose)
+## What this contract does
 
-Fairfoundry is a settlement layer for OEM <-> Factory production where a third-party QA signs off on lots. It holds OEM funds in escrow, tracks lot testing, lets any registered party request a re-inspection on a deterministic sample, and then settles payment to the factory (with discounts and defect penalties) only after QA and challenge windows clear. It also supports QA staking/slashing and an optional price oracle freshness check.
+Fairfoundry is a settlement layer for OEM-Factory manufacturing services. It holds OEM funds in escrow, tracks service orders through five development stages (EVT → DVT → PVT → MP → Sustaining), uses automated verification to confirm completion, issues non-transferable quality credentials on settlement, and handles disputes through Fairbuild's remote arbitration. Platform fees (0.75% cloud / 0.50% customer-hosted) are deducted automatically — no invoices, no POs.
+
+Two contracts:
+- **Settlement contract** — escrow, service orders, verification, credit ledger, fee collection, dispute mechanics
+- **SVT token contract** — soulbound quality credentials issued on validated completion
 
 ![Architecture Overview](assets/fairfoundry_architecture.svg)
 
@@ -43,7 +47,7 @@ cargo build --target wasm32-unknown-unknown --release
 ### 3) Run tests
 
 ```bash
-# Run the full test suite (30 tests: flows, invariants, negative, properties, scenarios)
+# Run the full test suite (61 tests: settlement + service fabric + SVT + fees)
 cargo test
 
 # With output visible
@@ -360,6 +364,66 @@ Open --(qa_commit)--> InQA --(qa_update_counts until tested==quantity)--> Approv
 - Consider allowing **partial payments** per milestone (the field `partial_paid_amount` exists but isn't exercised).
 - Add events for more governance operations once implemented.
 
+## Service fabric
+
+The service fabric extends the lot-level settlement with per-service orders that map to hardware development stages:
+
+| Stage | Description |
+| --- | --- |
+| EVT | Engineering Validation Test |
+| DVT | Design Validation Test |
+| PVT | Production Validation Test |
+| MP | Mass Production |
+| Sustaining | Ongoing production support |
+
+Each service order carries its own escrow and settles independently through five states: `Requested → Accepted → Delivered → Validated → Settled`.
+
+### Service order functions
+
+| Function | Who | Effect |
+| --- | --- | --- |
+| `create_service_order` | OEM | Creates order with escrow deposit (OEM fee deducted) |
+| `accept_service_order` | Factory | Factory accepts the order |
+| `submit_artifacts` | Factory | Uploads production artifacts |
+| `attest_completion` | Oracle | Verification layer validates artifacts |
+| `settle_service` | Any | Releases escrow to factory (factory fee deducted) |
+| `redeem_credits` | Factory | Redeems accumulated credits |
+| `cancel_service_order` | OEM | Cancels before acceptance (escrow returned) |
+
+### Quality credentials (SVT)
+
+On validated settlement, a non-transferable credential is minted via the SVT token contract. Each credential records: order ID, development stage, factory address, verifier identity, and timestamp. Credentials accumulate as a portable, auditable quality record.
+
+## Platform fees
+
+Fees are deducted automatically from transactions — no invoices, no POs.
+
+| Deployment model | Rate | Split |
+| --- | --- | --- |
+| Fairbuild Cloud | 0.75% (75 bps) | 0.375% from OEM on deposit, 0.375% from factory on release |
+| Customer Hosted | 0.50% (50 bps) | 0.25% from OEM on deposit, 0.25% from factory on release |
+
+Fees flow to the `fairbuild_treasury` address automatically.
+
+### Dispute resolution fees
+
+| Order size | Fee | Split |
+| --- | --- | --- |
+| Under $50K | $500 | 50/50 between OEM and factory |
+| $50K–$250K | $1,500 | 50/50 |
+| $250K–$1M | $3,000 | 50/50 |
+| Over $1M | $5,000 | 50/50 |
+
+Disputes are arbitrated remotely by Fairbuild engineers who review both sides' test data. The contract handles escrow freezing, fee deduction, and outcome recording. Target resolution: 96 hours.
+
+### Fee governance
+
+- `propose_fee_rate(new_bps)` — proposes rate change with 30-day timelock
+- `approve_fee_rate()` — adds approval (requires 2+ for quorum)
+- `execute_fee_rate()` — executes after timelock + quorum
+- Max rate cap: 200 bps (2%)
+- Rates may decrease with volume; increases require 30 days' notice and mutual agreement
+
 ## Error codes
 
 | Code | Name | Description |
@@ -382,16 +446,22 @@ Open --(qa_commit)--> InQA --(qa_update_counts until tested==quantity)--> Approv
 | 16 | `ChallengeLimitExceeded` | Address has exceeded the per-hour challenge rate limit (max 5/hour). |
 | 17 | `InsufficientStake` | QA stake is insufficient or would drop below `min_qa_stake`. |
 | 18 | `UnstakePending` | Reserved for future use: unstake request conflicts. |
+| 19 | `FeeRateInvalid` | Proposed fee rate exceeds maximum (200 bps / 2%). |
 
 ## Testing
 
-The test suite includes **30 tests** across five modules:
+The test suite includes **61 tests** across two contracts:
 
-- **flows** (2 tests): Full happy-path lifecycle with attestation, serials, and reinspection; default slash on missed reinspection deadline.
-- **invariants** (1 test): Multi-lot escrow and stake invariants hold across challenges.
-- **negative** (15 tests): Auth failures, parameter validation, status transition guards, challenge edge cases.
-- **properties** (7 tests): Conservation laws -- escrow non-negative, locked stake <= total stake, approved <= produced, lot count invariant, sample uniqueness, unstake minimum preservation, challenge cost formula.
-- **scenarios** (5 tests): Multi-lot pipeline, ERS governance proposal, QA unstake lifecycle, oracle freshness blocking payment, challenge fee refund on timely response.
+**Settlement contract (57 tests):**
+- **flows** (2): Full happy-path lifecycle with attestation, serials, and reinspection; default slash on missed reinspection deadline.
+- **invariants** (1): Multi-lot escrow and stake invariants hold across challenges.
+- **negative** (15): Auth failures, parameter validation, status transition guards, challenge edge cases.
+- **properties** (7): Conservation laws — escrow non-negative, locked stake <= total stake, approved <= produced, lot count invariant, sample uniqueness, unstake minimum preservation, challenge cost formula.
+- **scenarios** (5): Multi-lot pipeline, ERS governance proposal, QA unstake lifecycle, oracle freshness blocking payment, challenge fee refund on timely response.
+- **services** (18): Service order lifecycle, credit accumulation/redemption, cancellation, multi-stage orders, view/filter, negative tests, property tests.
+- **fees** (9): Fee deduction on create/settle, customer-hosted lower rate, dispute fee bands, governance timelock/quorum/max cap/zero-rate.
+
+**SVT token contract (4 tests):** Mint, view, balance, supply.
 
 ```bash
 cargo test
@@ -401,12 +471,12 @@ cargo test
 
 ```
 Fairfoundry/
-  Cargo.toml                           # Workspace root
+  Cargo.toml                           # Workspace root (2 members)
   contracts/
-    fairfoundry/
-      Cargo.toml                       # Crate manifest (soroban-sdk)
+    fairfoundry/                       # Settlement contract
+      Cargo.toml
       src/
-        lib.rs                         # Contract implementation (~1800 lines)
+        lib.rs                         # Contract implementation (~2800 lines)
         test/
           mod.rs                       # Test module root
           flows.rs                     # Integration flow tests
@@ -414,16 +484,15 @@ Fairfoundry/
           negative.rs                  # Negative / error path tests
           properties.rs                # Property / conservation law tests
           scenarios.rs                 # End-to-end scenario tests
+          services.rs                  # Service fabric + fee tests
+    fairfoundry-svt/                   # SVT quality credential contract
+      Cargo.toml
+      src/
+        lib.rs                         # Soulbound token (~323 lines)
   assets/                              # SVG diagrams
-    fairfoundry_architecture.svg
-    fairfoundry_data_model.svg
-    fairfoundry_governance_timelock.svg
-    fairfoundry_payment_pipeline.svg
-    fairfoundry_reinspection_sequence.svg
-    fairfoundry_settlement_timing.svg
-    fairfoundry_state_machine.svg
   .github/workflows/ci.yml            # GitHub Actions CI
   CONTRIBUTING.md                      # Contribution guide
+  REPORT.md                           # Strategic report
   LICENSE                              # CC BY-NC 4.0
 ```
 
