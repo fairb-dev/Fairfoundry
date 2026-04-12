@@ -1,0 +1,250 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum CompanyRole {
+  OEM
+  FACTORY
+  BOTH
+}
+
+enum ContractStatus {
+  DRAFT
+  REVIEW
+  SANDBOX
+  PRODUCTION
+  PAUSED
+  CLOSED
+}
+
+enum ColumnRole {
+  UNIT_ID
+  TIMESTAMP
+  MEASUREMENT
+  CONDITION
+  EQUIPMENT
+  OPERATOR
+  METADATA
+  IGNORE
+}
+
+enum CriteriaType {
+  NUMERIC_GTE
+  NUMERIC_LTE
+  NUMERIC_RANGE
+  NUMERIC_TOLERANCE
+  CATEGORICAL
+  IMAGE_CLASS
+  WAVEFORM_MASK
+  COMPOSITE
+  STATISTICAL
+  CUSTOM
+}
+
+enum CriteriaSource {
+  MANUAL
+  AI_EXTRACTED
+  TEMPLATE
+}
+
+enum ProcessingStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model Company {
+  id        String        @id @default(cuid())
+  name      String
+  role      CompanyRole
+  slug      String        @unique
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  users     User[]
+  contracts ContractParty[]
+  documents ERSDocument[]
+  logFormats LogFormat[]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  companyId String
+  email     String   @unique
+  name      String
+  role      String
+  createdAt DateTime @default(now())
+  company   Company  @relation(fields: [companyId], references: [id])
+}
+
+model Contract {
+  id          String              @id @default(cuid())
+  title       String
+  status      ContractStatus      @default(DRAFT)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  lockedAt    DateTime?
+  parties     ContractParty[]
+  criteria    AcceptanceCriterion[]
+  logMappings LogMapping[]
+  submissions Submission[]
+  settlements Settlement[]
+}
+
+model ContractParty {
+  contractId String
+  companyId  String
+  role       CompanyRole
+  agreedAt   DateTime?
+  contract   Contract @relation(fields: [contractId], references: [id])
+  company    Company  @relation(fields: [companyId], references: [id])
+
+  @@id([contractId, companyId])
+}
+
+model ERSDocument {
+  id                String           @id @default(cuid())
+  companyId         String
+  contractId        String?
+  title             String
+  storageKey        String
+  mimeType          String
+  processingStatus  ProcessingStatus @default(PENDING)
+  processingError   String?
+  createdAt         DateTime         @default(now())
+  company           Company          @relation(fields: [companyId], references: [id])
+  chunks            ERSChunk[]
+  extractedCriteria AcceptanceCriterion[] @relation("CriteriaSource")
+}
+
+model ERSChunk {
+  id         String      @id @default(cuid())
+  documentId String
+  content    String
+  embedding  Json?
+  pageNumber Int?
+  sectionRef String?
+  createdAt  DateTime    @default(now())
+  document   ERSDocument @relation(fields: [documentId], references: [id])
+}
+
+model AcceptanceCriterion {
+  id             String         @id @default(cuid())
+  contractId     String
+  parameterName  String
+  criteriaType   CriteriaType
+  source         CriteriaSource
+  sourceDocId    String?
+  sourceRef      String?
+  unit           String?
+  nominal        Float?
+  lowerLimit     Float?
+  upperLimit     Float?
+  tolerancePlus  Float?
+  toleranceMinus Float?
+  acceptedValues Json?
+  expression     String?
+  conditionRules Json?
+  aiConfidence   Float?
+  confirmedBy    String?
+  confirmedAt    DateTime?
+  createdAt      DateTime       @default(now())
+  contract       Contract       @relation(fields: [contractId], references: [id])
+  sourceDoc      ERSDocument?   @relation("CriteriaSource", fields: [sourceDocId], references: [id])
+  columnLinks    ColumnCriteriaLink[]
+}
+
+model LogFormat {
+  id        String      @id @default(cuid())
+  companyId String
+  name      String
+  fileType  String
+  delimiter String?
+  headerRow Int?
+  sampleData Json?
+  createdAt DateTime    @default(now())
+  company   Company     @relation(fields: [companyId], references: [id])
+  columns   LogColumn[]
+}
+
+model LogColumn {
+  id            String              @id @default(cuid())
+  logFormatId   String
+  columnIndex   Int
+  originalName  String
+  displayName   String?
+  role          ColumnRole
+  aiSuggestion  ColumnRole?
+  aiConfidence  Float?
+  confirmedBy   String?
+  createdAt     DateTime            @default(now())
+  logFormat     LogFormat           @relation(fields: [logFormatId], references: [id])
+  criteriaLinks ColumnCriteriaLink[]
+}
+
+model ColumnCriteriaLink {
+  id             String              @id @default(cuid())
+  columnId       String
+  criterionId    String
+  contractId     String
+  unitConversion String?
+  aiSuggested    Boolean             @default(false)
+  aiConfidence   Float?
+  confirmedBy    String?
+  confirmedAt    DateTime?
+  createdAt      DateTime            @default(now())
+  column         LogColumn           @relation(fields: [columnId], references: [id])
+  criterion      AcceptanceCriterion @relation(fields: [criterionId], references: [id])
+
+  @@unique([columnId, criterionId])
+}
+
+model LogMapping {
+  id          String   @id @default(cuid())
+  contractId  String
+  logFormatId String
+  createdAt   DateTime @default(now())
+  contract    Contract @relation(fields: [contractId], references: [id])
+}
+
+model Submission {
+  id             String      @id @default(cuid())
+  contractId     String
+  storageKey     String
+  fileName       String
+  unitsTotal     Int
+  unitsPassed    Int
+  unitsFailed    Int
+  submittedAt    DateTime    @default(now())
+  verifiedAt     DateTime?
+  reviewDeadline DateTime?
+  status         String
+  contract       Contract    @relation(fields: [contractId], references: [id])
+  results        UnitResult[]
+  settlement     Settlement?
+}
+
+model UnitResult {
+  id           String     @id @default(cuid())
+  submissionId String
+  unitId       String
+  overallPass  Boolean
+  resultsJson  Json
+  submission   Submission @relation(fields: [submissionId], references: [id])
+}
+
+model Settlement {
+  id           String     @id @default(cuid())
+  submissionId String     @unique
+  contractId   String
+  amount       Float
+  fairbuildFee Float
+  settledAt    DateTime?
+  status       String
+  submission   Submission @relation(fields: [submissionId], references: [id])
+  contract     Contract   @relation(fields: [contractId], references: [id])
+}
