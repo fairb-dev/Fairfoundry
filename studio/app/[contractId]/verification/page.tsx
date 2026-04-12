@@ -222,21 +222,20 @@ export default async function VerificationPage({
             <div className="text-sm font-medium text-gray-500 mb-1">
               Verification Result
             </div>
-            <div className="flex items-baseline gap-2">
+            <div className="flex items-baseline gap-3">
               <span
-                className="text-3xl font-bold"
+                className="font-mono text-5xl font-bold"
                 style={{ color: passRateColor }}
               >
-                {result.totalPassed}/{result.totalUnits}
+                {passRate.toFixed(1)}%
               </span>
               <span className="text-lg text-gray-400">
-                units pass
+                pass
               </span>
               <span
-                className="font-mono text-lg font-semibold"
-                style={{ color: passRateColor }}
+                className="font-mono text-lg font-medium text-gray-500"
               >
-                ({passRate.toFixed(1)}%)
+                ({result.totalPassed}/{result.totalUnits} units)
               </span>
             </div>
           </div>
@@ -256,6 +255,11 @@ export default async function VerificationPage({
           />
         </div>
 
+        {/* Summary subtitle */}
+        <div className="mt-2 text-sm text-gray-400">
+          {linkedColumns.length} {linkedColumns.length === 1 ? "criterion" : "criteria"} checked across {result.totalUnits} units
+        </div>
+
         {/* Per-criterion failure summary */}
         {result.criterionSummaries.some((s) => s.totalFailed > 0) && (
           <div className="mt-6 flex flex-wrap gap-3">
@@ -266,7 +270,7 @@ export default async function VerificationPage({
                   key={s.columnName}
                   className="flex items-center gap-2 rounded-lg bg-[var(--fail-bg)] px-3 py-1.5 text-xs"
                 >
-                  <span className="font-mono font-semibold text-[var(--fail)]">
+                  <span className="font-mono font-semibold text-[var(--fail-text)]">
                     {s.totalFailed}
                   </span>
                   <span className="text-gray-600">

@@ -7,9 +7,11 @@
   --muted: #f7f9fc;
   --border: #e3e8ee;
   --pass: #16a34a;
+  --pass-text: #166534;
   --pass-bg: #dcfce7;
   --pass-bg-subtle: #f0fdf4;
   --fail: #dc2626;
+  --fail-text: #991b1b;
   --fail-bg: #fef2f2;
   --fail-bg-subtle: #fff5f5;
   --font-sans: var(--font-ibm-plex-sans), system-ui, -apple-system, sans-serif;
@@ -114,7 +116,7 @@ body {
   text-align: left;
   font-weight: 600;
   font-family: var(--font-sans);
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .verification-table thead th:first-child {

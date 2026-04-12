@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import type { ContractStatus } from "@prisma/client";
 
 /**
  * Update the contract status from DRAFT to SANDBOX.
@@ -9,7 +10,7 @@ import { prisma } from "@/lib/prisma";
  */
 export async function updateContractStatusAction(
   contractId: string,
-  newStatus: string
+  newStatus: ContractStatus
 ): Promise<{ error?: string }> {
   const contract = await prisma.contract.findUnique({
     where: { id: contractId },
