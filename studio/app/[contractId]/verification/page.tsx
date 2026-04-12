@@ -9,6 +9,8 @@ import {
   type LinkedColumn,
 } from "@/lib/verification-engine";
 import { FailCell } from "./fail-cell";
+import { DonutChart, CriterionMiniBar } from "../donut-chart";
+import { generateInsights, InsightsPanel } from "../insights";
 
 export default async function VerificationPage({
   params,
@@ -217,26 +219,24 @@ export default async function VerificationPage({
     <div>
       {/* ── Summary Bar ─────────────────────────────────────────────── */}
       <div className="mb-8 rounded-xl border border-[var(--border)] bg-white p-8">
-        <div className="flex items-end justify-between gap-4 mb-4">
-          <div>
-            <div className="text-sm font-medium text-gray-500 mb-1">
-              Verification Result
-            </div>
-            <div className="flex items-baseline gap-3">
-              <span
-                className="font-mono text-5xl font-bold"
-                style={{ color: passRateColor }}
-              >
-                {passRate.toFixed(1)}%
-              </span>
-              <span className="text-lg text-gray-400">
-                pass rate
-              </span>
-              <span
-                className="font-mono text-lg font-medium text-gray-500"
-              >
-                ({result.totalPassed}/{result.totalUnits} units)
-              </span>
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <div className="flex items-center gap-5">
+            <DonutChart passRate={passRate} size={72} />
+            <div>
+              <div className="text-sm font-medium text-gray-500 mb-1">
+                Verification Result
+              </div>
+              <div className="flex items-baseline gap-3">
+                <span
+                  className="font-mono text-4xl font-bold"
+                  style={{ color: passRateColor }}
+                >
+                  {result.totalPassed}/{result.totalUnits}
+                </span>
+                <span className="text-base text-gray-400">
+                  units pass
+                </span>
+              </div>
             </div>
           </div>
           <div className="text-right text-sm text-gray-500">
@@ -261,26 +261,18 @@ export default async function VerificationPage({
         </div>
 
         {/* Per-criterion failure summary */}
-        {result.criterionSummaries.some((s) => s.totalFailed > 0) && (
-          <div className="mt-6 flex flex-wrap gap-3">
-            {result.criterionSummaries
-              .filter((s) => s.totalFailed > 0)
-              .map((s) => (
-                <div
-                  key={s.columnName}
-                  className="flex items-center gap-2 rounded-lg bg-[var(--fail-bg)] px-3 py-1.5 text-xs"
-                >
-                  <span className="font-mono font-semibold text-[var(--fail-text)]">
-                    {s.totalFailed}
-                  </span>
-                  <span className="text-gray-600">
-                    failed on{" "}
-                    <span className="font-mono font-medium">{s.columnName}</span>
-                  </span>
-                </div>
-              ))}
-          </div>
-        )}
+        {/* Per-criterion pass rate mini bars */}
+        <div className="mt-6 pt-4 border-t border-[var(--border)]">
+          <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Per-criterion pass rate</div>
+          {result.criterionSummaries.map((s) => (
+            <CriterionMiniBar
+              key={s.columnName}
+              label={s.parameterName ?? s.columnName}
+              passRate={result.totalUnits > 0 ? ((result.totalUnits - s.totalFailed) / result.totalUnits) * 100 : 100}
+              failCount={s.totalFailed}
+            />
+          ))}
+        </div>
       </div>
 
       {/* ── Hypertext Verification Table ────────────────────────────── */}
@@ -408,6 +400,9 @@ export default async function VerificationPage({
           </tbody>
         </table>
       </div>
+
+      {/* ── Insights ───────────────────────────────────────────── */}
+      <InsightsPanel insights={generateInsights(result, linkedColumns, headers, rows)} />
 
       {/* ── Next Step CTA ────────────────────────────────────────── */}
       {contract.status === "DRAFT" && (
