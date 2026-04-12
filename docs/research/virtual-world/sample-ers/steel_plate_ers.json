@@ -1,0 +1,130 @@
+{
+  "ers_id": "ERS-007",
+  "title": "Structural Steel Plate Mill Test Certificate Specification",
+  "revision": "1.2",
+  "product": "A36 Structural Steel Plate 12mm",
+  "stage": "MP",
+  "issued_by": "Pacific Structural Steel (Buyer)",
+  "factory": "Baosteel Hot Rolling Mill",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 5 },
+    "humidity_pct": { "max": 70 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Plate thickness",
+      "maps_to_column": "thickness_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 11.5,
+      "upper_limit": 12.7,
+      "unit": "mm",
+      "section_ref": "Section 9.1.1",
+      "notes": "Per ASTM A6 thickness tolerance for plates 12mm nominal"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Carbon content",
+      "maps_to_column": "c_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.26,
+      "unit": "%",
+      "section_ref": "Section 9.2.1",
+      "notes": "ASTM A36 maximum carbon for plates up to 20mm"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Manganese content",
+      "maps_to_column": "mn_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.60,
+      "upper_limit": 1.20,
+      "unit": "%",
+      "section_ref": "Section 9.2.2",
+      "notes": "ASTM A36 manganese range"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Phosphorus content",
+      "maps_to_column": "p_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.040,
+      "unit": "%",
+      "section_ref": "Section 9.2.3",
+      "notes": "ASTM A36 maximum phosphorus"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Sulfur content",
+      "maps_to_column": "s_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.050,
+      "unit": "%",
+      "section_ref": "Section 9.2.4",
+      "notes": "ASTM A36 maximum sulfur"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Silicon content",
+      "maps_to_column": "si_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.10,
+      "upper_limit": 0.40,
+      "unit": "%",
+      "section_ref": "Section 9.2.5",
+      "notes": "ASTM A36 silicon range"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Copper content",
+      "maps_to_column": "cu_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.40,
+      "unit": "%",
+      "section_ref": "Section 9.2.6",
+      "notes": "ASTM A36 maximum copper when specified"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "Yield strength",
+      "maps_to_column": "yield_mpa",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 250,
+      "unit": "MPa",
+      "section_ref": "Section 9.3.1",
+      "notes": "Minimum yield point per ASTM A36 (36 ksi = 250 MPa)"
+    },
+    {
+      "criterion_id": "C009",
+      "parameter": "Tensile strength",
+      "maps_to_column": "tensile_mpa",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 400,
+      "upper_limit": 550,
+      "unit": "MPa",
+      "section_ref": "Section 9.3.2",
+      "notes": "ASTM A36 tensile strength range (58-80 ksi)"
+    },
+    {
+      "criterion_id": "C010",
+      "parameter": "Elongation in 200mm gauge",
+      "maps_to_column": "elongation_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 23.0,
+      "unit": "%",
+      "section_ref": "Section 9.3.3",
+      "notes": "Minimum elongation in 200mm (8 in.) gauge length per ASTM A36"
+    }
+  ],
+  "sampling": {
+    "method": "PER_HEAT",
+    "aql": null,
+    "notes": "One tension test coupon per heat per ASTM A6"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; MTR issued",
+    "conditional": "Chemistry marginal; retest permitted per ASTM A6 Section 14",
+    "fail": "Any mechanical or chemistry criterion outside ASTM A36 limits"
+  }
+}

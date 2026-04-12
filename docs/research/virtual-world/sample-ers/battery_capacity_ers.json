@@ -1,0 +1,87 @@
+{
+  "ers_id": "ERS-005",
+  "title": "21700 Lithium-Ion Battery Cell Final Test Specification",
+  "revision": "4.1",
+  "product": "21700 Li-ion Cell 5000mAh NMC",
+  "stage": "MP",
+  "issued_by": "PowerCell Energy Systems (OEM)",
+  "factory": "Dongguan EnergyPack Co.",
+  "effective_date": "2026-01-10",
+  "test_conditions": {
+    "temperature_c": { "nominal": 25, "tolerance": 3 },
+    "humidity_pct": { "max": 45 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Rated capacity",
+      "maps_to_column": "capacity_mah",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 4850,
+      "unit": "mAh",
+      "section_ref": "Section 7.1.1",
+      "notes": "Discharge capacity at 0.2C rate, 4.2V to 2.5V cutoff"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Internal impedance (AC 1kHz)",
+      "maps_to_column": "impedance_mohm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25.0,
+      "unit": "mohm",
+      "section_ref": "Section 7.2.1",
+      "notes": "AC impedance at 1 kHz, measured at 50% SOC"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Open circuit voltage",
+      "maps_to_column": "ocv_v",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 3.60,
+      "upper_limit": 3.80,
+      "unit": "V",
+      "section_ref": "Section 7.3.1",
+      "notes": "OCV after 24-hour rest period at room temperature"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Self-discharge over 72 hours",
+      "maps_to_column": "self_discharge_mv_72h",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25.0,
+      "unit": "mV",
+      "section_ref": "Section 7.4.1",
+      "notes": "Voltage drop after 72-hour open-circuit rest; critical safety parameter"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Cell weight",
+      "maps_to_column": "weight_g",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 67.0,
+      "upper_limit": 72.0,
+      "unit": "g",
+      "section_ref": "Section 7.5.1",
+      "notes": "Total cell mass including can and electrolyte"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Temperature rise during formation",
+      "maps_to_column": "temp_delta_c",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 5.0,
+      "unit": "deg C",
+      "section_ref": "Section 7.6.1",
+      "notes": "Maximum surface temperature rise during 1C charge cycle"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "Capacity between 4800-4850 mAh; downgraded to secondary grade",
+    "fail": "Any critical criterion (C001, C003, C004) failed"
+  }
+}

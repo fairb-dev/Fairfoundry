@@ -1,0 +1,120 @@
+{
+  "ers_id": "ERS-010",
+  "title": "Aluminum Engine Block CMM Dimensional Inspection Specification",
+  "revision": "5.2",
+  "product": "Inline-4 Aluminum Engine Block AL4-200",
+  "stage": "MP",
+  "issued_by": "AutoDrive Powertrain (OEM)",
+  "factory": "Chongqing Precision Casting Co.",
+  "effective_date": "2026-01-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 20, "tolerance": 1 },
+    "humidity_pct": { "max": 55 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Cylinder 1 bore diameter",
+      "maps_to_column": "cyl1_bore_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 81.990,
+      "upper_limit": 82.010,
+      "unit": "mm",
+      "section_ref": "Section 12.1.1",
+      "notes": "Nominal 82.000mm +/- 0.010mm"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Cylinder 2 bore diameter",
+      "maps_to_column": "cyl2_bore_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 81.990,
+      "upper_limit": 82.010,
+      "unit": "mm",
+      "section_ref": "Section 12.1.2",
+      "notes": "Nominal 82.000mm +/- 0.010mm"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Cylinder 3 bore diameter",
+      "maps_to_column": "cyl3_bore_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 81.990,
+      "upper_limit": 82.010,
+      "unit": "mm",
+      "section_ref": "Section 12.1.3",
+      "notes": "Nominal 82.000mm +/- 0.010mm"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Cylinder 4 bore diameter",
+      "maps_to_column": "cyl4_bore_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 81.990,
+      "upper_limit": 82.010,
+      "unit": "mm",
+      "section_ref": "Section 12.1.4",
+      "notes": "Nominal 82.000mm +/- 0.010mm"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Cylinder 1 roundness",
+      "maps_to_column": "cyl1_roundness_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.005,
+      "unit": "mm",
+      "section_ref": "Section 12.2.1",
+      "notes": "Maximum out-of-roundness for cylinder 1 bore"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Deck surface flatness",
+      "maps_to_column": "deck_flatness_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.025,
+      "unit": "mm",
+      "section_ref": "Section 12.3.1",
+      "notes": "Maximum deck surface flatness deviation; critical for head gasket seal"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Main bearing bore diameter",
+      "maps_to_column": "main_brg_bore_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 54.990,
+      "upper_limit": 55.010,
+      "unit": "mm",
+      "section_ref": "Section 12.4.1",
+      "notes": "Nominal 55.000mm +/- 0.010mm"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "Main bearing bore coaxiality",
+      "maps_to_column": "main_brg_coax_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.020,
+      "unit": "mm",
+      "section_ref": "Section 12.4.2",
+      "notes": "Maximum coaxiality deviation across all main bearing bores"
+    },
+    {
+      "criterion_id": "C009",
+      "parameter": "Bolt hole true position",
+      "maps_to_column": "bolt_hole_tp_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.12,
+      "unit": "mm",
+      "section_ref": "Section 12.5.1",
+      "notes": "Maximum true position deviation for head bolt holes"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "Bolt hole TP marginally out; review for functional acceptance",
+    "fail": "Any bore diameter or coaxiality criterion failed"
+  }
+}

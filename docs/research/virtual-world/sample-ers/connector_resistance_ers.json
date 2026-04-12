@@ -1,0 +1,57 @@
+{
+  "ers_id": "ERS-020",
+  "title": "MIL-DTL-38999 Connector Contact Resistance Specification",
+  "revision": "1.6",
+  "product": "MIL-DTL-38999 Series III Circular Connector",
+  "stage": "MP",
+  "issued_by": "AeroDefense Systems (Prime Contractor)",
+  "factory": "Precision Interconnect Manufacturing Inc.",
+  "effective_date": "2026-03-05",
+  "test_conditions": {
+    "temperature_c": { "nominal": 25, "tolerance": 5 },
+    "humidity_pct": { "max": 60 },
+    "method_ref": "MIL-STD-1344, Method 2004"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Contact resistance",
+      "maps_to_column": "resistance_mohm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 15.0,
+      "unit": "mohm",
+      "section_ref": "Section 22.1.1",
+      "notes": "Maximum contact resistance at rated test current per MIL-DTL-38999"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Millivolt drop across contact",
+      "maps_to_column": "mv_drop",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 85.0,
+      "unit": "mV",
+      "section_ref": "Section 22.1.2",
+      "notes": "Maximum voltage drop at rated current per specification"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Shell-to-ground resistance",
+      "maps_to_column": "shell_ground_mohm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 10.0,
+      "unit": "mohm",
+      "section_ref": "Section 22.2.1",
+      "notes": "Maximum shell-to-ground contact resistance for EMI shielding effectiveness"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null,
+    "notes": "Every contact in every connector tested per MIL-DTL-38999 Group A inspection"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; connector accepted for delivery",
+    "conditional": "Shell ground resistance marginally above limit; reclean and retest once",
+    "fail": "Contact resistance or mV drop exceeds limit; connector rejected"
+  }
+}

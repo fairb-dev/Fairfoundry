@@ -1,0 +1,99 @@
+{
+  "ers_id": "ERS-011",
+  "title": "Food Product Microbiological Testing Specification",
+  "revision": "2.5",
+  "product": "Ready-to-Eat Meat Products (Multi-SKU)",
+  "stage": "MP",
+  "issued_by": "SafeHarvest Foods (Brand Owner)",
+  "factory": "Midwest Protein Processing Inc.",
+  "effective_date": "2026-01-05",
+  "test_conditions": {
+    "temperature_c": { "nominal": 4, "tolerance": 1 },
+    "incubation_hours": 48,
+    "method_refs": ["AOAC 990.12", "BAM Ch.5", "ISO 6579"]
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Total plate count",
+      "maps_to_column": "tpc_cfu_g",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 100000,
+      "unit": "CFU/g",
+      "section_ref": "Section 13.1.1",
+      "notes": "Maximum aerobic plate count for RTE meat products"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "E. coli count",
+      "maps_to_column": "ecoli_cfu_g",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 10,
+      "unit": "CFU/g",
+      "section_ref": "Section 13.1.2",
+      "notes": "Generic E. coli hygiene indicator; USDA/FSIS guideline"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Salmonella detection (25g sample)",
+      "maps_to_column": "salmonella_25g",
+      "type": "STRING_EQ",
+      "expected_value": "Not Detected",
+      "unit": "qualitative",
+      "section_ref": "Section 13.2.1",
+      "notes": "Zero tolerance for Salmonella spp. in 25g sample; critical pathogen"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Yeast count",
+      "maps_to_column": "yeast_cfu_g",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 5000,
+      "unit": "CFU/g",
+      "section_ref": "Section 13.3.1",
+      "notes": "Maximum yeast count for shelf-life assurance"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Mold count",
+      "maps_to_column": "mold_cfu_g",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 1000,
+      "unit": "CFU/g",
+      "section_ref": "Section 13.3.2",
+      "notes": "Maximum mold count for product safety"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Product pH",
+      "maps_to_column": "ph",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 4.5,
+      "upper_limit": 6.5,
+      "unit": "pH units",
+      "section_ref": "Section 13.4.1",
+      "notes": "Acceptable pH range; below 4.6 for acid control or above for non-acid products"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Moisture content",
+      "maps_to_column": "moisture_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 65.0,
+      "upper_limit": 76.0,
+      "unit": "%",
+      "section_ref": "Section 13.5.1",
+      "notes": "Moisture within specification for product type"
+    }
+  ],
+  "sampling": {
+    "method": "LOT_SAMPLING",
+    "aql": null,
+    "notes": "n=5 samples per lot per ICMSF sampling plan"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; lot released for distribution",
+    "conditional": "TPC between 100,000-500,000 CFU/g; hold for retest",
+    "fail": "Salmonella detected or E. coli exceeds limit; lot rejected and destroyed"
+  }
+}

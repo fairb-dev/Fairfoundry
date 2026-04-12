@@ -1,0 +1,107 @@
+{
+  "ers_id": "ERS-001",
+  "title": "Camera Module MTF/SFR Test Specification",
+  "revision": "2.3",
+  "product": "12MP Camera Module CM-120",
+  "stage": "PVT",
+  "issued_by": "Lumenar Technologies (OEM)",
+  "factory": "ShenzhenVision Optoelectronics",
+  "effective_date": "2026-03-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 25, "tolerance": 2 },
+    "humidity_pct": { "max": 60 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "MTF at Nyquist/2, center field",
+      "maps_to_column": "mtf_nyq2_center",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 0.50,
+      "unit": "cy/px",
+      "section_ref": "Section 3.2.1",
+      "notes": "Measured at Nyquist/2 frequency, center field position (0.0)"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "MTF at Nyquist/4, center field",
+      "maps_to_column": "mtf_nyq4_center",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 0.70,
+      "unit": "cy/px",
+      "section_ref": "Section 3.2.2",
+      "notes": "Measured at Nyquist/4 frequency, center field position (0.0)"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "MTF at Nyquist/2, worst corner field",
+      "maps_to_column": "mtf_nyq2_corner_worst",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 0.30,
+      "unit": "cy/px",
+      "section_ref": "Section 3.2.3",
+      "notes": "Measured at Nyquist/2 frequency, worst corner field position (0.7)"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "MTF at Nyquist/4, worst corner field",
+      "maps_to_column": "mtf_nyq4_corner_worst",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 0.48,
+      "unit": "cy/px",
+      "section_ref": "Section 3.2.4",
+      "notes": "Measured at Nyquist/4 frequency, worst corner field position (0.7)"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Relative illumination at corner",
+      "maps_to_column": "rel_illumination_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 40.0,
+      "unit": "%",
+      "section_ref": "Section 3.3.1",
+      "notes": "Corner illumination relative to center; minimum acceptable value"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Optical center offset",
+      "maps_to_column": "optical_center_offset_px",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 15.0,
+      "unit": "px",
+      "section_ref": "Section 3.4.1",
+      "notes": "Distance of optical center from sensor center"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "AA tilt X-axis",
+      "maps_to_column": "aa_tilt_x_arcmin",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -2.0,
+      "upper_limit": 2.0,
+      "unit": "arcmin",
+      "section_ref": "Section 3.5.1",
+      "notes": "Active alignment tilt along X-axis"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "AA tilt Y-axis",
+      "maps_to_column": "aa_tilt_y_arcmin",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -2.0,
+      "upper_limit": 2.0,
+      "unit": "arcmin",
+      "section_ref": "Section 3.5.2",
+      "notes": "Active alignment tilt along Y-axis"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "Minor criteria (C005-C008) failed, engineering review required",
+    "fail": "Any critical criterion (C001-C004) failed"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "ers_id": "ERS-002",
+  "title": "PCB Automated Optical Inspection (AOI) Specification",
+  "revision": "1.5",
+  "product": "Main Board PCB Assembly MB-400",
+  "stage": "MP",
+  "issued_by": "NexGen Electronics (OEM)",
+  "factory": "GuangzhouPCB Manufacturing Co.",
+  "effective_date": "2026-02-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 3 },
+    "humidity_pct": { "max": 65 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Missing component count",
+      "maps_to_column": "missing_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 4.1.1",
+      "notes": "Zero tolerance for missing components"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Component offset defect count",
+      "maps_to_column": "offset_defect_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 4.1.2",
+      "notes": "Zero tolerance for offset placement defects"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Solder bridge count",
+      "maps_to_column": "bridge_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 4.2.1",
+      "notes": "Zero tolerance for solder bridges; critical short-circuit risk"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Insufficient solder count",
+      "maps_to_column": "insuff_solder_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 4.2.2",
+      "notes": "Zero tolerance for insufficient solder joints"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Tombstone defect count",
+      "maps_to_column": "tombstone_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 4.2.3",
+      "notes": "Zero tolerance for tombstone (Manhattan) defects"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Polarity defect count",
+      "maps_to_column": "polarity_defect_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 4.3.1",
+      "notes": "Zero tolerance for reversed polarity on polarized components"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Total defect count",
+      "maps_to_column": "total_defects",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 4.4.1",
+      "notes": "Aggregate defect count must be zero for pass"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; zero defects detected",
+    "conditional": "Not applicable; all defects are critical",
+    "fail": "Any defect detected on board"
+  }
+}

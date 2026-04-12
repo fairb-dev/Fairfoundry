@@ -1,0 +1,88 @@
+{
+  "ers_id": "ERS-003",
+  "title": "SMT Solder Paste Inspection (SPI) Specification",
+  "revision": "3.1",
+  "product": "PCB Solder Paste Deposition SPI-300",
+  "stage": "MP",
+  "issued_by": "NexGen Electronics (OEM)",
+  "factory": "GuangzhouPCB Manufacturing Co.",
+  "effective_date": "2026-01-20",
+  "test_conditions": {
+    "temperature_c": { "nominal": 25, "tolerance": 2 },
+    "humidity_pct": { "max": 55 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Solder paste volume",
+      "maps_to_column": "volume_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 60.0,
+      "upper_limit": 140.0,
+      "unit": "% of nominal",
+      "section_ref": "Section 5.1.1",
+      "notes": "Solder paste volume as percentage of stencil aperture nominal volume"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Solder paste height",
+      "maps_to_column": "height_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 100.0,
+      "upper_limit": 200.0,
+      "unit": "um",
+      "section_ref": "Section 5.1.2",
+      "notes": "Average paste height measured by SPI laser profilometry"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Solder paste area coverage",
+      "maps_to_column": "area_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 70.0,
+      "upper_limit": 130.0,
+      "unit": "% of pad area",
+      "section_ref": "Section 5.1.3",
+      "notes": "Paste deposit area compared to pad aperture area"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "X-axis paste offset",
+      "maps_to_column": "x_offset_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 15.0,
+      "unit": "% of pad width",
+      "section_ref": "Section 5.2.1",
+      "notes": "Lateral offset of paste deposit from pad center"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Y-axis paste offset",
+      "maps_to_column": "y_offset_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 15.0,
+      "unit": "% of pad width",
+      "section_ref": "Section 5.2.2",
+      "notes": "Longitudinal offset of paste deposit from pad center"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Solder bridge detection",
+      "maps_to_column": "bridge_flag",
+      "type": "BOOLEAN_EQ",
+      "expected_value": false,
+      "unit": "boolean",
+      "section_ref": "Section 5.3.1",
+      "notes": "No solder bridges between adjacent pads allowed"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "Volume or area outside range but within 5% of limits; engineering review",
+    "fail": "Bridge detected or any parameter grossly out of specification"
+  }
+}

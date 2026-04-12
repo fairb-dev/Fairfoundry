@@ -1,0 +1,100 @@
+{
+  "ers_id": "ERS-015",
+  "title": "Solar Panel I-V Curve Flash Test Specification",
+  "revision": "3.5",
+  "product": "400W PERC Monocrystalline Solar Module",
+  "stage": "MP",
+  "issued_by": "SunPeak Energy (OEM)",
+  "factory": "Jinko Solar Module Assembly Plant",
+  "effective_date": "2026-01-20",
+  "test_conditions": {
+    "irradiance_w_m2": { "nominal": 1000, "tolerance": 20 },
+    "cell_temp_c": { "nominal": 25, "tolerance": 2 },
+    "air_mass": 1.5
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Maximum power output",
+      "maps_to_column": "pmax_w",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 396.0,
+      "unit": "W",
+      "section_ref": "Section 17.1.1",
+      "notes": "Minimum Pmax at STC; -1% from nameplate rating per IEC 61215"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Open circuit voltage",
+      "maps_to_column": "voc_v",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 48.5,
+      "upper_limit": 52.0,
+      "unit": "V",
+      "section_ref": "Section 17.2.1",
+      "notes": "Voc range at STC conditions"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Short circuit current",
+      "maps_to_column": "isc_a",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 9.80,
+      "upper_limit": 10.80,
+      "unit": "A",
+      "section_ref": "Section 17.2.2",
+      "notes": "Isc range at STC conditions"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Voltage at maximum power",
+      "maps_to_column": "vmp_v",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 38.5,
+      "upper_limit": 43.5,
+      "unit": "V",
+      "section_ref": "Section 17.3.1",
+      "notes": "Vmp at STC; used for string sizing"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Current at maximum power",
+      "maps_to_column": "imp_a",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 9.40,
+      "upper_limit": 10.60,
+      "unit": "A",
+      "section_ref": "Section 17.3.2",
+      "notes": "Imp at STC"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Fill factor",
+      "maps_to_column": "ff_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 75.0,
+      "unit": "%",
+      "section_ref": "Section 17.4.1",
+      "notes": "Minimum fill factor; indicator of cell quality and series resistance"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Module efficiency",
+      "maps_to_column": "efficiency_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 20.0,
+      "unit": "%",
+      "section_ref": "Section 17.5.1",
+      "notes": "Minimum module-level conversion efficiency at STC"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; module assigned power bin label",
+    "conditional": "Pmax between 396-400W; downgraded to lower power bin",
+    "fail": "Pmax below 396W or fill factor below minimum"
+  }
+}
