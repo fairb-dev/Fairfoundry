@@ -172,10 +172,10 @@ export function ERSUpload({
           ) : (
             <>
               <p className="text-sm font-medium text-gray-600">
-                Drop your ERS file here or click to browse
+                Drop your specification file here or click to browse
               </p>
               <p className="mt-1 text-xs text-gray-400">
-                JSON files are parsed directly. Text files are analyzed by AI.
+                Supports .json and .txt specification files.
               </p>
             </>
           )}

@@ -230,7 +230,7 @@ export default async function VerificationPage({
                 {passRate.toFixed(1)}%
               </span>
               <span className="text-lg text-gray-400">
-                pass
+                pass rate
               </span>
               <span
                 className="font-mono text-lg font-medium text-gray-500"
@@ -409,15 +409,44 @@ export default async function VerificationPage({
         </table>
       </div>
 
+      {/* ── Next Step CTA ────────────────────────────────────────── */}
+      {contract.status === "DRAFT" && (
+        <div className="mt-6 flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--muted)] px-6 py-4">
+          <div>
+            <div className="text-sm font-semibold text-[var(--foreground)]">
+              Ready to test in Sandbox?
+            </div>
+            <div className="mt-0.5 text-sm text-gray-500">
+              When results look good, transition this contract to Sandbox mode for live testing.
+            </div>
+          </div>
+          <a
+            href={`/${contractId}`}
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90 shrink-0"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3.333 8h9.334M8 3.333L12.667 8 8 12.667"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Go to Overview
+          </a>
+        </div>
+      )}
+
       {/* ── Legend ──────────────────────────────────────────────────── */}
       <div className="mt-4 flex flex-wrap items-center gap-6 text-xs text-gray-400">
         <div className="flex items-center gap-1.5">
           <span style={{ color: "var(--pass)" }}>{"\u2713"}</span>
-          <span>Meets acceptance criterion</span>
+          <span>Within acceptance limits</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span style={{ color: "var(--fail)" }}>{"\u2717"}</span>
-          <span>Below acceptance criterion</span>
+          <span>Outside acceptance limits</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span

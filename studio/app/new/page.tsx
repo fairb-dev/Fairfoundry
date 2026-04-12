@@ -3,7 +3,8 @@ import { createContract } from "./actions";
 
 export default function NewContractPage() {
   return (
-    <main className="mx-auto max-w-xl px-6 py-16">
+    <div className="min-h-screen flex flex-col">
+    <main className="mx-auto max-w-xl px-6 py-16 flex-1 w-full">
       {/* Breadcrumb */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -27,28 +28,6 @@ export default function NewContractPage() {
         <span className="text-sm text-gray-600">New</span>
       </div>
 
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)] no-underline hover:text-[var(--foreground)] mb-8"
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 16 16"
-          fill="none"
-          className="shrink-0"
-        >
-          <path
-            d="M10 12L6 8L10 4"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        All Contracts
-      </Link>
-
       <header className="mb-10">
         <p className="mb-2 text-sm font-semibold tracking-wider uppercase text-[var(--accent)]">
           New Contract
@@ -57,8 +36,8 @@ export default function NewContractPage() {
           Create a Quality Contract
         </h1>
         <p className="mt-3 text-base text-gray-500">
-          Define who is involved. You will set up data mappings and acceptance
-          criteria next.
+          Name the contract and identify both parties. You will upload production
+          data and define acceptance criteria in the next steps.
         </p>
       </header>
 
@@ -98,7 +77,7 @@ export default function NewContractPage() {
             className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-2.5 text-sm text-[var(--foreground)] placeholder:text-gray-400 outline-none transition-colors focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
           />
           <p className="mt-1.5 text-xs text-gray-400">
-            The brand that defines quality standards.
+            The company that defines quality standards.
           </p>
         </div>
 
@@ -134,5 +113,9 @@ export default function NewContractPage() {
         </div>
       </form>
     </main>
+    <footer className="studio-footer">
+      &copy; 2026 Fairbuild. All rights reserved.
+    </footer>
+    </div>
   );
 }

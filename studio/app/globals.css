@@ -116,7 +116,7 @@ body {
   text-align: left;
   font-weight: 600;
   font-family: var(--font-sans);
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 .verification-table thead th:first-child {

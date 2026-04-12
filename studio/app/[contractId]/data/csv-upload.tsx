@@ -173,10 +173,10 @@ export function CSVUpload({ contractId }: { contractId: string }) {
                     className="opacity-75"
                   />
                 </svg>
-                Uploading &amp; Analyzing...
+                Uploading & Analyzing...
               </span>
             ) : (
-              "Upload &amp; Analyze with AI"
+              "Upload & Analyze with AI"
             )}
           </button>
         </div>

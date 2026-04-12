@@ -4,11 +4,11 @@ import { prisma } from "@/lib/prisma";
 import { SandboxTransitionButton } from "./sandbox-button";
 
 const STATUS_DESCRIPTIONS: Record<string, string> = {
-  DRAFT: "This contract is being drafted. Criteria and data mappings are not yet finalized.",
+  DRAFT: "Upload production data, define acceptance criteria, then link them together. Once linked, run a verification to see pass/fail results.",
   REVIEW: "Both parties are reviewing the contract terms and verification setup.",
-  SANDBOX: "The contract is in sandbox mode. Both parties can test data submissions and verify results.",
+  SANDBOX: "Sandbox mode is active. Both parties can test data submissions and verify results before going live.",
   PRODUCTION: "Live production mode. Data submissions are verified and settlements are processed automatically.",
-  PAUSED: "This contract has been temporarily paused.",
+  PAUSED: "This contract has been temporarily paused. No new submissions are being accepted.",
   CLOSED: "This contract has been closed and is no longer accepting submissions.",
 };
 
@@ -72,7 +72,7 @@ export default async function ContractOverview({
         </div>
         <div className="stat-card">
           <div className="stat-value">{linkCount}</div>
-          <div className="stat-label">Linked Pairs</div>
+          <div className="stat-label">Verified Checks</div>
         </div>
         <div className="stat-card">
           <div className="stat-value text-[var(--accent)]">
@@ -144,26 +144,44 @@ export default async function ContractOverview({
 
       {/* Quick Actions */}
       <div className="mt-8 flex flex-wrap items-center gap-3">
-        <Link
-          href={`/${contractId}/verification`}
-          className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
+        {linkCount > 0 ? (
+          <Link
+            href={`/${contractId}/verification`}
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90"
           >
-            <path
-              d="M13.333 4L6 11.333L2.667 8"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          Run Verification
-        </Link>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+            >
+              <path
+                d="M13.333 4L6 11.333L2.667 8"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Run Verification
+          </Link>
+        ) : contract.status === "DRAFT" ? (
+          <Link
+            href={columnCount > 0 ? (contract.criteria.length > 0 ? `/${contractId}/links` : `/${contractId}/criteria`) : `/${contractId}/data`}
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3.333 8h9.334M8 3.333L12.667 8 8 12.667"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {columnCount === 0 ? "Upload Data" : contract.criteria.length === 0 ? "Define Criteria" : "Link Columns to Criteria"}
+          </Link>
+        ) : null}
         {contract.status === "DRAFT" && linkCount > 0 && (
           <SandboxTransitionButton contractId={contractId} />
         )}

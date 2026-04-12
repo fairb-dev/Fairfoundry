@@ -58,7 +58,7 @@ export function ManualCriterionForm({
         {/* Criteria Type */}
         <div>
           <label className="block text-xs font-medium text-gray-500 mb-1">
-            Criteria Type
+            Limit Type
           </label>
           <select
             name="criteriaType"

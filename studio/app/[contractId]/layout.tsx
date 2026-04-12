@@ -40,7 +40,8 @@ export default async function ContractLayout({
     STATUS_COLORS[contract.status] ?? "bg-gray-100 text-gray-700";
 
   return (
-    <main className="mx-auto max-w-6xl px-8 py-12">
+    <div className="min-h-screen flex flex-col">
+    <main className="mx-auto max-w-6xl px-8 py-12 flex-1 w-full">
       {/* Top bar: Logo + Breadcrumb */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -63,29 +64,6 @@ export default async function ContractLayout({
         </svg>
         <span className="text-sm text-gray-600 truncate">{contract.title}</span>
       </div>
-
-      {/* Back link */}
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)] no-underline hover:text-[var(--foreground)] mb-6"
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 16 16"
-          fill="none"
-          className="shrink-0"
-        >
-          <path
-            d="M10 12L6 8L10 4"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        All Contracts
-      </Link>
 
       {/* Header */}
       <header className="mb-8">
@@ -138,5 +116,9 @@ export default async function ContractLayout({
       {/* Tab Content */}
       <div className="pt-8">{children}</div>
     </main>
+    <footer className="studio-footer">
+      &copy; 2026 Fairbuild. All rights reserved.
+    </footer>
+    </div>
   );
 }

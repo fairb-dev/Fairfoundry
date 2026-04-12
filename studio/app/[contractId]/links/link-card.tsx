@@ -78,11 +78,11 @@ export function LinkCard({
           {columnName}
         </div>
         <div className="mt-1 flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-gray-400">
-            Index {columnIndex}
-          </span>
           <span className={`role-badge ${roleStyle.bg} ${roleStyle.text}`}>
             {roleStyle.label}
+          </span>
+          <span className="text-xs text-gray-400">
+            Col {columnIndex + 1}
           </span>
         </div>
       </div>

@@ -111,7 +111,7 @@ function ColumnCard({
           {/* Column name */}
           <div className="flex items-center gap-2">
             <span className="text-xs font-mono text-gray-400">
-              #{column.columnIndex}
+              Col {column.columnIndex + 1}
             </span>
             <span className="text-sm font-semibold text-[var(--foreground)] truncate">
               {column.originalName}

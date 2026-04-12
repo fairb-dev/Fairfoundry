@@ -174,8 +174,8 @@ export function MatchButton({
         Connect Columns to Criteria
       </h3>
       <p className="mt-2 max-w-md mx-auto text-sm text-gray-500">
-        The match agent will automatically link your CSV data columns to
-        acceptance criteria using specification metadata and AI semantic matching.
+        Automatically connect each data column to the acceptance criterion it should
+        be verified against, using column names and AI analysis.
       </p>
 
       {/* Error display */}

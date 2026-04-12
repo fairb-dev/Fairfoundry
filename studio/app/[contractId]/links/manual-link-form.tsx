@@ -95,7 +95,7 @@ export function ManualLinkForm({
             </option>
             {columns.map((col) => (
               <option key={col.id} value={col.id}>
-                #{col.columnIndex} {col.originalName}
+                {col.originalName} (Col {col.columnIndex + 1})
               </option>
             ))}
           </select>

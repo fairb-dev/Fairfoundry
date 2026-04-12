@@ -57,7 +57,7 @@ export default async function DataPage({
           </svg>
           <div className="empty-state-title">Upload a Production Log</div>
           <div className="empty-state-description">
-            Upload a CSV file to get started. The AI will analyze columns and suggest roles automatically.
+            Upload a CSV file to get started. Each column will be automatically classified as a measurement, identifier, or metadata.
           </div>
         </div>
         <CSVUpload contractId={contractId} />
@@ -195,10 +195,10 @@ export default async function DataPage({
       {hasUnconfirmed && (
         <div className="mb-8">
           <h2 className="text-lg font-semibold text-[var(--foreground)] mb-1">
-            Column Roles
+            Column Classification
           </h2>
           <p className="text-sm text-gray-500 mb-4">
-            Review AI-suggested roles for each column and confirm or override them.
+            Review how each column was classified and confirm or change the assignment.
           </p>
           <ColumnEditor
             columns={logFormat.columns.map((c) => ({

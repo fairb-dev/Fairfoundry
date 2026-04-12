@@ -14,8 +14,8 @@ export function CriteriaEmpty({ contractId }: { contractId: string }) {
           Define Acceptance Criteria
         </h2>
         <p className="mt-1 text-sm text-gray-500">
-          Upload an ERS document to extract criteria automatically, or define
-          them manually.
+          Upload a specification document to extract criteria automatically, or
+          define them manually.
         </p>
       </div>
 
@@ -28,7 +28,7 @@ export function CriteriaEmpty({ contractId }: { contractId: string }) {
               onClick={() => setShowManual(false)}
               className="text-sm text-gray-500 underline underline-offset-2 hover:text-[var(--foreground)] cursor-pointer"
             >
-              Or upload an ERS document
+              Or upload a specification document
             </button>
           </div>
         </div>

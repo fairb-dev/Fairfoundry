@@ -42,7 +42,7 @@ export default async function Home() {
               Contracts
             </h1>
             <p className="mt-3 text-lg text-gray-500">
-              Quality verification contracts between OEMs and factories.
+              Define quality standards, upload production data, and verify results.
             </p>
           </div>
           <Link
