@@ -1,0 +1,621 @@
+{
+  "verification_id": "VR-011",
+  "csv_source": "food_micro_test.csv",
+  "ers_source": "food_micro_ers.json",
+  "ers_id": "ERS-011",
+  "product": "Ready-to-Eat Meat Products (Multi-SKU)",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 35,
+    "passed": 31,
+    "failed": 4,
+    "pass_rate": 88.6,
+    "criteria_failure_distribution": {
+      "C001_total_plate_count": 1,
+      "C003_salmonella_detection_(25g_sample)": 1,
+      "C002_e._coli_count": 2
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "FD-SMPL-004",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 391860.0,
+          "limit": "<=100000",
+          "result": "FAIL",
+          "margin": -291860.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 5.0,
+          "limit": "<=10",
+          "result": "PASS",
+          "margin": 5.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 796.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 4204.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 298.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 702.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 5.7,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 71.3,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 4.7
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-015",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 9112.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 90888.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 5.0,
+          "limit": "<=10",
+          "result": "PASS",
+          "margin": 5.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Detected",
+          "limit": "==Not Detected",
+          "result": "FAIL"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 1551.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 3449.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 306.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 694.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 6.1,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.4
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 72.5,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 3.5
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-021",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 26218.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 73782.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 88.0,
+          "limit": "<=10",
+          "result": "FAIL",
+          "margin": -78.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 1572.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 3428.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 33.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 967.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 5.8,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 71.1,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 4.9
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-029",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 15791.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 84209.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 343.0,
+          "limit": "<=10",
+          "result": "FAIL",
+          "margin": -333.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 1879.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 3121.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 579.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 421.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 5.8,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 75.4,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 0.6
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-001",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 17774.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 82226.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 2.0,
+          "limit": "<=10",
+          "result": "PASS",
+          "margin": 8.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 339.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 4661.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 139.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 861.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 5.9,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 70.4,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 5.4
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-008",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 92000.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 8000.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 2.0,
+          "limit": "<=10",
+          "result": "PASS",
+          "margin": 8.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 1999.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 3001.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 193.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 807.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 6.4,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.1
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 73.4,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 2.6
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-014",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 5960.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 94040.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 5.0,
+          "limit": "<=10",
+          "result": "PASS",
+          "margin": 5.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 881.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 4119.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 83.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 917.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 6.1,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.4
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 71.1,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 4.9
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-022",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 26479.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 73521.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 5.0,
+          "limit": "<=10",
+          "result": "PASS",
+          "margin": 5.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 815.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 4185.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 204.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 796.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 5.9,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 73.4,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 2.6
+        }
+      ]
+    },
+    {
+      "unit_id": "FD-SMPL-028",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Total plate count",
+          "value": 70256.0,
+          "limit": "<=100000",
+          "result": "PASS",
+          "margin": 29744.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "E. coli count",
+          "value": 7.0,
+          "limit": "<=10",
+          "result": "PASS",
+          "margin": 3.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Salmonella detection (25g sample)",
+          "value": "Not Detected",
+          "limit": "==Not Detected",
+          "result": "PASS"
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Yeast count",
+          "value": 2462.0,
+          "limit": "<=5000",
+          "result": "PASS",
+          "margin": 2538.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Mold count",
+          "value": 22.0,
+          "limit": "<=1000",
+          "result": "PASS",
+          "margin": 978.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Product pH",
+          "value": 5.9,
+          "limit": "[4.5, 6.5]",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Moisture content",
+          "value": 71.3,
+          "limit": "[65.0, 76.0]",
+          "result": "PASS",
+          "margin": 4.7
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "FD-SMPL-025",
+      "criterion": "C007",
+      "parameter": "Moisture content",
+      "value": 75.9,
+      "limit": "[65.0, 76.0]",
+      "margin": 0.1,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "FD-SMPL-008",
+      "criterion": "C006",
+      "parameter": "Product pH",
+      "value": 6.4,
+      "limit": "[4.5, 6.5]",
+      "margin": 0.1,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "FD-SMPL-016",
+      "criterion": "C006",
+      "parameter": "Product pH",
+      "value": 6.3,
+      "limit": "[4.5, 6.5]",
+      "margin": 0.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "FD-SMPL-019",
+      "criterion": "C006",
+      "parameter": "Product pH",
+      "value": 6.2,
+      "limit": "[4.5, 6.5]",
+      "margin": 0.3,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "FD-SMPL-026",
+      "criterion": "C006",
+      "parameter": "Product pH",
+      "value": 6.2,
+      "limit": "[4.5, 6.5]",
+      "margin": 0.3,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Total plate count exceeds limit -- conduct environmental swab sampling and sanitation audit.",
+    "CRITICAL: Salmonella detected -- initiate immediate product recall, environmental investigation, and USDA notification."
+  ]
+}

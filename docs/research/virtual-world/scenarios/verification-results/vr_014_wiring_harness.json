@@ -1,0 +1,495 @@
+{
+  "verification_id": "VR-014",
+  "csv_source": "wiring_harness_continuity.csv",
+  "ers_source": "wiring_harness_ers.json",
+  "ers_id": "ERS-014",
+  "product": "Engine Compartment Wiring Harness WH-ENG-42",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 35,
+    "passed": 32,
+    "failed": 3,
+    "pass_rate": 91.4,
+    "criteria_failure_distribution": {
+      "C004_maximum_circuit_resistance": 1,
+      "C005_minimum_insulation_resistance": 2
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "WH-ENG-2026-01237",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.14,
+          "limit": "<=0.125",
+          "result": "FAIL",
+          "margin": -0.015
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 699.6,
+          "limit": ">=500.0",
+          "result": "PASS",
+          "margin": 199.6
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "WH-ENG-2026-01244",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.099,
+          "limit": "<=0.125",
+          "result": "PASS",
+          "margin": 0.026
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 107.5,
+          "limit": ">=500.0",
+          "result": "FAIL",
+          "margin": -392.5
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "WH-ENG-2026-01261",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.106,
+          "limit": "<=0.125",
+          "result": "PASS",
+          "margin": 0.019
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 403.0,
+          "limit": ">=500.0",
+          "result": "FAIL",
+          "margin": -97.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "WH-ENG-2026-01230",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.097,
+          "limit": "<=0.125",
+          "result": "PASS",
+          "margin": 0.028
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 579.0,
+          "limit": ">=500.0",
+          "result": "PASS",
+          "margin": 79.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "WH-ENG-2026-01236",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.111,
+          "limit": "<=0.125",
+          "result": "PASS",
+          "margin": 0.014
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 890.7,
+          "limit": ">=500.0",
+          "result": "PASS",
+          "margin": 390.7
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "WH-ENG-2026-01243",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.077,
+          "limit": "<=0.125",
+          "result": "PASS",
+          "margin": 0.048
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 805.7,
+          "limit": ">=500.0",
+          "result": "PASS",
+          "margin": 305.7
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "WH-ENG-2026-01250",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.063,
+          "limit": "<=0.125",
+          "result": "PASS",
+          "margin": 0.062
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 1069.6,
+          "limit": ">=500.0",
+          "result": "PASS",
+          "margin": 569.6
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "WH-ENG-2026-01256",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Open circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Short circuit count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Miswire count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Maximum circuit resistance",
+          "value": 0.113,
+          "limit": "<=0.125",
+          "result": "PASS",
+          "margin": 0.012
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Minimum insulation resistance",
+          "value": 749.4,
+          "limit": ">=500.0",
+          "result": "PASS",
+          "margin": 249.4
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Hipot test result",
+          "value": "PASS",
+          "limit": "==PASS",
+          "result": "PASS"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "WH-ENG-2026-01230",
+      "criterion": "C001",
+      "parameter": "Open circuit count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "WH-ENG-2026-01231",
+      "criterion": "C001",
+      "parameter": "Open circuit count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "WH-ENG-2026-01232",
+      "criterion": "C001",
+      "parameter": "Open circuit count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "WH-ENG-2026-01233",
+      "criterion": "C001",
+      "parameter": "Open circuit count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "WH-ENG-2026-01234",
+      "criterion": "C001",
+      "parameter": "Open circuit count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Circuit resistance too high -- inspect crimp tool die wear and terminal seating force.",
+    "Insulation resistance below minimum -- check wire jacket for damage during routing and evaluate connector seal."
+  ]
+}

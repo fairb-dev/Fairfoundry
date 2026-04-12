@@ -1,0 +1,448 @@
+{
+  "verification_id": "VR-005",
+  "csv_source": "battery_capacity_test.csv",
+  "ers_source": "battery_capacity_ers.json",
+  "ers_id": "ERS-005",
+  "product": "21700 Li-ion Cell 5000mAh NMC",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 38,
+    "failed": 2,
+    "pass_rate": 95.0,
+    "criteria_failure_distribution": {
+      "C001_rated_capacity": 1,
+      "C004_self-discharge_over_72_hours": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "CELL-21700-085405",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Rated capacity",
+          "value": 4795.0,
+          "limit": ">=4850",
+          "result": "FAIL",
+          "margin": -55.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Internal impedance (AC 1kHz)",
+          "value": 17.5,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 7.5
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Open circuit voltage",
+          "value": 3.67,
+          "limit": "[3.6, 3.8]",
+          "result": "PASS",
+          "margin": 0.07
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Self-discharge over 72 hours",
+          "value": 16.2,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 8.8
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cell weight",
+          "value": 69.9,
+          "limit": "[67.0, 72.0]",
+          "result": "PASS",
+          "margin": 2.1
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Temperature rise during formation",
+          "value": 3.1,
+          "limit": "<=5.0",
+          "result": "PASS",
+          "margin": 1.9
+        }
+      ]
+    },
+    {
+      "unit_id": "CELL-21700-085439",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Rated capacity",
+          "value": 4999.0,
+          "limit": ">=4850",
+          "result": "PASS",
+          "margin": 149.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Internal impedance (AC 1kHz)",
+          "value": 22.2,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 2.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Open circuit voltage",
+          "value": 3.7,
+          "limit": "[3.6, 3.8]",
+          "result": "PASS",
+          "margin": 0.1
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Self-discharge over 72 hours",
+          "value": 26.1,
+          "limit": "<=25.0",
+          "result": "FAIL",
+          "margin": -1.1
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cell weight",
+          "value": 71.4,
+          "limit": "[67.0, 72.0]",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Temperature rise during formation",
+          "value": 1.9,
+          "limit": "<=5.0",
+          "result": "PASS",
+          "margin": 3.1
+        }
+      ]
+    },
+    {
+      "unit_id": "CELL-21700-085400",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Rated capacity",
+          "value": 5014.0,
+          "limit": ">=4850",
+          "result": "PASS",
+          "margin": 164.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Internal impedance (AC 1kHz)",
+          "value": 21.2,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 3.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Open circuit voltage",
+          "value": 3.72,
+          "limit": "[3.6, 3.8]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Self-discharge over 72 hours",
+          "value": 5.2,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 19.8
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cell weight",
+          "value": 69.8,
+          "limit": "[67.0, 72.0]",
+          "result": "PASS",
+          "margin": 2.2
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Temperature rise during formation",
+          "value": 2.9,
+          "limit": "<=5.0",
+          "result": "PASS",
+          "margin": 2.1
+        }
+      ]
+    },
+    {
+      "unit_id": "CELL-21700-085408",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Rated capacity",
+          "value": 4860.0,
+          "limit": ">=4850",
+          "result": "PASS",
+          "margin": 10.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Internal impedance (AC 1kHz)",
+          "value": 21.2,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 3.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Open circuit voltage",
+          "value": 3.67,
+          "limit": "[3.6, 3.8]",
+          "result": "PASS",
+          "margin": 0.07
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Self-discharge over 72 hours",
+          "value": 21.4,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 3.6
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cell weight",
+          "value": 70.6,
+          "limit": "[67.0, 72.0]",
+          "result": "PASS",
+          "margin": 1.4
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Temperature rise during formation",
+          "value": 3.0,
+          "limit": "<=5.0",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CELL-21700-085415",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Rated capacity",
+          "value": 4990.0,
+          "limit": ">=4850",
+          "result": "PASS",
+          "margin": 140.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Internal impedance (AC 1kHz)",
+          "value": 15.2,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 9.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Open circuit voltage",
+          "value": 3.64,
+          "limit": "[3.6, 3.8]",
+          "result": "PASS",
+          "margin": 0.04
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Self-discharge over 72 hours",
+          "value": 9.1,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 15.9
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cell weight",
+          "value": 71.5,
+          "limit": "[67.0, 72.0]",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Temperature rise during formation",
+          "value": 4.4,
+          "limit": "<=5.0",
+          "result": "PASS",
+          "margin": 0.6
+        }
+      ]
+    },
+    {
+      "unit_id": "CELL-21700-085422",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Rated capacity",
+          "value": 4963.0,
+          "limit": ">=4850",
+          "result": "PASS",
+          "margin": 113.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Internal impedance (AC 1kHz)",
+          "value": 22.0,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 3.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Open circuit voltage",
+          "value": 3.66,
+          "limit": "[3.6, 3.8]",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Self-discharge over 72 hours",
+          "value": 15.4,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 9.6
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cell weight",
+          "value": 69.2,
+          "limit": "[67.0, 72.0]",
+          "result": "PASS",
+          "margin": 2.2
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Temperature rise during formation",
+          "value": 1.4,
+          "limit": "<=5.0",
+          "result": "PASS",
+          "margin": 3.6
+        }
+      ]
+    },
+    {
+      "unit_id": "CELL-21700-085429",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Rated capacity",
+          "value": 5048.0,
+          "limit": ">=4850",
+          "result": "PASS",
+          "margin": 198.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Internal impedance (AC 1kHz)",
+          "value": 16.6,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 8.4
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Open circuit voltage",
+          "value": 3.72,
+          "limit": "[3.6, 3.8]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Self-discharge over 72 hours",
+          "value": 12.1,
+          "limit": "<=25.0",
+          "result": "PASS",
+          "margin": 12.9
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cell weight",
+          "value": 70.3,
+          "limit": "[67.0, 72.0]",
+          "result": "PASS",
+          "margin": 1.7
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Temperature rise during formation",
+          "value": 1.1,
+          "limit": "<=5.0",
+          "result": "PASS",
+          "margin": 3.9
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "CELL-21700-085412",
+      "criterion": "C003",
+      "parameter": "Open circuit voltage",
+      "value": 3.77,
+      "limit": "[3.6, 3.8]",
+      "margin": 0.03,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CELL-21700-085425",
+      "criterion": "C003",
+      "parameter": "Open circuit voltage",
+      "value": 3.77,
+      "limit": "[3.6, 3.8]",
+      "margin": 0.03,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CELL-21700-085431",
+      "criterion": "C003",
+      "parameter": "Open circuit voltage",
+      "value": 3.63,
+      "limit": "[3.6, 3.8]",
+      "margin": 0.03,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CELL-21700-085438",
+      "criterion": "C003",
+      "parameter": "Open circuit voltage",
+      "value": 3.77,
+      "limit": "[3.6, 3.8]",
+      "margin": 0.03,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CELL-21700-085415",
+      "criterion": "C003",
+      "parameter": "Open circuit voltage",
+      "value": 3.64,
+      "limit": "[3.6, 3.8]",
+      "margin": 0.04,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Capacity below minimum -- investigate electrolyte fill volume and formation cycle parameters."
+  ]
+}

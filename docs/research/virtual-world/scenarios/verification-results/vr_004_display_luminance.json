@@ -1,0 +1,933 @@
+{
+  "verification_id": "VR-004",
+  "csv_source": "display_luminance_color.csv",
+  "ers_source": "display_luminance_ers.json",
+  "ers_id": "ERS-004",
+  "product": "15.6-inch IPS LCD Panel LP-156",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 34,
+    "failed": 6,
+    "pass_rate": 85.0,
+    "criteria_failure_distribution": {
+      "C005_bt.709_color_gamut_coverage": 1,
+      "C007_luminance_uniformity_(9-point)": 2,
+      "C009_mura_defect_count": 2,
+      "C003_black_level_luminance": 3,
+      "C004_contrast_ratio": 2
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "LCD-156-08804",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 435.5,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 35.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 261.6,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 11.6
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.32,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.03
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1360.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 160.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 98.4,
+          "limit": ">=99.0",
+          "result": "FAIL",
+          "margin": -0.6
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 88.7,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 0.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 88.6,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 4.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 2.5,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08817",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 444.4,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 44.4
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 275.7,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 25.7
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.27,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1645.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 445.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.5,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 91.5,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 3.5
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 82.1,
+          "limit": ">=84.0",
+          "result": "FAIL",
+          "margin": -1.9
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 2.2,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 0.8
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 2.0,
+          "limit": "<=0",
+          "result": "FAIL",
+          "margin": -2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08828",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 427.3,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 27.3
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 285.2,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 35.2
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.37,
+          "limit": "<=0.35",
+          "result": "FAIL",
+          "margin": -0.02
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1154.0,
+          "limit": ">=1200",
+          "result": "FAIL",
+          "margin": -46.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.9,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.9
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 92.3,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 4.3
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 87.8,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 3.8
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 1.5,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 1.5
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08832",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 443.8,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 43.8
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 271.1,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 21.1
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.32,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.03
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1386.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 186.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.3,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.3
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 91.1,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 3.1
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 83.0,
+          "limit": ">=84.0",
+          "result": "FAIL",
+          "margin": -1.0
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 2.1,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 0.9
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 3.0,
+          "limit": "<=0",
+          "result": "FAIL",
+          "margin": -3.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08833",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 473.0,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 73.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 259.8,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 9.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.36,
+          "limit": "<=0.35",
+          "result": "FAIL",
+          "margin": -0.01
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1313.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 113.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 100.1,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 92.0,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 4.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 85.2,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 1.2
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 1.6,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 1.4
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08838",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 428.5,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 28.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 277.2,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 27.2
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.36,
+          "limit": "<=0.35",
+          "result": "FAIL",
+          "margin": -0.01
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1190.0,
+          "limit": ">=1200",
+          "result": "FAIL",
+          "margin": -10.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.3,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.3
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 91.6,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 3.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 87.4,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 3.4
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 2.0,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 1.0
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08800",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 452.2,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 52.2
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 257.4,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 7.4
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.24,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.11
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1884.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 684.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 100.0,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 1.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 93.5,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 5.5
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 87.8,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 3.8
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 1.4,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 1.6
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08807",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 411.2,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 11.2
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 275.4,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 25.4
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.32,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.03
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1285.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 85.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.7,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.7
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 92.3,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 4.3
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 84.9,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 0.9
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 2.1,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 0.9
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08813",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 440.0,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 40.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 286.8,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 36.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.25,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.1
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1760.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 560.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.2,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.2
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 92.2,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 4.2
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 87.4,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 3.4
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 1.9,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08820",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 429.8,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 29.8
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 261.5,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 11.5
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.24,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.11
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1790.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 590.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.2,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.2
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 92.6,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 4.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 90.0,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 6.0
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 1.3,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 1.7
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "LCD-156-08826",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Peak luminance",
+          "value": 444.7,
+          "limit": ">=400.0",
+          "result": "PASS",
+          "margin": 44.7
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sustained luminance",
+          "value": 272.0,
+          "limit": ">=250.0",
+          "result": "PASS",
+          "margin": 22.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Black level luminance",
+          "value": 0.33,
+          "limit": "<=0.35",
+          "result": "PASS",
+          "margin": 0.02
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Contrast ratio",
+          "value": 1347.0,
+          "limit": ">=1200",
+          "result": "PASS",
+          "margin": 147.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "BT.709 color gamut coverage",
+          "value": 99.1,
+          "limit": ">=99.0",
+          "result": "PASS",
+          "margin": 0.1
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DCI-P3 color gamut coverage",
+          "value": 92.7,
+          "limit": ">=88.0",
+          "result": "PASS",
+          "margin": 4.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Luminance uniformity (9-point)",
+          "value": 88.7,
+          "limit": ">=84.0",
+          "result": "PASS",
+          "margin": 4.7
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Average Delta E color accuracy",
+          "value": 1.9,
+          "limit": "<=3.0",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Mura defect count",
+          "value": 0.0,
+          "limit": "<=0",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "LCD-156-08800",
+      "criterion": "C009",
+      "parameter": "Mura defect count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "LCD-156-08801",
+      "criterion": "C009",
+      "parameter": "Mura defect count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "LCD-156-08802",
+      "criterion": "C009",
+      "parameter": "Mura defect count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "LCD-156-08803",
+      "criterion": "C009",
+      "parameter": "Mura defect count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "LCD-156-08804",
+      "criterion": "C009",
+      "parameter": "Mura defect count",
+      "value": 0.0,
+      "limit": "<=0",
+      "margin": 0.0,
+      "note": "Barely failing"
+    }
+  ],
+  "recommended_actions": [
+    "Color gamut coverage below spec -- verify LED backlight binning and color filter alignment.",
+    "Mura defects detected -- inspect cell gap uniformity and backlight diffuser sheet.",
+    "Luminance uniformity failure -- check backlight guide plate and reflector sheet condition."
+  ]
+}

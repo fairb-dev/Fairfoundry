@@ -1,0 +1,439 @@
+{
+  "verification_id": "VR-012",
+  "csv_source": "tablet_weight_uniformity.csv",
+  "ers_source": "tablet_weight_ers.json",
+  "ers_id": "ERS-012",
+  "product": "Ibuprofen 400mg Film-Coated Tablet",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 37,
+    "failed": 3,
+    "pass_rate": 92.5,
+    "criteria_failure_distribution": {
+      "C001_individual_tablet_weight": 2,
+      "C002_weight_deviation_from_mean": 2,
+      "C005_tablet_diameter": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "IBU400-2026-042-T10",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 532.5,
+          "limit": "[551.0, 609.0]",
+          "result": "FAIL",
+          "margin": -18.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": -8.19,
+          "limit": "[-5.0, 5.0]",
+          "result": "FAIL",
+          "margin": -3.19
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 134.5,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 5.5
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.57,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.13
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 12.97,
+          "limit": "[12.85, 13.15]",
+          "result": "PASS",
+          "margin": 0.12
+        }
+      ]
+    },
+    {
+      "unit_id": "IBU400-2026-042-T17",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 590.3,
+          "limit": "[551.0, 609.0]",
+          "result": "PASS",
+          "margin": 18.7
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": 1.78,
+          "limit": "[-5.0, 5.0]",
+          "result": "PASS",
+          "margin": 3.22
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 124.6,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 15.4
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.49,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.21
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 13.16,
+          "limit": "[12.85, 13.15]",
+          "result": "FAIL",
+          "margin": -0.01
+        }
+      ]
+    },
+    {
+      "unit_id": "IBU400-2026-042-T40",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 631.4,
+          "limit": "[551.0, 609.0]",
+          "result": "FAIL",
+          "margin": -22.4
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": 8.86,
+          "limit": "[-5.0, 5.0]",
+          "result": "FAIL",
+          "margin": -3.86
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 120.4,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 19.6
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.64,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 12.93,
+          "limit": "[12.85, 13.15]",
+          "result": "PASS",
+          "margin": 0.08
+        }
+      ]
+    },
+    {
+      "unit_id": "IBU400-2026-042-T1",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 580.4,
+          "limit": "[551.0, 609.0]",
+          "result": "PASS",
+          "margin": 28.6
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": 0.07,
+          "limit": "[-5.0, 5.0]",
+          "result": "PASS",
+          "margin": 4.93
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 95.1,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 15.1
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.46,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.24
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 13.03,
+          "limit": "[12.85, 13.15]",
+          "result": "PASS",
+          "margin": 0.12
+        }
+      ]
+    },
+    {
+      "unit_id": "IBU400-2026-042-T8",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 552.8,
+          "limit": "[551.0, 609.0]",
+          "result": "PASS",
+          "margin": 1.8
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": -4.69,
+          "limit": "[-5.0, 5.0]",
+          "result": "PASS",
+          "margin": 0.31
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 129.7,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 10.3
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.51,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.19
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 13.02,
+          "limit": "[12.85, 13.15]",
+          "result": "PASS",
+          "margin": 0.13
+        }
+      ]
+    },
+    {
+      "unit_id": "IBU400-2026-042-T16",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 608.5,
+          "limit": "[551.0, 609.0]",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": 4.91,
+          "limit": "[-5.0, 5.0]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 125.0,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 15.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.48,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.22
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 13.04,
+          "limit": "[12.85, 13.15]",
+          "result": "PASS",
+          "margin": 0.11
+        }
+      ]
+    },
+    {
+      "unit_id": "IBU400-2026-042-T24",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 567.1,
+          "limit": "[551.0, 609.0]",
+          "result": "PASS",
+          "margin": 16.1
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": -2.22,
+          "limit": "[-5.0, 5.0]",
+          "result": "PASS",
+          "margin": 2.78
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 110.5,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 29.5
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.61,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 12.98,
+          "limit": "[12.85, 13.15]",
+          "result": "PASS",
+          "margin": 0.13
+        }
+      ]
+    },
+    {
+      "unit_id": "IBU400-2026-042-T31",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Individual tablet weight",
+          "value": 582.7,
+          "limit": "[551.0, 609.0]",
+          "result": "PASS",
+          "margin": 26.3
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Weight deviation from mean",
+          "value": 0.47,
+          "limit": "[-5.0, 5.0]",
+          "result": "PASS",
+          "margin": 4.53
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Tablet hardness",
+          "value": 83.9,
+          "limit": "[80.0, 140.0]",
+          "result": "PASS",
+          "margin": 3.9
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Tablet thickness",
+          "value": 5.45,
+          "limit": "[5.2, 5.7]",
+          "result": "PASS",
+          "margin": 0.25
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Tablet diameter",
+          "value": 12.94,
+          "limit": "[12.85, 13.15]",
+          "result": "PASS",
+          "margin": 0.09
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "IBU400-2026-042-T33",
+      "criterion": "C004",
+      "parameter": "Tablet thickness",
+      "value": 5.7,
+      "limit": "[5.2, 5.7]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "IBU400-2026-042-T17",
+      "criterion": "C005",
+      "parameter": "Tablet diameter",
+      "value": 13.16,
+      "limit": "[12.85, 13.15]",
+      "margin": -0.01,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "IBU400-2026-042-T6",
+      "criterion": "C005",
+      "parameter": "Tablet diameter",
+      "value": 12.87,
+      "limit": "[12.85, 13.15]",
+      "margin": 0.02,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "IBU400-2026-042-T9",
+      "criterion": "C005",
+      "parameter": "Tablet diameter",
+      "value": 12.87,
+      "limit": "[12.85, 13.15]",
+      "margin": 0.02,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "IBU400-2026-042-T38",
+      "criterion": "C004",
+      "parameter": "Tablet thickness",
+      "value": 5.68,
+      "limit": "[5.2, 5.7]",
+      "margin": 0.02,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Tablet weight deviation exceeds USP <905> limits -- adjust tablet press fill cam and check granule flow properties."
+  ]
+}

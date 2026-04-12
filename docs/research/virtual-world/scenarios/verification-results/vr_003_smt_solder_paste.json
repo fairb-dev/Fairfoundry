@@ -1,0 +1,441 @@
+{
+  "verification_id": "VR-003",
+  "csv_source": "smt_solder_paste.csv",
+  "ers_source": "smt_solder_paste_ers.json",
+  "ers_id": "ERS-003",
+  "product": "PCB Solder Paste Deposition SPI-300",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 38,
+    "failed": 2,
+    "pass_rate": 95.0,
+    "criteria_failure_distribution": {
+      "C001_solder_paste_volume": 1,
+      "C004_x-axis_paste_offset": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "PCB-30422-R22-PAD1",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Solder paste volume",
+          "value": 49.1,
+          "limit": "[60.0, 140.0]",
+          "result": "FAIL",
+          "margin": -10.9
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Solder paste height",
+          "value": 151.8,
+          "limit": "[100.0, 200.0]",
+          "result": "PASS",
+          "margin": 48.2
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Solder paste area coverage",
+          "value": 102.0,
+          "limit": "[70.0, 130.0]",
+          "result": "PASS",
+          "margin": 28.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "X-axis paste offset",
+          "value": 1.7,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 13.3
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Y-axis paste offset",
+          "value": 5.0,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 10.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Solder bridge detection",
+          "value": false,
+          "limit": "==False",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "PCB-30426-R22-PAD2",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Solder paste volume",
+          "value": 111.4,
+          "limit": "[60.0, 140.0]",
+          "result": "PASS",
+          "margin": 28.6
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Solder paste height",
+          "value": 161.7,
+          "limit": "[100.0, 200.0]",
+          "result": "PASS",
+          "margin": 38.3
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Solder paste area coverage",
+          "value": 97.6,
+          "limit": "[70.0, 130.0]",
+          "result": "PASS",
+          "margin": 27.6
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "X-axis paste offset",
+          "value": 15.3,
+          "limit": "<=15.0",
+          "result": "FAIL",
+          "margin": -0.3
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Y-axis paste offset",
+          "value": 5.2,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 9.8
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Solder bridge detection",
+          "value": false,
+          "limit": "==False",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "PCB-30400-C48-PAD1",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Solder paste volume",
+          "value": 85.1,
+          "limit": "[60.0, 140.0]",
+          "result": "PASS",
+          "margin": 25.1
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Solder paste height",
+          "value": 147.4,
+          "limit": "[100.0, 200.0]",
+          "result": "PASS",
+          "margin": 47.4
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Solder paste area coverage",
+          "value": 96.5,
+          "limit": "[70.0, 130.0]",
+          "result": "PASS",
+          "margin": 26.5
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "X-axis paste offset",
+          "value": 4.1,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 10.9
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Y-axis paste offset",
+          "value": 6.7,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 8.3
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Solder bridge detection",
+          "value": false,
+          "limit": "==False",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "PCB-30407-C48-PAD1",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Solder paste volume",
+          "value": 61.0,
+          "limit": "[60.0, 140.0]",
+          "result": "PASS",
+          "margin": 1.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Solder paste height",
+          "value": 163.3,
+          "limit": "[100.0, 200.0]",
+          "result": "PASS",
+          "margin": 36.7
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Solder paste area coverage",
+          "value": 73.8,
+          "limit": "[70.0, 130.0]",
+          "result": "PASS",
+          "margin": 3.8
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "X-axis paste offset",
+          "value": 3.0,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 12.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Y-axis paste offset",
+          "value": 6.8,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 8.2
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Solder bridge detection",
+          "value": false,
+          "limit": "==False",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "PCB-30414-R22-PAD1",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Solder paste volume",
+          "value": 108.3,
+          "limit": "[60.0, 140.0]",
+          "result": "PASS",
+          "margin": 31.7
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Solder paste height",
+          "value": 149.2,
+          "limit": "[100.0, 200.0]",
+          "result": "PASS",
+          "margin": 49.2
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Solder paste area coverage",
+          "value": 99.9,
+          "limit": "[70.0, 130.0]",
+          "result": "PASS",
+          "margin": 29.9
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "X-axis paste offset",
+          "value": 4.2,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 10.8
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Y-axis paste offset",
+          "value": 12.4,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 2.6
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Solder bridge detection",
+          "value": false,
+          "limit": "==False",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "PCB-30421-C48-PAD1",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Solder paste volume",
+          "value": 122.7,
+          "limit": "[60.0, 140.0]",
+          "result": "PASS",
+          "margin": 17.3
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Solder paste height",
+          "value": 168.4,
+          "limit": "[100.0, 200.0]",
+          "result": "PASS",
+          "margin": 31.6
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Solder paste area coverage",
+          "value": 95.7,
+          "limit": "[70.0, 130.0]",
+          "result": "PASS",
+          "margin": 25.7
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "X-axis paste offset",
+          "value": 7.3,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 7.7
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Y-axis paste offset",
+          "value": 4.2,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 10.8
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Solder bridge detection",
+          "value": false,
+          "limit": "==False",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "unit_id": "PCB-30430-U7-PAD32",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Solder paste volume",
+          "value": 106.7,
+          "limit": "[60.0, 140.0]",
+          "result": "PASS",
+          "margin": 33.3
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Solder paste height",
+          "value": 160.4,
+          "limit": "[100.0, 200.0]",
+          "result": "PASS",
+          "margin": 39.6
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Solder paste area coverage",
+          "value": 91.3,
+          "limit": "[70.0, 130.0]",
+          "result": "PASS",
+          "margin": 21.3
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "X-axis paste offset",
+          "value": 4.0,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 11.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Y-axis paste offset",
+          "value": 6.0,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 9.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Solder bridge detection",
+          "value": false,
+          "limit": "==False",
+          "result": "PASS"
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "PCB-30426-R22-PAD2",
+      "criterion": "C004",
+      "parameter": "X-axis paste offset",
+      "value": 15.3,
+      "limit": "<=15.0",
+      "margin": -0.3,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "PCB-30407-C48-PAD1",
+      "criterion": "C001",
+      "parameter": "Solder paste volume",
+      "value": 61.0,
+      "limit": "[60.0, 140.0]",
+      "margin": 1.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "PCB-30435-U7-PAD33",
+      "criterion": "C003",
+      "parameter": "Solder paste area coverage",
+      "value": 129.0,
+      "limit": "[70.0, 130.0]",
+      "margin": 1.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "PCB-30419-R22-PAD1",
+      "criterion": "C004",
+      "parameter": "X-axis paste offset",
+      "value": 13.8,
+      "limit": "<=15.0",
+      "margin": 1.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "PCB-30408-U3-PAD15",
+      "criterion": "C004",
+      "parameter": "X-axis paste offset",
+      "value": 12.9,
+      "limit": "<=15.0",
+      "margin": 2.1,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Paste volume out of spec -- check stencil cleanliness, squeegee pressure, and paste rheology (viscosity, slump)."
+  ]
+}

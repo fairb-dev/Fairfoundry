@@ -1,0 +1,451 @@
+{
+  "verification_id": "VR-016",
+  "csv_source": "concrete_compression.csv",
+  "ers_source": "concrete_compression_ers.json",
+  "ers_id": "ERS-016",
+  "product": "4000 PSI Ready-Mix Concrete (Multiple Mix Designs)",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 35,
+    "failed": 5,
+    "pass_rate": 87.5,
+    "criteria_failure_distribution": {
+      "C002_compressive_strength_(7-day)": 3,
+      "C001_compressive_strength_(28-day)": 2
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "CYL-7D-008",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C002",
+          "parameter": "Compressive strength (7-day)",
+          "value": 2309.0,
+          "limit": ">=2500",
+          "result": "FAIL",
+          "margin": -191.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 6.01,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 12.0,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.1
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 3.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-7D-010",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C002",
+          "parameter": "Compressive strength (7-day)",
+          "value": 2343.0,
+          "limit": ">=2500",
+          "result": "FAIL",
+          "margin": -157.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 5.98,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 11.99,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 3.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-28D-021",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Compressive strength (28-day)",
+          "value": 3863.0,
+          "limit": ">=4000",
+          "result": "FAIL",
+          "margin": -137.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 5.98,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 12.04,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 3.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-28D-023",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Compressive strength (28-day)",
+          "value": 3550.0,
+          "limit": ">=4000",
+          "result": "FAIL",
+          "margin": -450.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 6.03,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.07
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 12.05,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.05
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 3.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-7D-038",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C002",
+          "parameter": "Compressive strength (7-day)",
+          "value": 2314.0,
+          "limit": ">=2500",
+          "result": "FAIL",
+          "margin": -186.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 5.98,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 12.07,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.03
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 3.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-28D-001",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Compressive strength (28-day)",
+          "value": 4868.0,
+          "limit": ">=4000",
+          "result": "PASS",
+          "margin": 868.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 5.99,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 11.99,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 2.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 1.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-7D-009",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C002",
+          "parameter": "Compressive strength (7-day)",
+          "value": 3412.0,
+          "limit": ">=2500",
+          "result": "PASS",
+          "margin": 912.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 6.02,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 11.99,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 3.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-28D-017",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Compressive strength (28-day)",
+          "value": 5024.0,
+          "limit": ">=4000",
+          "result": "PASS",
+          "margin": 1024.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 6.02,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 12.03,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.07
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 5.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-7D-026",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C002",
+          "parameter": "Compressive strength (7-day)",
+          "value": 3715.0,
+          "limit": ">=2500",
+          "result": "PASS",
+          "margin": 1215.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 5.98,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 12.0,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.1
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 5.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CYL-7D-033",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C002",
+          "parameter": "Compressive strength (7-day)",
+          "value": 3754.0,
+          "limit": ">=2500",
+          "result": "PASS",
+          "margin": 1254.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder diameter",
+          "value": 5.99,
+          "limit": "[5.9, 6.1]",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder length",
+          "value": 11.96,
+          "limit": "[11.9, 12.1]",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Fracture type",
+          "value": 4.0,
+          "limit": "[1, 5]",
+          "result": "PASS",
+          "margin": 1.0
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "CYL-28D-003",
+      "criterion": "C005",
+      "parameter": "Fracture type",
+      "value": 5.0,
+      "limit": "[1, 5]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CYL-28D-004",
+      "criterion": "C005",
+      "parameter": "Fracture type",
+      "value": 1.0,
+      "limit": "[1, 5]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CYL-7D-005",
+      "criterion": "C005",
+      "parameter": "Fracture type",
+      "value": 5.0,
+      "limit": "[1, 5]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CYL-7D-011",
+      "criterion": "C005",
+      "parameter": "Fracture type",
+      "value": 5.0,
+      "limit": "[1, 5]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CYL-7D-012",
+      "criterion": "C005",
+      "parameter": "Fracture type",
+      "value": 1.0,
+      "limit": "[1, 5]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Compressive strength below f'c -- initiate core drilling investigation per ACI 318 Section 26.12.4.",
+    "Review w/c ratio, aggregate moisture content, and batch plant calibration records."
+  ]
+}

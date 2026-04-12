@@ -1,0 +1,778 @@
+{
+  "verification_id": "VR-018",
+  "csv_source": "paint_thickness_dft.csv",
+  "ers_source": "paint_thickness_ers.json",
+  "ers_id": "ERS-018",
+  "product": "Automotive Body-in-White Topcoat System",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 35,
+    "failed": 5,
+    "pass_rate": 87.5,
+    "criteria_failure_distribution": {
+      "C001_dft_measurement_point_1": 2,
+      "C002_dft_measurement_point_2": 2,
+      "C003_dft_measurement_point_3": 2,
+      "C004_dft_measurement_point_4": 2,
+      "C005_dft_measurement_point_5": 3,
+      "C006_dft_measurement_point_6": 2,
+      "C007_average_dry_film_thickness": 2,
+      "C008_dft_measurement_range": 3
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "BODY-2026-04-0134",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 143.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -3.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 154.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -14.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 146.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -6.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 146.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -6.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 144.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -4.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 150.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -10.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 147.2,
+          "limit": "[100, 130]",
+          "result": "FAIL",
+          "margin": -17.2
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 11.0,
+          "limit": "<=25",
+          "result": "PASS",
+          "margin": 14.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0136",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 79.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -11.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 87.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -3.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 84.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -6.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 83.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -7.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 75.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -15.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 73.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -17.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 80.2,
+          "limit": "[100, 130]",
+          "result": "FAIL",
+          "margin": -19.8
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 14.0,
+          "limit": "<=25",
+          "result": "PASS",
+          "margin": 11.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0138",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 102.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 12.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 115.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 25.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 121.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 19.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 115.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 25.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 114.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 130.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 10.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 116.2,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 13.8
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 28.0,
+          "limit": "<=25",
+          "result": "FAIL",
+          "margin": -3.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0145",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 96.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 6.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 111.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 21.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 123.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 17.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 95.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 5.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 127.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 13.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 108.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 18.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 110.0,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 10.0
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 32.0,
+          "limit": "<=25",
+          "result": "FAIL",
+          "margin": -7.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0155",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 95.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 5.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 92.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 2.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 125.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 15.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 119.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 21.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 61.0,
+          "limit": "[90, 140]",
+          "result": "FAIL",
+          "margin": -29.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 131.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 9.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 103.8,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 3.8
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 70.0,
+          "limit": "<=25",
+          "result": "FAIL",
+          "margin": -45.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0120",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 112.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 22.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 106.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 16.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 117.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 117.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 117.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 116.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 114.2,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 14.2
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 11.0,
+          "limit": "<=25",
+          "result": "PASS",
+          "margin": 14.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0127",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 118.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 22.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 114.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 110.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 20.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 113.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 104.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 14.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 117.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 112.7,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 12.7
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 14.0,
+          "limit": "<=25",
+          "result": "PASS",
+          "margin": 11.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0135",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 116.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 105.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 15.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 108.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 18.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 117.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 116.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 125.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 15.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 114.5,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 14.5
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 20.0,
+          "limit": "<=25",
+          "result": "PASS",
+          "margin": 5.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0144",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 113.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 119.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 21.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 127.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 13.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 114.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 117.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 23.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 109.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 19.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 116.5,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 13.5
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 18.0,
+          "limit": "<=25",
+          "result": "PASS",
+          "margin": 7.0
+        }
+      ]
+    },
+    {
+      "unit_id": "BODY-2026-04-0152",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "DFT measurement point 1",
+          "value": 119.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 21.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "DFT measurement point 2",
+          "value": 108.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 18.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "DFT measurement point 3",
+          "value": 122.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 18.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "DFT measurement point 4",
+          "value": 116.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "DFT measurement point 5",
+          "value": 106.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 16.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "DFT measurement point 6",
+          "value": 114.0,
+          "limit": "[90, 140]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Average dry film thickness",
+          "value": 114.2,
+          "limit": "[100, 130]",
+          "result": "PASS",
+          "margin": 14.2
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "DFT measurement range",
+          "value": 16.0,
+          "limit": "<=25",
+          "result": "PASS",
+          "margin": 9.0
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "BODY-2026-04-0141",
+      "criterion": "C008",
+      "parameter": "DFT measurement range",
+      "value": 24.0,
+      "limit": "<=25",
+      "margin": 1.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "BODY-2026-04-0155",
+      "criterion": "C002",
+      "parameter": "DFT measurement point 2",
+      "value": 92.0,
+      "limit": "[90, 140]",
+      "margin": 2.0,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "BODY-2026-04-0128",
+      "criterion": "C008",
+      "parameter": "DFT measurement range",
+      "value": 22.0,
+      "limit": "<=25",
+      "margin": 3.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "BODY-2026-04-0131",
+      "criterion": "C008",
+      "parameter": "DFT measurement range",
+      "value": 22.0,
+      "limit": "<=25",
+      "margin": 3.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "BODY-2026-04-0134",
+      "criterion": "C001",
+      "parameter": "DFT measurement point 1",
+      "value": 143.0,
+      "limit": "[90, 140]",
+      "margin": -3.0,
+      "note": "Barely failing"
+    }
+  ],
+  "recommended_actions": [
+    "Average DFT outside range -- adjust atomizer bell speed and electrostatic voltage settings.",
+    "DFT range exceeds limit -- check robot path programming and spray pattern overlap consistency.",
+    "Individual DFT points outside range -- inspect specific body panel for geometry or grounding issues."
+  ]
+}

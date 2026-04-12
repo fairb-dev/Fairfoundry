@@ -1,0 +1,1088 @@
+{
+  "verification_id": "VR-017",
+  "csv_source": "rf_antenna_vswr.csv",
+  "ers_source": "rf_antenna_ers.json",
+  "ers_id": "ERS-017",
+  "product": "5G n257/n258 Patch Antenna Array ANT-5G",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 32,
+    "failed": 8,
+    "pass_rate": 80.0,
+    "criteria_failure_distribution": {
+      "C001_vswr_at_26_ghz": 3,
+      "C005_vswr_at_30_ghz": 3,
+      "C006_return_loss_at_band_center": 5,
+      "C007_peak_gain": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "ANT-5G-04809",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 2.52,
+          "limit": "<=2.0",
+          "result": "FAIL",
+          "margin": -0.52
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.11,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.69
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.2,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.3
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.39,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.41
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 2.24,
+          "limit": "<=2.0",
+          "result": "FAIL",
+          "margin": -0.24
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -16.0,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 2.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.1,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 84.5,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 24.6,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 4.6
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04814",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 2.07,
+          "limit": "<=2.0",
+          "result": "FAIL",
+          "margin": -0.07
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.33,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.47
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.16,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.34
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.2,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 2.16,
+          "limit": "<=2.0",
+          "result": "FAIL",
+          "margin": -0.16
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -19.7,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 5.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.3,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.3
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 75.0,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 10.0
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 24.0,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 4.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04816",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 2.18,
+          "limit": "<=2.0",
+          "result": "FAIL",
+          "margin": -0.18
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.62,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.18
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.31,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.19
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.32,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.48
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 2.11,
+          "limit": "<=2.0",
+          "result": "FAIL",
+          "margin": -0.11
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -16.8,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 2.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.6,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 67.8,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 7.8
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 24.6,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 4.6
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04823",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.11,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.89
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.13,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.67
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.39,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.11
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.29,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.51
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.47,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.53
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -12.7,
+          "limit": "<=-14.0",
+          "result": "FAIL",
+          "margin": -1.3
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.3,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.3
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 78.8,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 6.2
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 22.2,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 2.2
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04824",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.4,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.37,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.43
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.41,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.15,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.65
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.55,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.45
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -12.7,
+          "limit": "<=-14.0",
+          "result": "FAIL",
+          "margin": -1.3
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.2,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.2
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 78.2,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 6.8
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 24.8,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 4.8
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04828",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.75,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.25
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.17,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.63
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.26,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.24
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.34,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.46
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.61,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.39
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -13.8,
+          "limit": "<=-14.0",
+          "result": "FAIL",
+          "margin": -0.2
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 7.2,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 2.2
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 63.5,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 3.5
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 22.3,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 2.3
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04831",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.35,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.65
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.16,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.64
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.16,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.34
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.34,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.46
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.59,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.41
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -13.2,
+          "limit": "<=-14.0",
+          "result": "FAIL",
+          "margin": -0.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 4.5,
+          "limit": ">=5.0",
+          "result": "FAIL",
+          "margin": -0.5
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 73.3,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 11.7
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 24.6,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 4.6
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04837",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.5,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.45,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.35
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.15,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.35
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.35,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.45
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.61,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.39
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -12.3,
+          "limit": "<=-14.0",
+          "result": "FAIL",
+          "margin": -1.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.6,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 80.1,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 4.9
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 26.8,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 6.8
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04800",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.38,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.62
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.23,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.57
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.11,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.39
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.4,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.4
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.16,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.84
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -18.8,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 4.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 5.5,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 72.2,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 12.2
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 24.1,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 4.1
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04806",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.51,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.49
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.15,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.65
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.24,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.26
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.46,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.34
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.4,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -20.9,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 6.9
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.1,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 78.0,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 7.0
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 23.6,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 3.6
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04813",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.08,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.92
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.29,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.51
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.09,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.41
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.14,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.66
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.48,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.52
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -17.6,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 3.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.1,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 75.4,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 9.6
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 25.0,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 5.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04821",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.37,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.63
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.38,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.42
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.21,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.29
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.39,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.41
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.51,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.49
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -19.6,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 5.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 6.5,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 1.5
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 80.2,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 4.8
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 22.9,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 2.9
+        }
+      ]
+    },
+    {
+      "unit_id": "ANT-5G-04830",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "VSWR at 26 GHz",
+          "value": 1.54,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.46
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "VSWR at 27 GHz",
+          "value": 1.03,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.77
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "VSWR at 28 GHz (center)",
+          "value": 1.17,
+          "limit": "<=1.5",
+          "result": "PASS",
+          "margin": 0.33
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "VSWR at 29 GHz",
+          "value": 1.04,
+          "limit": "<=1.8",
+          "result": "PASS",
+          "margin": 0.76
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "VSWR at 30 GHz",
+          "value": 1.53,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.47
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Return loss at band center",
+          "value": -20.5,
+          "limit": "<=-14.0",
+          "result": "PASS",
+          "margin": 6.5
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Peak gain",
+          "value": 5.9,
+          "limit": ">=5.0",
+          "result": "PASS",
+          "margin": 0.9
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Half-power beamwidth",
+          "value": 75.5,
+          "limit": "[60.0, 85.0]",
+          "result": "PASS",
+          "margin": 9.5
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Port-to-port isolation",
+          "value": 22.4,
+          "limit": ">=20.0",
+          "result": "PASS",
+          "margin": 2.4
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "ANT-5G-04822",
+      "criterion": "C006",
+      "parameter": "Return loss at band center",
+      "value": -14.0,
+      "limit": "<=-14.0",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "ANT-5G-04814",
+      "criterion": "C001",
+      "parameter": "VSWR at 26 GHz",
+      "value": 2.07,
+      "limit": "<=2.0",
+      "margin": -0.07,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "ANT-5G-04827",
+      "criterion": "C005",
+      "parameter": "VSWR at 30 GHz",
+      "value": 1.92,
+      "limit": "<=2.0",
+      "margin": 0.08,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "ANT-5G-04824",
+      "criterion": "C003",
+      "parameter": "VSWR at 28 GHz (center)",
+      "value": 1.41,
+      "limit": "<=1.5",
+      "margin": 0.09,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "ANT-5G-04805",
+      "criterion": "C006",
+      "parameter": "Return loss at band center",
+      "value": -14.1,
+      "limit": "<=-14.0",
+      "margin": 0.1,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "VSWR exceeds limit at band edges -- investigate PCB dielectric constant variation and antenna feed impedance matching.",
+    "Gain below minimum -- inspect patch element dimensions and ground plane geometry.",
+    "Return loss at center frequency too high -- verify feed network trace width and solder joint quality."
+  ]
+}
