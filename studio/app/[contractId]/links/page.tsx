@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { formatLimit } from "@/lib/verification-engine";
+import { LinkCard } from "./link-card";
+import { MatchButton } from "./match-button";
+import { ManualLinkForm } from "./manual-link-form";
 
 export default async function LinksPage({
   params,
@@ -21,18 +24,121 @@ export default async function LinksPage({
     orderBy: { createdAt: "asc" },
   });
 
+  // Check if we have the prerequisites for matching
+  const logMappings = await prisma.logMapping.findMany({
+    where: { contractId },
+  });
+  const criteriaCount = await prisma.acceptanceCriterion.count({
+    where: { contractId },
+  });
+  const hasColumns = logMappings.length > 0;
+  const hasCriteria = criteriaCount > 0;
+
+  // Get measurement columns and unlinked criteria for the manual link form
+  const linkedCriterionIds = new Set(links.map((l) => l.criterionId));
+
+  // Fetch measurement columns from all log formats for this contract
+  const logFormatIds = logMappings.map((m) => m.logFormatId);
+  const logFormats = logFormatIds.length > 0
+    ? await prisma.logFormat.findMany({
+        where: { id: { in: logFormatIds } },
+        include: {
+          columns: {
+            where: { role: "MEASUREMENT" },
+            orderBy: { columnIndex: "asc" },
+          },
+        },
+      })
+    : [];
+  const measurementColumns = logFormats.flatMap((lf) =>
+    lf.columns.map((c) => ({
+      id: c.id,
+      originalName: c.originalName,
+      columnIndex: c.columnIndex,
+    }))
+  );
+
+  // Fetch unlinked criteria
+  const allCriteria = await prisma.acceptanceCriterion.findMany({
+    where: { contractId },
+    orderBy: { createdAt: "asc" },
+  });
+  const unlinkedCriteria = allCriteria
+    .filter((c) => !linkedCriterionIds.has(c.id))
+    .map((c) => ({
+      id: c.id,
+      parameterName: c.parameterName,
+      limitStr: formatLimit(c.criteriaType, c.lowerLimit, c.upperLimit, c.unit),
+    }));
+
+  // ── No links: show match button or prerequisites message ──
   if (links.length === 0) {
+    if (!hasColumns || !hasCriteria) {
+      return (
+        <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="mx-auto mb-4 text-gray-300"
+          >
+            <path
+              d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <p className="text-gray-500">
+            No column-criteria links yet.
+          </p>
+          <p className="mt-2 text-sm text-gray-400">
+            {!hasColumns && !hasCriteria
+              ? "Upload data columns and acceptance criteria first."
+              : !hasColumns
+                ? "Upload a CSV data file first."
+                : "Define acceptance criteria first."}
+          </p>
+        </div>
+      );
+    }
+
     return (
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center text-gray-500">
-        No column-criteria links defined yet.
+      <div>
+        <MatchButton contractId={contractId} />
+
+        {/* Manual link form */}
+        {measurementColumns.length > 0 && unlinkedCriteria.length > 0 && (
+          <ManualLinkForm
+            contractId={contractId}
+            columns={measurementColumns}
+            criteria={unlinkedCriteria}
+          />
+        )}
       </div>
     );
   }
 
+  // ── Links exist: show cards + actions ──
   return (
     <div>
-      <div className="mb-5 text-sm text-gray-500">
-        {links.length} {links.length === 1 ? "link" : "links"} between data columns and acceptance criteria
+      <div className="mb-5 flex items-center justify-between">
+        <div className="text-sm text-gray-500">
+          {links.length} {links.length === 1 ? "link" : "links"} between data
+          columns and acceptance criteria
+        </div>
+        {hasColumns && hasCriteria && (
+          <MatchButton contractId={contractId} compact />
+        )}
       </div>
 
       <div className="grid gap-3">
@@ -45,68 +151,31 @@ export default async function LinksPage({
           );
 
           return (
-            <div key={link.id} className="link-card">
-              {/* Column side */}
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
-                  Data Column
-                </div>
-                <div className="font-mono text-sm font-semibold text-[var(--foreground)]">
-                  {link.column.originalName}
-                </div>
-                <div className="mt-0.5 text-xs text-gray-400">
-                  Index {link.column.columnIndex} &middot;{" "}
-                  <span className="role-badge bg-blue-50 text-blue-700">
-                    {link.column.role}
-                  </span>
-                </div>
-              </div>
-
-              {/* Arrow */}
-              <div className="flex flex-col items-center gap-0.5 px-2">
-                <svg
-                  width="32"
-                  height="16"
-                  viewBox="0 0 32 16"
-                  fill="none"
-                  className="text-[var(--accent)]"
-                >
-                  <path
-                    d="M0 8H28M28 8L22 2M28 8L22 14"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {link.aiSuggested && (
-                  <span className="role-badge bg-violet-50 text-violet-700">
-                    AI matched
-                  </span>
-                )}
-              </div>
-
-              {/* Criterion side */}
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
-                  Acceptance Criterion
-                </div>
-                <div className="text-sm font-semibold text-[var(--foreground)]">
-                  {link.criterion.parameterName}
-                </div>
-                <div className="mt-0.5 font-mono text-xs text-[var(--accent)]">
-                  {limitStr}
-                </div>
-                {link.criterion.sourceRef && (
-                  <div className="mt-0.5 text-xs text-gray-400">
-                    {link.criterion.sourceRef}
-                  </div>
-                )}
-              </div>
-            </div>
+            <LinkCard
+              key={link.id}
+              id={link.id}
+              contractId={contractId}
+              columnName={link.column.originalName}
+              columnIndex={link.column.columnIndex}
+              columnRole={link.column.role}
+              parameterName={link.criterion.parameterName}
+              limitStr={limitStr}
+              sourceRef={link.criterion.sourceRef}
+              aiSuggested={link.aiSuggested}
+              aiConfidence={link.aiConfidence}
+            />
           );
         })}
       </div>
+
+      {/* Manual link form — show if there are unlinked criteria */}
+      {measurementColumns.length > 0 && unlinkedCriteria.length > 0 && (
+        <ManualLinkForm
+          contractId={contractId}
+          columns={measurementColumns}
+          criteria={unlinkedCriteria}
+        />
+      )}
     </div>
   );
 }
