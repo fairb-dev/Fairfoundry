@@ -1,0 +1,77 @@
+{
+  "ers_id": "ERS-077",
+  "title": "PA12 SLS Surgical Guide Tray Dimensional Specification",
+  "revision": "2.1",
+  "product": "Surgical Guide Tray - PA12 SLS",
+  "stage": "PVT",
+  "issued_by": "Meridius Medical Devices (OEM)",
+  "factory": "Polymer Precision Additive GmbH",
+  "effective_date": "2026-03-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 2 },
+    "humidity_pct": { "nominal": 50, "tolerance": 10 },
+    "post_build_conditioning_hours": 24
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Flatness of tray base surface",
+      "maps_to_column": "flatness_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.30,
+      "unit": "mm",
+      "section_ref": "Section 3.1.1",
+      "notes": "Over 120 mm span, per drawing callout"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Guide hole true position",
+      "maps_to_column": "guide_hole_tp_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.15,
+      "unit": "mm",
+      "section_ref": "Section 3.1.2",
+      "notes": "Critical for surgical alignment"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Surface roughness Ra",
+      "maps_to_column": "surface_ra_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 12.5,
+      "unit": "um",
+      "section_ref": "Section 3.2.1",
+      "notes": "Post-bead-blasted finish per ISO/ASTM 52902"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Maximum warpage",
+      "maps_to_column": "max_warpage_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.50,
+      "unit": "mm",
+      "section_ref": "Section 3.1.3",
+      "notes": "Bow across tray length measured via CMM best-fit plane"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Angular deviation",
+      "maps_to_column": "angular_deviation_deg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -0.5,
+      "upper_limit": 0.5,
+      "unit": "degrees",
+      "section_ref": "Section 3.1.4",
+      "notes": "Per ISO 2768-mK"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "C003 marginal (12.0-12.5 um), acceptable with engineering approval",
+    "fail": "Any critical criterion (C001, C002, C004) failed"
+  }
+}

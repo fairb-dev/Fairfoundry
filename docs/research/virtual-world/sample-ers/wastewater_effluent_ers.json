@@ -1,0 +1,97 @@
+{
+  "ers_id": "ERS-091",
+  "title": "Wastewater Effluent Discharge Testing Specification - NPDES Compliance",
+  "revision": "3.0",
+  "product": "Industrial Wastewater Effluent - NPDES Permit Monitoring",
+  "stage": "Sustaining",
+  "issued_by": "Nextera Water Technologies (OEM)",
+  "factory": "Gulf Coast Analytical Services Inc.",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "sample_type": "24-hour composite per NPDES permit",
+    "preservation": "Per EPA 40 CFR 136.3"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "BOD5",
+      "maps_to_column": "bod5_mg_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 45,
+      "unit": "mg/L",
+      "section_ref": "Section 4.1.1",
+      "notes": "Daily maximum per NPDES; monthly average <= 30 mg/L"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "TSS",
+      "maps_to_column": "tss_mg_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 45,
+      "unit": "mg/L",
+      "section_ref": "Section 4.1.2",
+      "notes": "Daily maximum per NPDES; monthly average <= 30 mg/L"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "pH",
+      "maps_to_column": "ph",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 6.0,
+      "upper_limit": 9.0,
+      "unit": "pH units",
+      "section_ref": "Section 4.2.1",
+      "notes": "At all times per NPDES permit"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Oil and grease",
+      "maps_to_column": "oil_grease_mg_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 15,
+      "unit": "mg/L",
+      "section_ref": "Section 4.3.1",
+      "notes": "Per NPDES industrial permit"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Total phosphorus",
+      "maps_to_column": "total_p_mg_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 1.0,
+      "unit": "mg/L",
+      "section_ref": "Section 4.4.1",
+      "notes": "Per state nutrient criteria"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Ammonia nitrogen",
+      "maps_to_column": "ammonia_n_mg_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 5.0,
+      "unit": "mg/L",
+      "section_ref": "Section 4.5.1",
+      "notes": "Per NPDES permit, varies by receiving water temperature"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Fecal coliform",
+      "maps_to_column": "fecal_coliform_col_100ml",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 200,
+      "unit": "colonies/100 mL",
+      "section_ref": "Section 4.6.1",
+      "notes": "Per NPDES permit"
+    }
+  ],
+  "sampling": {
+    "method": "COMPOSITE",
+    "frequency": "Daily during discharge events",
+    "composite_duration_hours": 24
+  },
+  "disposition_rules": {
+    "pass": "All parameters within daily maximum permit limits",
+    "conditional": "Monthly average approaching limit (> 80% of monthly limit) -- operational alert",
+    "fail": "Any daily maximum exceeded -- permit violation, DMR reporting required"
+  }
+}

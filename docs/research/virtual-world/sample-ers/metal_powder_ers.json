@@ -1,0 +1,110 @@
+{
+  "ers_id": "ERS-078",
+  "title": "Inconel 718 Metal Powder Characterization Specification",
+  "revision": "3.0",
+  "product": "Gas-Atomized Inconel 718 Powder for LPBF",
+  "stage": "MP",
+  "issued_by": "Quantus Additive Technologies (OEM)",
+  "factory": "Osprey Metal Powders Ltd.",
+  "effective_date": "2026-02-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 2 },
+    "humidity_pct": { "max": 50 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "D10 particle size",
+      "maps_to_column": "d10_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 15,
+      "upper_limit": 25,
+      "unit": "um",
+      "section_ref": "Section 4.1.1",
+      "notes": "Laser diffraction per ASTM B822"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "D50 particle size",
+      "maps_to_column": "d50_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 30,
+      "upper_limit": 40,
+      "unit": "um",
+      "section_ref": "Section 4.1.2",
+      "notes": "Laser diffraction per ASTM B822"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "D90 particle size",
+      "maps_to_column": "d90_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 50,
+      "upper_limit": 63,
+      "unit": "um",
+      "section_ref": "Section 4.1.3",
+      "notes": "No particles > 63 um per ASTM B214 sieve cut"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Apparent density",
+      "maps_to_column": "apparent_density_g_cm3",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 4.0,
+      "unit": "g/cm3",
+      "section_ref": "Section 4.2.1",
+      "notes": "Hall funnel per ASTM B212"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Hall flow rate",
+      "maps_to_column": "hall_flow_s_50g",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25,
+      "unit": "s/50g",
+      "section_ref": "Section 4.2.2",
+      "notes": "Per ASTM B213"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Oxygen content",
+      "maps_to_column": "oxygen_ppm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 300,
+      "unit": "ppm",
+      "section_ref": "Section 4.3.1",
+      "notes": "Inert gas fusion per ASTM E1409"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Nitrogen content",
+      "maps_to_column": "nitrogen_ppm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 100,
+      "unit": "ppm",
+      "section_ref": "Section 4.3.2",
+      "notes": "Inert gas fusion per ASTM E1409"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "Nickel content",
+      "maps_to_column": "ni_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 50,
+      "upper_limit": 55,
+      "unit": "%",
+      "section_ref": "Section 4.4.1",
+      "notes": "Per AMS 5662 / ASTM B637"
+    }
+  ],
+  "sampling": {
+    "method": "PER_LOT",
+    "samples_per_lot": 3,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All 3 samples within specification for all criteria",
+    "conditional": "1 of 3 samples marginal on C001-C003; re-sample and re-test",
+    "fail": "Any sample fails chemistry (C006-C008) or 2+ samples fail PSD"
+  }
+}

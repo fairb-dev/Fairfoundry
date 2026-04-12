@@ -1,0 +1,120 @@
+{
+  "ers_id": "ERS-097",
+  "title": "Granular NPK Fertilizer Nutrient Analysis Specification",
+  "revision": "2.0",
+  "product": "10-10-10 General Purpose Granular Fertilizer",
+  "stage": "MP",
+  "issued_by": "AgriNutrient Solutions Corp (OEM)",
+  "factory": "Midwest Agrochemical Testing LLC",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "nitrogen_method": "AOAC 2001.01 Combustion/Dumas",
+    "phosphorus_method": "AOAC 960.03",
+    "potassium_method": "AOAC 958.02",
+    "sample_preparation": "AAPFCO composite, ground to pass 850 um sieve"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Total nitrogen",
+      "maps_to_column": "total_n_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 9.51,
+      "unit": "%",
+      "section_ref": "Section 3.1.1",
+      "notes": "10.0% guaranteed minus 0.49% AAPFCO investigative allowance"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Available phosphoric acid (P2O5)",
+      "maps_to_column": "avail_p2o5_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 9.33,
+      "unit": "%",
+      "section_ref": "Section 3.1.2",
+      "notes": "10.0% guaranteed minus 0.67% AAPFCO investigative allowance"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Soluble potash (K2O)",
+      "maps_to_column": "soluble_k2o_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 9.59,
+      "unit": "%",
+      "section_ref": "Section 3.1.3",
+      "notes": "10.0% guaranteed minus 0.41% AAPFCO investigative allowance"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Moisture content",
+      "maps_to_column": "moisture_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 1.5,
+      "unit": "%",
+      "section_ref": "Section 3.2.1",
+      "notes": "Manufacturing specification"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Size Guide Number (SGN)",
+      "maps_to_column": "sgn",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 220,
+      "upper_limit": 260,
+      "unit": "SGN",
+      "section_ref": "Section 3.3.1",
+      "notes": "240 +/- 20 per TFI specifications"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Arsenic",
+      "maps_to_column": "arsenic_ppm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 13,
+      "unit": "ppm",
+      "section_ref": "Section 3.4.1",
+      "notes": "Per AAPFCO SUIP #25"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Cadmium",
+      "maps_to_column": "cadmium_ppm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 10,
+      "unit": "ppm",
+      "section_ref": "Section 3.4.2",
+      "notes": "Per AAPFCO SUIP #25"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "Lead",
+      "maps_to_column": "lead_ppm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 61,
+      "unit": "ppm",
+      "section_ref": "Section 3.4.3",
+      "notes": "Per AAPFCO SUIP #25"
+    },
+    {
+      "criterion_id": "C009",
+      "parameter": "Mercury",
+      "maps_to_column": "mercury_ppm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 1,
+      "unit": "ppm",
+      "section_ref": "Section 3.4.4",
+      "notes": "Per AAPFCO SUIP #25"
+    }
+  ],
+  "sampling": {
+    "method": "AAPFCO_COMPOSITE",
+    "probes_per_lot": 10,
+    "lot_size_tons": 20,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All nutrients above AAPFCO investigative allowance, SGN within range, heavy metals within limits",
+    "conditional": "Nutrient 0.1% above investigative allowance -- re-sample and re-test before shipment",
+    "fail": "Any nutrient below AAPFCO investigative allowance -- stop-sale, re-blend or re-label required"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "ers_id": "ERS-094",
+  "title": "Sunscreen SPF In Vivo Testing Specification",
+  "revision": "1.0",
+  "product": "Sunscreen Formulation - Labeled SPF 50",
+  "stage": "DVT",
+  "issued_by": "Elysian Beauty Holdings (OEM)",
+  "factory": "SunLab Testing Services Pte. Ltd.",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "solar_simulator": "Atlas Suntest XLS+ per FDA 21 CFR 201.327",
+    "application_rate_mg_cm2": 2.0,
+    "subjects_fitzpatrick": "Type I-III"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Mean in vivo SPF",
+      "maps_to_column": "mean_spf",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 50.0,
+      "unit": "SPF",
+      "section_ref": "Section 4.1.1",
+      "notes": "Per FDA 21 CFR 201.327 on 10 subjects"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "95% confidence interval lower bound",
+      "maps_to_column": "ci_lower_95",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 50.0,
+      "unit": "SPF",
+      "section_ref": "Section 4.1.2",
+      "notes": "Statistical requirement for label claim"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Critical wavelength",
+      "maps_to_column": "critical_wavelength_nm",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 370,
+      "unit": "nm",
+      "section_ref": "Section 4.2.1",
+      "notes": "For Broad Spectrum labeling per FDA 21 CFR 201.327"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "P2 reference standard SPF",
+      "maps_to_column": "p2_reference_spf",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 13.0,
+      "upper_limit": 18.4,
+      "unit": "SPF",
+      "section_ref": "Section 4.3.1",
+      "notes": "P2 standard (15.7 +/- 2.7) must fall within range to validate test run"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "P2 reference in range",
+      "maps_to_column": "p2_in_range",
+      "type": "STRING_EQUALS",
+      "expected_value": "PASS",
+      "section_ref": "Section 4.3.2",
+      "notes": "Test run invalid if P2 reference out of range"
+    }
+  ],
+  "sampling": {
+    "method": "IN_VIVO_PANEL",
+    "minimum_subjects": 10,
+    "evaluable_subjects_required": 10
+  },
+  "disposition_rules": {
+    "pass": "Mean SPF >= 50 AND CI lower bound >= 50 AND critical wavelength >= 370 nm AND P2 in range",
+    "conditional": "Mean SPF >= 50 but CI lower bound 45-50 -- re-test with additional subjects may be requested",
+    "fail": "Mean SPF < 50, or critical wavelength < 370 nm, or P2 reference out of range (test invalid)"
+  }
+}

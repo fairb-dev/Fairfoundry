@@ -1,0 +1,87 @@
+{
+  "ers_id": "ERS-079",
+  "title": "200mm Silicon Wafer Thickness and TTV Specification",
+  "revision": "4.2",
+  "product": "200mm Polished Silicon Wafer for MEMS",
+  "stage": "MP",
+  "issued_by": "NovaBridge Semiconductor Design (OEM)",
+  "factory": "Hsinchu Semiconductor Foundry Corp.",
+  "effective_date": "2026-01-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 1 },
+    "measurement_points": 5,
+    "edge_exclusion_mm": 3
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Center thickness",
+      "maps_to_column": "center_thickness_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 715,
+      "upper_limit": 735,
+      "unit": "um",
+      "section_ref": "Section 3.1.1",
+      "notes": "Per SEMI M1-0218"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Total thickness variation",
+      "maps_to_column": "ttv_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 3.0,
+      "unit": "um",
+      "section_ref": "Section 3.1.2",
+      "notes": "Per SEMI MF1530, 5-point measurement"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Bow",
+      "maps_to_column": "bow_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 40,
+      "unit": "um",
+      "section_ref": "Section 3.2.1",
+      "notes": "Free-standing wafer per SEMI MF1390"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Warp",
+      "maps_to_column": "warp_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 40,
+      "unit": "um",
+      "section_ref": "Section 3.2.2",
+      "notes": "Per SEMI MF1390"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Surface roughness Ra",
+      "maps_to_column": "surface_ra_nm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.5,
+      "unit": "nm",
+      "section_ref": "Section 3.3.1",
+      "notes": "Polished side per SEMI MF1811"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Global backside ideal range (GBIR)",
+      "maps_to_column": "gbir_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 2.0,
+      "unit": "um",
+      "section_ref": "Section 3.1.3",
+      "notes": "Per SEMI M1"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "C006 marginal (1.8-2.0 um), wafer may be used for non-critical layers",
+    "fail": "C001 or C002 failed -- wafer cannot be used for MEMS processing"
+  }
+}

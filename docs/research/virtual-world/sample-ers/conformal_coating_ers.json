@@ -1,0 +1,104 @@
+{
+  "ers_id": "ERS-099",
+  "title": "Silicone Conformal Coating Specification - Military Avionics",
+  "revision": "1.5",
+  "product": "Military Avionics PCB Assembly - Silicone Conformal Coating",
+  "stage": "PVT",
+  "issued_by": "Sentinel Defense Electronics (OEM)",
+  "factory": "Gumi Advanced Electronics Co., Ltd.",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "coating_method": "Selective spray robot",
+    "cure_conditions": "24 hours at 25 C or 1 hour at 65 C",
+    "uv_inspection_wavelength_nm": 365
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Coating thickness (minimum)",
+      "maps_to_column": "thickness_um_min",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 25,
+      "unit": "um",
+      "section_ref": "Section 4.1.1",
+      "notes": "Dry film per IPC-A-610H Table 10-1 for silicone (SR)"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Coating thickness (maximum)",
+      "maps_to_column": "thickness_um_max",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 75,
+      "unit": "um",
+      "section_ref": "Section 4.1.2",
+      "notes": "Per IPC-A-610H Table 10-1 for silicone (SR)"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Bare spots detected",
+      "maps_to_column": "bare_spots_detected",
+      "type": "STRING_EQUALS",
+      "expected_value": "NO",
+      "section_ref": "Section 4.2.1",
+      "notes": "No areas > 0.5 mm2 uncovered per IPC-A-610H Class 3"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Maximum bubble diameter",
+      "maps_to_column": "max_bubble_diameter_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 1.0,
+      "unit": "mm",
+      "section_ref": "Section 4.2.2",
+      "notes": "Per IPC-A-610H Class 3"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Dewetting detected",
+      "maps_to_column": "dewetting_detected",
+      "type": "STRING_EQUALS",
+      "expected_value": "NO",
+      "section_ref": "Section 4.2.3",
+      "notes": "Per IPC-A-610H Class 3"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Keep-out zone encroachment",
+      "maps_to_column": "keepout_encroachment",
+      "type": "STRING_EQUALS",
+      "expected_value": "NO",
+      "section_ref": "Section 4.3.1",
+      "notes": "Coating must not bridge into connector or test point areas"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Adhesion rating",
+      "maps_to_column": "adhesion_rating",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 4,
+      "unit": "B rating per ASTM D3359",
+      "section_ref": "Section 4.4.1",
+      "notes": ">= 4B, <= 5% area removed in tape test"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "Insulation resistance",
+      "maps_to_column": "insulation_resistance_ohms",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 1e9,
+      "unit": "ohms",
+      "section_ref": "Section 4.5.1",
+      "notes": "At 500 VDC per IPC-CC-830C Section 3.8"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT_VISUAL",
+    "destructive_sample_aql": "1.0",
+    "destructive_sample_size": 5
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; UV inspection pass on 100%, adhesion and IR pass on destructive samples",
+    "conditional": "Thickness 20-25 um at edges -- acceptable if no bare spots and UV shows continuous coverage",
+    "fail": "Any bare spot, dewetting, keepout encroachment, or insulation resistance < 10^9 ohms"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "ers_id": "ERS-093",
+  "title": "Crushed Limestone Aggregate Gradation Specification - Size No. 57",
+  "revision": "2.0",
+  "product": "Crushed Limestone Coarse Aggregate, ASTM C33 Size No. 57",
+  "stage": "MP",
+  "issued_by": "Duraform Building Products (OEM)",
+  "factory": "Texas Crushed Stone LLC",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "sampling_method": "ASTM D75 composite sampling from stockpile",
+    "sample_reduction": "ASTM C702 riffle splitting",
+    "sieve_shaking_time_min": 10
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Passing 37.5 mm",
+      "maps_to_column": "pct_passing_37_5mm",
+      "type": "NUMERIC_EQUALS",
+      "expected_value": 100,
+      "unit": "%",
+      "section_ref": "Section 3.1.1",
+      "notes": "ASTM C33 Table 1 Size No. 57"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Passing 25.0 mm",
+      "maps_to_column": "pct_passing_25mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 95,
+      "upper_limit": 100,
+      "unit": "%",
+      "section_ref": "Section 3.1.2",
+      "notes": "ASTM C33 Table 1 Size No. 57"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Passing 12.5 mm",
+      "maps_to_column": "pct_passing_12_5mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 25,
+      "upper_limit": 60,
+      "unit": "%",
+      "section_ref": "Section 3.1.3",
+      "notes": "ASTM C33 Table 1 Size No. 57"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Passing 4.75 mm",
+      "maps_to_column": "pct_passing_4_75mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0,
+      "upper_limit": 10,
+      "unit": "%",
+      "section_ref": "Section 3.1.4",
+      "notes": "ASTM C33 Table 1 Size No. 57"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Passing 2.36 mm",
+      "maps_to_column": "pct_passing_2_36mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0,
+      "upper_limit": 5,
+      "unit": "%",
+      "section_ref": "Section 3.1.5",
+      "notes": "ASTM C33 Table 1 Size No. 57"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "LA abrasion loss",
+      "maps_to_column": "la_abrasion_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 40,
+      "unit": "%",
+      "section_ref": "Section 3.2.1",
+      "notes": "Per ASTM C131"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Soundness loss",
+      "maps_to_column": "soundness_loss_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 18,
+      "unit": "%",
+      "section_ref": "Section 3.2.2",
+      "notes": "5 cycles magnesium sulfate per ASTM C88"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "Flat and elongated particles",
+      "maps_to_column": "flat_elongated_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 10,
+      "unit": "%",
+      "section_ref": "Section 3.3.1",
+      "notes": "5:1 ratio per ASTM D4791"
+    }
+  ],
+  "sampling": {
+    "method": "PER_LOT",
+    "lot_size_tons": 2000,
+    "samples_per_lot": 1,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All gradation and quality criteria met",
+    "conditional": "Gradation at boundary of ASTM C33 limits -- accepted with concrete mix adjustment",
+    "fail": "Any gradation outside ASTM C33 limits, or LA abrasion > 40%"
+  }
+}

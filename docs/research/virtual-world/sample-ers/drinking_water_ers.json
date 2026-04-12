@@ -1,0 +1,118 @@
+{
+  "ers_id": "ERS-090",
+  "title": "Drinking Water Quality Testing Specification - EPA NPDWR Compliance",
+  "revision": "5.0",
+  "product": "Municipal Drinking Water - Distribution System Monitoring",
+  "stage": "Sustaining",
+  "issued_by": "Nextera Water Technologies (OEM)",
+  "factory": "Great Lakes Environmental Laboratory LLC",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "sample_preservation": "Per EPA 40 CFR 136.3",
+    "holding_times": "Per method-specific requirements",
+    "temperature_c": { "max_during_transport": 6 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Lead",
+      "maps_to_column": "lead_ug_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 15,
+      "unit": "ug/L",
+      "section_ref": "Section 5.1.1",
+      "notes": "Action level per 40 CFR 141.80 Lead and Copper Rule"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Arsenic",
+      "maps_to_column": "arsenic_ug_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 10,
+      "unit": "ug/L",
+      "section_ref": "Section 5.1.2",
+      "notes": "MCL per 40 CFR 141.62"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "E. coli",
+      "maps_to_column": "ecoli_present",
+      "type": "STRING_EQUALS",
+      "expected_value": "ABSENT",
+      "section_ref": "Section 5.2.1",
+      "notes": "Any positive E. coli is Tier 1 violation per 40 CFR 141.63"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Total trihalomethanes",
+      "maps_to_column": "tthm_ug_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 80,
+      "unit": "ug/L",
+      "section_ref": "Section 5.3.1",
+      "notes": "Running annual average MCL per 40 CFR 141.64"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Haloacetic acids (HAA5)",
+      "maps_to_column": "haa5_ug_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 60,
+      "unit": "ug/L",
+      "section_ref": "Section 5.3.2",
+      "notes": "Running annual average MCL per 40 CFR 141.64"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Turbidity",
+      "maps_to_column": "turbidity_ntu",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 1.0,
+      "unit": "NTU",
+      "section_ref": "Section 5.4.1",
+      "notes": "Never exceed per 40 CFR 141.13"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Free chlorine residual",
+      "maps_to_column": "free_chlorine_mg_l",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.2,
+      "upper_limit": 4.0,
+      "unit": "mg/L",
+      "section_ref": "Section 5.5.1",
+      "notes": "At entry point per 40 CFR 141.72"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "pH",
+      "maps_to_column": "ph",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 6.5,
+      "upper_limit": 8.5,
+      "unit": "pH units",
+      "section_ref": "Section 5.6.1",
+      "notes": "EPA Secondary MCL per 40 CFR 143.3"
+    },
+    {
+      "criterion_id": "C009",
+      "parameter": "Nitrate",
+      "maps_to_column": "nitrate_mg_l",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 10,
+      "unit": "mg/L as N",
+      "section_ref": "Section 5.7.1",
+      "notes": "MCL per 40 CFR 141.62"
+    }
+  ],
+  "sampling": {
+    "method": "REGULATORY",
+    "locations": 40,
+    "frequency": "Monthly per NPDWR"
+  },
+  "disposition_rules": {
+    "pass": "All parameters within MCLs/action levels",
+    "conditional": "Secondary MCL (pH, turbidity at 0.3-1.0) exceeded -- advisory notice required",
+    "fail": "Any MCL exceeded -- Tier 1 or Tier 2 public notification required per 40 CFR 141.202"
+  }
+}

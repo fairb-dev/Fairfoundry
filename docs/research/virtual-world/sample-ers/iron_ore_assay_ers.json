@@ -1,0 +1,97 @@
+{
+  "ers_id": "ERS-092",
+  "title": "Iron Ore Grade Assay Specification - Premium Fines",
+  "revision": "4.0",
+  "product": "Iron Ore Premium Fines - Spot Cargo",
+  "stage": "MP",
+  "issued_by": "Titan Global Mining Corp (OEM)",
+  "factory": "Cairo Contract Analytical Laboratory S.A.E.",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "sampling_method": "ISO 3082 transverse falling stream at discharge",
+    "sample_preparation": "ISO 3082 crushing, riffling, pulverizing to -106 um",
+    "analysis_temperature_c": { "nominal": 23, "tolerance": 2 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Total iron (Fe)",
+      "maps_to_column": "fe_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 62.0,
+      "unit": "% dry weight",
+      "section_ref": "Section 3.1.1",
+      "notes": "Per ISO 2596-1 titrimetric method"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Silica (SiO2)",
+      "maps_to_column": "sio2_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 4.5,
+      "unit": "%",
+      "section_ref": "Section 3.2.1",
+      "notes": "Per ISO 2598-1"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Alumina (Al2O3)",
+      "maps_to_column": "al2o3_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 2.5,
+      "unit": "%",
+      "section_ref": "Section 3.2.2",
+      "notes": "Per ISO 2598-2"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Phosphorus (P)",
+      "maps_to_column": "p_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.08,
+      "unit": "%",
+      "section_ref": "Section 3.3.1",
+      "notes": "Per ISO 2598-1"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Sulfur (S)",
+      "maps_to_column": "s_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.05,
+      "unit": "%",
+      "section_ref": "Section 3.3.2",
+      "notes": "Per ISO 4689"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Moisture content",
+      "maps_to_column": "moisture_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 8.0,
+      "unit": "%",
+      "section_ref": "Section 3.4.1",
+      "notes": "Per ISO 3087 transverse falling stream method"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Size - passing 6.3 mm",
+      "maps_to_column": "pct_passing_6_3mm",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 90,
+      "unit": "%",
+      "section_ref": "Section 3.5.1",
+      "notes": "Per ISO 4701 sieve analysis"
+    }
+  ],
+  "sampling": {
+    "method": "ISO_3082",
+    "increments_per_lot": 64,
+    "minimum_sample_mass_kg": 40
+  },
+  "disposition_rules": {
+    "pass": "All criteria met on composite sample",
+    "conditional": "Fe 61.5-62.0% -- price adjustment per penalty schedule, no rejection",
+    "fail": "Fe < 61.5% after umpire analysis, or moisture > 8.0% (Transportable Moisture Limit risk)"
+  }
+}

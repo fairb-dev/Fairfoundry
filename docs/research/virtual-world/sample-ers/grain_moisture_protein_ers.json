@@ -1,0 +1,97 @@
+{
+  "ers_id": "ERS-096",
+  "title": "Hard Red Winter Wheat Grain Quality Specification",
+  "revision": "6.0",
+  "product": "HRW Wheat - Country Elevator Purchase",
+  "stage": "Sustaining",
+  "issued_by": "Prairie Grain Cooperative (OEM)",
+  "factory": "Great Plains Grain Inspection Service LLC",
+  "effective_date": "2026-06-01",
+  "test_conditions": {
+    "moisture_method": "NIRT per AACC Method 39-25.01",
+    "protein_method": "NIRT per AACC Method 39-10.01",
+    "test_weight_method": "GIPSA Bates-type filling hopper"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Moisture content",
+      "maps_to_column": "moisture_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 13.5,
+      "unit": "%",
+      "section_ref": "Section 3.1.1",
+      "notes": "US No. 1 grade per 7 CFR 810; <= 14.0% for US No. 2"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Protein content (12% moisture basis)",
+      "maps_to_column": "protein_pct_12mb",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 11.5,
+      "unit": "%",
+      "section_ref": "Section 3.2.1",
+      "notes": "Premium pricing tier per contract"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Test weight",
+      "maps_to_column": "test_weight_lb_bu",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 60.0,
+      "unit": "lb/bu",
+      "section_ref": "Section 3.3.1",
+      "notes": "US No. 1 grade per USDA Official Grain Grading Standards"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Total defects",
+      "maps_to_column": "total_defects_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 2.0,
+      "unit": "%",
+      "section_ref": "Section 3.4.1",
+      "notes": "US No. 1 per 7 CFR 810.2202"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Shrunken and broken kernels",
+      "maps_to_column": "shrunken_broken_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 3.0,
+      "unit": "%",
+      "section_ref": "Section 3.4.2",
+      "notes": "US No. 1 limit"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Foreign material",
+      "maps_to_column": "foreign_material_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.4,
+      "unit": "%",
+      "section_ref": "Section 3.4.3",
+      "notes": "US No. 1 limit"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Falling number",
+      "maps_to_column": "falling_number_s",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 300,
+      "unit": "seconds",
+      "section_ref": "Section 3.5.1",
+      "notes": "Breadmaking quality per AACC Method 56-81.04"
+    }
+  ],
+  "sampling": {
+    "method": "PROBE_SAMPLE",
+    "probes_per_truck": 5,
+    "composite_method": "GIPSA"
+  },
+  "disposition_rules": {
+    "pass": "US No. 1 grade with protein >= 11.5% -- premium pricing applies",
+    "conditional": "US No. 2 grade (moisture 13.5-14.0%, defects 2-4%) -- discounted pricing",
+    "fail": "Below US No. 2 grade, or falling number < 300 -- rejected or heavily discounted"
+  }
+}
