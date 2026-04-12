@@ -75,13 +75,13 @@ export default async function LinksPage({
   if (links.length === 0) {
     if (!hasColumns || !hasCriteria) {
       return (
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center">
+        <div className="empty-state">
           <svg
             width="48"
             height="48"
             viewBox="0 0 24 24"
             fill="none"
-            className="mx-auto mb-4 text-gray-300"
+            className="empty-state-icon"
           >
             <path
               d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"
@@ -98,16 +98,14 @@ export default async function LinksPage({
               strokeLinejoin="round"
             />
           </svg>
-          <p className="text-gray-500">
-            No column-criteria links yet.
-          </p>
-          <p className="mt-2 text-sm text-gray-400">
+          <div className="empty-state-title">Upload Data and Criteria First</div>
+          <div className="empty-state-description">
             {!hasColumns && !hasCriteria
-              ? "Upload data columns and acceptance criteria first."
+              ? "Upload production data and define acceptance criteria before creating links."
               : !hasColumns
-                ? "Upload a CSV data file first."
-                : "Define acceptance criteria first."}
-          </p>
+                ? "Upload a CSV data file to define data columns."
+                : "Define acceptance criteria to link against data columns."}
+          </div>
         </div>
       );
     }

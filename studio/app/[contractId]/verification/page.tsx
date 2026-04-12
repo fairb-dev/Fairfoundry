@@ -8,6 +8,7 @@ import {
   formatLimit,
   type LinkedColumn,
 } from "@/lib/verification-engine";
+import { FailCell } from "./fail-cell";
 
 export default async function VerificationPage({
   params,
@@ -34,9 +35,27 @@ export default async function VerificationPage({
 
   if (!logMapping || links.length === 0) {
     return (
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center text-gray-500">
-        Verification requires linked data columns and acceptance criteria.
-        Set up links first.
+      <div className="empty-state">
+        <svg
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="empty-state-icon"
+        >
+          <path
+            d="M9 12l2 2 4-4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+        <div className="empty-state-title">No Verification Data</div>
+        <div className="empty-state-description">
+          Link data columns to acceptance criteria first, then run verification to see pass/fail results.
+        </div>
       </div>
     );
   }
@@ -52,29 +71,70 @@ export default async function VerificationPage({
 
   // ── Read the CSV ───────────────────────────────────────────────────────
 
-  const sampleDataDir = path.resolve(
-    process.cwd(),
-    "../docs/research/virtual-world/sample-data"
-  );
-
-  const csvFiles = fs.readdirSync(sampleDataDir).filter((f) => f.endsWith(".csv"));
+  let csvContent = "";
+  let csvFileName = logFormat.name + ".csv";
   const formatNameLower = logFormat.name.toLowerCase();
 
-  let csvFileName = csvFiles[0];
-  for (const f of csvFiles) {
-    const fLower = f.toLowerCase();
-    if (formatNameLower.includes("camera") && fLower.includes("camera")) { csvFileName = f; break; }
-    if (formatNameLower.includes("steel") && fLower.includes("steel")) { csvFileName = f; break; }
-    if (formatNameLower.includes("tablet") && fLower.includes("tablet")) { csvFileName = f; break; }
+  // Try reading from uploads directory first
+  const uploadsDir = path.resolve(process.cwd(), "uploads");
+  let foundInUploads = false;
+
+  if (fs.existsSync(uploadsDir)) {
+    const uploadFiles = fs.readdirSync(uploadsDir).filter((f) => f.endsWith(".csv"));
+    for (const f of uploadFiles) {
+      if (f.toLowerCase().includes(formatNameLower.replace(/\s+/g, "_").toLowerCase()) || uploadFiles.length === 1) {
+        const fPath = path.join(uploadsDir, f);
+        try {
+          csvContent = fs.readFileSync(fPath, "utf-8");
+          csvFileName = f.replace(/^\d+_/, "");
+          foundInUploads = true;
+        } catch { /* continue */ }
+      }
+    }
+    if (!foundInUploads && uploadFiles.length > 0) {
+      const sorted = [...uploadFiles].sort().reverse();
+      const fPath = path.join(uploadsDir, sorted[0]);
+      try {
+        csvContent = fs.readFileSync(fPath, "utf-8");
+        csvFileName = sorted[0].replace(/^\d+_/, "");
+        foundInUploads = true;
+      } catch { /* continue */ }
+    }
   }
 
-  let csvContent: string;
-  try {
-    csvContent = fs.readFileSync(path.join(sampleDataDir, csvFileName), "utf-8");
-  } catch {
+  // Fallback: legacy sample-data directory
+  if (!foundInUploads) {
+    const sampleDataDir = path.resolve(
+      process.cwd(),
+      "../docs/research/virtual-world/sample-data"
+    );
+    try {
+      const csvFiles = fs.readdirSync(sampleDataDir).filter((f) => f.endsWith(".csv"));
+      let matchedFile = csvFiles[0];
+      for (const f of csvFiles) {
+        const fLower = f.toLowerCase();
+        if (formatNameLower.includes("camera") && fLower.includes("camera")) { matchedFile = f; break; }
+        if (formatNameLower.includes("steel") && fLower.includes("steel")) { matchedFile = f; break; }
+        if (formatNameLower.includes("tablet") && fLower.includes("tablet")) { matchedFile = f; break; }
+      }
+      if (matchedFile) {
+        csvContent = fs.readFileSync(path.join(sampleDataDir, matchedFile), "utf-8");
+        csvFileName = matchedFile;
+      }
+    } catch { /* no sample data */ }
+  }
+
+  if (!csvContent) {
     return (
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center text-gray-500">
-        CSV file not found.
+      <div className="empty-state">
+        <div className="empty-state-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" strokeWidth="1.5"/>
+            <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.5"/>
+          </svg>
+        </div>
+        <div className="empty-state-title">CSV File Not Found</div>
+        <div className="empty-state-description">The uploaded file may have been moved or deleted.</div>
       </div>
     );
   }
@@ -271,6 +331,7 @@ export default async function VerificationPage({
               return (
                 <tr
                   key={unit.rowIndex}
+                  data-fail={unit.overallPass ? undefined : "true"}
                   style={{
                     backgroundColor: unit.overallPass
                       ? undefined
@@ -296,20 +357,34 @@ export default async function VerificationPage({
                     }
 
                     if (cellResult) {
+                      const info = linkedInfo[header];
                       // Linked column: show pass/fail indicator + value
+                      if (!cellResult.pass && info) {
+                        // Failing cell: clickable popover with detail
+                        return (
+                          <td key={header}>
+                            <FailCell
+                              rawValue={rawValue}
+                              measuredValue={cellResult.value}
+                              criteriaType={info.criteriaType}
+                              lowerLimit={info.lowerLimit}
+                              upperLimit={info.upperLimit}
+                              unit={info.unit}
+                              margin={cellResult.margin}
+                              sourceRef={info.sourceRef}
+                              parameterName={info.parameterName}
+                            />
+                          </td>
+                        );
+                      }
+
                       return (
                         <td key={header}>
                           <span
                             className="inline-flex items-center gap-1"
-                            style={{
-                              color: cellResult.pass
-                                ? "var(--pass)"
-                                : "var(--fail)",
-                            }}
+                            style={{ color: "var(--pass)" }}
                           >
-                            <span className="text-xs">
-                              {cellResult.pass ? "\u2713" : "\u2717"}
-                            </span>
+                            <span className="text-xs">{"\u2713"}</span>
                             <span>{rawValue}</span>
                           </span>
                         </td>

@@ -41,14 +41,37 @@ export default async function ContractLayout({
 
   return (
     <main className="mx-auto max-w-6xl px-8 py-12">
+      {/* Top bar: Logo + Breadcrumb */}
+      <div className="flex items-center gap-3 mb-6">
+        <Link
+          href="/"
+          className="text-base font-bold tracking-tight text-[var(--foreground)] no-underline hover:opacity-80 shrink-0"
+        >
+          Fairbuild
+        </Link>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-300 shrink-0">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <Link
+          href="/"
+          className="text-sm text-gray-400 no-underline hover:text-[var(--foreground)]"
+        >
+          Contracts
+        </Link>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-300 shrink-0">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <span className="text-sm text-gray-600 truncate">{contract.title}</span>
+      </div>
+
       {/* Back link */}
       <Link
         href="/"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 no-underline hover:text-[var(--foreground)] mb-6"
+        className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)] no-underline hover:text-[var(--foreground)] mb-6"
       >
         <svg
-          width="16"
-          height="16"
+          width="18"
+          height="18"
           viewBox="0 0 16 16"
           fill="none"
           className="shrink-0"
@@ -56,7 +79,7 @@ export default async function ContractLayout({
           <path
             d="M10 12L6 8L10 4"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />

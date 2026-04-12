@@ -4,13 +4,36 @@ import { createContract } from "./actions";
 export default function NewContractPage() {
   return (
     <main className="mx-auto max-w-xl px-6 py-16">
+      {/* Breadcrumb */}
+      <div className="flex items-center gap-3 mb-6">
+        <Link
+          href="/"
+          className="text-base font-bold tracking-tight text-[var(--foreground)] no-underline hover:opacity-80 shrink-0"
+        >
+          Fairbuild
+        </Link>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-300 shrink-0">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <Link
+          href="/"
+          className="text-sm text-gray-400 no-underline hover:text-[var(--foreground)]"
+        >
+          Contracts
+        </Link>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-300 shrink-0">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <span className="text-sm text-gray-600">New</span>
+      </div>
+
       <Link
         href="/"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 no-underline hover:text-[var(--foreground)] mb-8"
+        className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)] no-underline hover:text-[var(--foreground)] mb-8"
       >
         <svg
-          width="16"
-          height="16"
+          width="18"
+          height="18"
           viewBox="0 0 16 16"
           fill="none"
           className="shrink-0"
@@ -18,12 +41,12 @@ export default function NewContractPage() {
           <path
             d="M10 12L6 8L10 4"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </svg>
-        Back to Contracts
+        All Contracts
       </Link>
 
       <header className="mb-10">

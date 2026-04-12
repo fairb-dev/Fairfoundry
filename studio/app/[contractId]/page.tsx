@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { SandboxTransitionButton } from "./sandbox-button";
 
 const STATUS_DESCRIPTIONS: Record<string, string> = {
   DRAFT: "This contract is being drafted. Criteria and data mappings are not yet finalized.",
@@ -60,7 +61,7 @@ export default async function ContractOverview({
   return (
     <div>
       {/* Stat Cards */}
-      <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 stat-grid-responsive">
         <div className="stat-card">
           <div className="stat-value">{contract.criteria.length}</div>
           <div className="stat-label">Acceptance Criteria</div>
@@ -141,8 +142,8 @@ export default async function ContractOverview({
         )}
       </div>
 
-      {/* Quick Action */}
-      <div className="mt-8">
+      {/* Quick Actions */}
+      <div className="mt-8 flex flex-wrap items-center gap-3">
         <Link
           href={`/${contractId}/verification`}
           className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90"
@@ -163,6 +164,9 @@ export default async function ContractOverview({
           </svg>
           Run Verification
         </Link>
+        {contract.status === "DRAFT" && linkCount > 0 && (
+          <SandboxTransitionButton contractId={contractId} />
+        )}
       </div>
     </div>
   );

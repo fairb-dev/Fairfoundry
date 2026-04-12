@@ -33,14 +33,32 @@ export default async function DataPage({
   if (!logMapping) {
     return (
       <div>
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold text-[var(--foreground)]">
-            Upload Production Data
-          </h2>
-          <p className="mt-1 text-sm text-gray-500">
-            Upload a CSV file from the factory production log. The AI will
-            analyze columns and suggest roles automatically.
-          </p>
+        <div className="empty-state mb-8">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="empty-state-icon"
+          >
+            <path
+              d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.5" />
+            <path
+              d="M12 18v-6M9 15l3-3 3 3"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <div className="empty-state-title">Upload a Production Log</div>
+          <div className="empty-state-description">
+            Upload a CSV file to get started. The AI will analyze columns and suggest roles automatically.
+          </div>
         </div>
         <CSVUpload contractId={contractId} />
       </div>
@@ -141,8 +159,21 @@ export default async function DataPage({
 
   if (!csvContent) {
     return (
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center text-gray-500">
-        CSV file not found. The uploaded file may have been moved.
+      <div className="empty-state">
+        <svg
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="empty-state-icon"
+        >
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.5"/>
+        </svg>
+        <div className="empty-state-title">CSV File Not Found</div>
+        <div className="empty-state-description">
+          The uploaded file may have been moved or deleted. Try uploading again.
+        </div>
       </div>
     );
   }

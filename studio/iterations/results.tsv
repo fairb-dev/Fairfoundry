@@ -5,3 +5,4 @@ iteration	date	feature	build_passes	visual_review	user_clarity	elegance	issues_f
 4	2026-04-12	csv-upload+ai-columns	YES	YES	9/10	9/10	0	20min
 5	2026-04-12	ers-upload+criteria	YES	YES	9/10	9/10	0	18min
 6	2026-04-12	auto-link-columns	YES	YES	9/10	9/10	0	22min
+7	2026-04-12	edge-polish-8-items	YES	YES	9/10	9/10	1	25min

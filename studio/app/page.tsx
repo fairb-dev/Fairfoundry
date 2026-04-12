@@ -24,10 +24,17 @@ export default async function Home() {
   });
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
+    <div className="min-h-screen flex flex-col">
+    <main className="mx-auto max-w-4xl px-6 py-16 flex-1 w-full">
       <header className="mb-12">
+        <Link
+          href="/"
+          className="inline-block mb-4 text-lg font-bold tracking-tight text-[var(--foreground)] no-underline hover:opacity-80"
+        >
+          Fairbuild
+        </Link>
         <p className="mb-2 text-sm font-semibold tracking-wider uppercase text-[var(--accent)]">
-          Fairbuild Studio
+          Contract Builder Studio
         </p>
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -61,8 +68,31 @@ export default async function Home() {
       </header>
 
       {contracts.length === 0 ? (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center text-gray-500">
-          No contracts yet. Create one to get started.
+        <div className="empty-state">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="empty-state-icon"
+          >
+            <path
+              d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.5" />
+            <path
+              d="M12 11v6M9 14h6"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
+          <div className="empty-state-title">No Contracts Yet</div>
+          <div className="empty-state-description">
+            Create your first quality verification contract to get started.
+          </div>
         </div>
       ) : (
         <div className="grid gap-5">
@@ -130,5 +160,9 @@ export default async function Home() {
         </div>
       )}
     </main>
+    <footer className="studio-footer">
+      &copy; 2026 Fairbuild. All rights reserved.
+    </footer>
+    </div>
   );
 }
