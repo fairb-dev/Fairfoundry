@@ -3,3 +3,4 @@ iteration	date	feature	build_passes	visual_review	user_clarity	elegance	issues_f
 2	2026-04-12	contract-detail+hypertext	YES	YES	7/10	6/10	4	25min
 3	2026-04-12	polish-tabs-tables	YES	YES	8/10	8/10	2	10min
 4	2026-04-12	csv-upload+ai-columns	YES	YES	9/10	9/10	0	20min
+5	2026-04-12	ers-upload+criteria	YES	YES	9/10	9/10	0	18min
