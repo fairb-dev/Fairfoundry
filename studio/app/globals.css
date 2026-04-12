@@ -6,6 +6,14 @@
   --accent: #2f6fed;
   --muted: #f7f9fc;
   --border: #e3e8ee;
+  --pass: #16a34a;
+  --pass-bg: #dcfce7;
+  --pass-bg-subtle: #f0fdf4;
+  --fail: #dc2626;
+  --fail-bg: #fef2f2;
+  --fail-bg-subtle: #fff5f5;
+  --font-sans: var(--font-ibm-plex-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), "SF Mono", "Fira Code", monospace;
 }
 
 * {
@@ -17,6 +25,194 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Mono font utility */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Tab navigation */
+.tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-link {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.tab-link:hover {
+  color: var(--foreground);
+}
+
+.tab-link-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Stat card */
+.stat-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+/* Verification table */
+.verification-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8125rem;
+}
+
+.verification-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.verification-table thead th {
+  background: var(--muted);
+  border-bottom: 2px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  vertical-align: bottom;
+}
+
+.verification-table thead th:first-child {
+  border-left: 1px solid var(--border);
+}
+
+.verification-table thead th:last-child {
+  border-right: 1px solid var(--border);
+}
+
+.verification-table tbody td {
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.verification-table tbody td:first-child {
+  border-left: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.verification-table tbody tr:nth-child(even) {
+  background: var(--muted);
+}
+
+.verification-table tbody tr:hover {
+  background: #eef2f7;
+}
+
+/* Column header sub-lines */
+.col-header-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.col-header-limit {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 0.125rem;
+  font-family: var(--font-mono);
+}
+
+.col-header-ref {
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: #9ca3af;
+  margin-top: 0.125rem;
+}
+
+/* Role badges */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Progress bar */
+.progress-bar-track {
+  background: #e5e7eb;
+  border-radius: 9999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease-out;
+}
+
+/* Criterion card */
+.criterion-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: box-shadow 0.15s;
+}
+
+.criterion-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Link card */
+.link-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: box-shadow 0.15s;
+}
+
+.link-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }

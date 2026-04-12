@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
 const STATUS_COLORS: Record<string, string> = {
@@ -51,9 +52,10 @@ export default async function Home() {
               STATUS_COLORS[contract.status] ?? "bg-gray-100 text-gray-700";
 
             return (
-              <div
+              <Link
                 key={contract.id}
-                className="rounded-2xl border border-[var(--border)] bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                href={`/${contract.id}`}
+                className="block rounded-2xl border border-[var(--border)] bg-white p-6 shadow-sm transition-shadow hover:shadow-md no-underline"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0 flex-1">
@@ -99,7 +101,7 @@ export default async function Home() {
                     })}
                   </span>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
