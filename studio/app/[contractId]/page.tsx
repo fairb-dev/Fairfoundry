@@ -60,7 +60,7 @@ export default async function ContractOverview({
   return (
     <div>
       {/* Stat Cards */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
         <div className="stat-card">
           <div className="stat-value">{contract.criteria.length}</div>
           <div className="stat-label">Acceptance Criteria</div>

@@ -37,7 +37,7 @@ body {
 /* Tab navigation */
 .tab-nav {
   display: flex;
-  gap: 0;
+  gap: 1.5rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -66,11 +66,11 @@ body {
   background: var(--background);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.75rem;
 }
 
 .stat-value {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1;
   color: var(--foreground);
@@ -103,7 +103,7 @@ body {
   background: var(--muted);
   border-bottom: 2px solid var(--border);
   border-right: 1px solid var(--border);
-  padding: 0.625rem 0.75rem;
+  padding: 1rem 1rem;
   text-align: left;
   font-weight: 600;
   font-family: var(--font-sans);
@@ -121,10 +121,11 @@ body {
 .verification-table tbody td {
   border-bottom: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 1rem;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   white-space: nowrap;
+  min-width: 100px;
 }
 
 .verification-table tbody td:first-child {
@@ -142,24 +143,24 @@ body {
 
 /* Column header sub-lines */
 .col-header-name {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--foreground);
 }
 
 .col-header-limit {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--accent);
-  margin-top: 0.125rem;
+  margin-top: 0.25rem;
   font-family: var(--font-mono);
 }
 
 .col-header-ref {
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 400;
   color: #9ca3af;
-  margin-top: 0.125rem;
+  margin-top: 0.25rem;
 }
 
 /* Role badges */

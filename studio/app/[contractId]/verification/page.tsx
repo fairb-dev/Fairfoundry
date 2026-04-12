@@ -156,7 +156,7 @@ export default async function VerificationPage({
   return (
     <div>
       {/* ── Summary Bar ─────────────────────────────────────────────── */}
-      <div className="mb-6 rounded-xl border border-[var(--border)] bg-white p-6">
+      <div className="mb-8 rounded-xl border border-[var(--border)] bg-white p-8">
         <div className="flex items-end justify-between gap-4 mb-4">
           <div>
             <div className="text-sm font-medium text-gray-500 mb-1">
@@ -198,7 +198,7 @@ export default async function VerificationPage({
 
         {/* Per-criterion failure summary */}
         {result.criterionSummaries.some((s) => s.totalFailed > 0) && (
-          <div className="mt-4 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             {result.criterionSummaries
               .filter((s) => s.totalFailed > 0)
               .map((s) => (

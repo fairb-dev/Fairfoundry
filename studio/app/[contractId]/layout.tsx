@@ -40,7 +40,7 @@ export default async function ContractLayout({
     STATUS_COLORS[contract.status] ?? "bg-gray-100 text-gray-700";
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="mx-auto max-w-6xl px-8 py-12">
       {/* Back link */}
       <Link
         href="/"
@@ -113,7 +113,7 @@ export default async function ContractLayout({
       <TabNav contractId={contractId} />
 
       {/* Tab Content */}
-      <div className="pt-6">{children}</div>
+      <div className="pt-8">{children}</div>
     </main>
   );
 }

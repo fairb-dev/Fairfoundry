@@ -140,9 +140,19 @@ export default async function DataPage({
           <tbody>
             {rows.map((row, i) => (
               <tr key={i}>
-                {row.map((cell, j) => (
-                  <td key={j}>{cell}</td>
-                ))}
+                {row.map((cell, j) => {
+                  const role = columnRoleMap[headers[j]] ?? "METADATA";
+                  const isMeasurement = role === "MEASUREMENT";
+                  return (
+                    <td
+                      key={j}
+                      className={isMeasurement ? "font-mono" : ""}
+                      style={isMeasurement ? { minWidth: "120px" } : undefined}
+                    >
+                      {cell}
+                    </td>
+                  );
+                })}
               </tr>
             ))}
           </tbody>
