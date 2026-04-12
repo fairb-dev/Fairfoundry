@@ -3,6 +3,8 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { parseCSV } from "@/lib/csv-parser";
+import { CSVUpload } from "./csv-upload";
+import { ColumnEditor } from "./column-editor";
 
 const ROLE_STYLES: Record<string, { bg: string; text: string; label: string }> = {
   MEASUREMENT: { bg: "bg-blue-50", text: "text-blue-700", label: "Measurement" },
@@ -27,14 +29,25 @@ export default async function DataPage({
     where: { contractId },
   });
 
+  // ── No data yet: show upload form ──
   if (!logMapping) {
     return (
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center text-gray-500">
-        No data file linked to this contract yet.
+      <div>
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-[var(--foreground)]">
+            Upload Production Data
+          </h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Upload a CSV file from the factory production log. The AI will
+            analyze columns and suggest roles automatically.
+          </p>
+        </div>
+        <CSVUpload contractId={contractId} />
       </div>
     );
   }
 
+  // ── Data exists: show column editor + data preview ──
   const logFormat = await prisma.logFormat.findUnique({
     where: { id: logMapping.logFormatId },
     include: {
@@ -49,43 +62,87 @@ export default async function DataPage({
     notFound();
   }
 
-  // Read CSV from filesystem
-  const sampleDataDir = path.resolve(
-    process.cwd(),
-    "../docs/research/virtual-world/sample-data"
-  );
+  // Try reading the uploaded CSV from the uploads directory first,
+  // then fall back to the legacy sample-data path
+  let csvContent = "";
+  let csvFileName = logFormat.name + ".csv";
 
-  // Find the CSV file matching the log format name
-  const csvFiles = fs.readdirSync(sampleDataDir).filter((f) => f.endsWith(".csv"));
+  const uploadsDir = path.resolve(process.cwd(), "uploads");
+  let foundInUploads = false;
 
-  // Match based on format name or company
-  let csvFileName = csvFiles[0]; // fallback
-  const formatNameLower = logFormat.name.toLowerCase();
-
-  for (const f of csvFiles) {
-    const fLower = f.toLowerCase();
-    if (formatNameLower.includes("camera") && fLower.includes("camera")) {
-      csvFileName = f;
-      break;
+  if (fs.existsSync(uploadsDir)) {
+    const uploadFiles = fs.readdirSync(uploadsDir).filter((f) => f.endsWith(".csv"));
+    // Find the most recent file whose name contains the format name
+    const formatNameLower = logFormat.name.toLowerCase();
+    for (const f of uploadFiles) {
+      if (f.toLowerCase().includes(formatNameLower.replace(/\s+/g, "_").toLowerCase()) || uploadFiles.length === 1) {
+        // Read the last matching uploaded file (files are timestamped)
+        const fPath = path.join(uploadsDir, f);
+        try {
+          csvContent = fs.readFileSync(fPath, "utf-8");
+          csvFileName = f.replace(/^\d+_/, ""); // strip timestamp prefix
+          foundInUploads = true;
+        } catch {
+          // continue to fallback
+        }
+      }
     }
-    if (formatNameLower.includes("steel") && fLower.includes("steel")) {
-      csvFileName = f;
-      break;
-    }
-    if (formatNameLower.includes("tablet") && fLower.includes("tablet")) {
-      csvFileName = f;
-      break;
+
+    if (!foundInUploads && uploadFiles.length > 0) {
+      // Take the latest file by name (timestamp prefix sorts correctly)
+      const sorted = [...uploadFiles].sort().reverse();
+      const fPath = path.join(uploadsDir, sorted[0]);
+      try {
+        csvContent = fs.readFileSync(fPath, "utf-8");
+        csvFileName = sorted[0].replace(/^\d+_/, "");
+        foundInUploads = true;
+      } catch {
+        // continue to fallback
+      }
     }
   }
 
-  const csvPath = path.join(sampleDataDir, csvFileName);
-  let csvContent = "";
-  try {
-    csvContent = fs.readFileSync(csvPath, "utf-8");
-  } catch {
+  // Fallback: read from legacy sample-data directory
+  if (!foundInUploads) {
+    const sampleDataDir = path.resolve(
+      process.cwd(),
+      "../docs/research/virtual-world/sample-data"
+    );
+
+    try {
+      const csvFiles = fs.readdirSync(sampleDataDir).filter((f) => f.endsWith(".csv"));
+      const formatNameLower = logFormat.name.toLowerCase();
+
+      let matchedFile = csvFiles[0]; // fallback
+      for (const f of csvFiles) {
+        const fLower = f.toLowerCase();
+        if (formatNameLower.includes("camera") && fLower.includes("camera")) {
+          matchedFile = f;
+          break;
+        }
+        if (formatNameLower.includes("steel") && fLower.includes("steel")) {
+          matchedFile = f;
+          break;
+        }
+        if (formatNameLower.includes("tablet") && fLower.includes("tablet")) {
+          matchedFile = f;
+          break;
+        }
+      }
+
+      if (matchedFile) {
+        csvContent = fs.readFileSync(path.join(sampleDataDir, matchedFile), "utf-8");
+        csvFileName = matchedFile;
+      }
+    } catch {
+      // No sample data available
+    }
+  }
+
+  if (!csvContent) {
     return (
       <div className="rounded-xl border border-[var(--border)] bg-[var(--muted)] p-12 text-center text-gray-500">
-        CSV file not found at expected path.
+        CSV file not found. The uploaded file may have been moved.
       </div>
     );
   }
@@ -98,8 +155,37 @@ export default async function DataPage({
     columnRoleMap[col.originalName] = col.role;
   }
 
+  // Check if any columns have AI suggestions (for showing the column editor)
+  const hasUnconfirmed = logFormat.columns.some((c) => !c.confirmedBy);
+
   return (
     <div>
+      {/* Column Role Editor */}
+      {hasUnconfirmed && (
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold text-[var(--foreground)] mb-1">
+            Column Roles
+          </h2>
+          <p className="text-sm text-gray-500 mb-4">
+            Review AI-suggested roles for each column and confirm or override them.
+          </p>
+          <ColumnEditor
+            columns={logFormat.columns.map((c) => ({
+              id: c.id,
+              columnIndex: c.columnIndex,
+              originalName: c.originalName,
+              displayName: c.displayName,
+              role: c.role,
+              aiSuggestion: c.aiSuggestion,
+              aiConfidence: c.aiConfidence,
+              confirmedBy: c.confirmedBy,
+            }))}
+            logFormatId={logFormat.id}
+            contractId={contractId}
+          />
+        </div>
+      )}
+
       {/* File info */}
       <div className="mb-5 flex items-center gap-3">
         <div className="flex items-center gap-2 rounded-lg bg-[var(--muted)] px-3 py-1.5 text-sm text-gray-600">
