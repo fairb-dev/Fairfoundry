@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { parseCSV } from "@/lib/csv-parser";
@@ -9,6 +10,7 @@ import {
 } from "@/lib/verification-engine";
 import { DonutChart, CriterionMiniBar } from "../donut-chart";
 import { generateInsights, InsightsPanel } from "../insights";
+import { ProgressSteps } from "../progress-steps";
 import { TableControls } from "./table-controls";
 import { WhatIf } from "./what-if";
 
@@ -36,6 +38,14 @@ export default async function VerificationPage({
   if (!contract) notFound();
 
   if (!logMapping || links.length === 0) {
+    const hasData = !!logMapping;
+    const criteria = await prisma.acceptanceCriterion.findMany({
+      where: { contractId },
+      select: { id: true },
+      take: 1,
+    });
+    const hasCriteria = criteria.length > 0;
+
     return (
       <div className="empty-state">
         <svg
@@ -54,9 +64,39 @@ export default async function VerificationPage({
           />
           <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
         </svg>
-        <div className="empty-state-title">No Verification Data</div>
-        <div className="empty-state-description">
-          Link data columns to acceptance criteria first, then run verification to see pass/fail results.
+        <div className="empty-state-title">Not Ready for Verification</div>
+        <div className="empty-state-description mb-6">
+          Upload a production log and define acceptance criteria to get started.
+        </div>
+        <ProgressSteps
+          hasData={hasData}
+          hasCriteria={hasCriteria}
+          hasLinks={false}
+          hasVerification={false}
+        />
+        <div className="mt-6">
+          {!hasData ? (
+            <Link
+              href={`/${contractId}/data`}
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white no-underline shadow-sm hover:opacity-90"
+            >
+              Upload Data
+            </Link>
+          ) : !hasCriteria ? (
+            <Link
+              href={`/${contractId}/criteria`}
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white no-underline shadow-sm hover:opacity-90"
+            >
+              Define Criteria
+            </Link>
+          ) : (
+            <Link
+              href={`/${contractId}/links`}
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white no-underline shadow-sm hover:opacity-90"
+            >
+              Link Columns
+            </Link>
+          )}
         </div>
       </div>
     );

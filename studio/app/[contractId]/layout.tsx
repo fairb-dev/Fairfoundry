@@ -1,8 +1,27 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { TabNav } from "./tab-nav";
 import { KeyboardShortcuts } from "./keyboard-shortcuts";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ contractId: string }>;
+}): Promise<Metadata> {
+  const { contractId } = await params;
+  const contract = await prisma.contract.findUnique({
+    where: { id: contractId },
+    select: { title: true },
+  });
+  return {
+    title: contract?.title ?? "Contract",
+    description: contract
+      ? `Quality verification contract: ${contract.title}`
+      : "Contract details",
+  };
+}
 
 const STATUS_COLORS: Record<string, string> = {
   DRAFT: "bg-gray-100 text-gray-700",
@@ -42,7 +61,7 @@ export default async function ContractLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
-    <main className="mx-auto max-w-6xl px-8 py-12 flex-1 w-full">
+    <main id="main-content" className="mx-auto max-w-6xl px-8 py-12 flex-1 w-full">
       {/* Top bar: Logo + Breadcrumb */}
       <div className="flex items-center gap-3 mb-6">
         <Link

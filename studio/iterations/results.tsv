@@ -12,3 +12,4 @@ iteration	date	feature	build_passes	visual_review	user_clarity	elegance	issues_f
 11	2026-04-12	inline-edit+report	YES	YES	10/10	10/10	0	22min
 12	2026-04-12	search-filter-whatif	YES	YES	10/10	10/10	0	20min
 13	2026-04-12	one-page-summary+shortcuts	YES	YES	10/10	10/10	0	18min
+14	2026-04-12	final-refinements	YES	YES	10/10	10/10	0	24min

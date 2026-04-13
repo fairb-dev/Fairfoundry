@@ -15,6 +15,7 @@ import { TableControls } from "./verification/table-controls";
 import { WhatIf } from "./verification/what-if";
 import { SandboxTransitionButton } from "./sandbox-button";
 import { DataPreviewSection } from "./summary-data-preview";
+import { ProgressSteps } from "./progress-steps";
 
 /* ── Status descriptions (reused from old overview) ───────────────────── */
 
@@ -427,6 +428,23 @@ export default async function ContractOverview({
           )}
         </div>
       </div>
+
+      {/* ── Setup Progress (shown when contract is not fully set up) ── */}
+      {!verificationResult && (
+        <div className="rounded-xl border border-[var(--border)] bg-white px-6 py-5">
+          <div className="text-sm font-medium text-gray-500 mb-4">
+            Upload a production log and define acceptance criteria to get started.
+          </div>
+          <div className="flex justify-center">
+            <ProgressSteps
+              hasData={hasData}
+              hasCriteria={hasCriteria}
+              hasLinks={hasLinks}
+              hasVerification={false}
+            />
+          </div>
+        </div>
+      )}
 
       {/* ── SECTION 1: PRODUCTION DATA ───────────────────────────────── */}
       <section>

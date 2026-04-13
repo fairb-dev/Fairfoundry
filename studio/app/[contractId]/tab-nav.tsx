@@ -16,7 +16,7 @@ export function TabNav({ contractId }: { contractId: string }) {
   const basePath = `/${contractId}`;
 
   return (
-    <nav className="tab-nav">
+    <nav className="tab-nav" role="tablist" aria-label="Contract sections">
       {TABS.map((tab) => {
         const href = `${basePath}${tab.suffix}`;
         const isActive =
@@ -28,6 +28,8 @@ export function TabNav({ contractId }: { contractId: string }) {
           <Link
             key={tab.label}
             href={href}
+            role="tab"
+            aria-selected={isActive}
             className={`tab-link ${isActive ? "tab-link-active" : ""}`}
           >
             {tab.label}

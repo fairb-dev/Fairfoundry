@@ -1,10 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { createContract } from "./actions";
+
+export const metadata: Metadata = {
+  title: "New Contract",
+  description: "Create a new quality verification contract.",
+};
 
 export default function NewContractPage() {
   return (
     <div className="min-h-screen flex flex-col">
-    <main className="mx-auto max-w-xl px-6 py-16 flex-1 w-full">
+    <main id="main-content" className="mx-auto max-w-xl px-6 py-16 flex-1 w-full">
       {/* Breadcrumb */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -55,7 +61,7 @@ export default function NewContractPage() {
             name="title"
             type="text"
             required
-            placeholder="e.g. Camera Module Quality Agreement"
+            placeholder="e.g., Camera Module EVT Testing Q2 2026"
             className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-2.5 text-sm text-[var(--foreground)] placeholder:text-gray-400 outline-none transition-colors focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
           />
         </div>
@@ -73,7 +79,7 @@ export default function NewContractPage() {
             name="oemName"
             type="text"
             required
-            placeholder="e.g. Nikon Corporation"
+            placeholder="e.g., Nikon Corporation"
             className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-2.5 text-sm text-[var(--foreground)] placeholder:text-gray-400 outline-none transition-colors focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
           />
           <p className="mt-1.5 text-xs text-gray-400">
@@ -94,7 +100,7 @@ export default function NewContractPage() {
             name="factoryName"
             type="text"
             required
-            placeholder="e.g. Foxconn Shenzhen Plant 3"
+            placeholder="e.g., Foxconn Shenzhen Plant 3"
             className="w-full rounded-lg border border-[var(--border)] bg-white px-4 py-2.5 text-sm text-[var(--foreground)] placeholder:text-gray-400 outline-none transition-colors focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"
           />
           <p className="mt-1.5 text-xs text-gray-400">

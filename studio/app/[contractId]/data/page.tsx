@@ -61,6 +61,14 @@ export default async function DataPage({
           </div>
         </div>
         <CSVUpload contractId={contractId} />
+        <div className="mt-6 text-center">
+          <a
+            href={`/${contractId}/criteria`}
+            className="text-sm text-gray-400 no-underline hover:text-[var(--accent)] transition-colors"
+          >
+            Skip for now &mdash; define criteria first &rarr;
+          </a>
+        </div>
       </div>
     );
   }

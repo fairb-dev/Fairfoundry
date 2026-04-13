@@ -77,6 +77,8 @@ export function FailCell({
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        aria-label={`View failure detail for ${parameterName}`}
+        aria-expanded={open}
         className="inline-flex items-center gap-1 cursor-pointer bg-transparent border-0 p-0 m-0 font-inherit"
         style={{ color: "var(--fail)" }}
       >

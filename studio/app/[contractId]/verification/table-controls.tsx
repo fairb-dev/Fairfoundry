@@ -171,7 +171,11 @@ export function TableControls({
               strokeLinecap="round"
             />
           </svg>
+          <label htmlFor="unit-search" className="sr-only">
+            Search by unit ID
+          </label>
           <input
+            id="unit-search"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -182,7 +186,7 @@ export function TableControls({
         </div>
 
         {/* Filter buttons */}
-        <div className="flex rounded-lg border border-[var(--border)] overflow-hidden">
+        <div className="flex rounded-lg border border-[var(--border)] overflow-hidden" role="group" aria-label="Filter by result">
           {(
             [
               { key: "all", label: "All" },
