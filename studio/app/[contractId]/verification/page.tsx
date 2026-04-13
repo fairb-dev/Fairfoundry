@@ -5,12 +5,12 @@ import { prisma } from "@/lib/prisma";
 import { parseCSV } from "@/lib/csv-parser";
 import {
   runVerification,
-  formatLimit,
   type LinkedColumn,
 } from "@/lib/verification-engine";
-import { FailCell } from "./fail-cell";
 import { DonutChart, CriterionMiniBar } from "../donut-chart";
 import { generateInsights, InsightsPanel } from "../insights";
+import { TableControls } from "./table-controls";
+import { WhatIf } from "./what-if";
 
 export default async function VerificationPage({
   params,
@@ -296,134 +296,51 @@ export default async function VerificationPage({
         </div>
       </div>
 
-      {/* ── Hypertext Verification Table ────────────────────────────── */}
-      <div className="overflow-x-auto rounded-xl border border-[var(--border)] shadow-sm">
-        <table className="verification-table">
-          <thead>
-            <tr>
-              {orderedHeaders.map((header) => {
-                const info = linkedInfo[header];
-                const isUnitId = header === unitIdHeader;
-
-                if (info) {
-                  // Linked column: three-line header
-                  const limitStr = formatLimit(
-                    info.criteriaType,
-                    info.lowerLimit,
-                    info.upperLimit,
-                    info.unit
-                  );
-                  return (
-                    <th key={header}>
-                      <div className="col-header-name">{header}</div>
-                      <div className="col-header-limit">{limitStr}</div>
-                      {info.sourceRef && (
-                        <div className="col-header-ref">
-                          {"\u00A7"}
-                          {info.sourceRef.replace(/^Section\s*/i, "")}
-                        </div>
-                      )}
-                    </th>
-                  );
-                }
-
-                // Non-linked column
-                return (
-                  <th key={header}>
-                    <div className="col-header-name">{header}</div>
-                    {isUnitId && (
-                      <div className="mt-0.5">
-                        <span className="role-badge bg-green-50 text-green-700">
-                          Unit ID
-                        </span>
-                      </div>
-                    )}
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {result.unitResults.map((unit) => {
-              return (
-                <tr
-                  key={unit.rowIndex}
-                  data-fail={unit.overallPass ? undefined : "true"}
-                  style={{
-                    backgroundColor: unit.overallPass
-                      ? undefined
-                      : "var(--fail-bg-subtle)",
-                  }}
-                >
-                  {orderedHeaders.map((header) => {
-                    const colIdx = headerIndexMap[header];
-                    const rawValue = rows[unit.rowIndex]?.[colIdx] ?? "";
-                    const isUnitId = header === unitIdHeader;
-                    const cellResult = unit.cells[header];
-
-                    if (isUnitId) {
-                      // Unit ID column: no pass/fail, just the ID
-                      return (
-                        <td
-                          key={header}
-                          className="font-mono text-sm font-medium"
-                        >
-                          {rawValue}
-                        </td>
-                      );
-                    }
-
-                    if (cellResult) {
-                      const info = linkedInfo[header];
-                      // Linked column: show pass/fail indicator + value
-                      if (!cellResult.pass && info) {
-                        // Failing cell: clickable popover with detail
-                        return (
-                          <td key={header}>
-                            <FailCell
-                              rawValue={rawValue}
-                              measuredValue={cellResult.value}
-                              criteriaType={info.criteriaType}
-                              lowerLimit={info.lowerLimit}
-                              upperLimit={info.upperLimit}
-                              unit={info.unit}
-                              margin={cellResult.margin}
-                              sourceRef={info.sourceRef}
-                              parameterName={info.parameterName}
-                            />
-                          </td>
-                        );
-                      }
-
-                      return (
-                        <td key={header}>
-                          <span
-                            className="inline-flex items-center gap-1"
-                            style={{ color: "var(--pass)" }}
-                          >
-                            <span className="text-xs">{"\u2713"}</span>
-                            <span>{rawValue}</span>
-                          </span>
-                        </td>
-                      );
-                    }
-
-                    // Non-linked column: just the value
-                    return (
-                      <td key={header} className="text-gray-500">
-                        {rawValue}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      {/* ── Hypertext Verification Table (client-side search/filter/sort) ── */}
+      <TableControls
+        unitRows={result.unitResults.map((unit) => ({
+          unitId: unit.unitId,
+          rowIndex: unit.rowIndex,
+          overallPass: unit.overallPass,
+          cells: unit.cells,
+          rawRow: rows[unit.rowIndex] ?? [],
+        }))}
+        orderedHeaders={orderedHeaders}
+        unitIdHeader={unitIdHeader}
+        headerIndexMap={headerIndexMap}
+        linkedInfo={Object.fromEntries(
+          Object.entries(linkedInfo).map(([key, lc]) => [
+            key,
+            {
+              columnName: lc.columnName,
+              criteriaType: lc.criteriaType,
+              lowerLimit: lc.lowerLimit,
+              upperLimit: lc.upperLimit,
+              unit: lc.unit,
+              sourceRef: lc.sourceRef,
+              parameterName: lc.parameterName,
+            },
+          ]),
+        )}
+        linkedColumnNames={Array.from(linkedColumnNames)}
+      />
 
       {/* ── Insights ───────────────────────────────────────────── */}
       <InsightsPanel insights={generateInsights(result, linkedColumns, headers, rows)} />
+
+      {/* ── What If ───────────────────────────────────────────── */}
+      <WhatIf
+        linkedColumns={linkedColumns.map((lc) => ({
+          columnName: lc.columnName,
+          criteriaType: lc.criteriaType,
+          lowerLimit: lc.lowerLimit,
+          upperLimit: lc.upperLimit,
+          unit: lc.unit,
+          parameterName: lc.parameterName,
+        }))}
+        csvRows={rows}
+        headerIndexMap={headerIndexMap}
+      />
 
       {/* ── Next Step CTA ────────────────────────────────────────── */}
       {contract.status === "DRAFT" && (

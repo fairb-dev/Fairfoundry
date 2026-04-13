@@ -177,6 +177,11 @@ body {
   background: #eef2f7;
 }
 
+/* Linked cell value alignment: icon left, value right */
+.verification-table tbody td .flex.items-center {
+  width: 100%;
+}
+
 /* Column header sub-lines */
 .col-header-name {
   font-size: 0.875rem;
