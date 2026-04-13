@@ -9,3 +9,4 @@ iteration	date	feature	build_passes	visual_review	user_clarity	elegance	issues_f
 8	2026-04-12	multi-scenario+visual	YES	YES	10/10	9/10	0	20min
 9	2026-04-12	steve-jobs-review	YES	YES	10/10	10/10	17-fixed	22min
 10	2026-04-12	donut+minibars+insights	YES	YES	10/10	10/10	0	30min
+11	2026-04-12	inline-edit+report	YES	YES	10/10	10/10	0	22min

@@ -239,8 +239,29 @@ export default async function VerificationPage({
               </div>
             </div>
           </div>
-          <div className="text-right text-sm text-gray-500">
-            {csvFileName}
+          <div className="flex flex-col items-end gap-2">
+            <div className="text-sm text-gray-500">
+              {csvFileName}
+            </div>
+            <a
+              href={`/${contractId}/report`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-white px-3.5 py-1.5 text-xs font-semibold text-[var(--foreground)] no-underline shadow-sm transition-all hover:bg-gray-50 active:scale-[0.98]"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M12 18v-6M9 15l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Download Report
+            </a>
           </div>
         </div>
 

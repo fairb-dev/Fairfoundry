@@ -118,6 +118,37 @@ export async function createCriterionAction(
 }
 
 /**
+ * Update a single criterion's editable fields.
+ */
+export async function updateCriterionAction(
+  criterionId: string,
+  contractId: string,
+  updates: Record<string, string | number | null>
+): Promise<{ error?: string }> {
+  const allowed = ["parameterName", "lowerLimit", "upperLimit", "unit"];
+  const data: Record<string, string | number | null> = {};
+
+  for (const key of allowed) {
+    if (key in updates) {
+      data[key] = updates[key];
+    }
+  }
+
+  if (Object.keys(data).length === 0) {
+    return { error: "No valid fields to update." };
+  }
+
+  await prisma.acceptanceCriterion.update({
+    where: { id: criterionId },
+    data,
+  });
+
+  revalidatePath(`/${contractId}/criteria`);
+  revalidatePath(`/${contractId}/verification`);
+  return {};
+}
+
+/**
  * Delete a single criterion.
  */
 export async function deleteCriterionAction(
