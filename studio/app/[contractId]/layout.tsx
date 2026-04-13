@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { TabNav } from "./tab-nav";
+import { KeyboardShortcuts } from "./keyboard-shortcuts";
 
 const STATUS_COLORS: Record<string, string> = {
   DRAFT: "bg-gray-100 text-gray-700",
@@ -115,6 +116,9 @@ export default async function ContractLayout({
 
       {/* Tab Content */}
       <div className="pt-8">{children}</div>
+
+      {/* Keyboard Shortcuts (global listener) */}
+      <KeyboardShortcuts contractId={contractId} />
     </main>
     <footer className="studio-footer">
       &copy; 2026 Fairbuild. All rights reserved.
