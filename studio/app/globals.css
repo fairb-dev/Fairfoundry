@@ -538,6 +538,36 @@ body {
   background: var(--dash-amber);
 }
 
+.sandbox-sample-nav {
+  display: grid;
+  gap: 4px;
+}
+
+.sandbox-sample-nav a {
+  border-radius: 8px;
+  color: var(--dash-muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  padding: 7px 9px;
+  text-decoration: none;
+}
+
+.sandbox-sample-nav a:hover {
+  background: var(--dash-surface);
+  color: var(--dash-text);
+}
+
+.sandbox-sample-nav a.active {
+  background: #eef4ff;
+  color: var(--dash-accent);
+}
+
+.sandbox-sample-nav a:focus-visible {
+  outline: 3px solid rgba(47, 111, 237, 0.45);
+  outline-offset: 2px;
+}
+
 .sandbox-main {
   width: calc(100% - 260px);
   margin-left: 260px;

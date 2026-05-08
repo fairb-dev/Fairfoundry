@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getSample, readSampleCsv, readSampleErs } from "@/lib/sample-catalog";
+import {
+  getSample,
+  readSampleCsv,
+  readSampleErs,
+  SAMPLE_CATALOG,
+} from "@/lib/sample-catalog";
 import { simulateSandbox } from "@/lib/sandbox-simulator";
 import type { GradeLabel } from "@/lib/grade-engine";
 import { ParameterExtractionTable, type ExtractionColumnRow } from "./ParameterExtractionTable";
@@ -133,7 +138,7 @@ export default async function SandboxSessionPage({
   }));
   const measurementNote =
     simulation.roleCoverage.measurementCount === 0
-      ? "defect-count log: conditional integers, not continuous measurements"
+      ? "Defect counts are classed CONDITION, not MEASUREMENT."
       : "numeric measurement columns";
   const generatedAt = new Date().toISOString();
   const reportHref = `/sandbox/${sessionId}/report`;
@@ -162,6 +167,22 @@ export default async function SandboxSessionPage({
               </li>
             ))}
           </ol>
+        </div>
+
+        <div className="sandbox-rail-section">
+          <p className="sandbox-label">Other samples</p>
+          <nav className="sandbox-sample-nav" aria-label="Other sample logs">
+            {SAMPLE_CATALOG.map((entry) => (
+              <Link
+                key={entry.slug}
+                href={`/sandbox/${entry.slug}`}
+                className={entry.slug === sample.slug ? "active" : ""}
+                aria-current={entry.slug === sample.slug ? "page" : undefined}
+              >
+                {entry.title}
+              </Link>
+            ))}
+          </nav>
         </div>
 
         <div className="sandbox-rail-section">
@@ -238,7 +259,9 @@ export default async function SandboxSessionPage({
         <section className={`sandbox-verdict-banner ${outcome.tone}`}>
           <div>
             <span>{outcome.label}</span>
-            <strong>ERS mapping {simulation.evidenceCompleteness}%</strong>
+            <strong>
+              {acceptedUnits} of {totalUnits} units accepted · ERS mapping {simulation.evidenceCompleteness}%
+            </strong>
             <p>
               {outcome.summary} Mapping coverage means the log has evidence for every ERS gate,
               not that every unit passed.
@@ -298,7 +321,13 @@ export default async function SandboxSessionPage({
           <ParameterExtractionTable rows={extractionRows} />
           <p className="sandbox-method-note">
             Confidence is computed from column names, data type, uniqueness, and sample-value distribution.
+            CONDITION fields can score lower because defect counts and threshold checks use more ambiguous naming patterns.
           </p>
+          {sample.slug === "steel-plate-mtc" && (
+            <p className="sandbox-method-note">
+              Mill test certificates trace acceptance by heat and plate identifiers; operator columns are not expected in this log type.
+            </p>
+          )}
         </section>
 
         <section className="sandbox-panel" id="gate">

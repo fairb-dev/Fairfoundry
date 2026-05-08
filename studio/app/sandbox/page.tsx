@@ -89,7 +89,7 @@ export default function SandboxHomePage() {
                     type="submit"
                     className="rounded-lg bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
                   >
-                    Run sandbox
+                    Open sample
                   </button>
                 </div>
               </form>
