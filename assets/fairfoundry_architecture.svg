@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Fairfoundry architecture</title>
+  <desc id="desc">Public architecture view focused on contract model, evidence, review protocol, governance, and credentials.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#334155"/></marker>
+    <style>
+      .box{fill:#f9fbfd;stroke:#334155;stroke-width:1.4;rx:10}
+      .module{fill:#f0f7ff;stroke:#93c5fd;stroke-width:1.2;rx:8}
+      .main{fill:#eef7ff;stroke:#334155;stroke-width:2;rx:12}
+      .ext{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.2;rx:8}
+      .title{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}
+      .subtitle{font-family:Arial,sans-serif;font-size:12px;fill:#64748b}
+      .lbl{font-family:Arial,sans-serif;font-size:14px;font-weight:700;fill:#0f172a}
+      .desc{font-family:Arial,sans-serif;font-size:11px;fill:#475569}
+    </style>
+  </defs>
+  <rect width="1100" height="620" fill="#fff"/>
+  <text x="550" y="30" class="title" text-anchor="middle">Fairfoundry - System Architecture</text>
+  <text x="550" y="48" class="subtitle" text-anchor="middle">Soroban control layer for verifiable contract manufacturing records</text>
+
+  <rect x="50" y="75" width="220" height="80" class="box"/>
+  <text x="160" y="100" class="lbl" text-anchor="middle">OEM</text>
+  <text x="160" y="120" class="desc" text-anchor="middle">Defines source spec</text>
+  <text x="160" y="136" class="desc" text-anchor="middle">Owns review rights</text>
+
+  <rect x="440" y="75" width="220" height="80" class="box"/>
+  <text x="550" y="100" class="lbl" text-anchor="middle">Factory</text>
+  <text x="550" y="120" class="desc" text-anchor="middle">Creates lots</text>
+  <text x="550" y="136" class="desc" text-anchor="middle">Submits evidence</text>
+
+  <rect x="830" y="75" width="220" height="80" class="box"/>
+  <text x="940" y="100" class="lbl" text-anchor="middle">QA Provider</text>
+  <text x="940" y="120" class="desc" text-anchor="middle">Commits test results</text>
+  <text x="940" y="136" class="desc" text-anchor="middle">Responds to review</text>
+
+  <path d="M160 155V195" stroke="#334155" fill="none" marker-end="url(#arrow)"/>
+  <path d="M550 155V195" stroke="#334155" fill="none" marker-end="url(#arrow)"/>
+  <path d="M940 155V195" stroke="#334155" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="80" y="200" width="940" height="295" class="main"/>
+  <text x="550" y="228" class="lbl" text-anchor="middle">Fairfoundry Contract (Soroban)</text>
+
+  <rect x="110" y="255" width="200" height="95" class="module"/>
+  <text x="210" y="278" class="lbl" text-anchor="middle">Contract Model</text>
+  <text x="210" y="296" class="desc" text-anchor="middle">roles and ERS</text>
+  <text x="210" y="312" class="desc" text-anchor="middle">lot identity</text>
+  <text x="210" y="328" class="desc" text-anchor="middle">accepted thresholds</text>
+
+  <rect x="335" y="255" width="200" height="95" class="module"/>
+  <text x="435" y="278" class="lbl" text-anchor="middle">Evidence Ledger</text>
+  <text x="435" y="296" class="desc" text-anchor="middle">artifact roots</text>
+  <text x="435" y="312" class="desc" text-anchor="middle">serial coverage</text>
+  <text x="435" y="328" class="desc" text-anchor="middle">testbench attestations</text>
+
+  <rect x="560" y="255" width="200" height="95" class="module"/>
+  <text x="660" y="278" class="lbl" text-anchor="middle">Review Protocol</text>
+  <text x="660" y="296" class="desc" text-anchor="middle">customer review</text>
+  <text x="660" y="312" class="desc" text-anchor="middle">deterministic samples</text>
+  <text x="660" y="328" class="desc" text-anchor="middle">outcome recording</text>
+
+  <rect x="785" y="255" width="200" height="95" class="module"/>
+  <text x="885" y="278" class="lbl" text-anchor="middle">Governance</text>
+  <text x="885" y="296" class="desc" text-anchor="middle">timelocked ERS updates</text>
+  <text x="885" y="312" class="desc" text-anchor="middle">role policy</text>
+  <text x="885" y="328" class="desc" text-anchor="middle">upgrade hooks</text>
+
+  <rect x="110" y="378" width="875" height="42" rx="6" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="550" y="404" class="desc" text-anchor="middle">Cross-cutting: auth gates | reentrancy guard | safe math | pause control | view functions</text>
+
+  <rect x="210" y="445" width="220" height="45" class="module"/>
+  <text x="320" y="472" class="lbl" text-anchor="middle">SVT Credentials</text>
+  <rect x="670" y="445" width="220" height="45" class="module"/>
+  <text x="780" y="472" class="lbl" text-anchor="middle">Event Stream</text>
+
+  <rect x="80" y="525" width="280" height="50" class="ext"/>
+  <text x="220" y="548" class="lbl" text-anchor="middle">Source Systems</text>
+  <text x="220" y="563" class="desc" text-anchor="middle">ERP / PLM / MES / QA exports</text>
+
+  <rect x="740" y="525" width="280" height="50" class="ext"/>
+  <text x="880" y="548" class="lbl" text-anchor="middle">Enterprise Consumers</text>
+  <text x="880" y="563" class="desc" text-anchor="middle">procurement / quality / legal dashboards</text>
+
+  <path d="M220 525V495" stroke="#334155" fill="none" marker-end="url(#arrow)"/>
+  <path d="M880 495V525" stroke="#334155" fill="none" marker-end="url(#arrow)"/>
+  <text x="80" y="602" class="subtitle">Public view excludes customer operational configuration.</text>
+</svg>

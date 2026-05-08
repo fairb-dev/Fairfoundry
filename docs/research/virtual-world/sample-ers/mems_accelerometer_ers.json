@@ -1,0 +1,121 @@
+{
+  "ers_id": "ERS-006",
+  "title": "MEMS Accelerometer Calibration Test Specification",
+  "revision": "1.8",
+  "product": "3-Axis MEMS Accelerometer AQ-200",
+  "stage": "MP",
+  "issued_by": "SensorDynamics Inc. (OEM)",
+  "factory": "TSMC Analog MEMS Fab",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 25, "tolerance": 1 },
+    "humidity_pct": { "max": 50 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Sensitivity X-axis",
+      "maps_to_column": "sens_x_mg_lsb",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.475,
+      "upper_limit": 0.505,
+      "unit": "mg/LSB",
+      "section_ref": "Section 8.1.1",
+      "notes": "Sensitivity measured at 1g reference, X-axis"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Sensitivity Y-axis",
+      "maps_to_column": "sens_y_mg_lsb",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.475,
+      "upper_limit": 0.505,
+      "unit": "mg/LSB",
+      "section_ref": "Section 8.1.2",
+      "notes": "Sensitivity measured at 1g reference, Y-axis"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Sensitivity Z-axis",
+      "maps_to_column": "sens_z_mg_lsb",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.475,
+      "upper_limit": 0.505,
+      "unit": "mg/LSB",
+      "section_ref": "Section 8.1.3",
+      "notes": "Sensitivity measured at 1g reference, Z-axis"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Zero-g offset X-axis",
+      "maps_to_column": "offset_x_mg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -35.0,
+      "upper_limit": 35.0,
+      "unit": "mg",
+      "section_ref": "Section 8.2.1",
+      "notes": "Zero-g bias offset, X-axis"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Zero-g offset Y-axis",
+      "maps_to_column": "offset_y_mg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -35.0,
+      "upper_limit": 35.0,
+      "unit": "mg",
+      "section_ref": "Section 8.2.2",
+      "notes": "Zero-g bias offset, Y-axis"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Zero-g offset Z-axis",
+      "maps_to_column": "offset_z_mg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -35.0,
+      "upper_limit": 35.0,
+      "unit": "mg",
+      "section_ref": "Section 8.2.3",
+      "notes": "Zero-g bias offset, Z-axis"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Cross-axis sensitivity",
+      "maps_to_column": "cross_axis_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 2.0,
+      "unit": "%",
+      "section_ref": "Section 8.3.1",
+      "notes": "Maximum inter-axis coupling coefficient"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "Nonlinearity",
+      "maps_to_column": "nonlinearity_pct_fs",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.50,
+      "unit": "% FS",
+      "section_ref": "Section 8.4.1",
+      "notes": "Best-fit straight line nonlinearity over full scale range"
+    },
+    {
+      "criterion_id": "C009",
+      "parameter": "Noise density",
+      "maps_to_column": "noise_density_ug_rthz",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 300,
+      "unit": "ug/rt-Hz",
+      "section_ref": "Section 8.5.1",
+      "notes": "Spectral noise density at 100 Hz bandwidth"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "Offset marginally out of range; recalibration permitted once",
+    "fail": "Sensitivity or nonlinearity out of specification"
+  }
+}

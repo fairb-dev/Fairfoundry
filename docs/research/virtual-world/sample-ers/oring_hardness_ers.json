@@ -1,0 +1,100 @@
+{
+  "ers_id": "ERS-086",
+  "title": "FKM O-Ring Hardness and Compression Set Specification",
+  "revision": "1.5",
+  "product": "FKM O-Ring, AS568 Size -325, for Pipeline Flange Sealing",
+  "stage": "PVT",
+  "issued_by": "PetroForge Pipeline Solutions (OEM)",
+  "factory": "Changzhou Sealtec Rubber Co., Ltd.",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 2 },
+    "compression_set_temp_c": 200,
+    "compression_set_time_h": 70
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Shore A hardness",
+      "maps_to_column": "hardness_shore_a",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 70,
+      "upper_limit": 80,
+      "unit": "Shore A",
+      "section_ref": "Section 3.1.1",
+      "notes": "75 +/- 5 per ASTM D2240 Type A"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Compression set",
+      "maps_to_column": "compression_set_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25,
+      "unit": "%",
+      "section_ref": "Section 3.2.1",
+      "notes": "70 hours at 200 C per ASTM D395 Method B"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Tensile strength",
+      "maps_to_column": "tensile_mpa",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 10.3,
+      "unit": "MPa",
+      "section_ref": "Section 3.3.1",
+      "notes": "Per ASTM D412 Die C"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Elongation at break",
+      "maps_to_column": "elongation_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 150,
+      "unit": "%",
+      "section_ref": "Section 3.3.2",
+      "notes": "Per ASTM D412"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Volume swell in IRM 903 oil",
+      "maps_to_column": "volume_swell_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 10,
+      "unit": "%",
+      "section_ref": "Section 3.4.1",
+      "notes": "70 hours at 200 C per ASTM D471"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Cross-section diameter",
+      "maps_to_column": "cs_diameter_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 3.43,
+      "upper_limit": 3.63,
+      "unit": "mm",
+      "section_ref": "Section 3.5.1",
+      "notes": "3.53 +/- 0.10 mm per AS568B"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Inner diameter",
+      "maps_to_column": "id_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 38.41,
+      "upper_limit": 39.33,
+      "unit": "mm",
+      "section_ref": "Section 3.5.2",
+      "notes": "38.87 +/- 0.46 mm per AS568B"
+    }
+  ],
+  "sampling": {
+    "method": "AQL",
+    "aql": "1.0",
+    "sample_size_per_lot": 5
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "C002 marginal (22-25%), acceptable with extended compression set re-test at 168 hours",
+    "fail": "Any hardness outside range, compression set > 25%, or dimensional failure"
+  }
+}

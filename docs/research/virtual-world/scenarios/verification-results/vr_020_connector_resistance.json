@@ -1,0 +1,281 @@
+{
+  "verification_id": "VR-020",
+  "csv_source": "connector_contact_resistance.csv",
+  "ers_source": "connector_resistance_ers.json",
+  "ers_id": "ERS-020",
+  "product": "MIL-DTL-38999 Series III Circular Connector",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 38,
+    "failed": 2,
+    "pass_rate": 95.0,
+    "criteria_failure_distribution": {
+      "C002_millivolt_drop_across_contact": 1,
+      "C001_contact_resistance": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "CON-38999-11285",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Contact resistance",
+          "value": 6.8,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 8.2
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Millivolt drop across contact",
+          "value": 88.4,
+          "limit": "<=85.0",
+          "result": "FAIL",
+          "margin": -3.4
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Shell-to-ground resistance",
+          "value": 5.9,
+          "limit": "<=10.0",
+          "result": "PASS",
+          "margin": 4.1
+        }
+      ]
+    },
+    {
+      "unit_id": "CON-38999-11299",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Contact resistance",
+          "value": 19.1,
+          "limit": "<=15.0",
+          "result": "FAIL",
+          "margin": -4.1
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Millivolt drop across contact",
+          "value": 57.3,
+          "limit": "<=85.0",
+          "result": "PASS",
+          "margin": 27.7
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Shell-to-ground resistance",
+          "value": 6.2,
+          "limit": "<=10.0",
+          "result": "PASS",
+          "margin": 3.8
+        }
+      ]
+    },
+    {
+      "unit_id": "CON-38999-11280",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Contact resistance",
+          "value": 10.5,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 4.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Millivolt drop across contact",
+          "value": 31.5,
+          "limit": "<=85.0",
+          "result": "PASS",
+          "margin": 53.5
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Shell-to-ground resistance",
+          "value": 6.1,
+          "limit": "<=10.0",
+          "result": "PASS",
+          "margin": 3.9
+        }
+      ]
+    },
+    {
+      "unit_id": "CON-38999-11288",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Contact resistance",
+          "value": 10.4,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 4.6
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Millivolt drop across contact",
+          "value": 31.2,
+          "limit": "<=85.0",
+          "result": "PASS",
+          "margin": 53.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Shell-to-ground resistance",
+          "value": 7.8,
+          "limit": "<=10.0",
+          "result": "PASS",
+          "margin": 2.2
+        }
+      ]
+    },
+    {
+      "unit_id": "CON-38999-11295",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Contact resistance",
+          "value": 11.6,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 3.4
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Millivolt drop across contact",
+          "value": 34.8,
+          "limit": "<=85.0",
+          "result": "PASS",
+          "margin": 50.2
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Shell-to-ground resistance",
+          "value": 5.4,
+          "limit": "<=10.0",
+          "result": "PASS",
+          "margin": 4.6
+        }
+      ]
+    },
+    {
+      "unit_id": "CON-38999-11303",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Contact resistance",
+          "value": 2.4,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 12.6
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Millivolt drop across contact",
+          "value": 31.2,
+          "limit": "<=85.0",
+          "result": "PASS",
+          "margin": 53.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Shell-to-ground resistance",
+          "value": 2.9,
+          "limit": "<=10.0",
+          "result": "PASS",
+          "margin": 7.1
+        }
+      ]
+    },
+    {
+      "unit_id": "CON-38999-11310",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Contact resistance",
+          "value": 11.5,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 3.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Millivolt drop across contact",
+          "value": 34.5,
+          "limit": "<=85.0",
+          "result": "PASS",
+          "margin": 50.5
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Shell-to-ground resistance",
+          "value": 5.8,
+          "limit": "<=10.0",
+          "result": "PASS",
+          "margin": 4.2
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "CON-38999-11296",
+      "criterion": "C001",
+      "parameter": "Contact resistance",
+      "value": 14.2,
+      "limit": "<=15.0",
+      "margin": 0.8,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CON-38999-11309",
+      "criterion": "C001",
+      "parameter": "Contact resistance",
+      "value": 13.8,
+      "limit": "<=15.0",
+      "margin": 1.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CON-38999-11288",
+      "criterion": "C003",
+      "parameter": "Shell-to-ground resistance",
+      "value": 7.8,
+      "limit": "<=10.0",
+      "margin": 2.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CON-38999-11286",
+      "criterion": "C001",
+      "parameter": "Contact resistance",
+      "value": 12.6,
+      "limit": "<=15.0",
+      "margin": 2.4,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CON-38999-11293",
+      "criterion": "C001",
+      "parameter": "Contact resistance",
+      "value": 12.6,
+      "limit": "<=15.0",
+      "margin": 2.4,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Contact resistance exceeds limit -- inspect contact plating thickness and mating surface condition.",
+    "Millivolt drop too high -- verify contact spring force and pin retention in insulator."
+  ]
+}

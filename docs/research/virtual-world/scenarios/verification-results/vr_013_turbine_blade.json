@@ -1,0 +1,692 @@
+{
+  "verification_id": "VR-013",
+  "csv_source": "turbine_blade_cmm.csv",
+  "ers_source": "turbine_blade_cmm_ers.json",
+  "ers_id": "ERS-013",
+  "product": "HPT Stage 1 Blade - Single Crystal Nickel Superalloy",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 35,
+    "passed": 30,
+    "failed": 5,
+    "pass_rate": 85.7,
+    "criteria_failure_distribution": {
+      "C004_chord_length_deviation": 1,
+      "C006_cooling_hole_true_position": 1,
+      "C005_leading_edge_radius_deviation": 4
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "BLD-HPT1-26-00451",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.025,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.05
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.015,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.009,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.016
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": -0.079,
+          "limit": "[-0.075, 0.075]",
+          "result": "FAIL",
+          "margin": -0.004
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.017,
+          "limit": "[-0.03, 0.03]",
+          "result": "PASS",
+          "margin": 0.013
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.18,
+          "limit": "<=0.15",
+          "result": "FAIL",
+          "margin": -0.03
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.88,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.12
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00452",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.032,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.043
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.003,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.022
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.01,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.015
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": -0.018,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.057
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.045,
+          "limit": "[-0.03, 0.03]",
+          "result": "FAIL",
+          "margin": -0.015
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.14,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.87,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.11
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00458",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.028,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.047
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.007,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.018
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.001,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.024
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": -0.003,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.072
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.035,
+          "limit": "[-0.03, 0.03]",
+          "result": "FAIL",
+          "margin": -0.005
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.07,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.08
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.81,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.05
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00461",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.009,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.066
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.018,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.007
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.006,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.019
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": -0.046,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.029
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.036,
+          "limit": "[-0.03, 0.03]",
+          "result": "FAIL",
+          "margin": -0.006
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.09,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.81,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.05
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00472",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.025,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.05
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.018,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.007
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.012,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.013
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": -0.019,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.056
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.034,
+          "limit": "[-0.03, 0.03]",
+          "result": "FAIL",
+          "margin": -0.004
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.13,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.02
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.87,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.11
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00440",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.02,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.055
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.022,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.003
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.011,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.014
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": -0.005,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.07
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.011,
+          "limit": "[-0.03, 0.03]",
+          "result": "PASS",
+          "margin": 0.019
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.09,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.77,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.01
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00446",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.018,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.057
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.011,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.014
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.017,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": -0.03,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.045
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.024,
+          "limit": "[-0.03, 0.03]",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.09,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.86,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.1
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00454",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.029,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.046
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.005,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.02
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.008,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.017
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": 0.002,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.073
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": -0.001,
+          "limit": "[-0.03, 0.03]",
+          "result": "PASS",
+          "margin": 0.029
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.14,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.78,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.02
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00462",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.022,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.053
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.002,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.023
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.007,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.018
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": 0.013,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.062
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.001,
+          "limit": "[-0.03, 0.03]",
+          "result": "PASS",
+          "margin": 0.029
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.02,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.13
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.8,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.04
+        }
+      ]
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00468",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Airfoil profile deviation",
+          "value": 0.03,
+          "limit": "<=0.075",
+          "result": "PASS",
+          "margin": 0.045
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Root width deviation",
+          "value": 0.01,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.015
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Root depth deviation",
+          "value": 0.01,
+          "limit": "[-0.025, 0.025]",
+          "result": "PASS",
+          "margin": 0.015
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Chord length deviation",
+          "value": 0.018,
+          "limit": "[-0.075, 0.075]",
+          "result": "PASS",
+          "margin": 0.057
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Leading edge radius deviation",
+          "value": 0.021,
+          "limit": "[-0.03, 0.03]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Cooling hole true position",
+          "value": 0.05,
+          "limit": "<=0.15",
+          "result": "PASS",
+          "margin": 0.1
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Minimum wall thickness",
+          "value": 0.76,
+          "limit": ">=0.76",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "BLD-HPT1-26-00456",
+      "criterion": "C007",
+      "parameter": "Minimum wall thickness",
+      "value": 0.76,
+      "limit": ">=0.76",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00468",
+      "criterion": "C007",
+      "parameter": "Minimum wall thickness",
+      "value": 0.76,
+      "limit": ">=0.76",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00444",
+      "criterion": "C003",
+      "parameter": "Root depth deviation",
+      "value": 0.024,
+      "limit": "[-0.025, 0.025]",
+      "margin": 0.001,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00448",
+      "criterion": "C001",
+      "parameter": "Airfoil profile deviation",
+      "value": 0.074,
+      "limit": "<=0.075",
+      "margin": 0.001,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "BLD-HPT1-26-00440",
+      "criterion": "C002",
+      "parameter": "Root width deviation",
+      "value": 0.022,
+      "limit": "[-0.025, 0.025]",
+      "margin": 0.003,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Cooling hole position out of tolerance -- inspect EDM electrode wear and positioning fixture.",
+    "Chord length deviation -- check wax injection die for wear and verify shrinkage factor calibration."
+  ]
+}

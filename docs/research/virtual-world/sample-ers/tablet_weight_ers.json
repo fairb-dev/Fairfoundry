@@ -1,0 +1,81 @@
+{
+  "ers_id": "ERS-012",
+  "title": "Pharmaceutical Tablet Weight Uniformity Specification",
+  "revision": "3.2",
+  "product": "Ibuprofen 400mg Film-Coated Tablet",
+  "stage": "MP",
+  "issued_by": "MedPharm Generics (MAH)",
+  "factory": "Jiangsu PharmaTech Manufacturing",
+  "effective_date": "2026-02-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 22, "tolerance": 3 },
+    "humidity_pct": { "max": 50 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Individual tablet weight",
+      "maps_to_column": "weight_mg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 551.0,
+      "upper_limit": 609.0,
+      "unit": "mg",
+      "section_ref": "Section 14.1.1",
+      "notes": "Target 580mg; USP <905> +/- 5% for tablets >324mg"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Weight deviation from mean",
+      "maps_to_column": "deviation_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -5.0,
+      "upper_limit": 5.0,
+      "unit": "%",
+      "section_ref": "Section 14.1.2",
+      "notes": "USP <905> individual weight deviation limit; no more than 2 of 20 outside +/- 5%"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Tablet hardness",
+      "maps_to_column": "hardness_n",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 80.0,
+      "upper_limit": 140.0,
+      "unit": "N",
+      "section_ref": "Section 14.2.1",
+      "notes": "Crushing strength range for adequate disintegration and handling"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Tablet thickness",
+      "maps_to_column": "thickness_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 5.20,
+      "upper_limit": 5.70,
+      "unit": "mm",
+      "section_ref": "Section 14.3.1",
+      "notes": "Dimensional tolerance for blister pack compatibility"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Tablet diameter",
+      "maps_to_column": "diameter_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 12.85,
+      "upper_limit": 13.15,
+      "unit": "mm",
+      "section_ref": "Section 14.3.2",
+      "notes": "Nominal 13.0mm +/- 0.15mm for tooling and packaging"
+    }
+  ],
+  "sampling": {
+    "method": "USP_WEIGHT_VARIATION",
+    "aql": null,
+    "notes": "20 tablets sampled per batch per USP <905>"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; batch released",
+    "conditional": "1-2 tablets outside +/- 5% but within +/- 10%; USP Stage 2 testing required",
+    "fail": "Any tablet outside +/- 10% deviation or more than 2 tablets outside +/- 5%"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "ers_id": "ERS-014",
+  "title": "Automotive Wiring Harness Continuity and Hipot Specification",
+  "revision": "2.1",
+  "product": "Engine Compartment Wiring Harness WH-ENG-42",
+  "stage": "MP",
+  "issued_by": "AutoDrive Powertrain (OEM)",
+  "factory": "Suzhou WireLink Automotive Co.",
+  "effective_date": "2026-02-10",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 5 },
+    "humidity_pct": { "max": 65 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Open circuit count",
+      "maps_to_column": "open_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 16.1.1",
+      "notes": "Zero tolerance for open circuits across all 42 circuits"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Short circuit count",
+      "maps_to_column": "short_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 16.1.2",
+      "notes": "Zero tolerance for short circuits between any circuit pair"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Miswire count",
+      "maps_to_column": "miswire_count",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0,
+      "unit": "count",
+      "section_ref": "Section 16.1.3",
+      "notes": "Zero tolerance for incorrect pin-to-pin wiring"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Maximum circuit resistance",
+      "maps_to_column": "max_resistance_ohm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.125,
+      "unit": "ohm",
+      "section_ref": "Section 16.2.1",
+      "notes": "Maximum loop resistance for any individual circuit at rated current"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Minimum insulation resistance",
+      "maps_to_column": "min_insulation_mohm",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 500.0,
+      "unit": "Mohm",
+      "section_ref": "Section 16.3.1",
+      "notes": "Minimum insulation resistance at 500VDC test voltage"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Hipot test result",
+      "maps_to_column": "hipot_result",
+      "type": "STRING_EQ",
+      "expected_value": "PASS",
+      "unit": "pass/fail",
+      "section_ref": "Section 16.4.1",
+      "notes": "Dielectric withstand at 1000VAC for 60 seconds; no breakdown"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; harness released to assembly line",
+    "conditional": "Not applicable; all criteria are safety-critical",
+    "fail": "Any open, short, miswire, or hipot failure; harness quarantined for rework or scrap"
+  }
+}

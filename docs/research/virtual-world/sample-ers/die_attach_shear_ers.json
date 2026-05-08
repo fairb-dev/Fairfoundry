@@ -1,0 +1,76 @@
+{
+  "ers_id": "ERS-080",
+  "title": "Die Attach Shear Strength Specification - Automotive QFN Package",
+  "revision": "1.2",
+  "product": "Automotive Microcontroller - QFN BGA Package",
+  "stage": "DVT",
+  "issued_by": "NovaBridge Semiconductor Design (OEM)",
+  "factory": "Bucheon SemiTek Co., Ltd.",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 25, "tolerance": 3 },
+    "shear_speed_um_s": 100,
+    "shear_height_um": 50
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Die shear strength",
+      "maps_to_column": "shear_force_kgf",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 6.0,
+      "unit": "kgf",
+      "section_ref": "Section 4.1.1",
+      "notes": "Per MIL-STD-883 Method 2019.9 Condition A, die area 1-4 mm2"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Die shear strength per unit area",
+      "maps_to_column": "shear_strength_kgf_mm2",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 2.5,
+      "unit": "kgf/mm2",
+      "section_ref": "Section 4.1.2",
+      "notes": "For die area > 4 mm2"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Failure mode",
+      "maps_to_column": "failure_mode",
+      "type": "STRING_NOT_EQUALS",
+      "rejected_value": "ADHESIVE",
+      "section_ref": "Section 4.2.1",
+      "notes": ">= 90% failures must be cohesive or die fracture per MIL-STD-883"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Void percentage under die",
+      "maps_to_column": "void_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25,
+      "unit": "%",
+      "section_ref": "Section 4.3.1",
+      "notes": "SAM inspection per IPC-7095D"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Post-HTSL shear retention",
+      "maps_to_column": "shear_retention_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 80,
+      "unit": "%",
+      "section_ref": "Section 4.4.1",
+      "notes": "After 1000 hrs at 150 C per JEDEC JESD22-A103"
+    }
+  ],
+  "sampling": {
+    "method": "DESTRUCTIVE",
+    "sample_size": 50,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met on all samples tested",
+    "conditional": "C004 marginal (20-25%), engineering review with SAM images",
+    "fail": "Any adhesive failure at < 60% minimum force, or any C005 failure"
+  }
+}

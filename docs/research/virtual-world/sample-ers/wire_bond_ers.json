@@ -1,0 +1,77 @@
+{
+  "ers_id": "ERS-081",
+  "title": "Gold Wire Bond Pull and Shear Strength Specification",
+  "revision": "1.0",
+  "product": "Automotive QFN IC Package - 25um Gold Wire Bonds",
+  "stage": "DVT",
+  "issued_by": "NovaBridge Semiconductor Design (OEM)",
+  "factory": "Bucheon SemiTek Co., Ltd.",
+  "effective_date": "2026-03-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 25, "tolerance": 3 },
+    "pull_hook_position": "center_of_loop",
+    "pull_speed_mm_s": 0.5
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Wire bond pull strength",
+      "maps_to_column": "pull_force_gf",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 3.0,
+      "unit": "gf",
+      "section_ref": "Section 4.1.1",
+      "notes": "For 25 um (1.0 mil) gold wire per MIL-STD-883 Method 2011.9"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Wire bond shear strength",
+      "maps_to_column": "shear_force_gf",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 2.5,
+      "unit": "gf",
+      "section_ref": "Section 4.1.2",
+      "notes": "Ball bond shear per MIL-STD-883 Method 2019.9 Condition D"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Pull failure mode",
+      "maps_to_column": "failure_mode",
+      "type": "STRING_EQUALS",
+      "expected_value": "MID_SPAN",
+      "section_ref": "Section 4.2.1",
+      "notes": ">= 95% must be mid-span wire break (Mode 1)"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Ball bond diameter",
+      "maps_to_column": "ball_diameter_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 62.5,
+      "upper_limit": 125,
+      "unit": "um",
+      "section_ref": "Section 4.3.1",
+      "notes": "2.5x to 5.0x wire diameter for 25 um wire"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Post-TCT pull retention",
+      "maps_to_column": "pull_retention_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 80,
+      "unit": "%",
+      "section_ref": "Section 4.4.1",
+      "notes": "After 500 cycles -55 to +150 C per JEDEC JESD22-A104"
+    }
+  ],
+  "sampling": {
+    "method": "DESTRUCTIVE",
+    "sample_size": 60,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; >= 95% mid-span failure mode across sample",
+    "conditional": "90-95% mid-span -- investigate heel crack root cause",
+    "fail": "Any bond lift (Mode 2/3) or < 90% mid-span across sample"
+  }
+}

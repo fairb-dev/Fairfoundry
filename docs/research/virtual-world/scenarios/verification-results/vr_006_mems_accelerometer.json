@@ -1,0 +1,695 @@
+{
+  "verification_id": "VR-006",
+  "csv_source": "mems_accelerometer_cal.csv",
+  "ers_source": "mems_accelerometer_ers.json",
+  "ers_id": "ERS-006",
+  "product": "3-Axis MEMS Accelerometer AQ-200",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 37,
+    "failed": 3,
+    "pass_rate": 92.5,
+    "criteria_failure_distribution": {
+      "C004_zero-g_offset_x-axis": 2,
+      "C009_noise_density": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "ACC-AQ-991209",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.489,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.014
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.486,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.011
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.494,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.011
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": 37.3,
+          "limit": "[-35.0, 35.0]",
+          "result": "FAIL",
+          "margin": -2.3
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": -11.2,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 23.8
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": 13.4,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 21.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 0.9,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.21,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.29
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 214.0,
+          "limit": "<=300",
+          "result": "PASS",
+          "margin": 86.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ACC-AQ-991223",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.49,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.015
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.487,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.012
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.488,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.013
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": 27.7,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 7.3
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": -10.0,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 25.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": 18.9,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 16.1
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 1.0,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 1.0
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.29,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.21
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 318.0,
+          "limit": "<=300",
+          "result": "FAIL",
+          "margin": -18.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ACC-AQ-991228",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.489,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.014
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.483,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.494,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.011
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": 37.0,
+          "limit": "[-35.0, 35.0]",
+          "result": "FAIL",
+          "margin": -2.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": -19.7,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 15.3
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": 9.1,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 25.9
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 1.4,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.26,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.24
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 209.0,
+          "limit": "<=300",
+          "result": "PASS",
+          "margin": 91.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ACC-AQ-991200",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.491,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.014
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.483,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.485,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": 15.6,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 19.4
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": -4.8,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 30.2
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": 11.0,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 1.4,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.36,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.14
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 215.0,
+          "limit": "<=300",
+          "result": "PASS",
+          "margin": 85.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ACC-AQ-991207",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.489,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.014
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.488,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.013
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.488,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.013
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": 0.4,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 34.6
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": -3.9,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 31.1
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": 4.2,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 30.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 0.8,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 1.2
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.34,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.16
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 218.0,
+          "limit": "<=300",
+          "result": "PASS",
+          "margin": 82.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ACC-AQ-991215",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.487,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.012
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.486,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.011
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.485,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": -8.0,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 27.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": 10.3,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 24.7
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": -2.2,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 32.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 1.5,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.5
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.3,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.2
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 203.0,
+          "limit": "<=300",
+          "result": "PASS",
+          "margin": 97.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ACC-AQ-991222",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.483,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.486,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.011
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.485,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": 9.4,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 25.6
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": -9.6,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 25.4
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": 8.3,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 26.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 1.2,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.8
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.34,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.16
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 284.0,
+          "limit": "<=300",
+          "result": "PASS",
+          "margin": 16.0
+        }
+      ]
+    },
+    {
+      "unit_id": "ACC-AQ-991231",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Sensitivity X-axis",
+          "value": 0.492,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.013
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Sensitivity Y-axis",
+          "value": 0.49,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.015
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Sensitivity Z-axis",
+          "value": 0.485,
+          "limit": "[0.475, 0.505]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Zero-g offset X-axis",
+          "value": -3.3,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 31.7
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Zero-g offset Y-axis",
+          "value": 7.7,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 27.3
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Zero-g offset Z-axis",
+          "value": 17.1,
+          "limit": "[-35.0, 35.0]",
+          "result": "PASS",
+          "margin": 17.9
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Cross-axis sensitivity",
+          "value": 1.1,
+          "limit": "<=2.0",
+          "result": "PASS",
+          "margin": 0.9
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Nonlinearity",
+          "value": 0.23,
+          "limit": "<=0.5",
+          "result": "PASS",
+          "margin": 0.27
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Noise density",
+          "value": 212.0,
+          "limit": "<=300",
+          "result": "PASS",
+          "margin": 88.0
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "ACC-AQ-991237",
+      "criterion": "C001",
+      "parameter": "Sensitivity X-axis",
+      "value": 0.475,
+      "limit": "[0.475, 0.505]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "ACC-AQ-991205",
+      "criterion": "C002",
+      "parameter": "Sensitivity Y-axis",
+      "value": 0.482,
+      "limit": "[0.475, 0.505]",
+      "margin": 0.007,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "ACC-AQ-991233",
+      "criterion": "C001",
+      "parameter": "Sensitivity X-axis",
+      "value": 0.498,
+      "limit": "[0.475, 0.505]",
+      "margin": 0.007,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "ACC-AQ-991200",
+      "criterion": "C002",
+      "parameter": "Sensitivity Y-axis",
+      "value": 0.483,
+      "limit": "[0.475, 0.505]",
+      "margin": 0.008,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "ACC-AQ-991222",
+      "criterion": "C001",
+      "parameter": "Sensitivity X-axis",
+      "value": 0.483,
+      "limit": "[0.475, 0.505]",
+      "margin": 0.008,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Noise density too high -- check for die cracking or wire bond anomalies in failing lot.",
+    "Offset outside limits -- apply one-time offset recalibration per device datasheet procedure."
+  ]
+}

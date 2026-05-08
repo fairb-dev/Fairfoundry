@@ -1,0 +1,76 @@
+{
+  "ers_id": "ERS-100",
+  "title": "Cable Assembly High-Voltage Hipot Test Specification",
+  "revision": "3.0",
+  "product": "Custom Cable Assembly - 300V Rated, PVC Insulated",
+  "stage": "MP",
+  "issued_by": "Terralink Connectivity (OEM)",
+  "factory": "Juarez Wiring Systems S.A. de C.V.",
+  "effective_date": "2026-02-01",
+  "test_conditions": {
+    "test_voltage_formula": "2x rated voltage + 1000V",
+    "ramp_rate_v_s": { "min": 100, "max": 500 },
+    "ambient_temperature_c": { "nominal": 23, "tolerance": 5 },
+    "ambient_humidity_pct": { "max": 75 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Dielectric withstand (no breakdown)",
+      "maps_to_column": "breakdown_detected",
+      "type": "STRING_EQUALS",
+      "expected_value": "NO",
+      "section_ref": "Section 4.1.1",
+      "notes": "1500 VAC for 60 seconds per UL 2556 Section 7.4"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Leakage current during hipot",
+      "maps_to_column": "leakage_current_ma",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 5.0,
+      "unit": "mA",
+      "section_ref": "Section 4.1.2",
+      "notes": "At test voltage per UL 2556"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Insulation resistance",
+      "maps_to_column": "insulation_resistance_mohm",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 100,
+      "unit": "Megohms",
+      "section_ref": "Section 4.2.1",
+      "notes": "At 500 VDC per IEC 60227-2 Section 3.2"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Continuity resistance",
+      "maps_to_column": "continuity_resistance_mohm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 50,
+      "unit": "milliohms",
+      "section_ref": "Section 4.3.1",
+      "notes": "Per connection point at 100 mA test current"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Post-hipot insulation resistance",
+      "maps_to_column": "post_hipot_ir_mohm",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 100,
+      "unit": "Megohms",
+      "section_ref": "Section 4.2.2",
+      "notes": "Re-measured within 5 minutes of hipot completion"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met on all cables",
+    "conditional": "IR 100-200 Megohms -- accepted with flag for monitoring in next production lot",
+    "fail": "Any breakdown, leakage > 5 mA, or IR < 100 Megohms -- cable destroyed, root cause investigation required"
+  }
+}

@@ -1,0 +1,704 @@
+{
+  "verification_id": "VR-001",
+  "csv_source": "camera_module_mtf_test.csv",
+  "ers_source": "camera_module_mtf_ers.json",
+  "ers_id": "ERS-001",
+  "product": "12MP Camera Module CM-120",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 40,
+    "passed": 36,
+    "failed": 4,
+    "pass_rate": 90.0,
+    "criteria_failure_distribution": {
+      "C001_mtf_at_nyquist/2,_center_field": 1,
+      "C002_mtf_at_nyquist/4,_center_field": 2,
+      "C005_relative_illumination_at_corner": 1,
+      "C003_mtf_at_nyquist/2,_worst_corner_field": 1,
+      "C004_mtf_at_nyquist/4,_worst_corner_field": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "CAM-2026-04-142893",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.48,
+          "limit": ">=0.5",
+          "result": "FAIL",
+          "margin": -0.02
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.625,
+          "limit": ">=0.7",
+          "result": "FAIL",
+          "margin": -0.075
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.331,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.031
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.554,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.074
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 45.4,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 5.4
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 6.2,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 8.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 1.2,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 0.8
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": -0.5,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.5
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142902",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.523,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.023
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.699,
+          "limit": ">=0.7",
+          "result": "FAIL",
+          "margin": -0.001
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.367,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.067
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.557,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.077
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 51.0,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 11.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 11.0,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 4.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 0.4,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": 0.5,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.5
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142910",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.52,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.02
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.794,
+          "limit": ">=0.7",
+          "result": "PASS",
+          "margin": 0.094
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.363,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.063
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.563,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.083
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 38.3,
+          "limit": ">=40.0",
+          "result": "FAIL",
+          "margin": -1.7
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 11.0,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 4.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 0.3,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.7
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": -0.1,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.9
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142914",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.618,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.118
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.769,
+          "limit": ">=0.7",
+          "result": "PASS",
+          "margin": 0.069
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.274,
+          "limit": ">=0.3",
+          "result": "FAIL",
+          "margin": -0.026
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.452,
+          "limit": ">=0.48",
+          "result": "FAIL",
+          "margin": -0.028
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 56.2,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 16.2
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 10.2,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 4.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 0.4,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": -0.7,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.3
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142880",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.569,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.069
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.771,
+          "limit": ">=0.7",
+          "result": "PASS",
+          "margin": 0.071
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.359,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.059
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.525,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.045
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 47.4,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 7.4
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 8.7,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 6.3
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 0.9,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.1
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": 0.0,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142887",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.57,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.07
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.775,
+          "limit": ">=0.7",
+          "result": "PASS",
+          "margin": 0.075
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.349,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.049
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.526,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.046
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 45.0,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 5.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 11.2,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 3.8
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 0.1,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.9
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": -0.1,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.9
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142895",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.572,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.072
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.79,
+          "limit": ">=0.7",
+          "result": "PASS",
+          "margin": 0.09
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.346,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.046
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.558,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.078
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 48.0,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 8.0
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 14.7,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 0.3
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": -0.6,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.4
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": 0.1,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.9
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142903",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.56,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.06
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.826,
+          "limit": ">=0.7",
+          "result": "PASS",
+          "margin": 0.126
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.387,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.087
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.559,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.079
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 48.4,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 8.4
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 8.3,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 6.7
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 0.3,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.7
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": 0.0,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "CAM-2026-04-142911",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "MTF at Nyquist/2, center field",
+          "value": 0.588,
+          "limit": ">=0.5",
+          "result": "PASS",
+          "margin": 0.088
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "MTF at Nyquist/4, center field",
+          "value": 0.721,
+          "limit": ">=0.7",
+          "result": "PASS",
+          "margin": 0.021
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "MTF at Nyquist/2, worst corner field",
+          "value": 0.355,
+          "limit": ">=0.3",
+          "result": "PASS",
+          "margin": 0.055
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "MTF at Nyquist/4, worst corner field",
+          "value": 0.566,
+          "limit": ">=0.48",
+          "result": "PASS",
+          "margin": 0.086
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Relative illumination at corner",
+          "value": 45.4,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 5.4
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Optical center offset",
+          "value": 10.4,
+          "limit": "<=15.0",
+          "result": "PASS",
+          "margin": 4.6
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "AA tilt X-axis",
+          "value": 0.4,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.6
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "AA tilt Y-axis",
+          "value": 0.1,
+          "limit": "[-2.0, 2.0]",
+          "result": "PASS",
+          "margin": 1.9
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "CAM-2026-04-142892",
+      "criterion": "C003",
+      "parameter": "MTF at Nyquist/2, worst corner field",
+      "value": 0.3,
+      "limit": ">=0.3",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CAM-2026-04-142898",
+      "criterion": "C001",
+      "parameter": "MTF at Nyquist/2, center field",
+      "value": 0.501,
+      "limit": ">=0.5",
+      "margin": 0.001,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CAM-2026-04-142902",
+      "criterion": "C002",
+      "parameter": "MTF at Nyquist/4, center field",
+      "value": 0.699,
+      "limit": ">=0.7",
+      "margin": -0.001,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "CAM-2026-04-142919",
+      "criterion": "C001",
+      "parameter": "MTF at Nyquist/2, center field",
+      "value": 0.503,
+      "limit": ">=0.5",
+      "margin": 0.003,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "CAM-2026-04-142913",
+      "criterion": "C001",
+      "parameter": "MTF at Nyquist/2, center field",
+      "value": 0.507,
+      "limit": ">=0.5",
+      "margin": 0.007,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "MTF failures detected -- inspect active alignment station calibration and lens bonding process.",
+    "Relative illumination failure suggests lens decentering -- verify lens centering fixture."
+  ]
+}

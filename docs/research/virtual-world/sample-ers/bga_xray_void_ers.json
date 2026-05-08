@@ -1,0 +1,76 @@
+{
+  "ers_id": "ERS-098",
+  "title": "BGA X-Ray Void Percentage Inspection Specification",
+  "revision": "2.0",
+  "product": "Smartphone Mainboard PCB Assembly - BGA Solder Joints",
+  "stage": "PVT",
+  "issued_by": "Lumenar Technologies (OEM)",
+  "factory": "Suzhou Weida Electronic Assembly Co., Ltd.",
+  "effective_date": "2026-03-15",
+  "test_conditions": {
+    "xray_voltage_kv": 120,
+    "xray_current_ua": 80,
+    "magnification": "10x minimum",
+    "image_resolution_um": 15
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Maximum void percentage per solder ball",
+      "maps_to_column": "max_void_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25,
+      "unit": "% of ball cross-sectional area",
+      "section_ref": "Section 4.1.1",
+      "notes": "Per IPC-7095D Section 8.3.12, Class 2"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Total void area across BGA package",
+      "maps_to_column": "total_void_area_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25,
+      "unit": "% of total pad area",
+      "section_ref": "Section 4.1.2",
+      "notes": "Per IPC-A-610H Class 2"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Maximum single void diameter",
+      "maps_to_column": "max_single_void_diameter_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 50,
+      "unit": "% of ball diameter",
+      "section_ref": "Section 4.1.3",
+      "notes": "Bridging void reject criterion"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Head-in-pillow detection",
+      "maps_to_column": "hip_detected",
+      "type": "STRING_EQUALS",
+      "expected_value": "NO",
+      "section_ref": "Section 4.2.1",
+      "notes": "Zero tolerance per IPC-7095D Section 8.3.9"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Standoff height",
+      "maps_to_column": "standoff_height_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 50,
+      "unit": "% of nominal ball height",
+      "section_ref": "Section 4.3.1",
+      "notes": "Per IPC-A-610H"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met on all BGA packages",
+    "conditional": "Max void 20-25% -- accepted with X-ray image archive for traceability",
+    "fail": "Any HiP detected (safety reject), or void > 25%, or bridging void > 50% of ball diameter"
+  }
+}

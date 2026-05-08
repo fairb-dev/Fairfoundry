@@ -1,0 +1,100 @@
+{
+  "ers_id": "ERS-009",
+  "title": "Automotive Brake Pad Friction Test Specification",
+  "revision": "3.0",
+  "product": "Semi-Metallic Brake Pad FR-200",
+  "stage": "PVT",
+  "issued_by": "BrakeSafe Automotive (OEM)",
+  "factory": "Wuhan Friction Materials Co.",
+  "effective_date": "2026-02-20",
+  "test_conditions": {
+    "temperature_f": { "range": [200, 600] },
+    "pressure_bar": { "range": [30, 100] }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Normal friction coefficient (average)",
+      "maps_to_column": "mu_normal_avg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.35,
+      "upper_limit": 0.50,
+      "unit": "dimensionless",
+      "section_ref": "Section 11.1.1",
+      "notes": "Average friction coefficient under normal operating conditions per SAE J866"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Hot friction coefficient (average)",
+      "maps_to_column": "mu_hot_avg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.30,
+      "upper_limit": 0.55,
+      "unit": "dimensionless",
+      "section_ref": "Section 11.1.2",
+      "notes": "Average friction at elevated temperature conditions"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Minimum instantaneous friction",
+      "maps_to_column": "mu_min",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 0.25,
+      "unit": "dimensionless",
+      "section_ref": "Section 11.2.1",
+      "notes": "Lowest instantaneous friction during full test cycle; critical safety limit"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Maximum instantaneous friction",
+      "maps_to_column": "mu_max",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.55,
+      "unit": "dimensionless",
+      "section_ref": "Section 11.2.2",
+      "notes": "Highest instantaneous friction; excessive value causes NVH issues"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Pad thickness",
+      "maps_to_column": "thickness_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 11.8,
+      "upper_limit": 12.5,
+      "unit": "mm",
+      "section_ref": "Section 11.3.1",
+      "notes": "Post-test pad thickness within specification"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Compressibility",
+      "maps_to_column": "compressibility_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 90,
+      "upper_limit": 150,
+      "unit": "um",
+      "section_ref": "Section 11.4.1",
+      "notes": "Cold compressibility per SAE J160; pedal feel parameter"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Edge code classification",
+      "maps_to_column": "edge_code",
+      "type": "STRING_IN",
+      "allowed_values": ["EE", "EF", "FE", "FF", "FG", "GF", "GG"],
+      "unit": "SAE code",
+      "section_ref": "Section 11.5.1",
+      "notes": "SAE J866 edge code; must be within specified range for vehicle application"
+    }
+  ],
+  "sampling": {
+    "method": "AQL_SAMPLING",
+    "aql": 1.0,
+    "inspection_level": "II"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "Compressibility marginally out of range; engineering disposition required",
+    "fail": "Friction coefficient (mu_min, mu_normal_avg) below critical limit"
+  }
+}

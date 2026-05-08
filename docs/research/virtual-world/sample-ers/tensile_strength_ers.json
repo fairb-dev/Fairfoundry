@@ -1,0 +1,78 @@
+{
+  "ers_id": "ERS-008",
+  "title": "Tensile Strength Test Specification (ASTM E8/A370)",
+  "revision": "2.0",
+  "product": "A36 Structural Steel Flat Specimen",
+  "stage": "MP",
+  "issued_by": "Pacific Structural Steel (Buyer)",
+  "factory": "Baosteel Hot Rolling Mill",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 5 },
+    "strain_rate": "0.005 to 0.05 mm/mm/min per ASTM A370"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Yield strength (0.2% offset)",
+      "maps_to_column": "yield_mpa",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 250,
+      "unit": "MPa",
+      "section_ref": "Section 10.1.1",
+      "notes": "Minimum yield point per ASTM A36; 36 ksi equivalent"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Ultimate tensile strength",
+      "maps_to_column": "uts_mpa",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 400,
+      "upper_limit": 550,
+      "unit": "MPa",
+      "section_ref": "Section 10.1.2",
+      "notes": "ASTM A36 tensile strength range (58-80 ksi)"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Elongation in 50mm gauge",
+      "maps_to_column": "elongation_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 23.0,
+      "unit": "%",
+      "section_ref": "Section 10.1.3",
+      "notes": "Minimum elongation in 50mm gauge length per ASTM A36"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Reduction of area",
+      "maps_to_column": "reduction_area_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 40.0,
+      "unit": "%",
+      "section_ref": "Section 10.1.4",
+      "notes": "Minimum reduction of area at fracture; indicator of ductility"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Young's modulus",
+      "maps_to_column": "modulus_gpa",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 190,
+      "upper_limit": 210,
+      "unit": "GPa",
+      "section_ref": "Section 10.2.1",
+      "notes": "Elastic modulus; expected ~200 GPa for structural steel"
+    }
+  ],
+  "sampling": {
+    "method": "PER_HEAT",
+    "aql": null,
+    "notes": "Minimum 2 specimens per heat per ASTM A6"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "One specimen fails; retest with 2 additional specimens per ASTM A6 Section 14",
+    "fail": "Both specimens fail any criterion or UTS outside range"
+  }
+}

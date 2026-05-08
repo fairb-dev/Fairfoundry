@@ -1,0 +1,78 @@
+{
+  "ers_id": "ERS-095",
+  "title": "Cosmetic Preservative Efficacy Testing Specification",
+  "revision": "1.0",
+  "product": "Aqueous Cosmetic Cream - Preservative System Validation",
+  "stage": "DVT",
+  "issued_by": "Elysian Beauty Holdings (OEM)",
+  "factory": "Shanghai Cosmetic Testing Center Co., Ltd.",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "inoculum_range_cfu_ml": { "min": 100000, "max": 1000000 },
+    "bacteria_incubation_temp_c": 22.5,
+    "yeast_mold_incubation_temp_c": 22.5,
+    "test_duration_days": 28
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Bacteria log reduction at Day 14",
+      "maps_to_column": "day14_log_reduction",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 2.0,
+      "unit": "log10",
+      "section_ref": "Section 4.1.1",
+      "notes": "USP <51> Category 2 for S. aureus, E. coli, P. aeruginosa"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Bacteria no increase at Day 28",
+      "maps_to_column": "day28_cfu_ml",
+      "type": "NUMERIC_LTE_DYNAMIC",
+      "reference_column": "day14_cfu_ml",
+      "section_ref": "Section 4.1.2",
+      "notes": "USP <51> Category 2: Day 28 count must not exceed Day 14 count"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Yeast/Mold no increase at Day 14 and Day 28",
+      "maps_to_column": "day14_log_reduction",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 0.0,
+      "unit": "log10",
+      "section_ref": "Section 4.2.1",
+      "notes": "USP <51> Category 2 for C. albicans, A. brasiliensis"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "ISO 11930 Criterion A - Bacteria Day 7 log reduction",
+      "maps_to_column": "day7_log_reduction",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 3.0,
+      "unit": "log10",
+      "section_ref": "Section 4.3.1",
+      "notes": "Stricter EU criterion for bacteria at Day 7"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "ISO 11930 Criterion A - Yeast/Mold Day 7 log reduction",
+      "maps_to_column": "day7_log_reduction",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 1.0,
+      "unit": "log10",
+      "section_ref": "Section 4.3.2",
+      "notes": "EU criterion for C. albicans and A. brasiliensis at Day 7"
+    }
+  ],
+  "sampling": {
+    "method": "PER_FORMULATION",
+    "organisms_tested": 5,
+    "replicates_per_organism": 2,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "USP <51> Category 2 criteria met for all 5 organisms AND ISO 11930 Criterion A or B met",
+    "conditional": "USP <51> passed but ISO 11930 Criterion A failed / Criterion B passed -- acceptable for US market only, re-formulate for EU",
+    "fail": "Any organism fails USP <51> Category 2 criteria -- formulation rejected, reformulation required"
+  }
+}

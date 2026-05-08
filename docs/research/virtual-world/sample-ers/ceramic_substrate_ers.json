@@ -1,0 +1,87 @@
+{
+  "ers_id": "ERS-088",
+  "title": "96% Alumina Ceramic Substrate Flatness and Surface Quality Specification",
+  "revision": "2.5",
+  "product": "Al2O3 96% Ceramic Substrate, 50.8 x 50.8 x 0.635 mm",
+  "stage": "MP",
+  "issued_by": "NovaBridge Semiconductor Design (OEM)",
+  "factory": "Bangalore Advanced Ceramics Pvt. Ltd.",
+  "effective_date": "2026-02-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 2 },
+    "measurement_method": "Non-contact optical interferometry"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Flatness (camber/bow)",
+      "maps_to_column": "flatness_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.10,
+      "unit": "mm per 25 mm",
+      "section_ref": "Section 3.1.1",
+      "notes": "4 mils/inch per MIL-STD-1376"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Surface roughness Ra (as-fired top)",
+      "maps_to_column": "surface_ra_top_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.50,
+      "unit": "um",
+      "section_ref": "Section 3.2.1",
+      "notes": "Suitable for thick-film metallization"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Thickness",
+      "maps_to_column": "thickness_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.585,
+      "upper_limit": 0.685,
+      "unit": "mm",
+      "section_ref": "Section 3.3.1",
+      "notes": "0.635 +/- 0.050 mm"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Dielectric constant at 1 MHz",
+      "maps_to_column": "dielectric_constant",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 8.5,
+      "upper_limit": 9.5,
+      "unit": "dimensionless",
+      "section_ref": "Section 3.4.1",
+      "notes": "9.0 +/- 0.5 per ASTM D150"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Flexural strength",
+      "maps_to_column": "flexural_strength_mpa",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 300,
+      "unit": "MPa",
+      "section_ref": "Section 3.5.1",
+      "notes": "4-point bend per ASTM C1161"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Visual defects",
+      "maps_to_column": "visual_defects",
+      "type": "STRING_EQUALS",
+      "expected_value": "NONE",
+      "section_ref": "Section 3.6.1",
+      "notes": "No edge chips, cracks, or inclusions at 10x magnification"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT_DIMENSIONAL",
+    "destructive_sample_size": 5,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; 100% dimensional, destructive flexural on 5 per lot",
+    "conditional": "C001 marginal (0.08-0.10 mm), acceptable for non-RF applications",
+    "fail": "Any flatness > 0.10 mm, visual defect, or flexural < 300 MPa"
+  }
+}

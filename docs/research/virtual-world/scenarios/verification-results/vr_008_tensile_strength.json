@@ -1,0 +1,391 @@
+{
+  "verification_id": "VR-008",
+  "csv_source": "tensile_strength_test.csv",
+  "ers_source": "tensile_strength_ers.json",
+  "ers_id": "ERS-008",
+  "product": "A36 Structural Steel Flat Specimen",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 35,
+    "passed": 33,
+    "failed": 2,
+    "pass_rate": 94.3,
+    "criteria_failure_distribution": {
+      "C001_yield_strength_(0.2%_offset)": 2
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "TS-A36-009",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Yield strength (0.2% offset)",
+          "value": 241.0,
+          "limit": ">=250",
+          "result": "FAIL",
+          "margin": -9.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Ultimate tensile strength",
+          "value": 435.0,
+          "limit": "[400, 550]",
+          "result": "PASS",
+          "margin": 35.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Elongation in 50mm gauge",
+          "value": 23.7,
+          "limit": ">=23.0",
+          "result": "PASS",
+          "margin": 0.7
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Reduction of area",
+          "value": 43.2,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 3.2
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Young's modulus",
+          "value": 192.0,
+          "limit": "[190, 210]",
+          "result": "PASS",
+          "margin": 2.0
+        }
+      ]
+    },
+    {
+      "unit_id": "TS-A36-027",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Yield strength (0.2% offset)",
+          "value": 239.0,
+          "limit": ">=250",
+          "result": "FAIL",
+          "margin": -11.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Ultimate tensile strength",
+          "value": 412.0,
+          "limit": "[400, 550]",
+          "result": "PASS",
+          "margin": 12.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Elongation in 50mm gauge",
+          "value": 27.0,
+          "limit": ">=23.0",
+          "result": "PASS",
+          "margin": 4.0
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Reduction of area",
+          "value": 49.5,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 9.5
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Young's modulus",
+          "value": 203.0,
+          "limit": "[190, 210]",
+          "result": "PASS",
+          "margin": 7.0
+        }
+      ]
+    },
+    {
+      "unit_id": "TS-A36-001",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Yield strength (0.2% offset)",
+          "value": 291.0,
+          "limit": ">=250",
+          "result": "PASS",
+          "margin": 41.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Ultimate tensile strength",
+          "value": 463.0,
+          "limit": "[400, 550]",
+          "result": "PASS",
+          "margin": 63.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Elongation in 50mm gauge",
+          "value": 23.2,
+          "limit": ">=23.0",
+          "result": "PASS",
+          "margin": 0.2
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Reduction of area",
+          "value": 52.3,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 12.3
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Young's modulus",
+          "value": 204.0,
+          "limit": "[190, 210]",
+          "result": "PASS",
+          "margin": 6.0
+        }
+      ]
+    },
+    {
+      "unit_id": "TS-A36-007",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Yield strength (0.2% offset)",
+          "value": 254.0,
+          "limit": ">=250",
+          "result": "PASS",
+          "margin": 4.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Ultimate tensile strength",
+          "value": 409.0,
+          "limit": "[400, 550]",
+          "result": "PASS",
+          "margin": 9.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Elongation in 50mm gauge",
+          "value": 23.3,
+          "limit": ">=23.0",
+          "result": "PASS",
+          "margin": 0.3
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Reduction of area",
+          "value": 54.4,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 14.4
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Young's modulus",
+          "value": 202.0,
+          "limit": "[190, 210]",
+          "result": "PASS",
+          "margin": 8.0
+        }
+      ]
+    },
+    {
+      "unit_id": "TS-A36-014",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Yield strength (0.2% offset)",
+          "value": 272.0,
+          "limit": ">=250",
+          "result": "PASS",
+          "margin": 22.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Ultimate tensile strength",
+          "value": 455.0,
+          "limit": "[400, 550]",
+          "result": "PASS",
+          "margin": 55.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Elongation in 50mm gauge",
+          "value": 24.6,
+          "limit": ">=23.0",
+          "result": "PASS",
+          "margin": 1.6
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Reduction of area",
+          "value": 51.9,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 11.9
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Young's modulus",
+          "value": 195.0,
+          "limit": "[190, 210]",
+          "result": "PASS",
+          "margin": 5.0
+        }
+      ]
+    },
+    {
+      "unit_id": "TS-A36-020",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Yield strength (0.2% offset)",
+          "value": 296.0,
+          "limit": ">=250",
+          "result": "PASS",
+          "margin": 46.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Ultimate tensile strength",
+          "value": 439.0,
+          "limit": "[400, 550]",
+          "result": "PASS",
+          "margin": 39.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Elongation in 50mm gauge",
+          "value": 23.2,
+          "limit": ">=23.0",
+          "result": "PASS",
+          "margin": 0.2
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Reduction of area",
+          "value": 47.6,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 7.6
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Young's modulus",
+          "value": 204.0,
+          "limit": "[190, 210]",
+          "result": "PASS",
+          "margin": 6.0
+        }
+      ]
+    },
+    {
+      "unit_id": "TS-A36-026",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Yield strength (0.2% offset)",
+          "value": 274.0,
+          "limit": ">=250",
+          "result": "PASS",
+          "margin": 24.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Ultimate tensile strength",
+          "value": 443.0,
+          "limit": "[400, 550]",
+          "result": "PASS",
+          "margin": 43.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Elongation in 50mm gauge",
+          "value": 26.2,
+          "limit": ">=23.0",
+          "result": "PASS",
+          "margin": 3.2
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Reduction of area",
+          "value": 52.4,
+          "limit": ">=40.0",
+          "result": "PASS",
+          "margin": 12.4
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Young's modulus",
+          "value": 200.0,
+          "limit": "[190, 210]",
+          "result": "PASS",
+          "margin": 10.0
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "TS-A36-001",
+      "criterion": "C003",
+      "parameter": "Elongation in 50mm gauge",
+      "value": 23.2,
+      "limit": ">=23.0",
+      "margin": 0.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "TS-A36-015",
+      "criterion": "C003",
+      "parameter": "Elongation in 50mm gauge",
+      "value": 23.2,
+      "limit": ">=23.0",
+      "margin": 0.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "TS-A36-020",
+      "criterion": "C003",
+      "parameter": "Elongation in 50mm gauge",
+      "value": 23.2,
+      "limit": ">=23.0",
+      "margin": 0.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "TS-A36-023",
+      "criterion": "C003",
+      "parameter": "Elongation in 50mm gauge",
+      "value": 23.2,
+      "limit": ">=23.0",
+      "margin": 0.2,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "TS-A36-024",
+      "criterion": "C003",
+      "parameter": "Elongation in 50mm gauge",
+      "value": 23.2,
+      "limit": ">=23.0",
+      "margin": 0.2,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "Yield strength below 250 MPa -- request retest with 2 additional specimens per ASTM A6 Section 14."
+  ]
+}

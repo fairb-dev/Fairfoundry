@@ -1,0 +1,115 @@
+{
+  "ers_id": "ERS-018",
+  "title": "Automotive Paint Dry Film Thickness (DFT) Specification",
+  "revision": "2.4",
+  "product": "Automotive Body-in-White Topcoat System",
+  "stage": "MP",
+  "issued_by": "AutoDrive Powertrain (OEM)",
+  "factory": "Wuhan AutoPaint Finishing Plant",
+  "effective_date": "2026-01-25",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 3 },
+    "humidity_pct": { "max": 60 },
+    "cure_time_minutes": 30,
+    "measurement_method": "Eddy current (non-ferrous substrate)"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "DFT measurement point 1",
+      "maps_to_column": "dft_point1_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 90,
+      "upper_limit": 140,
+      "unit": "um",
+      "section_ref": "Section 20.1.1",
+      "notes": "Individual measurement point; total system build"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "DFT measurement point 2",
+      "maps_to_column": "dft_point2_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 90,
+      "upper_limit": 140,
+      "unit": "um",
+      "section_ref": "Section 20.1.2",
+      "notes": "Individual measurement point; total system build"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "DFT measurement point 3",
+      "maps_to_column": "dft_point3_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 90,
+      "upper_limit": 140,
+      "unit": "um",
+      "section_ref": "Section 20.1.3",
+      "notes": "Individual measurement point; total system build"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "DFT measurement point 4",
+      "maps_to_column": "dft_point4_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 90,
+      "upper_limit": 140,
+      "unit": "um",
+      "section_ref": "Section 20.1.4",
+      "notes": "Individual measurement point; total system build"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "DFT measurement point 5",
+      "maps_to_column": "dft_point5_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 90,
+      "upper_limit": 140,
+      "unit": "um",
+      "section_ref": "Section 20.1.5",
+      "notes": "Individual measurement point; total system build"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "DFT measurement point 6",
+      "maps_to_column": "dft_point6_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 90,
+      "upper_limit": 140,
+      "unit": "um",
+      "section_ref": "Section 20.1.6",
+      "notes": "Individual measurement point; total system build"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Average dry film thickness",
+      "maps_to_column": "dft_avg_um",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 100,
+      "upper_limit": 130,
+      "unit": "um",
+      "section_ref": "Section 20.2.1",
+      "notes": "Average of 6 measurement points; tighter than individual limits"
+    },
+    {
+      "criterion_id": "C008",
+      "parameter": "DFT measurement range",
+      "maps_to_column": "dft_range_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 25,
+      "unit": "um",
+      "section_ref": "Section 20.3.1",
+      "notes": "Max minus min across 6 points; uniformity indicator"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null,
+    "notes": "Every body measured at 6 standard panel locations"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; body proceeds to final assembly",
+    "conditional": "Average within spec but 1-2 individual points marginally out; touch-up permitted",
+    "fail": "Average outside range or more than 2 individual points out of spec; respray required"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "ers_id": "ERS-084",
+  "title": "RSC Corrugated Shipping Box Strength Specification",
+  "revision": "1.5",
+  "product": "RSC Box 18x12x12 inch, C-Flute, 275# Test",
+  "stage": "MP",
+  "issued_by": "VitaSource Nutrition (OEM)",
+  "factory": "Midwest Corrugated Packaging Inc.",
+  "effective_date": "2026-01-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 1 },
+    "humidity_pct": { "nominal": 50, "tolerance": 2 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Mullen burst strength",
+      "maps_to_column": "burst_psi",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 200,
+      "unit": "psi",
+      "section_ref": "Section 3.1.1",
+      "notes": "275# test liner per TAPPI T810"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Edge crush test (ECT)",
+      "maps_to_column": "ect_lbf_in",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 44,
+      "unit": "lbf/in",
+      "section_ref": "Section 3.1.2",
+      "notes": "C-flute 44 ECT per TAPPI T811"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Flat crush resistance",
+      "maps_to_column": "flat_crush_lbf_in2",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 35,
+      "unit": "lbf/in2",
+      "section_ref": "Section 3.1.3",
+      "notes": "C-flute per TAPPI T825"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Box compression test (BCT)",
+      "maps_to_column": "bct_lbf",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 1500,
+      "unit": "lbf",
+      "section_ref": "Section 3.2.1",
+      "notes": "For 18x12x12 box per TAPPI T804"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Moisture content",
+      "maps_to_column": "moisture_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 6,
+      "upper_limit": 9,
+      "unit": "%",
+      "section_ref": "Section 3.3.1",
+      "notes": "Per TAPPI T412"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Board caliper",
+      "maps_to_column": "caliper_in",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.150,
+      "upper_limit": 0.170,
+      "unit": "inches",
+      "section_ref": "Section 3.3.2",
+      "notes": "C-flute per TAPPI T411"
+    }
+  ],
+  "sampling": {
+    "method": "AQL",
+    "aql": "1.0",
+    "sample_size_per_lot": 10
+  },
+  "disposition_rules": {
+    "pass": "All criteria met on all 10 samples",
+    "conditional": "1 of 10 marginal on BCT (1400-1500 lbf), lot accepted with use restriction",
+    "fail": "Any burst or ECT failure, or 2+ samples below BCT minimum"
+  }
+}

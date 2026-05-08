@@ -1,0 +1,100 @@
+{
+  "ers_id": "ERS-087",
+  "title": "ABS IoT Sensor Enclosure Shrinkage and Warpage Specification",
+  "revision": "1.0",
+  "product": "ABS Injection Molded IoT Sensor Enclosure",
+  "stage": "PVT",
+  "issued_by": "Greenfield IoT Solutions (OEM)",
+  "factory": "Sao Paulo Moldes Ltda.",
+  "effective_date": "2026-03-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 2 },
+    "conditioning_hours": 16,
+    "measurement_method": "CMM per ISO 10360"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Shrinkage in flow direction",
+      "maps_to_column": "shrinkage_flow_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.4,
+      "upper_limit": 0.7,
+      "unit": "%",
+      "section_ref": "Section 3.1.1",
+      "notes": "Per ISO 294-4, ABS typical 0.5% nominal"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Shrinkage in transverse direction",
+      "maps_to_column": "shrinkage_transverse_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 0.4,
+      "upper_limit": 0.7,
+      "unit": "%",
+      "section_ref": "Section 3.1.2",
+      "notes": "Per ISO 294-4"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Differential shrinkage",
+      "maps_to_column": "diff_shrinkage_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.15,
+      "unit": "%",
+      "section_ref": "Section 3.1.3",
+      "notes": "Flow vs transverse, per Greenfield specification"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Warpage (flatness of mating surface)",
+      "maps_to_column": "warpage_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.20,
+      "unit": "mm",
+      "section_ref": "Section 3.2.1",
+      "notes": "Over 80 mm length per drawing callout"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Wall thickness",
+      "maps_to_column": "wall_thickness_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 1.90,
+      "upper_limit": 2.10,
+      "unit": "mm",
+      "section_ref": "Section 3.3.1",
+      "notes": "2.00 +/- 0.10 mm, critical for IP67 sealing"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Gate vestige height",
+      "maps_to_column": "gate_vestige_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.30,
+      "unit": "mm",
+      "section_ref": "Section 3.4.1",
+      "notes": "Per ISO 20457"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Sink mark depth",
+      "maps_to_column": "sink_depth_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.05,
+      "unit": "mm",
+      "section_ref": "Section 3.4.2",
+      "notes": "On visible surfaces per Greenfield cosmetic standard"
+    }
+  ],
+  "sampling": {
+    "method": "FIRST_ARTICLE",
+    "sample_size": 30,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; Cpk >= 1.33 on C004 and C005",
+    "conditional": "Cpk 1.0-1.33 on C004 -- continue production with increased inspection frequency",
+    "fail": "Any wall thickness outside 1.90-2.10 mm (IP67 seal risk), or warpage > 0.20 mm"
+  }
+}

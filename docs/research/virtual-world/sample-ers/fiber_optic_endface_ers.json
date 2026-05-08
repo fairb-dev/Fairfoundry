@@ -1,0 +1,89 @@
+{
+  "ers_id": "ERS-083",
+  "title": "SC/APC Fiber Optic Connector End-Face Geometry Specification",
+  "revision": "3.1",
+  "product": "SC/APC Single-Mode Fiber Optic Connector",
+  "stage": "MP",
+  "issued_by": "Terralink Connectivity (OEM)",
+  "factory": "Foshan Fiber-Connect Technology Co., Ltd.",
+  "effective_date": "2026-02-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 2 },
+    "wavelength_nm": 1310,
+    "reference_fiber": "ITU-T G.652D"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Radius of curvature",
+      "maps_to_column": "roc_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 7,
+      "upper_limit": 25,
+      "unit": "mm",
+      "section_ref": "Section 4.1.1",
+      "notes": "APC connector per IEC 61300-3-16 Zone A"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Apex offset",
+      "maps_to_column": "apex_offset_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 50,
+      "unit": "um",
+      "section_ref": "Section 4.1.2",
+      "notes": "From fiber core center per IEC 61300-3-16"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Fiber height",
+      "maps_to_column": "fiber_height_nm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -50,
+      "upper_limit": 50,
+      "unit": "nm",
+      "section_ref": "Section 4.1.3",
+      "notes": "Protrusion/recess per Telcordia GR-326 Grade A"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Angle of polish",
+      "maps_to_column": "angle_deg",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 7.7,
+      "upper_limit": 8.3,
+      "unit": "degrees",
+      "section_ref": "Section 4.1.4",
+      "notes": "8.0 +/- 0.3 deg for APC per IEC 61755-3-1"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Insertion loss",
+      "maps_to_column": "insertion_loss_db",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.25,
+      "unit": "dB",
+      "section_ref": "Section 4.2.1",
+      "notes": "Per IEC 61300-3-4 at 1310 nm"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Return loss",
+      "maps_to_column": "return_loss_db",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 65,
+      "unit": "dB",
+      "section_ref": "Section 4.2.2",
+      "notes": "APC per IEC 61300-3-6"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "C005 marginal (0.20-0.25 dB), acceptable for non-telecom applications",
+    "fail": "Any geometry criterion (C001-C004) failed, or IL > 0.25 dB"
+  }
+}

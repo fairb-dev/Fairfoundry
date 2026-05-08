@@ -1,0 +1,98 @@
+{
+  "ers_id": "ERS-089",
+  "title": "Carbon Fiber/Epoxy Interlaminar Shear Strength Specification",
+  "revision": "1.0",
+  "product": "T700/Epoxy Unidirectional Prepreg - Aerospace Qualification",
+  "stage": "DVT",
+  "issued_by": "Celestial Aerostructures (OEM)",
+  "factory": "Queretaro Composites S.A. de C.V.",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "rtd": { "temperature_c": 23, "humidity": "ambient" },
+    "etw": { "temperature_c": 82, "conditioning": "14 days at 70 C / 85% RH per ASTM D5229" },
+    "specimen_span_ratio": "4:1 per ASTM D2344"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "ILSS at RTD",
+      "maps_to_column": "ilss_mpa",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 80,
+      "unit": "MPa",
+      "section_ref": "Section 4.1.1",
+      "notes": "Room temperature dry, short beam shear per ASTM D2344"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "ILSS at ETW",
+      "maps_to_column": "ilss_mpa",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 55,
+      "unit": "MPa",
+      "section_ref": "Section 4.1.2",
+      "notes": "82 C wet condition per FAA AC 20-107B"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Coefficient of variation",
+      "maps_to_column": "cv_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 8,
+      "unit": "%",
+      "section_ref": "Section 4.2.1",
+      "notes": "Across minimum 5 specimens per lot"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Fiber volume fraction",
+      "maps_to_column": "fiber_volume_pct",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 55,
+      "upper_limit": 65,
+      "unit": "%",
+      "section_ref": "Section 4.3.1",
+      "notes": "Per ASTM D3171 acid digestion"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Void content",
+      "maps_to_column": "void_content_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 2.0,
+      "unit": "%",
+      "section_ref": "Section 4.3.2",
+      "notes": "Per ASTM D2734"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Glass transition temperature (Tg)",
+      "maps_to_column": "tg_c",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 180,
+      "unit": "C",
+      "section_ref": "Section 4.4.1",
+      "notes": "Dry, DMA onset per ASTM D7028"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Failure mode",
+      "maps_to_column": "failure_mode",
+      "type": "STRING_EQUALS",
+      "expected_value": "INTERLAMINAR_SHEAR",
+      "section_ref": "Section 4.5.1",
+      "notes": "Flexure or compressive failure invalidates test per ASTM D2344 Section 11"
+    }
+  ],
+  "sampling": {
+    "method": "DESTRUCTIVE",
+    "specimens_per_panel": 5,
+    "panels_per_lot": 4,
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; all failure modes valid (interlaminar shear)",
+    "conditional": "1 of 5 specimens invalid failure mode -- replace specimen, minimum 4 valid per panel",
+    "fail": "Any ETW ILSS < 55 MPa, or void content > 2.0%, or Tg < 180 C"
+  }
+}

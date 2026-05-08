@@ -1,0 +1,100 @@
+{
+  "ers_id": "ERS-013",
+  "title": "High-Pressure Turbine Blade CMM Inspection Specification",
+  "revision": "6.0",
+  "product": "HPT Stage 1 Blade - Single Crystal Nickel Superalloy",
+  "stage": "MP",
+  "issued_by": "AeroJet Propulsion (OEM)",
+  "factory": "PrecisionCast Aerospace Foundry",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "temperature_c": { "nominal": 20, "tolerance": 0.5 },
+    "humidity_pct": { "max": 50 },
+    "cmm_type": "5-axis articulated arm"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Airfoil profile deviation",
+      "maps_to_column": "airfoil_profile_dev_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.075,
+      "unit": "mm",
+      "section_ref": "Section 15.1.1",
+      "notes": "Maximum profile deviation from nominal airfoil contour"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Root width deviation",
+      "maps_to_column": "root_width_dev_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -0.025,
+      "upper_limit": 0.025,
+      "unit": "mm",
+      "section_ref": "Section 15.2.1",
+      "notes": "Fir-tree root width tolerance; critical for blade retention"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Root depth deviation",
+      "maps_to_column": "root_depth_dev_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -0.025,
+      "upper_limit": 0.025,
+      "unit": "mm",
+      "section_ref": "Section 15.2.2",
+      "notes": "Fir-tree root depth tolerance"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Chord length deviation",
+      "maps_to_column": "chord_length_dev_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -0.075,
+      "upper_limit": 0.075,
+      "unit": "mm",
+      "section_ref": "Section 15.3.1",
+      "notes": "Airfoil chord length tolerance at mean section"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Leading edge radius deviation",
+      "maps_to_column": "le_radius_dev_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": -0.030,
+      "upper_limit": 0.030,
+      "unit": "mm",
+      "section_ref": "Section 15.3.2",
+      "notes": "Leading edge radius profile tolerance; aerodynamic critical"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Cooling hole true position",
+      "maps_to_column": "cooling_hole_tp_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.15,
+      "unit": "mm",
+      "section_ref": "Section 15.4.1",
+      "notes": "True position of film cooling holes from nominal; thermal management critical"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Minimum wall thickness",
+      "maps_to_column": "wall_thickness_min_mm",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 0.76,
+      "unit": "mm",
+      "section_ref": "Section 15.5.1",
+      "notes": "Minimum acceptable wall thickness for creep life; safety-critical dimension"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; blade cleared for engine assembly",
+    "conditional": "Airfoil profile marginally out; MRB review for limited-life disposition",
+    "fail": "Wall thickness, root dimension, or cooling hole position out of spec; blade scrapped"
+  }
+}

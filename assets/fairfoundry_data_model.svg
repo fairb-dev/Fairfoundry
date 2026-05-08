@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-labelledby="title desc">
+  <title id="title">Fairfoundry public data model</title>
+  <desc id="desc">Public data model for roles, lots, evidence, review challenges, governance, and credentials.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#334155"/></marker>
+    <style>
+      .box{fill:#f9fbfd;stroke:#334155;stroke-width:1.4;rx:8}
+      .sub{fill:#f0f7ff;stroke:#93c5fd;stroke-width:1;rx:6}
+      .title{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}
+      .subtitle{font-family:Arial,sans-serif;font-size:12px;fill:#64748b}
+      .ent{font-family:Arial,sans-serif;font-size:14px;font-weight:700;fill:#0f172a}
+      .field{font-family:Courier New,monospace;font-size:11px;fill:#334155}
+      .section{font-family:Arial,sans-serif;font-size:10px;font-weight:700;fill:#94a3b8}
+      .key{font-family:Arial,sans-serif;font-size:10px;font-weight:700;fill:#2563eb}
+      .rel{font-family:Arial,sans-serif;font-size:11px;fill:#475569}
+    </style>
+  </defs>
+  <rect width="1100" height="720" fill="#fff"/>
+  <text x="550" y="30" class="title" text-anchor="middle">Data Model</text>
+  <text x="550" y="48" class="subtitle" text-anchor="middle">Public storage view focused on manufacturing control records</text>
+
+  <rect x="35" y="75" width="300" height="370" class="box"/>
+  <text x="45" y="94" class="key">key: S</text>
+  <text x="185" y="94" class="ent" text-anchor="middle">State</text>
+  <line x1="45" y1="102" x2="325" y2="102" stroke="#e2e8f0"/>
+  <text x="45" y="124" class="section">ROLES AND POLICY</text>
+  <text x="45" y="140" class="field">roles: Roles</text>
+  <text x="45" y="156" class="field">ers: ERS</text>
+  <text x="45" y="172" class="field">oracle: Vec&lt;OracleConfig&gt;</text>
+  <text x="45" y="188" class="field">review_window_secs: u64</text>
+  <text x="45" y="214" class="section">GOVERNANCE</text>
+  <text x="45" y="230" class="field">ers_pending: Vec&lt;PendingERSUpdate&gt;</text>
+  <text x="45" y="246" class="field">roles_pending: Vec&lt;PendingRoleUpdate&gt;</text>
+  <text x="45" y="262" class="field">upgrade_pending: Vec&lt;PendingUpgrade&gt;</text>
+  <text x="45" y="288" class="section">FLAGS AND COUNTERS</text>
+  <text x="45" y="304" class="field">paused: bool</text>
+  <text x="45" y="320" class="field">entered: bool</text>
+  <text x="45" y="336" class="field">total_units_produced: u64</text>
+  <text x="45" y="352" class="field">total_units_approved: u64</text>
+  <text x="45" y="368" class="field">total_challenges: u64</text>
+  <text x="45" y="384" class="field">total_successful_challenges: u64</text>
+
+  <rect x="405" y="75" width="290" height="295" class="box"/>
+  <text x="415" y="94" class="key">key: LOTS</text>
+  <text x="550" y="94" class="ent" text-anchor="middle">Lot</text>
+  <line x1="415" y1="102" x2="685" y2="102" stroke="#e2e8f0"/>
+  <text x="415" y="124" class="section">IDENTITY</text>
+  <text x="415" y="140" class="field">lot_id: String</text>
+  <text x="415" y="156" class="field">creator: Address</text>
+  <text x="415" y="172" class="field">created_at: u64</text>
+  <text x="415" y="188" class="field">last_update: u64</text>
+  <text x="415" y="214" class="section">QA COUNTS</text>
+  <text x="415" y="230" class="field">quantity: u32</text>
+  <text x="415" y="246" class="field">tested: u32</text>
+  <text x="415" y="262" class="field">passed: u32</text>
+  <text x="415" y="278" class="field">failed: u32</text>
+  <text x="415" y="304" class="section">STATUS AND EVIDENCE</text>
+  <text x="415" y="320" class="field">status: LotStatus</text>
+  <text x="415" y="336" class="field">qa_commit: Vec&lt;QAMetadata&gt;</text>
+
+  <rect x="765" y="75" width="300" height="280" class="box"/>
+  <text x="775" y="94" class="key">key: CHAL</text>
+  <text x="915" y="94" class="ent" text-anchor="middle">Review Challenge</text>
+  <line x1="775" y1="102" x2="1055" y2="102" stroke="#e2e8f0"/>
+  <text x="775" y="124" class="section">REQUEST</text>
+  <text x="775" y="140" class="field">requested_by: Address</text>
+  <text x="775" y="156" class="field">seed: BytesN&lt;32&gt;</text>
+  <text x="775" y="172" class="field">sample_size: u32</text>
+  <text x="775" y="188" class="field">sample_indices: Vec&lt;u32&gt;</text>
+  <text x="775" y="204" class="field">requested_at: u64</text>
+  <text x="775" y="220" class="field">due_by: u64</text>
+  <text x="775" y="246" class="section">RESPONSE</text>
+  <text x="775" y="262" class="field">status: ChallengeStatus</text>
+  <text x="775" y="278" class="field">response_data: Vec&lt;ChallengeResponse&gt;</text>
+
+  <path d="M335 205H405" stroke="#334155" fill="none" marker-end="url(#arrow)"/>
+  <text x="370" y="198" class="rel" text-anchor="middle">1:N</text>
+  <path d="M695 205H765" stroke="#334155" fill="none" marker-end="url(#arrow)"/>
+  <text x="730" y="198" class="rel" text-anchor="middle">0..1</text>
+
+  <rect x="65" y="495" width="155" height="80" class="sub"/>
+  <text x="143" y="516" class="ent" text-anchor="middle">Roles</text>
+  <text x="80" y="540" class="field">oem: Address</text>
+  <text x="80" y="556" class="field">factory: Address</text>
+  <text x="80" y="572" class="field">qa: Address</text>
+
+  <rect x="260" y="495" width="185" height="90" class="sub"/>
+  <text x="353" y="516" class="ent" text-anchor="middle">ERS</text>
+  <text x="275" y="540" class="field">version: u32</text>
+  <text x="275" y="556" class="field">max_defect_bps: u32</text>
+  <text x="275" y="572" class="field">specs: Map&lt;String,u32&gt;</text>
+
+  <rect x="485" y="495" width="245" height="90" class="sub"/>
+  <text x="608" y="516" class="ent" text-anchor="middle">QAMetadata</text>
+  <text x="500" y="540" class="field">commit_root: BytesN&lt;32&gt;</text>
+  <text x="500" y="556" class="field">report_uri, serials_root</text>
+  <text x="500" y="572" class="field">bench: Vec&lt;TestbenchAttestation&gt;</text>
+
+  <rect x="770" y="495" width="250" height="90" class="sub"/>
+  <text x="895" y="516" class="ent" text-anchor="middle">ChallengeResponse</text>
+  <text x="785" y="540" class="field">pass_count: u32</text>
+  <text x="785" y="556" class="field">fail_count: u32</text>
+  <text x="785" y="572" class="field">proof_hash: BytesN&lt;32&gt;</text>
+
+  <text x="65" y="655" class="subtitle">Private fields are excluded from this public diagram.</text>
+</svg>

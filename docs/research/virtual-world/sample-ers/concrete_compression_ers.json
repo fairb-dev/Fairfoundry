@@ -1,0 +1,80 @@
+{
+  "ers_id": "ERS-016",
+  "title": "Concrete Cylinder Compressive Strength Test Specification",
+  "revision": "1.4",
+  "product": "4000 PSI Ready-Mix Concrete (Multiple Mix Designs)",
+  "stage": "MP",
+  "issued_by": "Metro Construction Group (General Contractor)",
+  "factory": "Valley Ready-Mix Concrete Inc.",
+  "effective_date": "2026-01-15",
+  "test_conditions": {
+    "curing_temp_f": { "nominal": 73, "tolerance": 3 },
+    "method_ref": "ASTM C39/C39M"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Compressive strength (28-day)",
+      "maps_to_column": "compressive_strength_psi",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 4000,
+      "unit": "psi",
+      "section_ref": "Section 18.1.1",
+      "notes": "Minimum 28-day compressive strength per ACI 318; f'c = 4000 psi"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Compressive strength (7-day)",
+      "maps_to_column": "compressive_strength_psi",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 2500,
+      "unit": "psi",
+      "section_ref": "Section 18.1.2",
+      "notes": "Minimum 7-day strength; approximately 65% of 28-day target",
+      "condition": "age_days == 7"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Cylinder diameter",
+      "maps_to_column": "cylinder_diameter_in",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 5.90,
+      "upper_limit": 6.10,
+      "unit": "in",
+      "section_ref": "Section 18.2.1",
+      "notes": "Standard 6-inch diameter cylinder per ASTM C31"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Cylinder length",
+      "maps_to_column": "cylinder_length_in",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 11.90,
+      "upper_limit": 12.10,
+      "unit": "in",
+      "section_ref": "Section 18.2.2",
+      "notes": "Standard 12-inch length cylinder; L/D ratio = 2.0"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Fracture type",
+      "maps_to_column": "fracture_type",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 1,
+      "upper_limit": 5,
+      "unit": "ASTM type",
+      "section_ref": "Section 18.3.1",
+      "notes": "ASTM C39 fracture pattern types 1-5 are acceptable; type 6 indicates testing error"
+    }
+  ],
+  "sampling": {
+    "method": "PER_BATCH",
+    "aql": null,
+    "notes": "Minimum 2 cylinders per 150 cubic yards per ACI 318 Table 26.12.2.1"
+  },
+  "disposition_rules": {
+    "pass": "All criteria met; concrete placement accepted",
+    "conditional": "One of two companion cylinders below f'c; average of pair must meet f'c",
+    "fail": "Average of companion cylinders below f'c; core drilling investigation required"
+  }
+}

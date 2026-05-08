@@ -1,0 +1,394 @@
+{
+  "verification_id": "VR-019",
+  "csv_source": "drug_dissolution.csv",
+  "ers_source": "drug_dissolution_ers.json",
+  "ers_id": "ERS-019",
+  "product": "Metformin HCl 500mg Extended-Release Tablet",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 36,
+    "passed": 34,
+    "failed": 2,
+    "pass_rate": 94.4,
+    "criteria_failure_distribution": {
+      "C003_dissolution_at_30_minutes": 1,
+      "C004_dissolution_at_45_minutes": 1,
+      "C002_dissolution_at_20_minutes": 1
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "MET500-2026-043-V5",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Dissolution at 10 minutes",
+          "value": 43.2,
+          "limit": "[30.0, 75.0]",
+          "result": "PASS",
+          "margin": 13.2
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Dissolution at 20 minutes",
+          "value": 61.5,
+          "limit": "[55.0, 90.0]",
+          "result": "PASS",
+          "margin": 6.5
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Dissolution at 30 minutes",
+          "value": 73.6,
+          "limit": ">=80.0",
+          "result": "FAIL",
+          "margin": -6.4
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Dissolution at 45 minutes",
+          "value": 83.4,
+          "limit": ">=90.0",
+          "result": "FAIL",
+          "margin": -6.6
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Q value specification",
+          "value": 80.0,
+          "limit": ">=80",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "MET500-2026-045-V1",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Dissolution at 10 minutes",
+          "value": 64.7,
+          "limit": "[30.0, 75.0]",
+          "result": "PASS",
+          "margin": 10.3
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Dissolution at 20 minutes",
+          "value": 90.8,
+          "limit": "[55.0, 90.0]",
+          "result": "FAIL",
+          "margin": -0.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Dissolution at 30 minutes",
+          "value": 90.4,
+          "limit": ">=80.0",
+          "result": "PASS",
+          "margin": 10.4
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Dissolution at 45 minutes",
+          "value": 98.3,
+          "limit": ">=90.0",
+          "result": "PASS",
+          "margin": 8.3
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Q value specification",
+          "value": 80.0,
+          "limit": ">=80",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "MET500-2026-042-V1",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Dissolution at 10 minutes",
+          "value": 61.7,
+          "limit": "[30.0, 75.0]",
+          "result": "PASS",
+          "margin": 13.3
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Dissolution at 20 minutes",
+          "value": 79.3,
+          "limit": "[55.0, 90.0]",
+          "result": "PASS",
+          "margin": 10.7
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Dissolution at 30 minutes",
+          "value": 93.7,
+          "limit": ">=80.0",
+          "result": "PASS",
+          "margin": 13.7
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Dissolution at 45 minutes",
+          "value": 96.2,
+          "limit": ">=90.0",
+          "result": "PASS",
+          "margin": 6.2
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Q value specification",
+          "value": 80.0,
+          "limit": ">=80",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "MET500-2026-043-V1",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Dissolution at 10 minutes",
+          "value": 60.6,
+          "limit": "[30.0, 75.0]",
+          "result": "PASS",
+          "margin": 14.4
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Dissolution at 20 minutes",
+          "value": 82.6,
+          "limit": "[55.0, 90.0]",
+          "result": "PASS",
+          "margin": 7.4
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Dissolution at 30 minutes",
+          "value": 88.6,
+          "limit": ">=80.0",
+          "result": "PASS",
+          "margin": 8.6
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Dissolution at 45 minutes",
+          "value": 100.0,
+          "limit": ">=90.0",
+          "result": "PASS",
+          "margin": 10.0
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Q value specification",
+          "value": 80.0,
+          "limit": ">=80",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "MET500-2026-044-V2",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Dissolution at 10 minutes",
+          "value": 64.2,
+          "limit": "[30.0, 75.0]",
+          "result": "PASS",
+          "margin": 10.8
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Dissolution at 20 minutes",
+          "value": 81.2,
+          "limit": "[55.0, 90.0]",
+          "result": "PASS",
+          "margin": 8.8
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Dissolution at 30 minutes",
+          "value": 87.6,
+          "limit": ">=80.0",
+          "result": "PASS",
+          "margin": 7.6
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Dissolution at 45 minutes",
+          "value": 94.4,
+          "limit": ">=90.0",
+          "result": "PASS",
+          "margin": 4.4
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Q value specification",
+          "value": 80.0,
+          "limit": ">=80",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "MET500-2026-045-V3",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Dissolution at 10 minutes",
+          "value": 60.4,
+          "limit": "[30.0, 75.0]",
+          "result": "PASS",
+          "margin": 14.6
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Dissolution at 20 minutes",
+          "value": 81.0,
+          "limit": "[55.0, 90.0]",
+          "result": "PASS",
+          "margin": 9.0
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Dissolution at 30 minutes",
+          "value": 89.6,
+          "limit": ">=80.0",
+          "result": "PASS",
+          "margin": 9.6
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Dissolution at 45 minutes",
+          "value": 98.1,
+          "limit": ">=90.0",
+          "result": "PASS",
+          "margin": 8.1
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Q value specification",
+          "value": 80.0,
+          "limit": ">=80",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "MET500-2026-046-V3",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Dissolution at 10 minutes",
+          "value": 50.5,
+          "limit": "[30.0, 75.0]",
+          "result": "PASS",
+          "margin": 20.5
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Dissolution at 20 minutes",
+          "value": 70.6,
+          "limit": "[55.0, 90.0]",
+          "result": "PASS",
+          "margin": 15.6
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Dissolution at 30 minutes",
+          "value": 93.1,
+          "limit": ">=80.0",
+          "result": "PASS",
+          "margin": 13.1
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Dissolution at 45 minutes",
+          "value": 95.2,
+          "limit": ">=90.0",
+          "result": "PASS",
+          "margin": 5.2
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Q value specification",
+          "value": 80.0,
+          "limit": ">=80",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "MET500-2026-042-V1",
+      "criterion": "C005",
+      "parameter": "Q value specification",
+      "value": 80.0,
+      "limit": ">=80",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "MET500-2026-042-V2",
+      "criterion": "C005",
+      "parameter": "Q value specification",
+      "value": 80.0,
+      "limit": ">=80",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "MET500-2026-042-V3",
+      "criterion": "C005",
+      "parameter": "Q value specification",
+      "value": 80.0,
+      "limit": ">=80",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "MET500-2026-042-V4",
+      "criterion": "C005",
+      "parameter": "Q value specification",
+      "value": 80.0,
+      "limit": ">=80",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "MET500-2026-042-V5",
+      "criterion": "C005",
+      "parameter": "Q value specification",
+      "value": 80.0,
+      "limit": ">=80",
+      "margin": 0.0,
+      "note": "Barely passing"
+    }
+  ],
+  "recommended_actions": [
+    "45-minute dissolution below 90% -- investigate tablet coating thickness uniformity and polymer grade.",
+    "Q value not met at S1 stage -- proceed to S2 testing with 12 additional tablets per USP <711>."
+  ]
+}

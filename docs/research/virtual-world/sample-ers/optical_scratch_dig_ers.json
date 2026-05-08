@@ -1,0 +1,86 @@
+{
+  "ers_id": "ERS-082",
+  "title": "BK7 Precision Optical Lens Surface Quality Specification",
+  "revision": "2.0",
+  "product": "BK7 Plano-Convex Lens, 25mm Diameter",
+  "stage": "PVT",
+  "issued_by": "Radiant Optics Inc (OEM)",
+  "factory": "Nagoya Seimitsu Kogaku Co., Ltd.",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "illumination": "150W halogen lamp per MIL-PRF-13830B",
+    "viewing_distance_mm": 250,
+    "background": "black velvet"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Scratch grade",
+      "maps_to_column": "scratch_grade",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 40,
+      "unit": "MIL scratch number",
+      "section_ref": "Section 3.1.1",
+      "notes": "Per MIL-PRF-13830B, max scratch width 40 um"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Dig grade",
+      "maps_to_column": "dig_grade",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 20,
+      "unit": "MIL dig number",
+      "section_ref": "Section 3.1.2",
+      "notes": "Per MIL-PRF-13830B, max dig diameter 0.20 mm"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Transmitted wavefront error (PV)",
+      "maps_to_column": "wavefront_pv_waves",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.25,
+      "unit": "waves at 632.8 nm",
+      "section_ref": "Section 3.2.1",
+      "notes": "lambda/4 PV per MIL-PRF-13830B"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Surface irregularity",
+      "maps_to_column": "irregularity_waves",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.125,
+      "unit": "waves at 632.8 nm",
+      "section_ref": "Section 3.2.2",
+      "notes": "lambda/8 power + astigmatism"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Centration error",
+      "maps_to_column": "centration_arcmin",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 3.0,
+      "unit": "arcmin",
+      "section_ref": "Section 3.3.1",
+      "notes": "0.05 degrees maximum"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Clear aperture",
+      "maps_to_column": "clear_aperture_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 90,
+      "unit": "%",
+      "section_ref": "Section 3.4.1",
+      "notes": "Percentage of physical diameter"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria met",
+    "conditional": "C001/C002 at boundary (scratch=40 or dig=20), joint review with photographic evidence",
+    "fail": "Any criterion exceeded; scratch-dig > 40-20 is cosmetic reject"
+  }
+}

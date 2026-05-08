@@ -1,0 +1,100 @@
+{
+  "ers_id": "ERS-085",
+  "title": "Amber Glass Bottle Dimensional and Pressure Specification",
+  "revision": "2.0",
+  "product": "500 mL Amber Glass Bottle for Hydraulic Fluid",
+  "stage": "MP",
+  "issued_by": "Atlas Heavy Equipment (OEM)",
+  "factory": "Vidriera Monterrey S.A. de C.V.",
+  "effective_date": "2026-01-15",
+  "test_conditions": {
+    "temperature_c": { "nominal": 23, "tolerance": 2 },
+    "pressure_medium": "water"
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Total height",
+      "maps_to_column": "total_height_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 201.5,
+      "upper_limit": 204.5,
+      "unit": "mm",
+      "section_ref": "Section 3.1.1",
+      "notes": "203.0 +/- 1.5 mm per drawing"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Body diameter",
+      "maps_to_column": "body_diameter_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 72.2,
+      "upper_limit": 73.8,
+      "unit": "mm",
+      "section_ref": "Section 3.1.2",
+      "notes": "73.0 +/- 0.8 mm per GPI spec"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Bore diameter",
+      "maps_to_column": "bore_diameter_mm",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 27.7,
+      "upper_limit": 28.3,
+      "unit": "mm",
+      "section_ref": "Section 3.1.3",
+      "notes": "28.0 +/- 0.3 mm per GPI 28-405 finish"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Verticality",
+      "maps_to_column": "verticality_mm",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 1.5,
+      "unit": "mm",
+      "section_ref": "Section 3.2.1",
+      "notes": "Per ASTM C148"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Internal pressure resistance",
+      "maps_to_column": "pressure_psi",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 150,
+      "unit": "psi",
+      "section_ref": "Section 3.3.1",
+      "notes": "Per ASTM C147 hydrostatic test"
+    },
+    {
+      "criterion_id": "C006",
+      "parameter": "Minimum wall thickness",
+      "maps_to_column": "min_wall_thickness_mm",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 2.0,
+      "unit": "mm",
+      "section_ref": "Section 3.4.1",
+      "notes": "At thinnest point per light-gauge inspection"
+    },
+    {
+      "criterion_id": "C007",
+      "parameter": "Weight",
+      "maps_to_column": "weight_g",
+      "type": "NUMERIC_RANGE",
+      "lower_limit": 295,
+      "upper_limit": 325,
+      "unit": "g",
+      "section_ref": "Section 3.5.1",
+      "notes": "310 +/- 15 g per bottle"
+    }
+  ],
+  "sampling": {
+    "method": "AQL",
+    "aql": "0.65",
+    "sample_size_per_lot": 125
+  },
+  "disposition_rules": {
+    "pass": "All criteria met on all samples",
+    "conditional": "Weight marginally outside range; acceptable if pressure test passes",
+    "fail": "Any pressure failure, verticality > 1.5 mm, or wall thickness < 2.0 mm"
+  }
+}

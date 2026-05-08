@@ -1,0 +1,76 @@
+{
+  "ers_id": "ERS-076",
+  "title": "Ti-6Al-4V ELI LPBF Part Density and Porosity Specification",
+  "revision": "1.0",
+  "product": "Hip Implant Component - Ti-6Al-4V ELI LPBF",
+  "stage": "DVT",
+  "issued_by": "Quantus Additive Technologies (OEM)",
+  "factory": "Detroit Additive Manufacturing LLC",
+  "effective_date": "2026-03-01",
+  "test_conditions": {
+    "ct_scan_voltage_kv": 225,
+    "ct_scan_current_ua": 50,
+    "voxel_size_um": { "max": 15 },
+    "temperature_c": { "nominal": 23, "tolerance": 2 }
+  },
+  "acceptance_criteria": [
+    {
+      "criterion_id": "C001",
+      "parameter": "Relative density",
+      "maps_to_column": "relative_density_pct",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 99.5,
+      "unit": "%",
+      "section_ref": "Section 4.1.1",
+      "notes": "Per ASTM F3301-18a for surgical implant Ti-6Al-4V ELI"
+    },
+    {
+      "criterion_id": "C002",
+      "parameter": "Maximum individual pore diameter",
+      "maps_to_column": "max_pore_diameter_um",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 150,
+      "unit": "um",
+      "section_ref": "Section 4.1.2",
+      "notes": "Measured via micro-CT per ASTM E1441"
+    },
+    {
+      "criterion_id": "C003",
+      "parameter": "Total porosity volume fraction",
+      "maps_to_column": "total_porosity_vol_pct",
+      "type": "NUMERIC_LTE",
+      "upper_limit": 0.50,
+      "unit": "%",
+      "section_ref": "Section 4.1.3",
+      "notes": "CT scan volumetric analysis"
+    },
+    {
+      "criterion_id": "C004",
+      "parameter": "Interconnected porosity",
+      "maps_to_column": "interconnected_porosity_detected",
+      "type": "STRING_EQUALS",
+      "expected_value": "NO",
+      "section_ref": "Section 4.1.4",
+      "notes": "No pore channels > 50 um connecting to surface"
+    },
+    {
+      "criterion_id": "C005",
+      "parameter": "Archimedes density",
+      "maps_to_column": "archimedes_density_g_cm3",
+      "type": "NUMERIC_GTE",
+      "lower_limit": 4.41,
+      "unit": "g/cm3",
+      "section_ref": "Section 4.2.1",
+      "notes": "99.5% of theoretical Ti-6Al-4V density (4.43 g/cm3)"
+    }
+  ],
+  "sampling": {
+    "method": "100_PERCENT",
+    "aql": null
+  },
+  "disposition_rules": {
+    "pass": "All criteria C001-C005 met",
+    "conditional": "C005 marginal (4.41-4.42), engineering review with CT data",
+    "fail": "Any critical criterion (C001-C004) failed; interconnected porosity is safety-critical reject"
+  }
+}

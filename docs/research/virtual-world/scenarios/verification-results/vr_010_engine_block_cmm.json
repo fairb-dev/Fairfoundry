@@ -1,0 +1,1088 @@
+{
+  "verification_id": "VR-010",
+  "csv_source": "engine_block_cmm.csv",
+  "ers_source": "engine_block_cmm_ers.json",
+  "ers_id": "ERS-010",
+  "product": "Inline-4 Aluminum Engine Block AL4-200",
+  "timestamp": "2026-04-11T12:00:00Z",
+  "summary": {
+    "total_units": 35,
+    "passed": 27,
+    "failed": 8,
+    "pass_rate": 77.1,
+    "criteria_failure_distribution": {
+      "C001_cylinder_1_bore_diameter": 1,
+      "C008_main_bearing_bore_coaxiality": 1,
+      "C006_deck_surface_flatness": 4,
+      "C007_main_bearing_bore_diameter": 2
+    }
+  },
+  "unit_results": [
+    {
+      "unit_id": "EB-AL4-20260410-0061",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.014,
+          "limit": "[81.99, 82.01]",
+          "result": "FAIL",
+          "margin": -0.004
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.004,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.004,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.001
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.025,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.0,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.019,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.001
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.12,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0067",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.002,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.005,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.004,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.003,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.019,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.007,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.003
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.023,
+          "limit": "<=0.02",
+          "result": "FAIL",
+          "margin": -0.003
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.1,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.02
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0069",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.003,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.007
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 81.999,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.002,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 81.995,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.003,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.03,
+          "limit": "<=0.025",
+          "result": "FAIL",
+          "margin": -0.005
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 54.999,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.016,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.004
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.09,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.03
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0072",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 81.998,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 81.999,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.002,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.003
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.027,
+          "limit": "<=0.025",
+          "result": "FAIL",
+          "margin": -0.002
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.001,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.008,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.012
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.11,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.01
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0073",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.006,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.004
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.002,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.002,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.003
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.015,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.011,
+          "limit": "[54.99, 55.01]",
+          "result": "FAIL",
+          "margin": -0.001
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.014,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.12,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.0
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0075",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.006,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.004
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.005,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 81.999,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.003,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.019,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.011,
+          "limit": "[54.99, 55.01]",
+          "result": "FAIL",
+          "margin": -0.001
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.014,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.08,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.04
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0081",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 81.996,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 81.999,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.003,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.027,
+          "limit": "<=0.025",
+          "result": "FAIL",
+          "margin": -0.002
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.0,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.011,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.11,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.01
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0089",
+      "overall": "FAIL",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 81.998,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.003,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.026,
+          "limit": "<=0.025",
+          "result": "FAIL",
+          "margin": -0.001
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.01,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.015,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.06,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.06
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0055",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.005,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.003,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.007
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 81.997,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.007
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.002,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.003
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.01,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.015
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 54.998,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.014,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.08,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.04
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0060",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.001,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 82.008,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.002,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.003
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.023,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.001,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.019,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.001
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.1,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.02
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0066",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.002,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.007,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.003
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 81.999,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 81.998,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.004,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.001
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.016,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.009
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 54.997,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.007
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.018,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.08,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.04
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0076",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.01,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.0
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 81.992,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 81.998,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 81.994,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.004
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.003,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.02,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 54.995,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.009,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.011
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.09,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.03
+        }
+      ]
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0082",
+      "overall": "PASS",
+      "criteria_results": [
+        {
+          "criterion_id": "C001",
+          "parameter": "Cylinder 1 bore diameter",
+          "value": 82.004,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C002",
+          "parameter": "Cylinder 2 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C003",
+          "parameter": "Cylinder 3 bore diameter",
+          "value": 82.005,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.005
+        },
+        {
+          "criterion_id": "C004",
+          "parameter": "Cylinder 4 bore diameter",
+          "value": 82.0,
+          "limit": "[81.99, 82.01]",
+          "result": "PASS",
+          "margin": 0.01
+        },
+        {
+          "criterion_id": "C005",
+          "parameter": "Cylinder 1 roundness",
+          "value": 0.003,
+          "limit": "<=0.005",
+          "result": "PASS",
+          "margin": 0.002
+        },
+        {
+          "criterion_id": "C006",
+          "parameter": "Deck surface flatness",
+          "value": 0.019,
+          "limit": "<=0.025",
+          "result": "PASS",
+          "margin": 0.006
+        },
+        {
+          "criterion_id": "C007",
+          "parameter": "Main bearing bore diameter",
+          "value": 55.002,
+          "limit": "[54.99, 55.01]",
+          "result": "PASS",
+          "margin": 0.008
+        },
+        {
+          "criterion_id": "C008",
+          "parameter": "Main bearing bore coaxiality",
+          "value": 0.013,
+          "limit": "<=0.02",
+          "result": "PASS",
+          "margin": 0.007
+        },
+        {
+          "criterion_id": "C009",
+          "parameter": "Bolt hole true position",
+          "value": 0.06,
+          "limit": "<=0.12",
+          "result": "PASS",
+          "margin": 0.06
+        }
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "unit_id": "EB-AL4-20260410-0061",
+      "criterion": "C006",
+      "parameter": "Deck surface flatness",
+      "value": 0.025,
+      "limit": "<=0.025",
+      "margin": 0.0,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0062",
+      "criterion": "C001",
+      "parameter": "Cylinder 1 bore diameter",
+      "value": 82.01,
+      "limit": "[81.99, 82.01]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0073",
+      "criterion": "C009",
+      "parameter": "Bolt hole true position",
+      "value": 0.12,
+      "limit": "<=0.12",
+      "margin": 0.0,
+      "note": "Barely failing"
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0076",
+      "criterion": "C001",
+      "parameter": "Cylinder 1 bore diameter",
+      "value": 82.01,
+      "limit": "[81.99, 82.01]",
+      "margin": 0.0,
+      "note": "Barely passing"
+    },
+    {
+      "unit_id": "EB-AL4-20260410-0089",
+      "criterion": "C007",
+      "parameter": "Main bearing bore diameter",
+      "value": 55.01,
+      "limit": "[54.99, 55.01]",
+      "margin": 0.0,
+      "note": "Barely failing"
+    }
+  ],
+  "recommended_actions": [
+    "Cylinder bore diameter out of tolerance -- inspect honing tool condition and coolant flow rate.",
+    "Main bearing coaxiality deviation -- verify line boring fixture alignment and tool runout.",
+    "Deck flatness out of spec -- check milling cutter insert wear and fixture clamping force."
+  ]
+}
