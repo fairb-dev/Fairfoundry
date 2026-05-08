@@ -7,11 +7,11 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Contracts",
   description:
-    "Upload production data, define quality standards, and verify results with Fairbuild Contract Builder Studio.",
+    "Upload production data, define quality standards, verify results, and run sample sandboxes with Fairbuild Contract Builder Studio.",
   openGraph: {
     title: "Fairbuild Contract Builder Studio",
     description:
-      "Upload production data, define quality standards, verify results.",
+      "Upload production data, define quality standards, verify results, and run sample sandboxes.",
     type: "website",
   },
 };
@@ -65,29 +65,37 @@ export default async function Home() {
               Contracts
             </h1>
             <p className="mt-2 text-base text-gray-500">
-              Upload production data, define quality standards, verify results.
+              Upload production data, define quality standards, verify results, or run a sample sandbox.
             </p>
           </div>
-          <Link
-            href="/new"
-            className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90 shrink-0"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden="true"
+          <div className="flex shrink-0 flex-wrap items-center gap-3">
+            <Link
+              href="/sandbox"
+              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--foreground)] no-underline shadow-sm transition-all hover:bg-gray-50"
             >
-              <path
-                d="M8 3v10M3 8h10"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-            New Contract
-          </Link>
+              Run Sandbox
+            </Link>
+            <Link
+              href="/new"
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 3v10M3 8h10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              New Contract
+            </Link>
+          </div>
         </div>
       </header>
 
