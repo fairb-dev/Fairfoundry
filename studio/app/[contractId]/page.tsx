@@ -380,7 +380,7 @@ export default async function ContractOverview({
 
   const passRate = verificationResult?.passRate ?? 0;
   const passRateColor =
-    passRate >= 95 ? "var(--pass)" : passRate >= 80 ? "#ca8a04" : "var(--fail)";
+    passRate >= 95 ? "var(--pass)" : passRate >= 80 ? "var(--warning-text)" : "var(--fail)";
 
   // ── Render the one-page summary ───────────────────────────────────────
 

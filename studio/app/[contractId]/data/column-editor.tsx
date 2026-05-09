@@ -180,6 +180,7 @@ function ColumnCard({
             </button>
           )}
           <select
+            aria-label={`Set role for ${column.originalName}`}
             value={isConfirmed ? column.role : ""}
             onChange={(e) => handleRoleChange(e.target.value)}
             disabled={isPending}

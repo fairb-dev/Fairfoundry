@@ -156,7 +156,7 @@ export function InsightsPanel({ insights }: { insights: Insight[] }) {
                 fontWeight: 600,
                 color:
                   insight.type === "warning"
-                    ? "#92400e"
+                    ? "#78350f"
                     : insight.type === "success"
                       ? "#166534"
                       : "#1e40af",
@@ -166,7 +166,7 @@ export function InsightsPanel({ insights }: { insights: Insight[] }) {
               {insight.type === "warning" ? "⚠ " : insight.type === "success" ? "✓ " : "ℹ "}
               {insight.title}
             </div>
-            <div style={{ fontSize: "0.8rem", color: "#6b7280", lineHeight: 1.5 }}>
+            <div style={{ fontSize: "0.8rem", color: "#374151", lineHeight: 1.5 }}>
               {insight.detail}
             </div>
           </div>

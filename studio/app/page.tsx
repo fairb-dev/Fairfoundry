@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import type { Prisma } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
@@ -25,26 +26,56 @@ const STATUS_COLORS: Record<string, string> = {
   CLOSED: "bg-red-100 text-red-700",
 };
 
+type ContractListItem = Prisma.ContractGetPayload<{
+  include: {
+    parties: {
+      include: {
+        company: true;
+      };
+    };
+    criteria: true;
+    submissions: {
+      select: {
+        unitsTotal: true;
+        unitsPassed: true;
+      };
+    };
+  };
+}>;
+
+async function getContracts(): Promise<{
+  contracts: ContractListItem[];
+  unavailable: boolean;
+}> {
+  try {
+    const contracts = await prisma.contract.findMany({
+      include: {
+        parties: {
+          include: {
+            company: true,
+          },
+        },
+        criteria: true,
+        submissions: {
+          orderBy: { submittedAt: "desc" },
+          take: 1,
+          select: {
+            unitsTotal: true,
+            unitsPassed: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    return { contracts, unavailable: false };
+  } catch (error) {
+    console.error("Unable to load contracts", error);
+    return { contracts: [], unavailable: true };
+  }
+}
+
 export default async function Home() {
-  const contracts = await prisma.contract.findMany({
-    include: {
-      parties: {
-        include: {
-          company: true,
-        },
-      },
-      criteria: true,
-      submissions: {
-        orderBy: { submittedAt: "desc" },
-        take: 1,
-        select: {
-          unitsTotal: true,
-          unitsPassed: true,
-        },
-      },
-    },
-    orderBy: { createdAt: "desc" },
-  });
+  const { contracts, unavailable } = await getContracts();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -59,8 +90,8 @@ export default async function Home() {
         <p className="mb-2 text-sm font-semibold tracking-wider uppercase text-[var(--accent)]">
           Contract Builder Studio
         </p>
-        <div className="flex items-start justify-between gap-4">
-          <div>
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
             <h1 className="text-4xl font-bold tracking-tight text-[var(--foreground)]">
               Contracts
             </h1>
@@ -68,16 +99,16 @@ export default async function Home() {
               Upload production data, define quality standards, verify results, or run a sample sandbox.
             </p>
           </div>
-          <div className="flex shrink-0 flex-wrap items-center gap-3">
+          <div className="flex w-full min-w-0 flex-wrap items-center gap-3 sm:w-auto sm:shrink-0 sm:justify-end">
             <Link
               href="/sandbox"
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--foreground)] no-underline shadow-sm transition-all hover:bg-gray-50"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--foreground)] no-underline shadow-sm transition-all hover:bg-gray-50 sm:flex-none"
             >
               Run Sandbox
             </Link>
             <Link
               href="/new"
-              className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-all hover:opacity-90 sm:flex-none"
             >
               <svg
                 width="16"
@@ -99,7 +130,20 @@ export default async function Home() {
         </div>
       </header>
 
-      {contracts.length === 0 ? (
+      {unavailable ? (
+        <div className="empty-state" role="status">
+          <div className="empty-state-title">Contracts are temporarily unavailable</div>
+          <div className="empty-state-description">
+            The sandbox remains available while the contract database is unreachable.
+          </div>
+          <Link
+            href="/sandbox"
+            className="mt-5 inline-flex items-center justify-center rounded-lg bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white no-underline"
+          >
+            Run Sandbox
+          </Link>
+        </div>
+      ) : contracts.length === 0 ? (
         <div className="empty-state">
           <svg
             width="48"
@@ -149,8 +193,8 @@ export default async function Home() {
               passRate !== null
                 ? passRate >= 95
                   ? "var(--pass)"
-                  : passRate >= 80
-                    ? "#ca8a04"
+                : passRate >= 80
+                    ? "var(--warning-text)"
                     : "var(--fail)"
                 : undefined;
 
@@ -191,8 +235,8 @@ export default async function Home() {
                           backgroundColor:
                             passRate >= 95
                               ? "var(--pass-bg)"
-                              : passRate >= 80
-                                ? "#fef3c7"
+                            : passRate >= 80
+                                ? "var(--warning-bg)"
                                 : "var(--fail-bg)",
                         }}
                       >

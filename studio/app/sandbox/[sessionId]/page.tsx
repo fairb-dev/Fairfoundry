@@ -278,6 +278,28 @@ export default async function SandboxSessionPage({
             <h1>{sample.product}</h1>
             <p>{sample.tagline}</p>
           </div>
+          <div className="sandbox-guided-path" aria-label="20-minute sandbox path">
+            <div>
+              <span>01</span>
+              <strong>Load log</strong>
+              <small>{simulation.profile.rowCount} rows parsed</small>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>Map evidence</strong>
+              <small>{simulation.evidenceCompleteness}% evidence coverage</small>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>Apply gates</strong>
+              <small>{simulation.gateSuggestions.matchedCount}/{simulation.gateSuggestions.gates.length} ERS gates</small>
+            </div>
+            <div>
+              <span>04</span>
+              <strong>Preview settlement</strong>
+              <small>{acceptedUnits} accepted, {heldUnits} held</small>
+            </div>
+          </div>
         </section>
 
         <section className="sandbox-metric-strip" aria-label="Sandbox run metrics">
@@ -354,23 +376,23 @@ export default async function SandboxSessionPage({
               <tbody>
                 {simulation.gateSuggestions.gates.map((gate) => (
                   <tr key={gate.criterionId}>
-                    <td>
+                    <td data-label="Gate">
                       <strong>{gate.criterionId}</strong>
                       <small>{gate.parameter}</small>
                     </td>
-                    <td className="sandbox-mono">{formatLimit(gate)}</td>
-                    <td aria-label={`${gate.matchedColumn ?? "unmatched"} evidence ${gate.matchStatus}`}>
+                    <td className="sandbox-mono" data-label="Limit">{formatLimit(gate)}</td>
+                    <td data-label="Evidence column" aria-label={`${gate.matchedColumn ?? "unmatched"} evidence ${gate.matchStatus}`}>
                       <span className="sandbox-mono">{gate.matchedColumn ?? "unmatched"}</span>
                       <span className={`sandbox-chip gate-${gate.matchStatus}`}>
                         {gate.matchStatus}
                       </span>
                     </td>
-                    <td>
+                    <td data-label="Severity">
                       <span className={`sandbox-chip severity-${gate.severity}`}>
                         {gate.severity}
                       </span>
                     </td>
-                    <td>{gate.sectionRef}</td>
+                    <td data-label="Source">{gate.sectionRef}</td>
                   </tr>
                 ))}
               </tbody>
@@ -444,14 +466,14 @@ export default async function SandboxSessionPage({
                 <tbody>
                   {matrixUnits.map((unit) => (
                     <tr key={unit.unitId}>
-                      <td className="sandbox-mono">{unit.unitId}</td>
-                      <td>
+                      <td className="sandbox-mono" data-label="Unit">{unit.unitId}</td>
+                      <td data-label="Grade">
                         <span className={`sandbox-grade-pill ${gradeClass[unit.grade]}`} aria-label={`Grade: ${unit.grade}`}>
                           {unit.grade}
                         </span>
                       </td>
-                      <td>{unit.failedGateIds.length > 0 ? unit.failedGateIds.join(", ") : "none"}</td>
-                      <td>
+                      <td data-label="Failed gates">{unit.failedGateIds.length > 0 ? unit.failedGateIds.join(", ") : "none"}</td>
+                      <td data-label="Review triggers">
                         {unit.reviewFlags.length > 0
                           ? unit.reviewFlags.join("; ")
                           : unit.failedGateIds.length > 0

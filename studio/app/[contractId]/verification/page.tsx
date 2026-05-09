@@ -253,7 +253,7 @@ export default async function VerificationPage({
 
   const passRate = result.passRate;
   const passRateColor =
-    passRate >= 95 ? "var(--pass)" : passRate >= 80 ? "#ca8a04" : "var(--fail)";
+    passRate >= 95 ? "var(--pass)" : passRate >= 80 ? "var(--warning-text)" : "var(--fail)";
 
   // ── Render ─────────────────────────────────────────────────────────────
 

@@ -42,7 +42,7 @@ export default async function ReportPage({
 
   if (!logMapping || links.length === 0) {
     return (
-      <div style={{ padding: "4rem 2rem", textAlign: "center", color: "#6b7280" }}>
+      <div style={{ padding: "4rem 2rem", textAlign: "center", color: "#4b5563" }}>
         No verification data available for this contract.
       </div>
     );
@@ -113,7 +113,7 @@ export default async function ReportPage({
 
   if (!csvContent) {
     return (
-      <div style={{ padding: "4rem 2rem", textAlign: "center", color: "#6b7280" }}>
+      <div style={{ padding: "4rem 2rem", textAlign: "center", color: "#4b5563" }}>
         CSV data file not found.
       </div>
     );
@@ -160,7 +160,7 @@ export default async function ReportPage({
 
   const passRate = result.passRate;
   const passRateColor =
-    passRate >= 95 ? "#166534" : passRate >= 80 ? "#b45309" : "#991b1b";
+    passRate >= 95 ? "#166534" : passRate >= 80 ? "#92400e" : "#991b1b";
 
   const now = new Date();
   const dateStr = now.toLocaleDateString("en-US", {
@@ -179,13 +179,13 @@ export default async function ReportPage({
 
       {/* ── Header ── */}
       <div style={{ borderBottom: "2px solid #e3e8ee", paddingBottom: "1.5rem", marginBottom: "2rem" }}>
-        <div style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.5rem" }}>
+        <div style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "#4b5563", marginBottom: "0.5rem" }}>
           Quality Verification Report
         </div>
         <h1 style={{ fontSize: "1.5rem", fontWeight: 700, margin: 0, lineHeight: 1.3 }}>
           {contract.title}
         </h1>
-        <div style={{ marginTop: "0.75rem", display: "flex", flexWrap: "wrap", gap: "1.5rem", fontSize: "0.875rem", color: "#6b7280" }}>
+        <div style={{ marginTop: "0.75rem", display: "flex", flexWrap: "wrap", gap: "1.5rem", fontSize: "0.875rem", color: "#4b5563" }}>
           {oem && (
             <div>
               <span style={{ fontWeight: 600, color: "#374151" }}>OEM:</span>{" "}
@@ -223,9 +223,9 @@ export default async function ReportPage({
           >
             {passRate.toFixed(1)}%
           </span>
-          <span style={{ fontSize: "1rem", color: "#6b7280" }}>pass rate</span>
+          <span style={{ fontSize: "1rem", color: "#4b5563" }}>pass rate</span>
         </div>
-        <div style={{ display: "flex", gap: "2rem", fontSize: "0.875rem", color: "#6b7280" }}>
+        <div style={{ display: "flex", gap: "2rem", fontSize: "0.875rem", color: "#4b5563" }}>
           <div>
             <span style={{ fontWeight: 600, color: "#374151" }}>{result.totalUnits}</span> units tested
           </div>
@@ -272,13 +272,13 @@ export default async function ReportPage({
               const cr = result.totalUnits > 0
                 ? ((result.totalUnits - s.totalFailed) / result.totalUnits) * 100
                 : 100;
-              const crColor = cr >= 95 ? "#166534" : cr >= 80 ? "#b45309" : "#991b1b";
+              const crColor = cr >= 95 ? "#166534" : cr >= 80 ? "#92400e" : "#991b1b";
               return (
                 <tr key={s.columnName} style={{ borderBottom: "1px solid #e3e8ee" }}>
                   <td style={{ padding: "0.5rem 0.75rem", fontWeight: 500 }}>
                     {s.parameterName}
                   </td>
-                  <td style={{ padding: "0.5rem 0.75rem", fontFamily: "var(--font-mono)", color: "#6b7280", fontSize: "0.75rem" }}>
+                  <td style={{ padding: "0.5rem 0.75rem", fontFamily: "var(--font-mono)", color: "#4b5563", fontSize: "0.75rem" }}>
                     {s.columnName}
                   </td>
                   <td style={{ padding: "0.5rem 0.75rem", textAlign: "right", fontFamily: "var(--font-mono)", fontWeight: 600, color: crColor }}>
@@ -287,7 +287,7 @@ export default async function ReportPage({
                   <td style={{ padding: "0.5rem 0.75rem", textAlign: "right", fontFamily: "var(--font-mono)", color: "#166534" }}>
                     {result.totalUnits - s.totalFailed}
                   </td>
-                  <td style={{ padding: "0.5rem 0.75rem", textAlign: "right", fontFamily: "var(--font-mono)", color: s.totalFailed > 0 ? "#991b1b" : "#6b7280" }}>
+                  <td style={{ padding: "0.5rem 0.75rem", textAlign: "right", fontFamily: "var(--font-mono)", color: s.totalFailed > 0 ? "#991b1b" : "#4b5563" }}>
                     {s.totalFailed}
                   </td>
                 </tr>
@@ -324,7 +324,7 @@ export default async function ReportPage({
                     >
                       <div>{header}</div>
                       {info && (
-                        <div style={{ fontWeight: 500, color: "#2f6fed", fontFamily: "var(--font-mono)", fontSize: "0.625rem", marginTop: "2px" }}>
+                        <div style={{ fontWeight: 500, color: "#1e40af", fontFamily: "var(--font-mono)", fontSize: "0.625rem", marginTop: "2px" }}>
                           {formatLimit(info.criteriaType, info.lowerLimit, info.upperLimit, info.unit)}
                         </div>
                       )}
@@ -359,7 +359,7 @@ export default async function ReportPage({
                         prefix = "\u2717 ";
                       }
                     } else if (!isUnitId) {
-                      color = "#9ca3af";
+                      color = "#4b5563";
                     }
 
                     return (
@@ -405,10 +405,10 @@ export default async function ReportPage({
                   insight.type === "warning" ? "#fffbeb" : insight.type === "success" ? "#f0fdf4" : "#eff6ff",
               }}
             >
-              <div style={{ fontSize: "0.8125rem", fontWeight: 600, color: insight.type === "warning" ? "#92400e" : insight.type === "success" ? "#166534" : "#1e40af" }}>
+              <div style={{ fontSize: "0.8125rem", fontWeight: 600, color: insight.type === "warning" ? "#78350f" : insight.type === "success" ? "#166534" : "#1e40af" }}>
                 {insight.title}
               </div>
-              <div style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: "0.125rem" }}>
+              <div style={{ fontSize: "0.75rem", color: "#4b5563", marginTop: "0.125rem" }}>
                 {insight.detail}
               </div>
             </div>
@@ -423,7 +423,7 @@ export default async function ReportPage({
         marginTop: "2rem",
         textAlign: "center",
         fontSize: "0.75rem",
-        color: "#9ca3af",
+        color: "#4b5563",
       }}>
         Generated by Fairbuild Studio &mdash; fairb.com
       </div>

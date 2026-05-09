@@ -61,6 +61,7 @@ export function ManualCriterionForm({
             Limit Type
           </label>
           <select
+            aria-label="Limit type"
             name="criteriaType"
             value={criteriaType}
             onChange={(e) => setCriteriaType(e.target.value)}

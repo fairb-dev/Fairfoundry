@@ -143,6 +143,7 @@ export function WhatIf({ linkedColumns, csvRows, headerIndexMap }: WhatIfProps) 
             Criterion
           </label>
           <select
+            aria-label="Select criterion for what-if analysis"
             value={selectedCol}
             onChange={(e) => handleSelectChange(e.target.value)}
             className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)] cursor-pointer"

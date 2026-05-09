@@ -138,17 +138,17 @@ export function ParameterExtractionTable({
           <tbody>
             {visibleRows.map((column) => (
               <tr key={column.name}>
-                <td className="sandbox-mono">{column.name}</td>
-                <td>
+                <td className="sandbox-mono" data-label="Source column">{column.name}</td>
+                <td data-label="Role">
                   <span className="sandbox-chip neutral" aria-label={`Role: ${column.role}`}>
                     {column.role}
                   </span>
                 </td>
-                <td>{column.dataType}</td>
-                <td>
+                <td data-label="Type">{column.dataType}</td>
+                <td data-label="Stats / samples">
                   <span title={column.statsTitle ?? undefined}>{column.statsText}</span>
                 </td>
-                <td className="sandbox-mono">{column.confidenceText}</td>
+                <td className="sandbox-mono" data-label="Confidence">{column.confidenceText}</td>
               </tr>
             ))}
           </tbody>

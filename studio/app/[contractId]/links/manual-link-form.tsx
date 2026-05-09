@@ -85,6 +85,7 @@ export function ManualLinkForm({
             Data Column
           </label>
           <select
+            aria-label="Select data column"
             value={columnId}
             onChange={(e) => setColumnId(e.target.value)}
             required
@@ -107,6 +108,7 @@ export function ManualLinkForm({
             Acceptance Criterion
           </label>
           <select
+            aria-label="Select acceptance criterion"
             value={criterionId}
             onChange={(e) => setCriterionId(e.target.value)}
             required
