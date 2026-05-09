@@ -27,6 +27,9 @@ export const metadata: Metadata = {
       "Upload production data, define quality standards, verify results.",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
